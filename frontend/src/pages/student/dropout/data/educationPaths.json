@@ -1,0 +1,3814 @@
+[
+  {
+    "id": "nios-open-school",
+    "name": "NIOS / Open School after 10th or 11th",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th"
+    ],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 35,
+    "description": "Complete 10th or 11th–12th through National Institute of Open Schooling for flexible learning.",
+    "interests": ["Teaching", "Hands-on"],
+    "exams": [
+      {
+        "name": "NIOS Board Exams",
+        "minEducation": "Enrolled in NIOS",
+        "ageNote": "No upper age limit",
+        "attempts": "Multiple chances"
+      }
+    ],
+    "educationRoute": [
+      "Enroll in NIOS for 10th or 11th–12th",
+      "Study at your own pace",
+      "Appear for board exams",
+      "Pursue higher education or vocational courses"
+    ],
+    "careerOptions": [
+      "Further studies in any stream",
+      "Vocational jobs",
+      "Entry-level positions"
+    ]
+  },
+  {
+    "id": "11th-12th-commerce-ca",
+    "name": "11th–12th Commerce → BCom + CA/CS/CMA foundation",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Studying in 11th standard",
+      "Dropped out after 11th"
+    ],
+    "streamSuitable": ["Commerce", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 25,
+    "description": "Complete 11th–12th Commerce and start CA/CS/CMA for chartered accountancy or management.",
+    "interests": ["Business", "Money", "Problem-Solving"],
+    "exams": [
+      {
+        "name": "CA Foundation",
+        "minEducation": "12th",
+        "ageNote": "18–30",
+        "attempts": "4 times a year"
+      },
+      {
+        "name": "CS Foundation",
+        "minEducation": "12th",
+        "ageNote": "17–25",
+        "attempts": "2 times a year"
+      }
+    ],
+    "educationRoute": [
+      "Complete 11th–12th Commerce",
+      "Enroll in CA/CS/CMA foundation",
+      "Clear foundation exams",
+      "Pursue articleship and further levels"
+    ],
+    "careerOptions": [
+      "Chartered Accountant",
+      "Company Secretary",
+      "Financial Analyst"
+    ]
+  },
+  {
+    "id": "11th-12th-arts-civil-services",
+    "name": "11th–12th Arts → BA + civil services / teaching path",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Studying in 11th standard",
+      "Dropped out after 11th"
+    ],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 28,
+    "description": "Finish 11th–12th Arts and pursue BA followed by UPSC or teaching careers.",
+    "interests": ["People", "Teaching", "Problem-Solving"],
+    "exams": [
+      {
+        "name": "UPSC Civil Services",
+        "minEducation": "Graduation",
+        "ageNote": "21–32",
+        "attempts": "Once a year"
+      },
+      {
+        "name": "CTET for Teaching",
+        "minEducation": "12th + D.El.Ed",
+        "ageNote": "No limit",
+        "attempts": "2 times a year"
+      }
+    ],
+    "educationRoute": [
+      "Complete 11th–12th Arts",
+      "Pursue BA in relevant subject",
+      "Prepare for UPSC or teaching exams",
+      "Join civil services or teaching profession"
+    ],
+    "careerOptions": [
+      "IAS/IPS Officer",
+      "Teacher",
+      "Government jobs"
+    ]
+  },
+  {
+    "id": "polytechnic-iti",
+    "name": "Polytechnic / ITI / Vocational Diploma after 10th/12th",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Join Polytechnic or ITI for technical skills and direct job entry.",
+    "interests": ["Technology", "Hands-on", "Problem-Solving"],
+    "exams": [
+      {
+        "name": "Polytechnic Entrance",
+        "minEducation": "10th",
+        "ageNote": "15–25",
+        "attempts": "State-wise"
+      }
+    ],
+    "educationRoute": [
+      "Enroll in Polytechnic or ITI",
+      "Complete 3-year diploma",
+      "Gain practical skills",
+      "Enter workforce or pursue degree"
+    ],
+    "careerOptions": [
+      "Technician",
+      "Supervisor",
+      "Engineering assistant"
+    ]
+  },
+  {
+    "id": "12th-ssc-chsl",
+    "name": "12th pass → SSC CHSL / other 12th-level exams",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Science", "Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 27,
+    "description": "After 12th, prepare for SSC CHSL and other government exams for clerical jobs.",
+    "interests": ["Other (Distance / online degrees, Skill-first programs)"],
+    "exams": [
+      {
+        "name": "SSC CHSL",
+        "minEducation": "12th",
+        "ageNote": "18–27",
+        "attempts": "Once a year"
+      }
+    ],
+    "educationRoute": [
+      "Complete 12th if not done",
+      "Prepare for SSC exams",
+      "Clear exam and interview",
+      "Join government job"
+    ],
+    "careerOptions": [
+      "Clerical officer",
+      "Data entry operator",
+      "Government staff"
+    ]
+  },
+  {
+    "id": "11th-science-jee",
+    "name": "11th–12th Science + JEE",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Studying in 11th standard",
+      "Dropped out after 11th"
+    ],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 20,
+    "description": "Finish 11th–12th Science and prepare for engineering entrances.",
+    "interests": ["Coding", "Technology", "Problem-Solving"],
+    "exams": [
+      {
+        "name": "JEE Main",
+        "minEducation": "12th Science",
+        "ageNote": "17–25",
+        "attempts": "Usually 2 times per year"
+      }
+    ],
+    "educationRoute": [
+      "Complete 11th–12th (Science)",
+      "Prepare for JEE / state engineering exam",
+      "Join BE/BTech or related degree"
+    ],
+    "careerOptions": [
+      "Software Engineer",
+      "Electronics Engineer",
+      "Data roles after further study"
+    ]
+  },
+  {
+    "id": "11th-science-neet",
+    "name": "11th–12th Science + NEET",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Studying in 11th standard",
+      "Dropped out after 11th"
+    ],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 20,
+    "description": "Complete Science stream and prepare for medical entrance NEET.",
+    "interests": ["Health", "Helping", "Science"],
+    "exams": [
+      {
+        "name": "NEET",
+        "minEducation": "12th Science",
+        "ageNote": "17–25",
+        "attempts": "Once a year"
+      }
+    ],
+    "educationRoute": [
+      "Finish 11th–12th Science with Biology",
+      "Prepare for NEET",
+      "Join MBBS or related medical course"
+    ],
+    "careerOptions": [
+      "Doctor",
+      "Nurse",
+      "Medical professional"
+    ]
+  },
+  {
+    "id": "10th-diploma-engineering",
+    "name": "10th pass → Diploma in Engineering",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th"
+    ],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 25,
+    "description": "Direct diploma in engineering after 10th for technical skills.",
+    "interests": ["Coding", "Technology", "Problem-Solving", "Hands-on"],
+    "exams": [
+      {
+        "name": "Polytechnic Entrance",
+        "minEducation": "10th",
+        "ageNote": "15–25",
+        "attempts": "State-wise"
+      }
+    ],
+    "educationRoute": [
+      "Enroll in Diploma Engineering",
+      "Complete 3-year course",
+      "Lateral entry to degree or job"
+    ],
+    "careerOptions": [
+      "Junior Engineer",
+      "Technician",
+      "Manufacturing roles"
+    ]
+  },
+  {
+    "id": "12th-bca",
+    "name": "12th pass → BCA for IT",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Science", "Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 28,
+    "description": "Pursue BCA for computer applications and IT career.",
+    "interests": ["Coding", "Technology"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BCA",
+      "Learn programming and IT skills",
+      "Graduate and enter IT field"
+    ],
+    "careerOptions": [
+      "Software Developer",
+      "IT Support",
+      "System Analyst"
+    ]
+  },
+  {
+    "id": "12th-bba",
+    "name": "12th pass → BBA for business",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 28,
+    "description": "BBA for business administration and management roles.",
+    "interests": ["Business", "Money", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Join BBA course",
+      "Study business subjects",
+      "MBA or direct job entry"
+    ],
+    "careerOptions": [
+      "Business Analyst",
+      "Manager",
+      "Entrepreneur"
+    ]
+  },
+  {
+    "id": "12th-arts-ba-llb",
+    "name": "12th Arts → BA LLB",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 25,
+    "description": "Integrated law course for legal career.",
+    "interests": ["People", "Problem-Solving", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BA LLB",
+      "Complete 5-year course",
+      "Become lawyer or judicial officer"
+    ],
+    "careerOptions": [
+      "Lawyer",
+      "Judge",
+      "Legal consultant"
+    ]
+  },
+  {
+    "id": "10th-iti-electrician",
+    "name": "10th pass → ITI in Electrician",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th"
+    ],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "ITI for electrician skills.",
+    "interests": ["Technology", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join ITI Electrician",
+      "Learn electrical work",
+      "Certified electrician"
+    ],
+    "careerOptions": [
+      "Electrician",
+      "Maintenance technician",
+      "Electrical contractor"
+    ]
+  },
+  {
+    "id": "12th-hotel-management",
+    "name": "12th pass → Hotel Management",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Diploma or degree in hotel management.",
+    "interests": ["Business", "People", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in hotel management course",
+      "Gain hospitality skills",
+      "Work in hotels or tourism"
+    ],
+    "careerOptions": [
+      "Hotel Manager",
+      "Chef",
+      "Tourism executive"
+    ]
+  },
+  {
+    "id": "11th-12th-nda",
+    "name": "11th–12th → NDA for defense",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Studying in 11th standard",
+      "Dropped out after 11th"
+    ],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 19,
+    "description": "Prepare for NDA exam for defense services.",
+    "interests": ["People", "Problem-Solving"],
+    "exams": [
+      {
+        "name": "NDA",
+        "minEducation": "12th appearing",
+        "ageNote": "16.5–19",
+        "attempts": "2 times a year"
+      }
+    ],
+    "educationRoute": [
+      "Complete 12th",
+      "Prepare for NDA",
+      "Join defense academy"
+    ],
+    "careerOptions": [
+      "Army Officer",
+      "Navy Officer",
+      "Air Force Officer"
+    ]
+  },
+  {
+    "id": "12th-nursing",
+    "name": "12th pass → Nursing Diploma",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Nursing diploma for healthcare career.",
+    "interests": ["Health", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in GNM Nursing",
+      "Clinical training",
+      "Registered Nurse"
+    ],
+    "careerOptions": [
+      "Staff Nurse",
+      "Nursing Supervisor",
+      "Healthcare roles"
+    ]
+  },
+  {
+    "id": "10th-diploma-computer-app",
+    "name": "10th pass → Diploma in Computer Applications",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Short diploma in computer applications and basic IT skills for office and data-entry roles.",
+    "interests": ["Coding", "Technology", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1-year Diploma in Computer Applications (DCA)",
+      "Learn MS Office, internet, basic programming and typing",
+      "Do internship or part-time work in offices",
+      "Apply for office assistant or data-entry jobs"
+    ],
+    "careerOptions": [
+      "Computer operator",
+      "Office assistant",
+      "Data-entry executive"
+    ]
+  },
+  {
+    "id": "12th-bsc-it",
+    "name": "12th pass → B.Sc IT / CS",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Science", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 28,
+    "description": "Three-year B.Sc in IT or Computer Science for software and data careers.",
+    "interests": ["Coding", "Technology", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Take admission in B.Sc IT / CS",
+      "Build strong programming and database skills",
+      "Create projects and do internships",
+      "Apply for software, testing or data roles"
+    ],
+    "careerOptions": [
+      "Software developer",
+      "QA / testing engineer",
+      "Junior data analyst"
+    ]
+  },
+  {
+    "id": "12th-bsc-non-medical",
+    "name": "12th Science → B.Sc Non‑Medical",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Science"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 28,
+    "description": "B.Sc in Physics / Chemistry / Maths for technical and research‑oriented paths.",
+    "interests": ["Science", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join B.Sc PCM or similar programme",
+      "Build strong base in maths and science",
+      "Optionally prepare for exams like GATE, JAM",
+      "Move into research, analytics or teaching"
+    ],
+    "careerOptions": [
+      "Research assistant",
+      "Lab technician",
+      "Maths / science teacher (after B.Ed)"
+    ]
+  },
+  {
+    "id": "12th-arts-ba-psychology",
+    "name": "12th Arts → BA Psychology / Sociology",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "BA with Psychology or Sociology focus for people‑oriented careers.",
+    "interests": ["People", "Helping", "Teaching"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BA Psychology / Sociology",
+      "Learn counselling, human behaviour and society",
+      "Do internships with NGOs / schools / counsellors",
+      "Pursue MA or certification for advanced roles"
+    ],
+    "careerOptions": [
+      "Counsellor (with higher study)",
+      "Social worker",
+      "NGO / community project roles"
+    ]
+  },
+  {
+    "id": "10th-diploma-fashion-design",
+    "name": "10th / 12th → Diploma in Fashion / Graphic Design",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Creative diploma in fashion or graphic design for design‑focused careers.",
+    "interests": ["Design", "Creativity", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Join diploma or certificate in fashion / graphic design",
+      "Create strong portfolio of creative work",
+      "Freelance or intern with studios / brands",
+      "Apply for design roles or start small business"
+    ],
+    "careerOptions": [
+      "Fashion designer assistant",
+      "Graphic / social media designer",
+      "Freelance illustrator"
+    ]
+  },
+  {
+    "id": "12th-digital-marketing",
+    "name": "12th pass → Digital Marketing Course",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Short‑term digital marketing programme for online branding and sales careers.",
+    "interests": ["Business", "Creativity", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 6–12 month digital marketing course",
+      "Learn social media, SEO, ads and analytics",
+      "Do projects for local businesses",
+      "Apply for marketing / content roles or freelance"
+    ],
+    "careerOptions": [
+      "Digital marketing executive",
+      "Social media manager (junior)",
+      "Freelance marketer"
+    ]
+  },
+  {
+    "id": "10th-healthcare-assistant",
+    "name": "10th / 12th → Paramedical & Healthcare Assistant",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Science", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Short paramedical courses to work as healthcare or lab assistant.",
+    "interests": ["Health", "Helping", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join paramedical diploma (lab technician, OT assistant, etc.)",
+      "Get clinical training in hospitals",
+      "Obtain certification and registration if required",
+      "Work in hospitals, labs or clinics"
+    ],
+    "careerOptions": [
+      "Lab technician assistant",
+      "Operation theatre assistant",
+      "Hospital support staff"
+    ]
+  },
+  {
+    "id": "12th-aviation-hospitality",
+    "name": "12th pass → Aviation & Cabin Crew / Hospitality",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 27,
+    "description": "Specialised training for cabin crew and aviation or high‑end hospitality roles.",
+    "interests": ["People", "Business", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in aviation / cabin crew / hospitality training institute",
+      "Develop communication, grooming, safety and service skills",
+      "Apply to airlines, airports or premium hotels"
+    ],
+    "careerOptions": [
+      "Cabin crew",
+      "Ground staff",
+      "Front office executive"
+    ]
+  },
+  {
+    "id": "12th-mass-communication",
+    "name": "12th pass → Journalism & Mass Communication",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th"
+    ],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Degree or diploma in media and journalism for content and reporting careers.",
+    "interests": ["Media", "Creativity", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Join BA in Journalism / Mass Communication or a diploma",
+      "Learn reporting, writing, video and digital media",
+      "Intern with media houses or content agencies",
+      "Work in journalism, content or PR"
+    ],
+    "careerOptions": [
+      "Journalist / reporter",
+      "Content writer",
+      "Public relations executive"
+    ]
+  },
+  {
+    "id": "10th-iti-fitter",
+    "name": "10th pass → ITI Fitter / Welder / Plumber",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Short ITI trades for core mechanical and repair work.",
+    "interests": ["Technology", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Choose a trade like Fitter / Welder / Plumber",
+      "Complete 1–2 year ITI training with workshop practice",
+      "Go for apprenticeship or entry-level industry job"
+    ],
+    "careerOptions": [
+      "Industrial fitter / welder",
+      "Maintenance technician",
+      "Self-employed repair services"
+    ]
+  },
+  {
+    "id": "10th-diploma-mechanical-engg",
+    "name": "10th pass → Diploma in Mechanical Engineering",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 25,
+    "description": "Polytechnic diploma focused on machines, manufacturing and maintenance.",
+    "interests": ["Technology", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Appear for state polytechnic entrance (if applicable)",
+      "Join 3-year Mechanical Engineering diploma",
+      "Do industrial training or apprenticeship in final year"
+    ],
+    "careerOptions": [
+      "Maintenance technician",
+      "Production supervisor",
+      "Further BE/BTech via lateral entry"
+    ]
+  },
+  {
+    "id": "10th-diploma-civil-engg",
+    "name": "10th pass → Diploma in Civil Engineering",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 25,
+    "description": "Diploma for construction, site supervision and infrastructure work.",
+    "interests": ["Technology", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3-year Civil Engineering diploma after 10th",
+      "Learn surveying, drawing and construction materials",
+      "Intern with builders or government projects"
+    ],
+    "careerOptions": [
+      "Site supervisor",
+      "Survey assistant",
+      "Further BE/BTech civil via lateral entry"
+    ]
+  },
+  {
+    "id": "10th-diploma-electrical-engg",
+    "name": "10th pass → Diploma in Electrical Engineering",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 25,
+    "description": "Electrical diploma covering power systems, wiring and machines.",
+    "interests": ["Technology", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3-year Electrical diploma",
+      "Do lab practicals and site training",
+      "Work with electrical contractors or utilities"
+    ],
+    "careerOptions": [
+      "Electrical supervisor",
+      "Technician in plants",
+      "Further study in electrical engineering"
+    ]
+  },
+  {
+    "id": "10th-diploma-automobile-engg",
+    "name": "10th pass → Diploma in Automobile Engineering",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 25,
+    "description": "Automobile-focused diploma for vehicle systems and service.",
+    "interests": ["Technology", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3-year Automobile Engineering diploma",
+      "Learn about engines, transmission and diagnostics",
+      "Train in workshops of dealers or service centres"
+    ],
+    "careerOptions": [
+      "Workshop supervisor",
+      "Service advisor",
+      "Further degree in automobile/mechanical"
+    ]
+  },
+  {
+    "id": "10th-diploma-agricultural-engg",
+    "name": "10th pass → Diploma in Agricultural Engineering",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 25,
+    "description": "Diploma focused on farm machinery, irrigation and rural infrastructure.",
+    "interests": ["Hands-on", "Technology", "Science"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in Agricultural Engineering diploma",
+      "Study farm equipment, soil and water management",
+      "Intern with agri-equipment companies or farms"
+    ],
+    "careerOptions": [
+      "Farm machinery technician",
+      "Irrigation project assistant",
+      "Further degree in agri-engineering"
+    ]
+  },
+  {
+    "id": "10th-diploma-medical-lab-tech",
+    "name": "10th / 12th → Diploma in Medical Laboratory Technology (DMLT)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Science", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Lab-focused course for sample testing and diagnostics support.",
+    "interests": ["Health", "Helping", "Science"],
+    "exams": [],
+    "educationRoute": [
+      "Join 2-year DMLT after 10th or 12th (science preferred)",
+      "Train in pathology and diagnostic labs",
+      "Complete internship in hospitals or clinics"
+    ],
+    "careerOptions": [
+      "Lab technician",
+      "Sample collection officer",
+      "Further study in pathology / medical tech"
+    ]
+  },
+  {
+    "id": "12th-diploma-radiology",
+    "name": "12th pass → Diploma in Radiology / Imaging Technology",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Training in X-ray, CT and imaging procedures under radiologists.",
+    "interests": ["Health", "Helping", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Complete 12th (science preferred)",
+      "Join 2-year radiology/imaging diploma",
+      "Do clinical postings in diagnostic centres"
+    ],
+    "careerOptions": [
+      "X-ray / imaging technologist",
+      "Diagnostic centre staff",
+      "Further degree in radiology technology"
+    ]
+  },
+  {
+    "id": "12th-diploma-physiotherapy",
+    "name": "12th pass → Diploma in Physiotherapy / Rehabilitation",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Skill-based course in physical rehabilitation and exercise therapy.",
+    "interests": ["Health", "Helping", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 2-year physiotherapy diploma",
+      "Train in hospitals, clinics and rehab centres",
+      "Assist senior physios with patient therapy"
+    ],
+    "careerOptions": [
+      "Physiotherapy assistant",
+      "Rehab centre staff",
+      "Further BPT degree later"
+    ]
+  },
+  {
+    "id": "12th-dpharma",
+    "name": "12th Science → Diploma in Pharmacy (D.Pharm)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Diploma to become a registered pharmacy assistant in retail/hospital setups.",
+    "interests": ["Health", "Science", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Complete 12th with science subjects",
+      "Join 2-year D.Pharm programme",
+      "Register with state pharmacy council after completion"
+    ],
+    "careerOptions": [
+      "Pharmacy assistant",
+      "Medical shop operator",
+      "Further B.Pharm for higher roles"
+    ]
+  },
+  {
+    "id": "12th-diploma-anaesthesia-ott",
+    "name": "12th pass → Diploma in OT & Anaesthesia Technology",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Operating theatre diploma for assisting surgeons and anaesthetists.",
+    "interests": ["Health", "Helping", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join OT/Anaesthesia diploma after 12th (science preferred)",
+      "Rotate in operation theatres and ICUs",
+      "Learn sterilization, instruments and monitoring"
+    ],
+    "careerOptions": [
+      "OT technician",
+      "Anaesthesia assistant",
+      "Critical care support staff"
+    ]
+  },
+  {
+    "id": "10th-diploma-agriculture-science",
+    "name": "10th / 12th → Diploma in Agriculture Science",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Science", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Applied agriculture course for modern farming techniques.",
+    "interests": ["Science", "Hands-on", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Join 2–3 year agriculture diploma",
+      "Learn crop science, soil and irrigation",
+      "Do field training with farms and agri-companies"
+    ],
+    "careerOptions": [
+      "Farm supervisor",
+      "Agri-input sales/support",
+      "Further BSc Agriculture"
+    ]
+  },
+  {
+    "id": "12th-bvoc-retail-management",
+    "name": "12th pass → B.Voc in Retail Management",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Skill-first degree focusing on store operations and retail leadership.",
+    "interests": ["Business", "People", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 3-year B.Voc Retail programme",
+      "Alternate between classroom and on-job training",
+      "Progress from store staff to department lead"
+    ],
+    "careerOptions": [
+      "Store supervisor",
+      "Retail manager",
+      "Franchise owner"
+    ]
+  },
+  {
+    "id": "12th-bvoc-banking-finance",
+    "name": "12th pass → B.Voc in Banking & Financial Services",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Work-integrated degree for entry roles in banking and NBFCs.",
+    "interests": ["Business", "Money", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join B.Voc Banking and Financial Services",
+      "Learn basics of accounts, loans, digital banking",
+      "Intern in branches or back offices"
+    ],
+    "careerOptions": [
+      "Banking assistant",
+      "Customer relationship officer",
+      "Further exams for govt/PSU banks"
+    ]
+  },
+  {
+    "id": "12th-bvoc-software-development",
+    "name": "12th pass → B.Voc in Software Development",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 28,
+    "description": "Practice-heavy IT degree with focus on coding and projects.",
+    "interests": ["Coding", "Technology", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in B.Voc Software Development",
+      "Build projects each semester",
+      "Do internships with startups or IT firms"
+    ],
+    "careerOptions": [
+      "Junior developer",
+      "Support engineer",
+      "Pathway to advanced IT roles"
+    ]
+  },
+  {
+    "id": "12th-bed-elementary-teaching",
+    "name": "12th pass → Diploma / D.El.Ed for Primary Teaching",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Teacher training for lower primary and elementary classes.",
+    "interests": ["Teaching", "People", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Join 2-year D.El.Ed / primary teaching diploma",
+      "Complete practice teaching in schools",
+      "Appear for TET / CTET as per requirement"
+    ],
+    "careerOptions": [
+      "Primary school teacher",
+      "Private tuition teacher",
+      "Further B.Ed for higher classes"
+    ]
+  },
+  {
+    "id": "12th-bdes-fashion",
+    "name": "12th pass → B.Des in Fashion Design",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 28,
+    "description": "Creative degree in apparel design and fashion business.",
+    "interests": ["Design", "Creativity", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Prepare for design entrance (NIFT / private colleges)",
+      "Build portfolios and collections during degree",
+      "Intern with brands and export houses"
+    ],
+    "careerOptions": [
+      "Fashion designer",
+      "Stylist",
+      "Brand entrepreneur"
+    ]
+  },
+  {
+    "id": "12th-bdes-interior-design",
+    "name": "12th pass → B.Des / Diploma in Interior Design",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Course on space planning, furniture and decor.",
+    "interests": ["Design", "Creativity", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3-year degree or 1–2 year diploma in interior design",
+      "Work on residential and commercial design projects",
+      "Make portfolio with 2D/3D layouts"
+    ],
+    "careerOptions": [
+      "Interior designer",
+      "Set / event designer",
+      "Freelance decor consultant"
+    ]
+  },
+  {
+    "id": "12th-diploma-animation-vfx",
+    "name": "12th pass → Diploma in Animation & VFX",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Creative programme for 2D/3D animation and visual effects.",
+    "interests": ["Design", "Creativity", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year animation/VFX course",
+      "Learn software like Maya, Blender, After Effects",
+      "Create demo reels and collaborate on short films"
+    ],
+    "careerOptions": [
+      "Animator",
+      "VFX artist",
+      "Game/film graphics roles"
+    ]
+  },
+  {
+    "id": "12th-diploma-game-design",
+    "name": "12th pass → Diploma in Game Design & Development",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Skill course focused on gameplay, levels and basic coding.",
+    "interests": ["Coding", "Design", "Creativity"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in game design diploma",
+      "Learn game engines like Unity/Unreal basics",
+      "Build small games and publish prototypes"
+    ],
+    "careerOptions": [
+      "Game designer (entry level)",
+      "Game QA / level designer",
+      "Further advanced game dev study"
+    ]
+  },
+  {
+    "id": "12th-bhm-culinary-arts",
+    "name": "12th pass → Bachelor / Diploma in Culinary Arts",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Professional chef training and kitchen management.",
+    "interests": ["Hands-on", "Creativity", "Business"],
+    "exams": [],
+    "educationRoute": [
+      "Join hotel/culinary institute for 1–3 year course",
+      "Train in bakery, Indian and international cuisines",
+      "Intern in hotels, restaurants or cloud kitchens"
+    ],
+    "careerOptions": [
+      "Commis chef",
+      "Bakery entrepreneur",
+      "Food stylist / consultant"
+    ]
+  },
+  {
+    "id": "12th-diploma-event-management",
+    "name": "12th pass → Diploma in Event Management",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Short course in planning weddings, corporates and festivals.",
+    "interests": ["People", "Leadership", "Creativity"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 6–12 month event management diploma",
+      "Volunteer in college/public events",
+      "Train under an event agency"
+    ],
+    "careerOptions": [
+      "Event coordinator",
+      "Wedding planner team member",
+      "Freelance event curator"
+    ]
+  },
+  {
+    "id": "12th-diploma-travel-tourism",
+    "name": "12th pass → Diploma in Travel & Tourism",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Tourism-focused course for travel agencies, tours and hospitality.",
+    "interests": ["People", "Business", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year travel & tourism diploma",
+      "Learn itinerary, ticketing and customer handling",
+      "Intern with travel companies or OTAs"
+    ],
+    "careerOptions": [
+      "Travel consultant",
+      "Tour coordinator",
+      "Destination promoter"
+    ]
+  },
+  {
+    "id": "12th-diploma-medical-tourism",
+    "name": "12th / Graduate → Diploma in Medical Tourism",
+    "type": "education",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "streamSuitable": ["Arts", "Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Niche course at the intersection of healthcare and tourism.",
+    "interests": ["Health", "Business", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1-year medical tourism diploma (online or offline)",
+      "Learn healthcare systems, insurance and travel coordination",
+      "Work with hospitals or facilitators for international patients"
+    ],
+    "careerOptions": [
+      "Medical tourism coordinator",
+      "International patient executive",
+      "Health travel consultant"
+    ]
+  },
+  {
+    "id": "12th-diploma-hospital-admin",
+    "name": "12th pass → Diploma in Hospital Administration",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Management-oriented course for non-clinical roles in hospitals.",
+    "interests": ["Health", "Business", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year hospital administration diploma",
+      "Train in front office, billing and operations",
+      "Intern in hospitals or diagnostic chains"
+    ],
+    "careerOptions": [
+      "Hospital operations assistant",
+      "Front office supervisor",
+      "Further MBA in healthcare management"
+    ]
+  },
+  {
+    "id": "12th-ba-liberal-arts",
+    "name": "12th pass → BA in Liberal Arts / Social Sciences",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Flexible undergraduate degree across multiple humanities subjects.",
+    "interests": ["People", "Teaching", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BA Liberal Arts / Social Sciences",
+      "Explore psychology, sociology, economics, politics",
+      "Do internships with NGOs, think tanks or media"
+    ],
+    "careerOptions": [
+      "Policy / research assistant",
+      "NGO project roles",
+      "Further MA or professional diplomas"
+    ]
+  },
+  {
+    "id": "12th-ba-foreign-languages",
+    "name": "12th pass → BA / Diploma in Foreign Languages",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 32,
+    "description": "Language-focused course (French, German, Japanese, etc.).",
+    "interests": ["People", "Media", "Teaching"],
+    "exams": [],
+    "educationRoute": [
+      "Join language institute or BA languages programme",
+      "Reach B1/B2 proficiency over 2–3 years",
+      "Take international language certification exams"
+    ],
+    "careerOptions": [
+      "Translator / interpreter (entry level)",
+      "BPO / KPO language specialist",
+      "Language trainer"
+    ]
+  },
+  {
+    "id": "12th-diploma-sports-management",
+    "name": "12th pass → Diploma in Sports Management",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Management of sports events, academies and athletes.",
+    "interests": ["Sports", "Leadership", "Business"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year sports management diploma",
+      "Work with academies, leagues or fitness brands",
+      "Assist in event operations and athlete management"
+    ],
+    "careerOptions": [
+      "Sports coordinator",
+      "Academy manager",
+      "Sports event executive"
+    ]
+  },
+  {
+    "id": "10th-diploma-mobile-repairing",
+    "name": "10th pass → Mobile & Laptop Repairing Course",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 35,
+    "description": "Short technical course for gadget diagnosis and repair.",
+    "interests": ["Technology", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–12 month mobile/laptop repair course",
+      "Practice on faulty devices in lab",
+      "Start job in repair shop or freelancing"
+    ],
+    "careerOptions": [
+      "Mobile repair technician",
+      "Laptop service engineer",
+      "Own repair centre"
+    ]
+  },
+  {
+    "id": "10th-diploma-refrigeration-ac",
+    "name": "10th pass → Diploma / ITI in Refrigeration & AC",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 35,
+    "description": "Cooling systems course for AC, refrigeration and cold storage.",
+    "interests": ["Hands-on", "Technology"],
+    "exams": [],
+    "educationRoute": [
+      "Join ITI or diploma in refrigeration & air-conditioning",
+      "Train with service centres and industrial plants",
+      "Learn installation and gas charging procedures"
+    ],
+    "careerOptions": [
+      "AC technician",
+      "Cold storage mechanic",
+      "HVAC support roles"
+    ]
+  },
+  {
+    "id": "12th-bsc-nutrition-dietetics",
+    "name": "12th pass → B.Sc in Nutrition & Dietetics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Food science and health course focusing on diets and wellness.",
+    "interests": ["Health", "Helping", "Science"],
+    "exams": [],
+    "educationRoute": [
+      "Join B.Sc Nutrition & Dietetics after 12th",
+      "Learn food composition and clinical nutrition",
+      "Intern at hospitals, gyms and wellness centres"
+    ],
+    "careerOptions": [
+      "Diet assistant",
+      "Health coach (with certifications)",
+      "Further M.Sc / clinical nutrition roles"
+    ]
+  },
+  {
+    "id": "12th-ba-film-making",
+    "name": "12th pass → BA / Diploma in Film Making",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Practical course on direction, camera, editing and scriptwriting.",
+    "interests": ["Media", "Creativity", "Design"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in film school or short-term programme",
+      "Work on student films and short projects",
+      "Build showreel and network in industry"
+    ],
+    "careerOptions": [
+      "Assistant director",
+      "Camera assistant",
+      "Editor / production roles"
+    ]
+  },
+  {
+    "id": "12th-ba-communication-design",
+    "name": "12th pass → BA in Communication Design / Visual Communication",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 28,
+    "description": "Degree blending graphic design, branding and media storytelling.",
+    "interests": ["Design", "Creativity", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Prepare portfolio and attempt design entrances",
+      "Study branding, illustration, motion graphics",
+      "Intern in agencies and studios"
+    ],
+    "careerOptions": [
+      "Visual designer",
+      "Brand designer",
+      "Creative strategist (with experience)"
+    ]
+  },
+  {
+    "id": "12th-diploma-ui-ux-design",
+    "name": "12th pass → Diploma in UI/UX & Product Design",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "User experience and interface design for apps and websites.",
+    "interests": ["Design", "Creativity", "Tech / Computers"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–18 month UI/UX programme",
+      "Learn wireframes, prototypes and user research",
+      "Build portfolio on real or mock products"
+    ],
+    "careerOptions": [
+      "UI/UX designer (junior)",
+      "Product design intern",
+      "Pathway to full product designer roles"
+    ]
+  },
+  {
+    "id": "12th-diploma-digital-content-creation",
+    "name": "12th pass → Diploma in Digital Content Creation",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Course focused on YouTube, reels, podcasts and online branding.",
+    "interests": ["Media", "Creativity", "Design"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–12 month content creation course",
+      "Learn scripting, shooting and editing",
+      "Grow personal channels or manage for clients"
+    ],
+    "careerOptions": [
+      "Content creator",
+      "Channel manager",
+      "Social media producer"
+    ]
+  },
+  {
+    "id": "12th-diploma-hr-payroll",
+    "name": "12th pass → Diploma in HR & Payroll Management",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Support-focused course on attendance, payroll and HR operations.",
+    "interests": ["People", "Numbers / Data", "Business"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 6–12 month HR/payroll diploma",
+      "Learn Excel, HRMS, salary structures",
+      "Intern in HR departments of small companies"
+    ],
+    "careerOptions": [
+      "HR assistant",
+      "Payroll executive",
+      "Further MBA/PGDM in HR"
+    ]
+  },
+  {
+    "id": "12th-diploma-logistics-supplychain",
+    "name": "12th pass → Diploma in Logistics & Supply Chain",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Operations course for warehouses, transport and e-commerce supply chains.",
+    "interests": ["Numbers / Data", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year logistics diploma",
+      "Learn inventory, routing and basic analytics",
+      "Train with logistics companies or 3PLs"
+    ],
+    "careerOptions": [
+      "Warehouse executive",
+      "Logistics coordinator",
+      "Further study in supply chain management"
+    ]
+  },
+  {
+    "id": "12th-diploma-entrepreneurship-small-biz",
+    "name": "12th pass → Diploma in Entrepreneurship & Small Business",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Practical course on starting and running small ventures.",
+    "interests": ["Business", "Money", "Leadership"],
+    "exams": [],
+    "educationRoute": [
+      "Take 6–12 month entrepreneurship diploma",
+      "Develop a basic business plan and test ideas",
+      "Use incubator/mentorship support to launch micro-business"
+    ],
+    "careerOptions": [
+      "Small business owner",
+      "Startup team member",
+      "Pathway to BBA/MBA later"
+    ]
+  },
+  {
+    "id": "10th-iti-computer-operator",
+    "name": "10th pass → ITI Computer Operator & Programming Assistant (COPA)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "ITI trade focused on basic computer operations and simple programming.",
+    "interests": ["Coding", "Technology", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1-year ITI COPA trade after 10th",
+      "Learn MS Office, internet, basic coding and typing",
+      "Do apprenticeship or join office / data roles"
+    ],
+    "careerOptions": [
+      "Computer operator",
+      "Back office assistant",
+      "Support role for IT departments"
+    ]
+  },
+  {
+    "id": "10th-certificate-tally-gst",
+    "name": "10th / 12th → Certificate in Tally, GST & Basic Accounting",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Short course for computerised accounting and GST billing.",
+    "interests": ["Money", "Business", "Numbers / Data"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–6 month course in Tally, GST and accounts",
+      "Practice voucher entry and reports",
+      "Intern with CA firms or small businesses"
+    ],
+    "careerOptions": [
+      "Accounts assistant",
+      "Billing executive",
+      "Pathway to BCom / finance roles"
+    ]
+  },
+  {
+    "id": "10th-certificate-graphic-web-design",
+    "name": "10th / 12th → Certificate in Graphic & Web Design",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Short-term creative course for basic graphics and website layouts.",
+    "interests": ["Design", "Creativity", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–12 month design course in local institute",
+      "Learn Photoshop, Illustrator and basic web layouts",
+      "Build portfolio of logos, posters and landing pages"
+    ],
+    "careerOptions": [
+      "Junior designer",
+      "Creative assistant",
+      "Freelance graphic work"
+    ]
+  },
+  {
+    "id": "10th-certificate-photography",
+    "name": "10th / 12th → Certificate in Photography & Photo Editing",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Hands-on course in camera basics and photo editing.",
+    "interests": ["Media", "Creativity", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–12 month photography course",
+      "Practice portraits, events and product photos",
+      "Learn Lightroom/Photoshop for editing"
+    ],
+    "careerOptions": [
+      "Photographer’s assistant",
+      "Studio photographer (entry level)",
+      "Freelance event photographer"
+    ]
+  },
+  {
+    "id": "10th-diploma-fitness-sports-coach",
+    "name": "10th / 12th → Diploma in Fitness & Sports Coaching",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Science", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 17,
+    "maxAge": 35,
+    "description": "Fitness and basic sports coaching course for gyms and academies.",
+    "interests": ["Health", "Hands-on", "Leadership"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 6–12 month fitness/sports coach diploma",
+      "Learn anatomy, exercise form and coaching basics",
+      "Intern at gyms, schools or sports centres"
+    ],
+    "careerOptions": [
+      "Gym trainer (junior)",
+      "Sports academy coach assistant",
+      "Personal trainer (with experience)"
+    ]
+  },
+  {
+    "id": "10th-diploma-early-childhood-care",
+    "name": "10th / 12th → Diploma in Early Childhood Care (NTT)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "10th",
+    "minAge": 17,
+    "maxAge": 35,
+    "description": "Nursery teacher training for pre-primary kids.",
+    "interests": ["Teaching", "Helping", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year NTT / ECCE course",
+      "Learn child psychology, activities and lesson planning",
+      "Do practice teaching in pre-schools"
+    ],
+    "careerOptions": [
+      "Pre-school teacher",
+      "Daycare coordinator",
+      "Home-based play school owner"
+    ]
+  },
+  {
+    "id": "12th-bsc-hospitality-tourism",
+    "name": "12th pass → B.Sc in Hospitality & Tourism",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Degree focused on hotels, tourism and service industry skills.",
+    "interests": ["People", "Business", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in B.Sc Hospitality & Tourism",
+      "Study front office, F&B, travel operations",
+      "Intern in hotels, resorts or travel companies"
+    ],
+    "careerOptions": [
+      "Hotel front office executive",
+      "Travel desk coordinator",
+      "Tourism operations roles"
+    ]
+  },
+  {
+    "id": "12th-bms-management-studies",
+    "name": "12th pass → BMS / BBA in Management Studies",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Management-focused degree for marketing, HR and operations.",
+    "interests": ["Business", "Leadership", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Clear college/university entrance (if required)",
+      "Study basics of marketing, HR, finance and operations",
+      "Complete internships in corporates or startups"
+    ],
+    "careerOptions": [
+      "Management trainee",
+      "Operations / HR assistant",
+      "Pathway to MBA"
+    ]
+  },
+  {
+    "id": "12th-bsc-multimedia-web",
+    "name": "12th pass → B.Sc in Multimedia & Web Technology",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 28,
+    "description": "Tech-creative blend focusing on web, graphics and multimedia.",
+    "interests": ["Design", "Technology", "Creativity"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in B.Sc Multimedia / Web Tech",
+      "Learn web dev, graphics, audio-video tools",
+      "Build online portfolio across media formats"
+    ],
+    "careerOptions": [
+      "Web / multimedia designer",
+      "Front-end / content integrator",
+      "Digital production roles"
+    ]
+  },
+  {
+    "id": "12th-bach-visual-arts",
+    "name": "12th pass → Bachelor of Visual Arts (BVA)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Fine arts degree in painting, sculpture, applied arts, etc.",
+    "interests": ["Design", "Creativity", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Appear for aptitude/portfolio-based entrance (if any)",
+      "Study drawing, painting, applied art specialisations",
+      "Participate in exhibitions and workshops"
+    ],
+    "careerOptions": [
+      "Illustrator / artist",
+      "Applied artist in agencies",
+      "Art educator (with further training)"
+    ]
+  },
+  {
+    "id": "12th-diploma-broadcast-journalism",
+    "name": "12th pass → Diploma in Broadcast & TV Journalism",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Media course for TV news, anchoring and video reporting.",
+    "interests": ["Media", "People", "Creativity"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year broadcast journalism diploma",
+      "Learn reporting, anchoring and video editing",
+      "Intern at TV channels or digital news platforms"
+    ],
+    "careerOptions": [
+      "Junior reporter",
+      "Production assistant",
+      "Digital content journalist"
+    ]
+  },
+  {
+    "id": "12th-diploma-pr-advertising",
+    "name": "12th pass → Diploma in Advertising & Public Relations",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Communication programme for brand campaigns and media relations.",
+    "interests": ["Media", "Business", "Creativity"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1-year PR & advertising diploma",
+      "Learn campaign planning and media outreach",
+      "Intern with PR agencies or brand teams"
+    ],
+    "careerOptions": [
+      "PR executive (entry level)",
+      "Ad agency account executive",
+      "Corporate communications assistant"
+    ]
+  },
+  {
+    "id": "12th-bsc-environmental-science",
+    "name": "12th pass → B.Sc in Environmental Science",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Interdisciplinary science course focusing on ecology and sustainability.",
+    "interests": ["Science", "Helping", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join B.Sc Environmental Science",
+      "Study pollution control, ecosystems and policy",
+      "Intern with NGOs, govt bodies or sustainability teams"
+    ],
+    "careerOptions": [
+      "Environment officer (junior roles)",
+      "NGO / CSR project staff",
+      "Further M.Sc / environmental management"
+    ]
+  },
+  {
+    "id": "12th-bsc-psychology-standalone",
+    "name": "12th pass → B.Sc / BA Psychology (Standalone)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Focused degree in human behavior and mental health.",
+    "interests": ["People", "Helping", "Teaching"],
+    "exams": [],
+    "educationRoute": [
+      "Join BA/B.Sc Psychology after 12th",
+      "Learn cognitive, social and clinical psychology basics",
+      "Do internships with counsellors, NGOs or schools"
+    ],
+    "careerOptions": [
+      "Mental health project assistant",
+      "School / HR support roles",
+      "Further MA / counselling certifications"
+    ]
+  },
+  {
+    "id": "12th-bca-data-science-special",
+    "name": "12th pass → BCA with Data Science / Analytics Specialisation",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 28,
+    "description": "IT degree with focus on analytics, Python and data tools.",
+    "interests": ["Coding", "Numbers / Data", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BCA (Data Science / Analytics)",
+      "Learn Python, SQL, Excel and basic ML",
+      "Build dashboards and mini data projects"
+    ],
+    "careerOptions": [
+      "Data analyst (entry level)",
+      "Reporting / MIS executive",
+      "Further PG/bootcamps in analytics"
+    ]
+  },
+  {
+    "id": "12th-diploma-networking-cyber",
+    "name": "12th pass → Diploma in Networking & Cyber Security Basics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 30,
+    "description": "Course on networks, system admin and basic cyber security.",
+    "interests": ["Tech / Computers", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–12 month networking/cyber basics course",
+      "Prepare for entry certifications (like CCNA basics etc.)",
+      "Intern in IT support / NOC teams"
+    ],
+    "careerOptions": [
+      "Network support technician",
+      "IT helpdesk roles",
+      "Pathway to advanced cyber security study"
+    ]
+  },
+  {
+    "id": "10th-diploma-printing-technology",
+    "name": "10th pass → Diploma in Printing Technology",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Technical diploma in offset, digital and packaging printing.",
+    "interests": ["Hands-on", "Technology", "Design"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3-year printing technology diploma",
+      "Train on presses, colour management and finishing",
+      "Intern in print houses and packaging units"
+    ],
+    "careerOptions": [
+      "Printing machine operator",
+      "Production supervisor (printing)",
+      "Packaging technologist (with experience)"
+    ]
+  },
+  {
+    "id": "10th-diploma-food-processing",
+    "name": "10th / 12th → Diploma in Food Processing & Preservation",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Science", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Applied course on food safety, packaging and processing.",
+    "interests": ["Science", "Hands-on", "Business"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year food processing diploma",
+      "Train in food labs and small processing units",
+      "Learn about FSSAI norms and quality control"
+    ],
+    "careerOptions": [
+      "Food processing technician",
+      "Quality assistant in food units",
+      "Support role in food startups"
+    ]
+  },
+  {
+    "id": "12th-diploma-cosmetology",
+    "name": "12th pass → Advanced Cosmetology / Beauty Therapy Diploma",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Advanced beauty, hair and skin treatment training.",
+    "interests": ["Creativity", "Hands-on", "Business"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year cosmetology diploma",
+      "Learn advanced facials, haircuts, makeup and spa treatments",
+      "Train in premium salons or wellness centres"
+    ],
+    "careerOptions": [
+      "Senior beautician",
+      "Salon manager",
+      "Freelance makeup artist"
+    ]
+  },
+  {
+    "id": "12th-diploma-airport-ground-ops",
+    "name": "12th pass → Diploma in Airport & Ground Operations",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 30,
+    "description": "Course for check-in, boarding gate and ground handling roles.",
+    "interests": ["People", "Business", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 6–12 month airport ground operations course",
+      "Learn check-in systems, baggage and ramp basics",
+      "Intern at airports or with ground handling agencies"
+    ],
+    "careerOptions": [
+      "Check-in agent",
+      "Ground operations staff",
+      "Progress to airline supervisory roles"
+    ]
+  },
+  {
+    "id": "10th-iti-carpenter",
+    "name": "10th pass → ITI in Carpentry / Furniture Making",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 35,
+    "description": "Skill-based trade in furniture, wooden fixtures and fittings.",
+    "interests": ["Hands-on", "Design", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year ITI carpentry course",
+      "Practice on workshop tools and machines",
+      "Apprentice with furniture shops or contractors"
+    ],
+    "careerOptions": [
+      "Carpenter",
+      "Furniture maker",
+      "Interior carpentry contractor"
+    ]
+  },
+  {
+    "id": "10th-iti-health-sanitary-inspector",
+    "name": "10th pass → Health Sanitary Inspector / Public Health Assistant",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Science", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Vocational course in hygiene, sanitation and basic public health.",
+    "interests": ["Health", "Helping", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year Health Sanitary Inspector course/ITI",
+      "Learn waste management, water testing and hygiene",
+      "Intern with municipalities or healthcare organisations"
+    ],
+    "careerOptions": [
+      "Sanitary inspector assistant",
+      "Public health worker",
+      "Roles in NGOs and local bodies"
+    ]
+  },
+  {
+    "id": "10th-certificate-retail-management",
+    "name": "10th / 12th → Certificate in Retail Management",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Commerce", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Short programme on store operations, merchandising and sales.",
+    "interests": ["Business", "People", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 3–6 month retail management certificate",
+      "Learn billing, display and customer handling",
+      "Take internships in supermarkets or malls"
+    ],
+    "careerOptions": [
+      "Retail sales associate",
+      "Store supervisor (with experience)",
+      "Franchise/store owner"
+    ]
+  },
+  {
+    "id": "10th-certificate-office-admin-secretarial",
+    "name": "10th / 12th → Certificate in Office Administration & Secretarial Practice",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Clerical skills in filing, correspondence, typing and scheduling.",
+    "interests": ["Numbers / Data", "People", "Tech / Computers"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–12 month office admin / secretarial course",
+      "Learn typing, MS Office, filing and basic accounting",
+      "Intern as office assistant in small firms"
+    ],
+    "careerOptions": [
+      "Receptionist",
+      "Office assistant",
+      "Executive secretary (with experience)"
+    ]
+  },
+  {
+    "id": "10th-certificate-stenography",
+    "name": "10th / 12th → Stenography & Typing Course",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Training in shorthand and high-speed typing for office/government roles.",
+    "interests": ["Numbers / Data", "Tech / Computers"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–12 month stenography and typing course",
+      "Practise shorthand, English/Hindi typing speed",
+      "Attempt govt or court stenographer recruitment exams"
+    ],
+    "careerOptions": [
+      "Stenographer",
+      "Clerical / office staff",
+      "Support in legal and govt offices"
+    ]
+  },
+  {
+    "id": "10th-diploma-jewellery-design",
+    "name": "10th / 12th → Diploma in Jewellery Design & Manufacturing",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Creative-technical course in ornament design, CAD and crafting.",
+    "interests": ["Design", "Creativity", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year jewellery design diploma",
+      "Learn sketching, CAD tools and basic workmanship",
+      "Intern in jewellery workshops or showrooms"
+    ],
+    "careerOptions": [
+      "Jewellery designer (junior)",
+      "CAD jewellery artist",
+      "Artisan or small brand founder"
+    ]
+  },
+  {
+    "id": "10th-diploma-interior-decoration-short",
+    "name": "10th / 12th → Diploma in Interior Decoration (Short Term)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Shorter interior decor course with focus on styling and execution.",
+    "interests": ["Design", "Creativity", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–18 month interior decoration diploma",
+      "Learn colour, furniture, basic CAD and site coordination",
+      "Assist senior designers on smaller projects"
+    ],
+    "careerOptions": [
+      "Interior decorator",
+      "Styling assistant",
+      "Freelance home makeovers"
+    ]
+  },
+  {
+    "id": "10th-diploma-rural-development",
+    "name": "10th / 12th → Diploma in Rural Development & Panchayati Raj",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "10th",
+    "minAge": 17,
+    "maxAge": 35,
+    "description": "Programme around village administration, schemes and community work.",
+    "interests": ["Helping", "People", "Leadership"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year rural development diploma",
+      "Study govt schemes, SHGs and local governance",
+      "Intern with NGOs or local bodies in rural areas"
+    ],
+    "careerOptions": [
+      "Field coordinator in NGOs",
+      "Panchayat project assistant",
+      "Community organiser"
+    ]
+  },
+  {
+    "id": "10th-certificate-agri-equipment-operator",
+    "name": "10th pass → Certificate in Agriculture Equipment Operation",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Skill training on tractors, harvesters and farm machinery.",
+    "interests": ["Hands-on", "Technology", "Science"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–6 month agri equipment operator course",
+      "Learn driving, basic maintenance and safety",
+      "Work with farms, cooperatives or rental centres"
+    ],
+    "careerOptions": [
+      "Farm machinery operator",
+      "Service assistant for agri equipment",
+      "Own rental machinery business"
+    ]
+  },
+  {
+    "id": "10th-certificate-solar-technician",
+    "name": "10th / 12th → Certificate in Solar Energy Technician",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Science", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Renewable energy course for basic solar installation and maintenance.",
+    "interests": ["Technology", "Hands-on", "Science"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–12 month solar technician course",
+      "Learn panel mounting, wiring and safety",
+      "Assist EPC firms or local installers"
+    ],
+    "careerOptions": [
+      "Solar installation technician",
+      "O&M helper",
+      "Green energy entrepreneur (small projects)"
+    ]
+  },
+  {
+    "id": "12th-bcom-accounts-taxation",
+    "name": "12th pass → BCom with Accounts & Taxation Focus",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Commerce degree emphasising accounting, GST and income tax.",
+    "interests": ["Money", "Business", "Numbers / Data"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BCom with accounts/tax specialisation",
+      "Parallel short courses in Tally & GST",
+      "Intern with CA or tax consultancy firms"
+    ],
+    "careerOptions": [
+      "Accounts executive",
+      "Tax assistant",
+      "Further CA/CS/CMA or MBA"
+    ]
+  },
+  {
+    "id": "12th-bcom-business-analytics",
+    "name": "12th pass → BCom / BBA with Business Analytics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Commerce-management degree with analytics, Excel and SQL.",
+    "interests": ["Numbers / Data", "Business", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join BCom/BBA with analytics special subjects",
+      "Learn Excel, SQL, dashboards and basic statistics",
+      "Do projects on sales, finance or marketing data"
+    ],
+    "careerOptions": [
+      "Business analyst trainee",
+      "MIS / reporting executive",
+      "Further PG in analytics / data science"
+    ]
+  },
+  {
+    "id": "12th-ba-economics",
+    "name": "12th pass → BA in Economics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Analytical arts degree focused on economy, policy and markets.",
+    "interests": ["Numbers / Data", "Business", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BA Economics programme",
+      "Study micro, macro, statistics and development",
+      "Intern in research/finance/NGO organisations"
+    ],
+    "careerOptions": [
+      "Research assistant",
+      "Policy / data roles (entry level)",
+      "Further MA, economics or public policy"
+    ]
+  },
+  {
+    "id": "12th-bsc-geology-earth-science",
+    "name": "12th Science → B.Sc Geology / Earth Science",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Earth-focused degree for mining, environment and exploration roles.",
+    "interests": ["Science", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join B.Sc Geology / Earth Science after 12th (PCMB/PCM)",
+      "Do field visits for rock, soil and mapping",
+      "Prepare for PSU / govt or PG programmes"
+    ],
+    "careerOptions": [
+      "Junior geologist / field assistant",
+      "Mining / environment roles (with further study)",
+      "Research or teaching later"
+    ]
+  },
+  {
+    "id": "12th-bsc-statistics",
+    "name": "12th pass → B.Sc in Statistics / Data Science Basics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Maths-data-oriented degree for analytics and risk roles.",
+    "interests": ["Numbers / Data", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in B.Sc Statistics or similar degree",
+      "Learn probability, statistics and data tools",
+      "Do internships in banks, insurance, analytics firms"
+    ],
+    "careerOptions": [
+      "Risk / data analyst (entry level)",
+      "Reporting/MIS roles",
+      "Further M.Sc or specialised data programmes"
+    ]
+  },
+  {
+    "id": "12th-ba-public-administration",
+    "name": "12th pass → BA in Public Administration / Governance",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Degree about govt processes, policies and administration.",
+    "interests": ["People", "Helping", "Leadership"],
+    "exams": [],
+    "educationRoute": [
+      "Join BA Public Administration / Governance",
+      "Study constitution, public policy and administration",
+      "Intern with NGOs, civic bodies or politicians’ offices"
+    ],
+    "careerOptions": [
+      "Project coordinator in NGOs",
+      "Govt exam preparation base",
+      "Admin roles in institutions"
+    ]
+  },
+  {
+    "id": "12th-ba-social-work",
+    "name": "12th pass → Bachelor of Social Work (BSW)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 35,
+    "description": "Professional social work course for community and welfare projects.",
+    "interests": ["Helping", "People", "Teaching"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BSW after 12th any stream",
+      "Do fieldwork in slums, villages, NGOs and institutions",
+      "Specialise in areas like child, women or health rights"
+    ],
+    "careerOptions": [
+      "Social worker",
+      "NGO project officer (with experience)",
+      "Further MSW or development studies"
+    ]
+  },
+  {
+    "id": "12th-bachelor-library-information-science",
+    "name": "12th pass → Bachelor in Library & Information Science (Integrated / Diploma then BLISc)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Course for managing libraries, digital catalogues and information systems.",
+    "interests": ["Teaching", "Numbers / Data", "Tech / Computers"],
+    "exams": [],
+    "educationRoute": [
+      "Do library science diploma or integrated BLISc after 12th/graduation",
+      "Train in cataloguing, classification and digital libraries",
+      "Intern in schools, colleges or public libraries"
+    ],
+    "careerOptions": [
+      "Library assistant",
+      "Information centre staff",
+      "Librarian (with higher qualifications)"
+    ]
+  },
+  {
+    "id": "12th-diploma-instructional-design-elearning",
+    "name": "12th / Graduate → Diploma in Instructional Design & eLearning",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th", "Dropped out from college"],
+    "streamSuitable": ["Arts", "Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Course on designing online courses, training modules and learning content.",
+    "interests": ["Teaching", "Media", "Tech / Computers"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1-year instructional design / eLearning diploma",
+      "Learn storyboarding, LMS tools and assessment design",
+      "Work with edtechs or training departments"
+    ],
+    "careerOptions": [
+      "Instructional designer (entry level)",
+      "eLearning content creator",
+      "Corporate training support"
+    ]
+  },
+  {
+    "id": "12th-diploma-ai-ml-foundation",
+    "name": "12th pass → Diploma in AI / ML Foundations (Skill-first)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 30,
+    "description": "Applied course on Python, basic ML models and deployment fundamentals.",
+    "interests": ["Coding", "Technology", "Numbers / Data"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–18 month AI/ML foundation diploma",
+      "Learn Python, data handling and basic ML algorithms",
+      "Build mini projects like predictors and recommenders"
+    ],
+    "careerOptions": [
+      "ML / data intern",
+      "Technical analyst (entry level)",
+      "Pathway to BSc/BTech + advanced AI study"
+    ]
+  },
+  {
+    "id": "12th-bpa-dance-classical",
+    "name": "12th pass → Bachelor of Performing Arts in Classical Dance",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Degree in classical dance (Bharatanatyam, Kathak, etc.) with focus on performance and choreography.",
+    "interests": ["Creativity", "Media", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Complete 12th in any stream",
+      "Join BPA / BA in Classical Dance",
+      "Perform in productions and assist in choreography"
+    ],
+    "careerOptions": [
+      "Classical choreographer",
+      "Stage performer",
+      "Dance teacher at academies"
+    ]
+  },
+  {
+    "id": "12th-diploma-bollywood-choreography",
+    "name": "12th pass → Diploma in Bollywood Dance & Choreography",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 32,
+    "description": "Industry-oriented course in Bollywood, hip-hop and commercial choreography.",
+    "interests": ["Creativity", "Media", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year choreography diploma after 12th",
+      "Train in styles, formations and camera choreography",
+      "Assist senior choreographers on shows and shoots"
+    ],
+    "careerOptions": [
+      "Film / music video choreographer (assistant → lead)",
+      "Reality show background choreographer",
+      "Independent choreography projects"
+    ]
+  },
+  {
+    "id": "10th-certificate-dance-teaching",
+    "name": "10th / 12th → Certificate in Dance Teaching & Studio Management",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 35,
+    "description": "Short course for becoming a dance instructor and running small classes.",
+    "interests": ["Creativity", "Hands-on", "Leadership"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–12 month dance teaching certificate",
+      "Learn class planning, warm-ups and choreography basics",
+      "Start neighbourhood batches or work at studios"
+    ],
+    "careerOptions": [
+      "Dance trainer",
+      "Assistant choreographer",
+      "Studio owner (small scale)"
+    ]
+  },
+  {
+    "id": "12th-diploma-dance-therapy",
+    "name": "12th pass → Diploma in Dance / Movement Therapy",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Specialised course using movement and dance for wellbeing and therapy support.",
+    "interests": ["Creativity", "Health", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Complete 12th and basic dance training",
+      "Join 1–2 year dance / movement therapy diploma",
+      "Intern with NGOs, schools or wellness centres"
+    ],
+    "careerOptions": [
+      "Dance therapy facilitator (with supervision)",
+      "Wellness workshop trainer",
+      "Support role to therapists and counsellors"
+    ]
+  },
+  {
+    "id": "12th-diploma-urban-hiphop-choreo",
+    "name": "12th pass → Diploma in Urban / Hip-Hop Choreography",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 32,
+    "description": "Street and hip-hop focused course for crews, battles and commercial work.",
+    "interests": ["Creativity", "Media", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1-year urban/hip-hop choreography programme",
+      "Train in foundation, freestyle and team pieces",
+      "Compete in battles and choreograph for digital content"
+    ],
+    "careerOptions": [
+      "Hip-hop choreographer",
+      "Crew leader",
+      "Battle / performance coach"
+    ]
+  },
+  {
+    "id": "12th-bpa-music-vocal",
+    "name": "12th pass → Bachelor of Performing Arts in Vocal Music",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Formal degree in Indian or Western vocal music for stage and studio.",
+    "interests": ["Creativity", "Media", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BPA / BA Vocal Music",
+      "Train in raga/scale work, rhythm and performance",
+      "Build stage and recording experience during college"
+    ],
+    "careerOptions": [
+      "Singer / vocalist",
+      "Music trainer",
+      "Chorus / backing vocalist"
+    ]
+  },
+  {
+    "id": "12th-diploma-music-production-singer",
+    "name": "12th pass → Diploma in Music Production & Vocal Recording",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 32,
+    "description": "Studio-focused course on DAWs, recording and producing songs for singers.",
+    "interests": ["Creativity", "Media", "Tech / Computers"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–18 month music production diploma",
+      "Learn DAWs like FL Studio, Logic, Ableton etc.",
+      "Produce and release demo tracks with singers"
+    ],
+    "careerOptions": [
+      "Music producer (entry level)",
+      "Studio engineer assistant",
+      "Independent singer-producer"
+    ]
+  },
+  {
+    "id": "10th-certificate-vocal-music-foundation",
+    "name": "10th / 12th → Foundation Certificate in Vocal Music",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 35,
+    "description": "Beginner-friendly training in pitch, rhythm and basic songs.",
+    "interests": ["Creativity", "People", "Media"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year graded vocal course",
+      "Practise regularly with teacher and small performances",
+      "Create simple covers and social media content"
+    ],
+    "careerOptions": [
+      "Amateur performer",
+      "Local singer for events",
+      "Step towards advanced music degrees"
+    ]
+  },
+  {
+    "id": "12th-diploma-singing-for-film-tv",
+    "name": "12th pass → Diploma in Film & TV Singing",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 32,
+    "description": "Career-oriented course for playback and media singing.",
+    "interests": ["Creativity", "Media", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Join specialised singing diploma for film/TV",
+      "Learn mic techniques, studio etiquette and styles",
+      "Record demos and audition for reality shows or studios"
+    ],
+    "careerOptions": [
+      "Playback singer (entry path)",
+      "Jingle / ad singer",
+      "Live band / event vocalist"
+    ]
+  },
+  {
+    "id": "12th-diploma-music-teacher-training",
+    "name": "12th pass → Diploma in Music Teacher Training",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Pedagogy-focused course for becoming a school or private music teacher.",
+    "interests": ["Creativity", "Teaching", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Finish 12th and basic music grades",
+      "Join 1–2 year music teacher training diploma",
+      "Do school internships and conduct group classes"
+    ],
+    "careerOptions": [
+      "School music teacher",
+      "Private vocal/instrument tutor",
+      "Choir director (small groups)"
+    ]
+  },
+  {
+    "id": "10th-certificate-group-fitness-dance",
+    "name": "10th / 12th → Certificate in Group Dance Fitness Training",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 17,
+    "maxAge": 35,
+    "description": "Programme to become a choreo-based fitness instructor (Zumba-style).",
+    "interests": ["Creativity", "Health", "Hands-on", "Leadership"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–6 month group fitness / dance-fitness course",
+      "Learn safe warm-ups, choreography cueing and music use",
+      "Start classes at gyms, studios or online"
+    ],
+    "careerOptions": [
+      "Dance fitness trainer",
+      "Group class instructor",
+      "Online workout creator"
+    ]
+  },
+  {
+    "id": "12th-diploma-personal-trainer-performance",
+    "name": "12th pass → Personal Trainer with Dance & Performance Specialisation",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Fitness certification that also covers mobility, rhythm and stage readiness.",
+    "interests": ["Creativity", "Health", "Hands-on", "Leadership"],
+    "exams": [],
+    "educationRoute": [
+      "Complete 12th and basic fitness experience",
+      "Join 6–12 month CPT with performance modules",
+      "Train clients, dancers and performers for strength and stamina"
+    ],
+    "careerOptions": [
+      "Personal trainer",
+      "Performance conditioning coach",
+      "Dance troupe fitness coach"
+    ]
+  },
+  {
+    "id": "12th-diploma-yoga-dance-fusion",
+    "name": "12th pass → Diploma in Yoga & Dance Fusion Instruction",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Creative wellness course blending yoga basics with dance movement.",
+    "interests": ["Creativity", "Health", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1-year yoga + dance fusion programme",
+      "Learn safe sequencing, music use and mindfulness",
+      "Conduct group classes in studios or community spaces"
+    ],
+    "careerOptions": [
+      "Yoga-dance instructor",
+      "Wellness workshop facilitator",
+      "Retreat / studio collaborator"
+    ]
+  },
+  {
+    "id": "10th-certificate-choreo-for-content",
+    "name": "10th / 12th → Certificate in Choreography for Reels & Online Content",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 32,
+    "description": "Micro-course on designing short-form choreographies for social media.",
+    "interests": ["Creativity", "Media", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–6 month online/offline content choreography course",
+      "Learn framing, trends and hook-step design",
+      "Collaborate with creators and brands"
+    ],
+    "careerOptions": [
+      "Choreographer for creators",
+      "Short-form content trainer",
+      "Brand campaign choreographer (small projects)"
+    ]
+  },
+  {
+    "id": "12th-diploma-artist-management",
+    "name": "12th pass → Diploma in Artist & Talent Management (Performing Arts)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Backstage-business course to manage singers, dancers and performers.",
+    "interests": ["Creativity", "Business", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1-year artist management diploma",
+      "Learn contracts, bookings and social media promotion",
+      "Assist agencies or independent artists"
+    ],
+    "careerOptions": [
+      "Artist manager (junior)",
+      "Event/tour coordinator",
+      "Self-employed talent agent"
+    ]
+  },
+  {
+    "id": "12th-diploma-stage-direction",
+    "name": "12th pass → Diploma in Stage Direction & Performance Design",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 32,
+    "description": "Theatre-focused course on directing, blocking and visual design for stage.",
+    "interests": ["Creativity", "Media", "Leadership"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year stage direction diploma",
+      "Assist senior directors in plays and musicals",
+      "Create own small productions and showcases"
+    ],
+    "careerOptions": [
+      "Assistant director (theatre)",
+      "Stage show choreographer / movement coach",
+      "Independent theatre maker"
+    ]
+  },
+  {
+    "id": "10th-certificate-kids-dance-instructor",
+    "name": "10th / 12th → Certificate in Kids Dance & Movement Teaching",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Specialised training to teach creative movement to children.",
+    "interests": ["Creativity", "Teaching", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–12 month kids dance teacher course",
+      "Learn child-safe choreography and games",
+      "Collaborate with schools and activity centres"
+    ],
+    "careerOptions": [
+      "Kids dance trainer",
+      "After-school activity instructor",
+      "Children’s workshop host"
+    ]
+  },
+  {
+    "id": "12th-diploma-sound-design-live-performance",
+    "name": "12th pass → Diploma in Sound Design for Live Performance",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 32,
+    "description": "Audio course focused on mixing sound for singers, bands and dance shows.",
+    "interests": ["Creativity", "Media", "Tech / Computers"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1-year live sound / sound design diploma",
+      "Learn consoles, microphones and stage acoustics",
+      "Work on concerts, competitions and theatre shows"
+    ],
+    "careerOptions": [
+      "Live sound engineer (entry level)",
+      "Stage audio technician",
+      "Tour sound assistant"
+    ]
+  },
+  {
+    "id": "12th-bpa-theatre-acting-dance",
+    "name": "12th pass → BPA in Theatre with Acting & Movement",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Performing arts degree combining acting, movement and basic choreography.",
+    "interests": ["Creativity", "Media", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Clear audition/entrance for BPA Theatre",
+      "Train in body movement, voice and stage presence",
+      "Choreograph small pieces for plays and showcases"
+    ],
+    "careerOptions": [
+      "Actor-performer",
+      "Movement director for theatre",
+      "Drama teacher / trainer"
+    ]
+  },
+  {
+    "id": "10th-iti-mechanic-diesel-petrol",
+    "name": "10th pass → ITI Mechanic (Diesel / Petrol)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Workshop-based trade for repairing two-wheelers and four-wheelers.",
+    "interests": ["Technology", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year ITI Mechanic trade after 10th",
+      "Train in engine, brakes, electrical and diagnostics",
+      "Apprentice at authorised service centres or garages"
+    ],
+    "careerOptions": [
+      "Mechanic in service centre",
+      "Roadside breakdown technician",
+      "Own small repair workshop"
+    ]
+  },
+  {
+    "id": "10th-iti-computer-hardware-networking",
+    "name": "10th / 12th → ITI in Computer Hardware & Networking",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Technical trade to assemble, repair and network computers.",
+    "interests": ["Tech / Computers", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year computer hardware & networking course",
+      "Learn PC assembly, OS installation and basic networking",
+      "Do on-field support with local IT vendors"
+    ],
+    "careerOptions": [
+      "Hardware technician",
+      "IT field support engineer",
+      "Freelance home/office IT support"
+    ]
+  },
+  {
+    "id": "10th-diploma-electronics-communication",
+    "name": "10th pass → Diploma in Electronics & Communication Engineering",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 25,
+    "description": "Polytechnic diploma focusing on circuits, communication and devices.",
+    "interests": ["Technology", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Appear for polytechnic entrance if required",
+      "Complete 3-year diploma in ECE",
+      "Do industrial training in telecom or electronics firms"
+    ],
+    "careerOptions": [
+      "Electronics technician",
+      "Telecom junior engineer",
+      "Further BE/BTech ECE through lateral entry"
+    ]
+  },
+  {
+    "id": "10th-diploma-chemical-engineering",
+    "name": "10th pass → Diploma in Chemical Engineering",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 25,
+    "description": "Process-industry oriented diploma for chemical plants and utilities.",
+    "interests": ["Science", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3-year chemical engineering diploma",
+      "Study process control, safety and instrumentation basics",
+      "Intern in chemical, pharma or FMCG plants"
+    ],
+    "careerOptions": [
+      "Plant operator trainee",
+      "Process technician",
+      "Further BE/BTech chemical"
+    ]
+  },
+  {
+    "id": "10th-diploma-mining-engineering",
+    "name": "10th pass → Diploma in Mining Engineering",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 28,
+    "description": "Technical diploma for surface and underground mining operations.",
+    "interests": ["Science", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 3-year mining engineering diploma",
+      "Learn mine planning, safety and geology basics",
+      "Take training with mining companies"
+    ],
+    "careerOptions": [
+      "Mining overseer (with experience)",
+      "Safety officer (junior roles)",
+      "Further degree in mining"
+    ]
+  },
+  {
+    "id": "10th-diploma-textile-technology",
+    "name": "10th pass → Diploma in Textile Technology",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 28,
+    "description": "Diploma focused on yarn, fabric manufacturing and processing.",
+    "interests": ["Hands-on", "Technology"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3-year textile technology diploma",
+      "Study spinning, weaving and finishing processes",
+      "Do industrial internship in mills or garment units"
+    ],
+    "careerOptions": [
+      "Textile technician",
+      "Production supervisor",
+      "Quality control assistant"
+    ]
+  },
+  {
+    "id": "10th-diploma-agriculture-dairy",
+    "name": "10th / 12th → Diploma in Agriculture & Dairy Technology",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Science", "Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 30,
+    "description": "Applied course in crop, animal husbandry and dairy operations.",
+    "interests": ["Science", "Hands-on", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 2–3 year agriculture & dairy diploma",
+      "Train at farms, co-operatives and milk plants",
+      "Learn fodder, breeding and milk processing basics"
+    ],
+    "careerOptions": [
+      "Farm supervisor",
+      "Dairy plant assistant",
+      "Self-employed dairy/animal farming"
+    ]
+  },
+  {
+    "id": "12th-diploma-nursing-assistant",
+    "name": "12th pass → Diploma in Nursing Assistant / Patient Care",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 35,
+    "description": "Paramedical course for bedside assistance and basic patient care.",
+    "interests": ["Health", "Helping", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year nursing assistant / patient care diploma",
+      "Train in hospitals for vitals, hygiene and basic procedures",
+      "Work under registered nurses and doctors"
+    ],
+    "careerOptions": [
+      "Patient care assistant",
+      "Home nursing aide",
+      "Step towards GNM / BSc Nursing later"
+    ]
+  },
+  {
+    "id": "12th-diploma-cardiac-care-tech",
+    "name": "12th pass → Diploma in Cardiac Care Technology",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Specialised paramedical course in cardiac diagnostics and ICU support.",
+    "interests": ["Health", "Science", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Complete 12th (science preferred)",
+      "Join 2–3 year cardiac care tech diploma",
+      "Train in ECG, echo and cath lab support"
+    ],
+    "careerOptions": [
+      "Cardiac technician",
+      "ICCU support staff",
+      "Further BSc cardiac technology"
+    ]
+  },
+  {
+    "id": "12th-diploma-biomedical-equipment-tech",
+    "name": "12th pass → Diploma in Biomedical Equipment Technology",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Course to maintain and calibrate hospital machines and devices.",
+    "interests": ["Technology", "Health", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 2–3 year biomedical equipment diploma",
+      "Learn installation, calibration and troubleshooting",
+      "Work with hospitals or medical equipment suppliers"
+    ],
+    "careerOptions": [
+      "Biomedical technician",
+      "Service engineer (medical devices)",
+      "Further degree in biomedical engineering"
+    ]
+  },
+  {
+    "id": "12th-diploma-aviation-ground-operations",
+    "name": "12th pass → Diploma in Aviation Ground Operations & Cabin Services",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 28,
+    "description": "Skill course for airport ground staff and entry-level cabin crew.",
+    "interests": ["People", "Business", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year aviation ground operations / cabin services diploma",
+      "Train in check-in, customer service and safety",
+      "Apply to airlines and ground handling agencies"
+    ],
+    "careerOptions": [
+      "Ground staff",
+      "Cabin crew (entry-level path)",
+      "Airport customer service executive"
+    ]
+  },
+  {
+    "id": "12th-diploma-cargo-logistics-aviation",
+    "name": "12th pass → Diploma in Air Cargo & Logistics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 32,
+    "description": "Logistics diploma focused on air cargo, warehousing and documentation.",
+    "interests": ["Numbers / Data", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year cargo/logistics programme",
+      "Learn airway bills, cargo safety and tracking",
+      "Train in cargo terminals or freight forwarders"
+    ],
+    "careerOptions": [
+      "Cargo operations assistant",
+      "Logistics coordinator",
+      "Pathway to supply chain roles"
+    ]
+  },
+  {
+    "id": "12th-bsc-hotel-hospitality",
+    "name": "12th pass → B.Sc in Hotel & Hospitality Administration",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Three-year hotel management degree covering front office, F&B and housekeeping.",
+    "interests": ["People", "Business", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Clear hotel management entrance (where applicable)",
+      "Complete 3-year BSc hospitality programme",
+      "Do industrial training in hotels or cruise lines"
+    ],
+    "careerOptions": [
+      "Hotel management trainee",
+      "F&B supervisor",
+      "Front office executive"
+    ]
+  },
+  {
+    "id": "12th-diploma-bakery-confectionery",
+    "name": "12th pass → Diploma in Bakery & Confectionery",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 32,
+    "description": "Hands-on culinary course for breads, cakes and desserts.",
+    "interests": ["Hands-on", "Business"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–2 year bakery and confectionery diploma",
+      "Train in commercial bakery and patisserie labs",
+      "Intern with hotels, bakeries or cloud kitchens"
+    ],
+    "careerOptions": [
+      "Bakery chef",
+      "Pastry assistant",
+      "Own home bakery business"
+    ]
+  },
+  {
+    "id": "12th-diploma-tour-guiding",
+    "name": "12th pass → Diploma in Tour Guiding & Travel Operations",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Tourism course for local/heritage guiding and basic travel operations.",
+    "interests": ["People", "Business"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1-year tour guiding / travel operations diploma",
+      "Learn local history, itinerary planning and group handling",
+      "Register as guide where required and work with travel firms"
+    ],
+    "careerOptions": [
+      "Tour guide",
+      "Travel operations assistant",
+      "Destination coordinator"
+    ]
+  },
+  {
+    "id": "10th-certificate-food-safety-supervisor",
+    "name": "10th / 12th → Certificate in Food Safety & Hygiene Supervision",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Vocational", "Other"],
+    "minEducation": "10th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Short course on food safety norms and basic QA for kitchens and factories.",
+    "interests": ["Health", "Hands-on"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–6 month food safety supervisor training",
+      "Learn FSSAI basics, hygiene and documentation",
+      "Work in restaurants, canteens or food units"
+    ],
+    "careerOptions": [
+      "Food safety supervisor (junior)",
+      "Kitchen hygiene in-charge",
+      "QA support in food industry"
+    ]
+  },
+  {
+    "id": "12th-diploma-supply-chain-warehouse-ops",
+    "name": "12th pass → Diploma in Supply Chain & Warehouse Operations",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 35,
+    "description": "Operations‑oriented programme for warehouses, e-commerce and logistics.",
+    "interests": ["Numbers / Data", "Hands-on", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1–2 year supply chain / warehouse diploma",
+      "Learn inventory, documentation and basic analytics",
+      "Intern with logistics firms, 3PLs or e-commerce centres"
+    ],
+    "careerOptions": [
+      "Warehouse executive",
+      "Inventory controller",
+      "Logistics coordinator"
+    ]
+  },
+  {
+    "id": "12th-diploma-bfsi-banking-services",
+    "name": "12th pass → Diploma in Banking, Financial Services & Insurance (BFSI)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 30,
+    "description": "Skill course for front-office and back-office banking roles.",
+    "interests": ["Money", "Business", "Numbers / Data"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–12 month BFSI skills programme",
+      "Learn accounts, loans, KYC and digital banking basics",
+      "Train via internships in banks/NBFCs"
+    ],
+    "careerOptions": [
+      "Banking assistant",
+      "Loan processing officer (junior)",
+      "Back-office executive"
+    ]
+  },
+  {
+    "id": "12th-diploma-insurance-and-claims",
+    "name": "12th pass → Diploma in General Insurance & Claims Processing",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 32,
+    "description": "Course in insurance basics, policies and claim documentation.",
+    "interests": ["Money", "Numbers / Data", "Customer Support"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 1-year insurance & claims diploma",
+      "Learn underwriting basics, policy terms and claim process",
+      "Intern with insurance companies or TPAs"
+    ],
+    "careerOptions": [
+      "Claims assistant",
+      "Policy servicing executive",
+      "Insurance back-office staff"
+    ]
+  },
+  {
+    "id": "12th-bachelor-commerce-accounting",
+    "name": "12th pass → B.Com (General) with Accounting & Business",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Three-year general commerce degree for accounts and business roles.",
+    "interests": ["Money", "Business", "Numbers / Data"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in B.Com after 12th commerce/any stream as allowed",
+      "Study accounting, economics, law and tax basics",
+      "Do internships in firms or start-ups"
+    ],
+    "careerOptions": [
+      "Accounts assistant",
+      "Back-office finance roles",
+      "Base for CA/CS/CMA or MBA"
+    ]
+  },
+  {
+    "id": "12th-bachelor-management-studies-bms",
+    "name": "12th pass → BMS / BBA in Management Studies (Generic)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Commerce", "Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Undergraduate programme covering marketing, HR and operations.",
+    "interests": ["Business", "Leadership", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Clear college/university admission/entrance",
+      "Complete 3-year BMS/BBA with internships",
+      "Build projects and networks in chosen domain"
+    ],
+    "careerOptions": [
+      "Management trainee",
+      "Operations/HR/marketing assistant",
+      "Path to MBA or specialised PG diplomas"
+    ]
+  },
+  {
+    "id": "12th-bsc-biotech-microbiology",
+    "name": "12th Science → B.Sc Biotechnology / Microbiology",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Lab-based degree in biotech or microbiology for research and industry.",
+    "interests": ["Science", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Complete 12th (PCB/PCM as required)",
+      "Join B.Sc Biotech/Microbiology",
+      "Work on lab projects and internships in pharma/food labs"
+    ],
+    "careerOptions": [
+      "Lab analyst",
+      "Research assistant",
+      "Further M.Sc or industry R&D roles"
+    ]
+  },
+  {
+    "id": "12th-bsc-nutrition-dietetics-standalone",
+    "name": "12th pass → B.Sc Nutrition & Dietetics (Standalone path)",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 32,
+    "description": "Food and health focused degree for diet planning and wellness.",
+    "interests": ["Health", "Science", "Helping"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in B.Sc Nutrition & Dietetics",
+      "Study food science, clinical and sports nutrition",
+      "Intern with hospitals, gyms or wellness brands"
+    ],
+    "careerOptions": [
+      "Diet assistant",
+      "Nutrition counsellor (with license/PG)",
+      "Corporate wellness roles"
+    ]
+  },
+  {
+    "id": "12th-bsc-forensic-science",
+    "name": "12th Science → B.Sc Forensic Science",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Science"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Applied science degree in crime scene and lab forensics.",
+    "interests": ["Science", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join B.Sc Forensic Science after 12th",
+      "Study criminology, forensic biology and lab techniques",
+      "Intern with labs or investigative agencies where possible"
+    ],
+    "careerOptions": [
+      "Forensic lab assistant",
+      "Crime scene support (with govt rules)",
+      "Higher studies in forensics or criminology"
+    ]
+  },
+  {
+    "id": "12th-ba-english-media-writing",
+    "name": "12th pass → BA English with Media & Writing Focus",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Arts", "Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Humanities degree emphasising communication, content and media.",
+    "interests": ["Media", "Teaching", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in BA English or similar",
+      "Pick electives in journalism, creative writing or media",
+      "Build a writing portfolio through blogs or internships"
+    ],
+    "careerOptions": [
+      "Content writer/editor",
+      "Communication roles",
+      "Base for MA, teaching or media careers"
+    ]
+  },
+  {
+    "id": "10th-certificate-cyber-security-basics",
+    "name": "10th / 12th → Certificate in Cyber Security Basics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 30,
+    "description": "Entry-level course on security hygiene, networking and simple attacks.",
+    "interests": ["Tech / Computers", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–6 month cyber security foundation course",
+      "Learn networking basics, common threats and defences",
+      "Progress to advanced certifications later"
+    ],
+    "careerOptions": [
+      "IT support with security awareness",
+      "Security operations trainee",
+      "Pathway to ethical hacking / security analyst"
+    ]
+  },
+  {
+    "id": "10th-certificate-programming-foundations",
+    "name": "10th / 12th → Certificate in Programming Foundations",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Short coding course in one or two popular languages.",
+    "interests": ["Coding", "Technology", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 3–6 month programming basics course",
+      "Learn fundamentals with projects (web, scripts, apps)",
+      "Use skills to enter longer diplomas or junior roles"
+    ],
+    "careerOptions": [
+      "Junior developer intern",
+      "Freelance basic coding tasks",
+      "Foundation for BCA/BSc IT/bootcamps"
+    ]
+  },
+  {
+    "id": "10th-certificate-communication-media-basics",
+    "name": "10th / 12th → Certificate in Communication & Media Basics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Short course to build strong communication skills and basic media awareness.",
+    "interests": ["Helping", "Media", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Join a 3–6 month certificate in communication, journalism or media",
+      "Practice speaking, writing, presentations and simple content creation",
+      "Use skills to enter longer mass‑communication or PR programs"
+    ],
+    "careerOptions": [
+      "Communication roles in NGOs or small companies",
+      "Support roles in media / PR / events",
+      "Base for MA, teaching or media careers"
+    ]
+  },
+  {
+    "id": "10th-certificate-cyber-security-basics",
+    "name": "10th / 12th → Certificate in Cyber Security Basics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 16,
+    "maxAge": 30,
+    "description": "Entry-level course on security hygiene, networking and simple attacks.",
+    "interests": ["Technology", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–6 month cyber security foundation course",
+      "Learn networking basics, common threats and defences",
+      "Progress to advanced certifications later"
+    ],
+    "careerOptions": [
+      "IT support with security awareness",
+      "Security operations trainee",
+      "Pathway to ethical hacking / security analyst"
+    ]
+  },
+  {
+    "id": "10th-certificate-programming-foundations",
+    "name": "10th / 12th → Certificate in Programming Foundations",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Short coding course in one or two popular languages.",
+    "interests": ["Coding", "Technology", "Problem-Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Enroll in 3–6 month programming basics course",
+      "Learn fundamentals with projects (web, scripts, apps)",
+      "Use skills to enter longer diplomas or junior roles"
+    ],
+    "careerOptions": [
+      "Junior developer intern",
+      "Freelance basic coding tasks",
+      "Foundation for BCA/BSc IT/bootcamps"
+    ]
+  },
+  {
+    "id": "coding-technology-problem-solving-diploma",
+    "name": "Diploma / Certificate in Software Development",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Practical course in programming, algorithms and basic software engineering.",
+    "interests": ["Coding", "Technology", "Problem‑Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Join 1–3 year diploma or 6–12 month intensive coding program",
+      "Learn one backend and one frontend stack with projects",
+      "Use portfolio to enter junior developer or internship roles"
+    ],
+    "careerOptions": [
+      "Junior software developer",
+      "Web / app developer",
+      "Pathway to BCA / BSc IT / BTech lateral entry"
+    ]
+  },
+  {
+    "id": "coding-business-money-bootcamp",
+    "name": "Coding Bootcamp with Startup & Freelancing Focus",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th", "Dropped out from college"],
+    "streamSuitable": ["Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Short, career-focused program on building and selling digital products.",
+    "interests": ["Coding", "Business", "Money"],
+    "exams": [],
+    "educationRoute": [
+      "Join 3–9 month full‑stack or no‑code/low‑code bootcamp",
+      "Build 3–5 real projects for small businesses or your own ideas",
+      "Learn basics of pricing, pitching and client communication"
+    ],
+    "careerOptions": [
+      "Freelance web/app developer",
+      "Tech co‑founder in a small startup",
+      "Product builder for agencies or studios"
+    ]
+  },
+  {
+    "id": "coding-design-creativity-uiux",
+    "name": "Certificate in Frontend Development & UI Design",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Course that mixes coding with visual design for websites and apps.",
+    "interests": ["Coding", "Design", "Creativity"],
+    "exams": [],
+    "educationRoute": [
+      "Learn HTML, CSS, JavaScript and a UI framework (e.g. React)",
+      "Study basic UI principles: layout, color, typography",
+      "Create 6–8 portfolio projects like landing pages and dashboards"
+    ],
+    "careerOptions": [
+      "Frontend developer",
+      "UI developer in product teams",
+      "Freelance website designer"
+    ]
+  },
+  {
+    "id": "coding-health-science-healthtech",
+    "name": "Certificate in Health Tech & Data Basics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "12th (Science preferred)",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Intro to coding for health data, devices and simple medical apps.",
+    "interests": ["Coding", "Health", "Science"],
+    "exams": [],
+    "educationRoute": [
+      "Join 6–12 month course in health informatics or health‑tech basics",
+      "Learn spreadsheets, basic programming and simple data analysis",
+      "Do a project using health or fitness data (apps, dashboards)"
+    ],
+    "careerOptions": [
+      "Assistant in health‑tech startups",
+      "Junior data/IT support in hospitals or labs",
+      "Pathway to BSc health informatics or related degrees"
+    ]
+  },
+  {
+    "id": "coding-helping-people-edtech",
+    "name": "Certificate in EdTech Tools & Coding for Learning",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Course on using coding to build simple learning tools and platforms.",
+    "interests": ["Coding", "Helping", "People"],
+    "exams": [],
+    "educationRoute": [
+      "Learn basics of web/app development focused on education use‑cases",
+      "Create small tools: quiz apps, practice portals, learning trackers",
+      "Intern with coaching classes or edtech startups"
+    ],
+    "careerOptions": [
+      "Edtech product assistant",
+      "Developer for coaching centres or online courses",
+      "Pathway to roles that mix teaching and tech"
+    ]
+  },
+  {
+    "id": "coding-media-creativity-game-dev",
+    "name": "Certificate in Game / Interactive Media Development",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "12th",
+    "minAge": 17,
+    "maxAge": 30,
+    "description": "Beginner course on coding for games and interactive media.",
+    "interests": ["Coding", "Media", "Creativity"],
+    "exams": [],
+    "educationRoute": [
+      "Learn a game engine (Unity/Unreal) and one language",
+      "Build small games or interactive stories as projects",
+      "Participate in game jams or online challenges"
+    ],
+    "careerOptions": [
+      "Junior game developer",
+      "Interactive media developer",
+      "Pathway to BSc in game design / animation"
+    ]
+  },
+  {
+    "id": "coding-teaching-problem-solving",
+    "name": "Certificate in Coding Instruction / Teaching Assistant",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 12th", "Dropped out from college"],
+    "streamSuitable": ["Other"],
+    "minEducation": "12th",
+    "minAge": 18,
+    "maxAge": 30,
+    "description": "Train to help others learn coding in institutes or online.",
+    "interests": ["Coding", "Teaching", "Problem‑Solving"],
+    "exams": [],
+    "educationRoute": [
+      "Complete 6–12 month course in core programming concepts",
+      "Practice explaining problems and debugging for others",
+      "Start as coding lab assistant or online mentor"
+    ],
+    "careerOptions": [
+      "Teaching assistant in coding institutes",
+      "Doubt‑solver / mentor on edtech platforms",
+      "Pathway to full‑time instructor roles"
+    ]
+  },
+  {
+    "id": "coding-hands-on-technology-iot",
+    "name": "Certificate in Embedded Systems / IoT Basics",
+    "type": "education",
+    "eligibleStatus": ["Dropped out after 10th", "Dropped out after 12th"],
+    "streamSuitable": ["Other"],
+    "minEducation": "10th",
+    "minAge": 15,
+    "maxAge": 30,
+    "description": "Hands‑on course mixing coding with electronics and hardware.",
+    "interests": ["Coding", "Hands‑on", "Technology"],
+    "exams": [],
+    "educationRoute": [
+      "Learn basics of Arduino/ESP32/Raspberry Pi and sensors",
+      "Build simple IoT projects like home automation or monitoring",
+      "Use projects for polytechnic/diploma or junior technician roles"
+    ],
+    "careerOptions": [
+      "Junior IoT / embedded technician",
+      "Field engineer for smart devices",
+      "Pathway to diploma or degree in electronics/CS"
+    ]
+  }
+
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "UCA01",
+    "name": "University of Toronto",
+    "countryCode": "CA",
+    "ranking": "Top 25 (QS)",
+    "public": true,
+    "popularCourses": ["Computer Science", "Engineering", "Business"],
+    "ieltsRequirement": "6.5 overall"
+  },
+  {
+    "id": "UCA02",
+    "name": "University of British Columbia",
+    "countryCode": "CA",
+    "ranking": "Top 40 (QS)",
+    "public": true,
+    "popularCourses": ["Data Science", "Engineering", "Management"],
+    "ieltsRequirement": "6.5 overall"
+  },
+  {
+    "id": "UUS01",
+    "name": "New York University",
+    "countryCode": "US",
+    "ranking": "Top 50 (QS)",
+    "public": false,
+    "popularCourses": ["MBA", "Finance", "Computer Science"],
+    "ieltsRequirement": "7.0 overall"
+  },
+  {
+    "id": "UUK01",
+    "name": "University of Manchester",
+    "countryCode": "UK",
+    "ranking": "Top 30 (QS)",
+    "public": true,
+    "popularCourses": ["Business Analytics", "MBA", "Computer Science"],
+    "ieltsRequirement": "6.5 overall"
+  },
+  {
+    "id": "UDE01",
+    "name": "Technical University of Munich",
+    "countryCode": "DE",
+    "ranking": "Top 50 (QS)",
+    "public": true,
+    "popularCourses": ["Mechanical Engineering", "AI", "Robotics"],
+    "ieltsRequirement": "6.5 (English programs)"
+  }
+]

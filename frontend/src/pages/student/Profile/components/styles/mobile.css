@@ -1,0 +1,1428 @@
+/* Mobile-specific CSS for CareerGenAI */
+/* This CSS should ONLY apply when body has mobile-mode class */
+/* ALL STYLES MUST BE SCOPED TO .mobile-mode TO PREVENT DESKTOP INTERFERENCE */
+
+/* Global mobile optimizations - ONLY for mobile-mode */
+body.mobile-mode {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  -webkit-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove all default margins and padding on mobile */
+body.mobile-mode,
+body.mobile-mode html,
+body.mobile-mode * {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Ensure body and html take full width */
+body.mobile-mode html,
+body.mobile-mode body {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* HERO SECTION MOBILE OPTIMIZATION - FULL WIDTH */
+/* Remove white margins/padding from hero section on mobile */
+body.mobile-mode section {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Hero section full width on mobile */
+body.mobile-mode .relative.min-h-screen,
+body.mobile-mode section.relative.min-h-screen {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Hero content container - remove side padding */
+body.mobile-mode .relative.z-10.text-center,
+body.mobile-mode .text-center.text-white {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Hero title and text - ensure full width */
+body.mobile-mode .text-5xl,
+body.mobile-mode .md\\:text-7xl,
+body.mobile-mode .text-xl,
+body.mobile-mode .md\\:text-2xl {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  max-width: 100% !important;
+}
+
+/* Universal Resume Form Mobile Optimizations */
+/* These target any resume form structure */
+
+/* Main containers */
+body.mobile-mode .resume-form-container,
+body.mobile-mode .resume-builder-container,
+body.mobile-mode [class*="resume"],
+body.mobile-mode [class*="form-container"] {
+  max-width: 100% !important;
+  padding: 8px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Form sections and cards */
+body.mobile-mode .bg-white,
+body.mobile-mode .rounded-lg,
+body.mobile-mode .shadow-md,
+body.mobile-mode [class*="card"],
+body.mobile-mode [class*="section"] {
+  padding: 12px !important;
+  margin-bottom: 12px !important;
+  border-radius: 8px !important;
+}
+
+/* All form inputs - universal targeting */
+body.mobile-mode input[type="text"],
+body.mobile-mode input[type="email"],
+body.mobile-mode input[type="tel"],
+body.mobile-mode input[type="url"],
+body.mobile-mode input[type="password"],
+body.mobile-mode textarea,
+body.mobile-mode select,
+body.mobile-mode .form-control,
+body.mobile-mode [class*="input"],
+body.mobile-mode [role="textbox"] {
+  width: 100% !important;
+  padding: 12px !important;
+  font-size: 16px !important;
+  border-radius: 6px !important;
+  border: 1px solid #d1d5db !important;
+  box-sizing: border-box !important;
+  margin-bottom: 8px !important;
+  min-height: 44px !important;
+}
+
+/* Textareas specific */
+body.mobile-mode textarea {
+  min-height: 80px !important;
+  resize: vertical !important;
+}
+
+/* All labels */
+body.mobile-mode label,
+body.mobile-mode .form-label,
+body.mobile-mode [class*="label"] {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  margin-bottom: 4px !important;
+  display: block !important;
+}
+
+/* All buttons EXCEPT chatbot buttons */
+body.mobile-mode button:not(.chatbot-close-btn):not(.chatbot-send-btn):not(.chatbot-toggle-btn),
+body.mobile-mode .btn:not(.chatbot-close-btn):not(.chatbot-send-btn):not(.chatbot-toggle-btn),
+body.mobile-mode [class*="button"]:not(.chatbot-close-btn):not(.chatbot-send-btn):not(.chatbot-toggle-btn),
+body.mobile-mode input[type="submit"]:not(.chatbot-close-btn):not(.chatbot-send-btn):not(.chatbot-toggle-btn),
+body.mobile-mode input[type="button"]:not(.chatbot-close-btn):not(.chatbot-send-btn):not(.chatbot-toggle-btn) {
+  width: 100% !important;
+  padding: 14px 16px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  min-height: 48px !important;
+  margin-bottom: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Grid systems - force single column EXCEPT services grid and interest grid */
+body.mobile-mode .grid:not(.services-grid):not(.interest-grid),
+body.mobile-mode .grid-cols-2:not(.services-grid):not(.interest-grid),
+body.mobile-mode .grid-cols-3:not(.services-grid):not(.interest-grid),
+body.mobile-mode .sm\\:grid-cols-2:not(.services-grid):not(.interest-grid),
+body.mobile-mode .md\\:grid-cols-2:not(.services-grid):not(.interest-grid),
+body.mobile-mode .lg\\:grid-cols-2:not(.services-grid):not(.interest-grid),
+body.mobile-mode [class*="grid"]:not(.services-grid):not(.interest-grid) {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+/* Services grid - special handling for two cards per row */
+body.mobile-mode .services-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 15px !important;
+}
+
+body.mobile-mode .services-grid .service-card {
+  padding: 20px 15px !important;
+  min-height: 180px !important;
+}
+
+body.mobile-mode .services-grid .service-card .icon {
+  font-size: 2rem !important;
+  margin-bottom: 10px !important;
+}
+
+body.mobile-mode .services-grid .service-card h3 {
+  font-size: 1rem !important;
+  margin-bottom: 8px !important;
+}
+
+body.mobile-mode .services-grid .service-card p {
+  font-size: 0.85rem !important;
+  line-height: 1.3 !important;
+}
+
+body.mobile-mode .services-grid .badge {
+  top: 8px !important;
+  right: 8px !important;
+  font-size: 0.7rem !important;
+  padding: 3px 6px !important;
+}
+
+/* Interest grid - special handling for two cards per row */
+body.mobile-mode .interest-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 0.8rem !important;
+}
+
+body.mobile-mode .interest-item {
+  padding: 1rem 0.8rem !important;
+  min-height: 100px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+body.mobile-mode .interest-item .icon {
+  font-size: 1.5rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+body.mobile-mode .interest-item span:last-child {
+  font-size: 0.85rem !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+body.mobile-mode .interest-page-container {
+  padding: 1rem !important;
+}
+
+body.mobile-mode .buttons {
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+body.mobile-mode .btn-prim,
+body.mobile-mode .btn-second {
+  width: 100% !important;
+  padding: 0.8rem 1rem !important;
+}
+
+/* Hero section buttons - mobile styling */
+body.mobile-mode .flex.flex-col.gap-4.justify-center.items-center.max-w-md.mx-auto button {
+  width: 100% !important;
+  padding: 16px 24px !important;
+  border-radius: 50px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  min-height: 56px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Explore Our Services button - gradient blue to purple */
+body.mobile-mode .flex.flex-col.gap-4 button:first-child {
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Chat with AI button - semi-transparent with border */
+body.mobile-mode .flex.flex-col.gap-4 button:last-child {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Button hover effects on mobile */
+body.mobile-mode .flex.flex-col.gap-4 button:first-child:hover {
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%) !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4) !important;
+}
+
+body.mobile-mode .flex.flex-col.gap-4 button:last-child:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: scale(1.02) !important;
+}
+
+/* ULTRA HIGH SPECIFICITY - Force interest grid to be 2 columns */
+body.mobile-mode .interest-page-container .interest-grid,
+.mobile-mode .interest-page-container .interest-grid,
+body .mobile-mode .interest-page-container .interest-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 0.8rem !important;
+}
+
+/* Flex containers - stack vertically */
+body.mobile-mode .flex,
+body.mobile-mode .sm\\:flex-row,
+body.mobile-mode .md\\:flex-row,
+body.mobile-mode [class*="flex-row"] {
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+/* Chatbot toggle - PRESERVE CIRCULAR DESIGN */
+body.mobile-mode .chatbot-toggle {
+  bottom: 15px !important;
+  right: 15px !important;
+}
+
+body.mobile-mode .chatbot-toggle-btn {
+  width: 56px !important;
+  height: 56px !important;
+  max-width: 56px !important;
+  max-height: 56px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%) !important;
+  border: none !important;
+  color: white !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3) !important;
+  transition: all 0.3s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+body.mobile-mode .chatbot-container {
+  width: calc(100vw - 32px) !important;
+  max-width: 360px !important;
+  height: 520px !important;
+  bottom: 90px !important;
+  right: 16px !important;
+  border-radius: 20px !important;
+  position: fixed !important;
+  z-index: 10000 !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+/* Preserve desktop chatbot layout on mobile */
+body.mobile-mode .chatbot-quick-replies {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+}
+
+body.mobile-mode .chatbot-quick-actions-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 6px !important;
+}
+
+body.mobile-mode .chatbot-quick-reply-btn {
+  padding: 12px 14px !important;
+  font-size: 13px !important;
+  min-height: 44px !important;
+}
+
+body.mobile-mode .chatbot-quick-action-button {
+  padding: 10px 12px !important;
+  font-size: 12px !important;
+  min-height: 40px !important;
+}
+
+/* PRESERVE DESKTOP HEADER DESIGN ON MOBILE */
+body.mobile-mode .chatbot-header {
+  padding: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+body.mobile-mode .chatbot-avatar-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+body.mobile-mode .chatbot-bot-avatar {
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px !important;
+}
+
+body.mobile-mode .chatbot-header-text h3 {
+  color: white !important;
+  margin: 0 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+body.mobile-mode .chatbot-header-text p {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin: 0 !important;
+  font-size: 12px !important;
+}
+
+/* Close button - PERFECT CIRCLE LIKE DESKTOP */
+body.mobile-mode .chatbot-close-btn {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  color: white !important;
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  font-size: 24px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Close button icon size - AGGRESSIVE TARGETING */
+body.mobile-mode .chatbot-close-btn svg,
+body.mobile-mode .chatbot-close-btn i,
+body.mobile-mode .chatbot-close-btn *,
+.chatbot-close-btn svg,
+.chatbot-close-btn i,
+.chatbot-close-btn * {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 24px !important;
+  stroke-width: 2 !important;
+}
+
+body.mobile-mode .chatbot-header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+body.mobile-mode .chatbot-help-btn {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  color: white !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  font-size: 20px !important;
+}
+
+/* Help button icon size - larger for visibility */
+body.mobile-mode .chatbot-help-btn svg,
+body.mobile-mode .chatbot-help-btn i {
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 20px !important;
+}
+
+/* PRESERVE DESKTOP INPUT AREA DESIGN ON MOBILE */
+body.mobile-mode .chatbot-input-area {
+  padding: 12px 16px 16px !important;
+  background: white !important;
+  border-top: 1px solid #E5E7EB !important;
+}
+
+body.mobile-mode .chatbot-input-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: #F9FAFB !important;
+  border-radius: 24px !important;
+  padding: 4px !important;
+  border: 1px solid #E5E7EB !important;
+}
+
+body.mobile-mode .chatbot-input-field {
+  flex: 1 !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 12px 16px !important;
+  font-size: 16px !important;
+  outline: none !important;
+  color: #374151 !important;
+  width: auto !important;
+}
+
+/* Send button - PERFECT CIRCLE LIKE DESKTOP */
+body.mobile-mode .chatbot-send-btn {
+  width: 36px !important;
+  height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%) !important;
+  border: none !important;
+  border-radius: 50% !important;
+  color: white !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* PRESERVE DESKTOP CHATBOT DESIGN ON MOBILE */
+/* This ensures chatbot looks exactly like desktop but touch-optimized */
+@media screen and (max-width: 768px) {
+
+  .chatbot-container,
+  body.mobile-mode .chatbot-container,
+  .mobile-mode .chatbot-container {
+    width: calc(100vw - 32px) !important;
+    max-width: 360px !important;
+    height: 520px !important;
+    bottom: 90px !important;
+    right: 16px !important;
+    top: auto !important;
+    left: auto !important;
+    border-radius: 20px !important;
+    position: fixed !important;
+    z-index: 10000 !important;
+  }
+
+  /* Preserve 2x2 grid layout like desktop */
+  .chatbot-quick-replies {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .chatbot-quick-actions-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+  }
+
+  /* Touch-friendly buttons but keep desktop layout */
+  .chatbot-quick-reply-btn {
+    min-height: 44px !important;
+    padding: 12px 14px !important;
+    font-size: 13px !important;
+  }
+
+  .chatbot-quick-action-button {
+    min-height: 40px !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Header elements */
+  .chatbot-header {
+    padding: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .chatbot-close-btn {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    min-width: 32px !important;
+    font-size: 20px !important;
+  }
+
+  .chatbot-close-btn svg,
+  .chatbot-close-btn i {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 20px !important;
+  }
+
+  .chatbot-help-btn {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    font-size: 20px !important;
+  }
+
+  .chatbot-help-btn svg,
+  .chatbot-help-btn i {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 20px !important;
+  }
+
+  .chatbot-header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  /* Input area */
+  .chatbot-input-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: #F9FAFB !important;
+    border-radius: 24px !important;
+    padding: 4px !important;
+    border: 1px solid #E5E7EB !important;
+  }
+
+  .chatbot-input-field {
+    flex: 1 !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 12px 16px !important;
+    font-size: 16px !important;
+    outline: none !important;
+    width: auto !important;
+  }
+
+  .chatbot-send-btn {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    min-width: 36px !important;
+  }
+}
+
+/* OVERRIDE CHATBOT.CSS MEDIA QUERIES - FORCE DESKTOP LAYOUT */
+/* This overrides the single-column layout from Chatbot.css */
+@media screen and (max-width: 768px) {
+
+  /* Force 2x2 grid for quick replies - override Chatbot.css */
+  .chatbot-quick-replies {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    margin-top: 12px !important;
+  }
+
+  /* Force 2x2 grid for quick actions - override Chatbot.css */
+  .chatbot-quick-actions-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+  }
+
+  /* Force 2x2 grid for main menu - override Chatbot.css */
+  .chatbot-main-menu-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* Override button sizes to be touch-friendly but compact */
+  .chatbot-quick-reply-btn {
+    padding: 12px 14px !important;
+    font-size: 13px !important;
+    border-radius: 20px !important;
+    min-height: 44px !important;
+  }
+
+  .chatbot-quick-action-button {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+    border-radius: 16px !important;
+    min-height: 40px !important;
+  }
+
+  .chatbot-main-menu-button {
+    padding: 12px 14px !important;
+    font-size: 13px !important;
+    border-radius: 18px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* HIGHEST SPECIFICITY OVERRIDE - FORCE DESKTOP LAYOUT */
+@media screen and (max-width: 768px) {
+  body .chatbot-container .chatbot-quick-replies {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  body .chatbot-container .chatbot-quick-actions-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  body .chatbot-container .chatbot-main-menu-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* ULTRA HIGH SPECIFICITY - NUCLEAR OPTION */
+.chatbot-container .chatbot-messages-area .chatbot-quick-replies {
+  grid-template-columns: 1fr 1fr !important;
+}
+
+.chatbot-container .chatbot-messages-area .chatbot-quick-actions-grid {
+  grid-template-columns: 1fr 1fr !important;
+}
+
+.chatbot-container .chatbot-messages-area .chatbot-main-menu-grid {
+  grid-template-columns: 1fr 1fr !important;
+}
+
+/* Universal mobile chatbot override - preserve desktop design */
+@media (hover: none) and (pointer: coarse) {
+  .chatbot-container {
+    width: calc(100vw - 32px) !important;
+    max-width: 360px !important;
+    height: 520px !important;
+    bottom: 90px !important;
+    right: 16px !important;
+    top: auto !important;
+    left: auto !important;
+    border-radius: 20px !important;
+    position: fixed !important;
+    z-index: 10000 !important;
+  }
+
+  /* Keep desktop 2x2 grid layout */
+  .chatbot-quick-replies {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .chatbot-quick-actions-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* FI
+NAL COMPREHENSIVE FIX FOR CLOSE BUTTON ICON */
+/* This is the nuclear option to ensure the X icon is visible */
+
+/* Target all possible close button implementations - PERFECT CIRCLES */
+.chatbot-close-btn,
+body.mobile-mode .chatbot-close-btn,
+body .chatbot-close-btn,
+.chatbot-container .chatbot-close-btn {
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  border-radius: 50% !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+/* Target all possible icon implementations */
+.chatbot-close-btn svg,
+.chatbot-close-btn i,
+.chatbot-close-btn span,
+.chatbot-close-btn *,
+body.mobile-mode .chatbot-close-btn svg,
+body.mobile-mode .chatbot-close-btn i,
+body.mobile-mode .chatbot-close-btn span,
+body.mobile-mode .chatbot-close-btn *,
+body .chatbot-close-btn svg,
+body .chatbot-close-btn i,
+body .chatbot-close-btn span,
+body .chatbot-close-btn *,
+.chatbot-container .chatbot-close-btn svg,
+.chatbot-container .chatbot-close-btn i,
+.chatbot-container .chatbot-close-btn span,
+.chatbot-container .chatbot-close-btn * {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 24px !important;
+  stroke-width: 2.5 !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+}
+
+/* Specific targeting for Lucide React icons */
+.chatbot-close-btn [data-lucide],
+.chatbot-close-btn .lucide,
+body.mobile-mode .chatbot-close-btn [data-lucide],
+body.mobile-mode .chatbot-close-btn .lucide {
+  width: 24px !important;
+  height: 24px !important;
+  stroke-width: 2.5 !important;
+}
+
+/* Media query override for maximum compatibility */
+@media screen and (max-width: 768px) {
+  .chatbot-close-btn {
+    font-size: 24px !important;
+  }
+
+  .chatbot-close-btn svg,
+  .chatbot-close-btn i,
+  .chatbot-close-btn span,
+  .chatbot-close-btn * {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 24px !important;
+    stroke-width: 2.5 !important;
+  }
+}
+
+/* Touch device specific override */
+@media (hover: none) and (pointer: coarse) {
+  .chatbot-close-btn {
+    font-size: 24px !important;
+  }
+
+  .chatbot-close-btn svg,
+  .chatbot-close-btn i,
+  .chatbot-close-btn * {
+    width: 24px !important;
+    height: 24px !important;
+    stroke-width: 2.5 !important;
+  }
+}
+
+/*
+ FINAL COMPREHENSIVE FIX FOR SEND BUTTON ICON */
+/* This is the nuclear option to ensure the Send icon is visible */
+
+/* Target all possible send button implementations - PERFECT CIRCLES */
+.chatbot-send-btn,
+body.mobile-mode .chatbot-send-btn,
+body .chatbot-send-btn,
+.chatbot-container .chatbot-send-btn {
+  width: 36px !important;
+  height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  border-radius: 50% !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+/* Target all possible send icon implementations */
+.chatbot-send-btn svg,
+.chatbot-send-btn i,
+.chatbot-send-btn span,
+.chatbot-send-btn *,
+body.mobile-mode .chatbot-send-btn svg,
+body.mobile-mode .chatbot-send-btn i,
+body.mobile-mode .chatbot-send-btn span,
+body.mobile-mode .chatbot-send-btn *,
+body .chatbot-send-btn svg,
+body .chatbot-send-btn i,
+body .chatbot-send-btn span,
+body .chatbot-send-btn *,
+.chatbot-container .chatbot-send-btn svg,
+.chatbot-container .chatbot-send-btn i,
+.chatbot-container .chatbot-send-btn span,
+.chatbot-container .chatbot-send-btn * {
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 20px !important;
+  stroke-width: 2.5 !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+}
+
+/* Specific targeting for Lucide React send icons */
+.chatbot-send-btn [data-lucide],
+.chatbot-send-btn .lucide,
+body.mobile-mode .chatbot-send-btn [data-lucide],
+body.mobile-mode .chatbot-send-btn .lucide {
+  width: 20px !important;
+  height: 20px !important;
+  stroke-width: 2.5 !important;
+}
+
+/* Media query override for send button maximum compatibility */
+@media screen and (max-width: 768px) {
+  .chatbot-send-btn {
+    font-size: 20px !important;
+  }
+
+  .chatbot-send-btn svg,
+  .chatbot-send-btn i,
+  .chatbot-send-btn span,
+  .chatbot-send-btn * {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 20px !important;
+    stroke-width: 2.5 !important;
+  }
+}
+
+/* Touch device specific override for send button */
+@media (hover: none) and (pointer: coarse) {
+  .chatbot-send-btn {
+    font-size: 20px !important;
+  }
+
+  .chatbot-send-btn svg,
+  .chatbot-send-btn i,
+  .chatbot-send-btn * {
+    width: 20px !important;
+    height: 20px !important;
+    stroke-width: 2.5 !important;
+  }
+}
+
+/* FIN
+AL COMPREHENSIVE FIX FOR CHATBOT TOGGLE BUTTON */
+/* Ensure toggle button is always circular, never square */
+
+/* Target all possible toggle button implementations */
+.chatbot-toggle-btn,
+body.mobile-mode .chatbot-toggle-btn,
+body .chatbot-toggle-btn,
+.chatbot-toggle .chatbot-toggle-btn {
+  width: 56px !important;
+  height: 56px !important;
+  max-width: 56px !important;
+  max-height: 56px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%) !important;
+  border: none !important;
+  color: white !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3) !important;
+  transition: all 0.3s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+  font-size: 24px !important;
+}
+
+/* Toggle button icon size */
+.chatbot-toggle-btn svg,
+.chatbot-toggle-btn i,
+.chatbot-toggle-btn span,
+.chatbot-toggle-btn *,
+body.mobile-mode .chatbot-toggle-btn svg,
+body.mobile-mode .chatbot-toggle-btn i,
+body.mobile-mode .chatbot-toggle-btn span,
+body.mobile-mode .chatbot-toggle-btn * {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 24px !important;
+  stroke-width: 2 !important;
+}
+
+/* Media query override for toggle button */
+@media screen and (max-width: 768px) {
+  .chatbot-toggle-btn {
+    width: 56px !important;
+    height: 56px !important;
+    max-width: 56px !important;
+    max-height: 56px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .chatbot-toggle-btn svg,
+  .chatbot-toggle-btn i,
+  .chatbot-toggle-btn * {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 24px !important;
+  }
+}
+
+/* Touch device specific override for toggle button */
+@media (hover: none) and (pointer: coarse) {
+  .chatbot-toggle-btn {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+  }
+}
+
+/* ULTIMATE HERO SECTION FULL WIDTH FIX - COMPREHENSIVE APPROACH */
+/* This forces the hero section to break out of any container and cover full width */
+
+/* Root elements - ensure no constraints */
+body.mobile-mode html,
+body.mobile-mode body,
+body.mobile-mode #root,
+body.mobile-mode .App {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow-x: hidden !important;
+}
+
+/* HERO SECTION - FORCE FULL WIDTH */
+/* Target the exact hero section structure from Home.js */
+body.mobile-mode section.relative.min-h-screen {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  position: relative !important;
+}
+
+/* Hero content container - the div with px-6 max-w-6xl mx-auto */
+body.mobile-mode section.relative.min-h-screen .relative.z-10 {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Override specific Tailwind classes that cause the white margins */
+body.mobile-mode .px-6 {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+body.mobile-mode .max-w-6xl {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+body.mobile-mode .mx-auto {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Additional media query for maximum compatibility */
+@media screen and (max-width: 768px) {
+
+  /* Root containers */
+  html,
+  body,
+  #root,
+  .App {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Hero section - force full width */
+  section.relative.min-h-screen {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Hero content */
+  section.relative.min-h-screen .relative.z-10 {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    margin: 0 !important;
+  }
+
+  /* Override Tailwind utility classes */
+  .px-6 {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .px-4 {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .px-8 {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .max-w-6xl {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .max-w-5xl {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .max-w-4xl {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .max-w-3xl {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .mx-auto {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+/*
+ NUCLEAR OPTION - ULTIMATE HERO SECTION FULL WIDTH FIX */
+/* This is the most aggressive approach to eliminate white margins */
+
+/* Force all root elements to full width */
+html, body, #root, .App, main {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* Target hero section with maximum specificity */
+section.relative.min-h-screen,
+body section.relative.min-h-screen,
+html body section.relative.min-h-screen,
+#root section.relative.min-h-screen,
+.App section.relative.min-h-screen {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+/* Force hero content to respect boundaries */
+section.relative.min-h-screen .relative.z-10,
+section.relative.min-h-screen .relative.z-10.text-center {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Override ALL possible Tailwind classes that could cause margins */
+section.relative.min-h-screen .px-6,
+section.relative.min-h-screen .px-4,
+section.relative.min-h-screen .px-8,
+section.relative.min-h-screen .px-12 {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+section.relative.min-h-screen .max-w-6xl,
+section.relative.min-h-screen .max-w-5xl,
+section.relative.min-h-screen .max-w-4xl,
+section.relative.min-h-screen .max-w-3xl,
+section.relative.min-h-screen .max-w-2xl,
+section.relative.min-h-screen .max-w-xl {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+section.relative.min-h-screen .mx-auto,
+section.relative.min-h-screen .container {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Media query with ultra-high specificity */
+@media screen and (max-width: 768px) {
+  
+  /* Root containers - nuclear approach */
+  html, body, #root, .App, main {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Hero section - nuclear approach */
+  section.relative.min-h-screen {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    position: relative !important;
+  }
+
+  /* Hero background layers */
+  section.relative.min-h-screen .absolute.inset-0 {
+    width: 100vw !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Hero content with maximum specificity */
+  section.relative.min-h-screen .relative.z-10.text-center.text-white {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    margin: 0 !important;
+  }
+}
+
+/* Touch device specific - nuclear approach */
+@media (hover: none) and (pointer: coarse) {
+  html, body, #root, .App {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  section.relative.min-h-screen {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* Viewport-based approach - force breakout */
+@media screen and (max-width: 768px) {
+  section.relative.min-h-screen {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+  }
+}
+
+/* Alternative breakout method */
+@media screen and (max-width: 768px) {
+  section.relative.min-h-screen {
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    width: 100vw !important;
+  }
+}/* 
+FINAL NUCLEAR SOLUTION - OVERRIDE EVERYTHING */
+/* This targets the exact structure from the screenshot */
+
+/* Force viewport to be exactly 100vw with no scrollbars */
+html {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Target the exact React root and App structure */
+#root {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.App {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Target the main div with min-h-screen class */
+div.min-h-screen {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ultra-specific targeting for the hero section */
+section.relative.min-h-screen.flex.items-center.justify-center.overflow-hidden {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  overflow-x: hidden !important;
+}
+
+/* Target all background layers */
+section.relative.min-h-screen .absolute.inset-0 {
+  width: 100vw !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* Target the gradient background specifically */
+section.relative.min-h-screen .absolute.inset-0.bg-gradient-to-br {
+  width: 100vw !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* Override Home.css hero padding */
+.hero {
+  padding: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Mobile-specific media query with maximum specificity */
+@media screen and (max-width: 768px) {
+  
+  /* Force all containers to full width */
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+  }
+  
+  html, body, #root, .App, main, div.min-h-screen {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Hero section with ultra-high specificity */
+  section.relative.min-h-screen,
+  section.relative.min-h-screen.flex,
+  section.relative.min-h-screen.flex.items-center,
+  section.relative.min-h-screen.flex.items-center.justify-center,
+  section.relative.min-h-screen.flex.items-center.justify-center.overflow-hidden {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+  }
+
+  /* All background elements */
+  section.relative.min-h-screen .absolute,
+  section.relative.min-h-screen .absolute.inset-0 {
+    width: 100vw !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Content container with exact class targeting */
+  section.relative.min-h-screen .relative.z-10.text-center.text-white.px-6.max-w-6xl.mx-auto {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Override any Tailwind classes */
+  .px-6 { padding-left: 16px !important; padding-right: 16px !important; }
+  .max-w-6xl { max-width: 100% !important; width: 100% !important; }
+  .mx-auto { margin-left: 0 !important; margin-right: 0 !important; }
+}
+
+/* Viewport units approach - force full width */
+@supports (width: 100vw) {
+  @media screen and (max-width: 768px) {
+    section.relative.min-h-screen {
+      width: 100vw !important;
+      min-width: 100vw !important;
+      max-width: 100vw !important;
+    }
+  }
+}
+
+/* CSS Grid approach to force full width */
+@media screen and (max-width: 768px) {
+  body {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100vw !important;
+  }
+  
+  #root, .App {
+    grid-column: 1 / -1 !important;
+    width: 100vw !important;
+  }
+  
+  section.relative.min-h-screen {
+    grid-column: 1 / -1 !important;
+    width: 100vw !important;
+  }
+}

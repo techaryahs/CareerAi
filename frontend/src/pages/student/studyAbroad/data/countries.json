@@ -1,0 +1,62 @@
+[
+  {
+    "code": "CA",
+    "name": "Canada",
+    "flag": "🇨🇦",
+    "tuition": "₹12 – ₹25 Lakhs / year",
+    "workRights": "20 hours/week (off-campus)",
+    "visaSuccess": "High",
+    "prOptions": "Very Good (PR pathways available)",
+    "popularFields": ["Computer Science", "Business", "Healthcare", "Engineering"]
+  },
+  {
+    "code": "US",
+    "name": "United States",
+    "flag": "🇺🇸",
+    "tuition": "₹20 – ₹40 Lakhs / year",
+    "workRights": "On-campus (limited)",
+    "visaSuccess": "Medium",
+    "prOptions": "Limited (H1B dependent)",
+    "popularFields": ["Computer Science", "Data Science", "MBA", "Engineering"]
+  },
+  {
+    "code": "UK",
+    "name": "United Kingdom",
+    "flag": "🇬🇧",
+    "tuition": "₹15 – ₹30 Lakhs / year",
+    "workRights": "20 hours/week",
+    "visaSuccess": "High",
+    "prOptions": "Graduate Route (2 years)",
+    "popularFields": ["Business", "Finance", "Law", "Computer Science"]
+  },
+  {
+    "code": "AU",
+    "name": "Australia",
+    "flag": "🇦🇺",
+    "tuition": "₹18 – ₹35 Lakhs / year",
+    "workRights": "24 hours/week",
+    "visaSuccess": "Medium – High",
+    "prOptions": "Good (Skill-based PR)",
+    "popularFields": ["IT", "Engineering", "Healthcare", "Management"]
+  },
+  {
+    "code": "DE",
+    "name": "Germany",
+    "flag": "🇩🇪",
+    "tuition": "Low / Free (Public Universities)",
+    "workRights": "20 hours/week",
+    "visaSuccess": "High",
+    "prOptions": "Strong (EU Blue Card)",
+    "popularFields": ["Engineering", "Computer Science", "Automobile", "AI"]
+  },
+  {
+    "code": "IE",
+    "name": "Ireland",
+    "flag": "🇮🇪",
+    "tuition": "₹12 – ₹28 Lakhs / year",
+    "workRights": "20 hours/week",
+    "visaSuccess": "High",
+    "prOptions": "Good (Tech-focused)",
+    "popularFields": ["IT", "Data Analytics", "Pharma", "Business"]
+  }
+]

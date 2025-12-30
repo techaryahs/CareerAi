@@ -1,0 +1,3616 @@
+[
+  {
+    "id": "digital-marketing-exec",
+    "name": "Digital Marketing Executive",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "High",
+    "tags": ["online", "creative"],
+    "suitableInterests": ["Communication", "Creativity", "Design / Content"],
+    "salary": "Approx ₹3–6 LPA for freshers",
+    "skillsNeeded": [
+      "Basic computer and internet usage",
+      "Social media platforms",
+      "Basic copywriting and design sense"
+    ],
+    "learningPath": [
+      "Month 1: Learn digital marketing basics",
+      "Month 2–3: Practice with small projects",
+      "Month 4–6: Apply for internships / entry roles"
+    ]
+  },
+  {
+    "id": "web-developer-basic",
+    "name": "Web Developer (Basic)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "6–12 months",
+    "demand": "High",
+    "tags": ["online", "technical"],
+    "suitableInterests": ["Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹2–5 LPA for freshers",
+    "skillsNeeded": [
+      "HTML, CSS, JavaScript basics",
+      "Basic coding knowledge",
+      "Problem-solving"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn HTML and CSS",
+      "Month 3–4: JavaScript fundamentals",
+      "Month 5–6: Build small websites",
+      "Month 7–12: Advanced topics and projects"
+    ]
+  },
+  {
+    "id": "customer-support-bpo",
+    "name": "Customer Support / BPO",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–2 months",
+    "demand": "High",
+    "tags": ["communication"],
+    "suitableInterests": ["Communication", "Customer Support"],
+    "salary": "Approx ₹1.5–3 LPA",
+    "skillsNeeded": [
+      "Good communication skills",
+      "Basic computer usage",
+      "Patience and problem-solving"
+    ],
+    "learningPath": [
+      "Week 1–2: Training on products and processes",
+      "Week 3–4: Mock calls and role-play",
+      "Ongoing: On-job training"
+    ]
+  },
+  {
+    "id": "field-sales-telecalling",
+    "name": "Field Sales / Telecalling",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "1–3 months",
+    "demand": "Medium",
+    "tags": ["sales"],
+    "suitableInterests": ["Communication", "Sales / Persuasion"],
+    "salary": "Approx ₹1.5–4 LPA + incentives",
+    "skillsNeeded": [
+      "Persuasion and communication",
+      "Basic product knowledge",
+      "Target-oriented mindset"
+    ],
+    "learningPath": [
+      "Month 1: Product training and sales techniques",
+      "Month 2: Field practice and telecalling",
+      "Month 3: Performance tracking and improvement"
+    ]
+  },
+  {
+    "id": "technician-electrician",
+    "name": "Technician / Electrician / Helper",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 50,
+    "timeToLearn": "6–12 months",
+    "demand": "High",
+    "tags": ["technical", "hands-on"],
+    "suitableInterests": ["Hands-on Work", "Tech / Computers"],
+    "salary": "Approx ₹1.5–3 LPA",
+    "skillsNeeded": [
+      "Basic electrical knowledge",
+      "Tool handling",
+      "Safety procedures"
+    ],
+    "learningPath": [
+      "Month 1–3: Basic training and safety",
+      "Month 4–6: Hands-on practice",
+      "Month 7–12: Specialization and certification"
+    ]
+  },
+  {
+    "id": "retail-associate",
+    "name": "Retail Associate",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1 month",
+    "demand": "Medium",
+    "tags": ["customer-facing"],
+    "suitableInterests": ["Communication", "Customer Support", "Teamwork"],
+    "salary": "Approx ₹1.2–2.5 LPA",
+    "skillsNeeded": [
+      "Customer service",
+      "Cash handling",
+      "Product knowledge"
+    ],
+    "learningPath": [
+      "Week 1: Store orientation and product training",
+      "Week 2: Customer interaction practice",
+      "Week 3–4: On-floor training"
+    ]
+  },
+  {
+    "id": "content-writer-editor",
+    "name": "Content Writer / Editor / Video Editor",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Writing skills",
+      "Basic design software",
+      "Creativity"
+    ],
+    "learningPath": [
+      "Month 1: Writing fundamentals",
+      "Month 2: Tools like Canva or video editing",
+      "Month 3–6: Portfolio building and freelancing"
+    ]
+  },
+  {
+    "id": "data-entry-operator",
+    "name": "Data Entry Operator",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1 month",
+    "demand": "Medium",
+    "tags": ["online"],
+    "suitableInterests": ["Tech / Computers", "Numbers / Data"],
+    "salary": "Approx ₹1.5–2.5 LPA",
+    "skillsNeeded": [
+      "Typing speed",
+      "Attention to detail",
+      "Basic Excel"
+    ],
+    "learningPath": [
+      "Week 1: Typing practice",
+      "Week 2: Software training",
+      "Week 3–4: Accuracy and speed improvement"
+    ]
+  },
+  {
+    "id": "delivery-executive",
+    "name": "Delivery Executive",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "1 week",
+    "demand": "High",
+    "tags": ["mobile"],
+    "suitableInterests": ["Communication", "Customer Support", "Hands-on Work"],
+    "salary": "Approx ₹1–2 LPA + incentives",
+    "skillsNeeded": [
+      "Bike riding",
+      "Navigation apps",
+      "Customer service"
+    ],
+    "learningPath": [
+      "Day 1–2: App and route training",
+      "Day 3–5: Practice deliveries",
+      "Ongoing: Performance incentives"
+    ]
+  },
+  {
+    "id": "security-guard",
+    "name": "Security Guard",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 50,
+    "timeToLearn": "1 month",
+    "demand": "Medium",
+    "tags": ["security"],
+    "suitableInterests": ["Hands-on Work"],
+    "salary": "Approx ₹1–2 LPA",
+    "skillsNeeded": [
+      "Physical fitness",
+      "Basic security protocols",
+      "Alertness"
+    ],
+    "learningPath": [
+      "Week 1: Security training",
+      "Week 2: Emergency response",
+      "Week 3–4: On-site practice"
+    ]
+  },
+  {
+    "id": "construction-worker",
+    "name": "Construction Worker",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 50,
+    "timeToLearn": "3–6 months",
+    "demand": "High",
+    "tags": ["hands-on"],
+    "suitableInterests": ["Hands-on Work"],
+    "salary": "Approx ₹1.5–3 LPA",
+    "skillsNeeded": [
+      "Physical labor",
+      "Basic tools",
+      "Safety awareness"
+    ],
+    "learningPath": [
+      "Month 1: Basic construction skills",
+      "Month 2–3: Specialized tasks",
+      "Month 4–6: Certification and experience"
+    ]
+  },
+  {
+    "id": "mechanic",
+    "name": "Mechanic",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 45,
+    "timeToLearn": "6–12 months",
+    "demand": "High",
+    "tags": ["technical"],
+    "suitableInterests": ["Hands-on Work"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Vehicle knowledge",
+      "Tool usage",
+      "Diagnostics"
+    ],
+    "learningPath": [
+      "Month 1–3: Basic mechanics",
+      "Month 4–6: Engine and systems",
+      "Month 7–12: Specialization"
+    ]
+  },
+  {
+    "id": "cook-assistant",
+    "name": "Cook / Chef Assistant",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["hospitality"],
+    "suitableInterests": ["Creativity", "Hands-on Work"],
+    "salary": "Approx ₹1.2–2.5 LPA",
+    "skillsNeeded": [
+      "Cooking basics",
+      "Hygiene standards",
+      "Knife skills"
+    ],
+    "learningPath": [
+      "Month 1: Kitchen basics",
+      "Month 2–3: Recipe practice",
+      "Month 4–6: Advanced cooking"
+    ]
+  },
+  {
+    "id": "receptionist",
+    "name": "Receptionist",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1 month",
+    "demand": "Medium",
+    "tags": ["communication"],
+    "suitableInterests": ["Communication", "Customer Support", "Teamwork"],
+    "salary": "Approx ₹1.5–3 LPA",
+    "skillsNeeded": [
+      "Communication",
+      "Computer skills",
+      "Organization"
+    ],
+    "learningPath": [
+      "Week 1: Office software",
+      "Week 2: Reception duties",
+      "Week 3–4: Practice"
+    ]
+  },
+  {
+    "id": "warehouse-associate",
+    "name": "Warehouse Associate",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "1 month",
+    "demand": "High",
+    "tags": ["logistics"],
+    "suitableInterests": ["Hands-on Work", "Teamwork"],
+    "salary": "Approx ₹1.5–2.5 LPA",
+    "skillsNeeded": [
+      "Inventory management",
+      "Physical stamina",
+      "Basic tech"
+    ],
+    "learningPath": [
+      "Week 1: Warehouse operations",
+      "Week 2: Equipment training",
+      "Week 3–4: Efficiency"
+    ]
+  },
+  {
+    "id": "graphic-designer-junior",
+    "name": "Junior Graphic Designer",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "6–9 months",
+    "demand": "Medium",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Basics of Photoshop / Illustrator / Figma",
+      "Visual design and layout",
+      "Branding fundamentals"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn design tools and basics",
+      "Month 3–4: Practice with logos and social media posts",
+      "Month 5–6: Build portfolio and freelance projects",
+      "Month 7–9: Apply for junior designer roles"
+    ]
+  },
+  {
+    "id": "qa-tester-manual",
+    "name": "Manual QA / Software Tester",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "4–6 months",
+    "demand": "Medium",
+    "tags": ["technical", "online"],
+    "suitableInterests": ["Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹2.5–4.5 LPA",
+    "skillsNeeded": [
+      "Basic software concepts",
+      "Test case writing",
+      "Attention to detail"
+    ],
+    "learningPath": [
+      "Month 1–2: Basics of software development and testing",
+      "Month 3–4: Manual testing practice on demo apps",
+      "Month 5–6: Bug reporting tools and internships"
+    ]
+  },
+  {
+    "id": "salon-assistant",
+    "name": "Salon Assistant / Beautician Trainee",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 17,
+    "maxAge": 40,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["hospitality", "hands-on"],
+    "suitableInterests": ["Creativity", "Hands-on Work"],
+    "salary": "Approx ₹1.2–2.5 LPA + tips",
+    "skillsNeeded": [
+      "Basic grooming services",
+      "Hygiene and sanitization",
+      "Customer interaction"
+    ],
+    "learningPath": [
+      "Month 1: Basic hair and skin services",
+      "Month 2–3: Practice on models / clients",
+      "Month 4–6: Advanced services and specialization"
+    ]
+  },
+  {
+    "id": "survey-data-collector",
+    "name": "Field Survey & Data Collection Executive",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "1 month",
+    "demand": "Medium",
+    "tags": ["field"],
+    "suitableInterests": ["Communication", "Teamwork"],
+    "salary": "Approx ₹1.5–3 LPA",
+    "skillsNeeded": [
+      "Basic smartphone usage",
+      "Asking questions clearly",
+      "Recording accurate data"
+    ],
+    "learningPath": [
+      "Week 1: Training on survey tools and scripts",
+      "Week 2: Shadowing experienced surveyors",
+      "Week 3–4: Independent field surveys"
+    ]
+  },
+  {
+    "id": "office-assistant-backoffice",
+    "name": "Office Assistant / Back Office Executive",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["office", "online"],
+    "suitableInterests": ["Numbers / Data", "Tech / Computers"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "MS Office (Word, Excel)",
+      "Email and documentation",
+      "Basic accounting or record keeping"
+    ],
+    "learningPath": [
+      "Week 1–2: MS Office and documentation practice",
+      "Week 3–4: Basic accounts / data handling",
+      "Month 2: Internship or part-time office work"
+    ]
+  },
+  {
+    "id": "photographer-assistant",
+    "name": "Photographer / Videographer Assistant",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["creative", "field"],
+    "suitableInterests": ["Creativity", "Hands-on Work"],
+    "salary": "Approx ₹1.5–3 LPA",
+    "skillsNeeded": [
+      "Camera basics",
+      "Framing and lighting",
+      "Basic editing"
+    ],
+    "learningPath": [
+      "Month 1: Camera operations and composition",
+      "Month 2–3: Shoot practice and basic editing",
+      "Month 4–6: Assist in events and build portfolio"
+    ]
+  },
+  {
+    "id": "gym-trainer-assistant",
+    "name": "Gym Trainer Assistant",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["fitness", "hands-on"],
+    "suitableInterests": ["Hands-on Work", "Leadership", "Teamwork"],
+    "salary": "Approx ₹1.5–3 LPA",
+    "skillsNeeded": [
+      "Basic workout knowledge",
+      "Form correction",
+      "Motivating clients"
+    ],
+    "learningPath": [
+      "Month 1–2: Fitness basics and anatomy",
+      "Month 3–4: Practical training with coach",
+      "Month 5–6: Handle clients under supervision"
+    ]
+  },
+  {
+    "id": "home-tutor-primary",
+    "name": "Home Tutor (Primary Classes)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–2 months",
+    "demand": "High",
+    "tags": ["teaching"],
+    "suitableInterests": ["Teaching / Training", "Communication"],
+    "salary": "Approx ₹2–4 LPA (depending on students)",
+    "skillsNeeded": [
+      "Good understanding of school subjects",
+      "Patience with children",
+      "Communication"
+    ],
+    "learningPath": [
+      "Week 1–2: Refresh school syllabus",
+      "Week 3–4: Start with 1–2 students",
+      "Month 2 onwards: Grow by referrals and results"
+    ]
+  },
+  {
+    "id": "junior-data-analyst-basic",
+    "name": "Junior Data Analyst (Basic)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "4–6 months",
+    "demand": "High",
+    "tags": ["online", "technical"],
+    "suitableInterests": ["Numbers / Data", "Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹2.5–4.5 LPA",
+    "skillsNeeded": [
+      "Basic Excel or Google Sheets",
+      "Understanding of charts and reports",
+      "Logical thinking and attention to detail"
+    ],
+    "learningPath": [
+      "Month 1: Learn Excel / Sheets basics and formulas",
+      "Month 2–3: Practice on sample datasets and dashboards",
+      "Month 4–6: Do small projects and apply for internships"
+    ]
+  },
+  {
+    "id": "backoffice-data-support",
+    "name": "Back Office Data Support",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–3 months",
+    "demand": "Medium",
+    "tags": ["office", "online"],
+    "suitableInterests": ["Numbers / Data", "Tech / Computers"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Basic MS Office (especially Excel)",
+      "Data entry and verification",
+      "Following formats and procedures"
+    ],
+    "learningPath": [
+      "Week 1–2: Learn Excel and basic reports",
+      "Week 3–4: Practice with sample office tasks",
+      "Month 2–3: Apply for back office / data roles"
+    ]
+  },
+  {
+    "id": "store-supervisor-trainee",
+    "name": "Store Supervisor Trainee",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["customer-facing", "leadership"],
+    "suitableInterests": ["Teamwork", "Leadership", "Communication"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Handling small teams and shifts",
+      "Basic inventory and billing",
+      "Customer handling and problem-solving"
+    ],
+    "learningPath": [
+      "Month 1: Work as retail associate and observe supervisor",
+      "Month 2–3: Take responsibility for small tasks and shifts",
+      "Month 4–6: Move into supervisor trainee roles"
+    ]
+  },
+  {
+    "id": "team-coordinator-events",
+    "name": "Event Team Coordinator",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–3 months",
+    "demand": "Medium",
+    "tags": ["field", "hospitality"],
+    "suitableInterests": ["Teamwork", "Leadership", "Communication"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Coordinating small event teams",
+      "Time management and scheduling",
+      "On-ground problem-solving"
+    ],
+    "learningPath": [
+      "Month 1: Assist in events as support staff",
+      "Month 2: Take responsibility for small sections / teams",
+      "Month 3: Coordinate full small events or parts of big events"
+    ]
+  },
+  {
+    "id": "spoken-english-trainer-basic",
+    "name": "Spoken English Trainer (Basic)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "2–4 months",
+    "demand": "High",
+    "tags": ["teaching", "online"],
+    "suitableInterests": ["Teaching / Training", "Communication"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Good spoken English",
+      "Patience and clear explanation",
+      "Basic online teaching tools"
+    ],
+    "learningPath": [
+      "Month 1: Improve own English and practice speaking",
+      "Month 2: Learn basic teaching methods and lesson planning",
+      "Month 3–4: Start teaching small groups or 1–1 classes"
+    ]
+  },
+  {
+    "id": "skill-trainer-assistant",
+    "name": "Skill Trainer Assistant (Vocational)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["teaching", "hands-on"],
+    "suitableInterests": ["Teaching / Training", "Hands-on Work"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Good understanding of one practical skill (e.g. computer basics, salon, fitness)",
+      "Helping students in practice",
+      "Explaining steps clearly"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn one vocational skill properly",
+      "Month 3–4: Assist main trainer in classes",
+      "Month 5–6: Handle small batches under supervision"
+    ]
+  },
+  {
+    "id": "inside-sales-representative",
+    "name": "Inside Sales Representative",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–3 months",
+    "demand": "High",
+    "tags": ["sales", "communication"],
+    "suitableInterests": ["Communication", "Sales / Persuasion", "Teamwork"],
+    "salary": "Approx ₹2–4.5 LPA + incentives",
+    "skillsNeeded": [
+      "Phone and WhatsApp communication",
+      "Basic CRM or Excel usage",
+      "Listening and objection handling"
+    ],
+    "learningPath": [
+      "Month 1: Learn product details and basic sales scripts",
+      "Month 2: Practice calling and closing with supervision",
+      "Month 3: Handle own lead targets with incentives"
+    ]
+  },
+  {
+    "id": "chat-support-executive",
+    "name": "Chat & Email Support Executive",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–2 months",
+    "demand": "High",
+    "tags": ["online", "customer-facing"],
+    "suitableInterests": ["Customer Support", "Communication", "Problem-Solving"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Typing and written English",
+      "Handling multiple chats/emails",
+      "Polite and patient responses"
+    ],
+    "learningPath": [
+      "Week 1: Learn tools, templates and FAQs",
+      "Week 2–3: Shadow senior agents and handle sample tickets",
+      "Week 4 onwards: Take live chats/emails with targets"
+    ]
+  },
+  {
+    "id": "junior-data-entry-analyst",
+    "name": "Junior Data & Reporting Assistant",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "2–3 months",
+    "demand": "Medium",
+    "tags": ["office", "online"],
+    "suitableInterests": ["Numbers / Data", "Tech / Computers"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Intermediate Excel (formulas, filters, pivot tables)",
+      "Basic data cleaning",
+      "Preparing simple reports and charts"
+    ],
+    "learningPath": [
+      "Month 1: Learn Excel, Google Sheets and basic dashboards",
+      "Month 2: Practice on sample company data",
+      "Month 3: Create weekly/monthly reports for a small team"
+    ]
+  },
+  {
+    "id": "social-media-content-assistant",
+    "name": "Social Media Content Assistant",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "2–4 months",
+    "demand": "High",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content", "Communication"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Basic Canva or editing apps",
+      "Understanding of Instagram / YouTube trends",
+      "Writing short captions and hooks"
+    ],
+    "learningPath": [
+      "Month 1: Learn basic design and content formats",
+      "Month 2: Create posts/reels for a dummy brand",
+      "Month 3–4: Intern or freelance for small businesses"
+    ]
+  },
+  {
+    "id": "junior-ui-assets-designer",
+    "name": "Junior UI Assets & Banner Designer",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "4–6 months",
+    "demand": "Medium",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Design / Content", "Creativity", "Tech / Computers"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Figma or similar design tools",
+      "Basic sense of layout, color and typography",
+      "Exporting assets for web and mobile"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn Figma and basic UI principles",
+      "Month 3–4: Design simple landing pages and app screens",
+      "Month 5–6: Build a portfolio and apply to agencies/startups"
+    ]
+  },
+  {
+    "id": "operations-coordinator-trainee",
+    "name": "Operations Coordinator Trainee",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["office", "teamwork"],
+    "suitableInterests": ["Teamwork", "Leadership", "Problem-Solving"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Coordinating between different teams",
+      "Basic Excel and documentation",
+      "Planning daily tasks and follow-up"
+    ],
+    "learningPath": [
+      "Month 1: Learn company processes and tools",
+      "Month 2–3: Assist senior operations coordinator",
+      "Month 4–6: Handle small projects or shifts independently"
+    ]
+  },
+  {
+    "id": "warehouse-team-lead-trainee",
+    "name": "Warehouse Team Lead Trainee",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 19,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "High",
+    "tags": ["logistics", "hands-on"],
+    "suitableInterests": ["Hands-on Work", "Teamwork", "Leadership"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Supervising small teams",
+      "Basic inventory and scanning systems",
+      "Shift planning and quality checks"
+    ],
+    "learningPath": [
+      "Month 1–2: Work as associate and learn all tasks",
+      "Month 3–4: Take responsibility for a small area/team",
+      "Month 5–6: Move into team lead trainee role"
+    ]
+  },
+  {
+    "id": "computer-lab-assistant",
+    "name": "Computer Lab / IT Support Assistant",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["technical"],
+    "suitableInterests": ["Tech / Computers", "Hands-on Work", "Problem-Solving"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Basic hardware and OS installation",
+      "Network and printer setup basics",
+      "Troubleshooting common errors"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn computer hardware and OS basics",
+      "Month 3–4: Practice assembling systems and fixing issues",
+      "Month 5–6: Work as assistant in labs or small offices"
+    ]
+  },
+  {
+    "id": "assistant-trainer-softskills",
+    "name": "Assistant Trainer – Soft Skills",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["teaching"],
+    "suitableInterests": ["Teaching / Training", "Communication", "Teamwork"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Presenting in small groups",
+      "Basic PPT and training material preparation",
+      "Giving feedback and motivating learners"
+    ],
+    "learningPath": [
+      "Month 1–2: Improve own communication and presentation",
+      "Month 3–4: Assist senior trainer in sessions",
+      "Month 5–6: Take short modules independently"
+    ]
+  },
+  {
+    "id": "customer-success-associate",
+    "name": "Customer Success Associate (SaaS / Apps)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "High",
+    "tags": ["online", "customer-facing"],
+    "suitableInterests": ["Customer Support", "Problem-Solving", "Tech / Computers"],
+    "salary": "Approx ₹2.5–4.5 LPA",
+    "skillsNeeded": [
+      "Understanding how a software/app works",
+      "Explaining features to non-technical users",
+      "Following up and reducing customer churn"
+    ],
+    "learningPath": [
+      "Month 1: Learn product and support tools (tickets, CRM)",
+      "Month 2–3: Shadow senior customer success associates",
+      "Month 4–6: Handle own set of customer accounts"
+    ]
+  },
+  {
+    "id": "community-outreach-coordinator",
+    "name": "Community Outreach Coordinator (NGO)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["field", "social"],
+    "suitableInterests": ["Communication", "Teamwork", "Leadership"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Explaining schemes and programs to local people",
+      "Organising small awareness events",
+      "Reporting basic data to NGO office"
+    ],
+    "learningPath": [
+      "Month 1: Volunteer with local NGO projects",
+      "Month 2–3: Take responsibility for small areas/communities",
+      "Month 4–6: Move into paid outreach coordinator roles"
+    ]
+  },
+  {
+    "id": "telemedicine-support-assistant",
+    "name": "Telemedicine Support Assistant",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "2–4 months",
+    "demand": "Medium",
+    "tags": ["health", "online"],
+    "suitableInterests": ["Customer Support", "Hands-on Work", "Tech / Computers"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Booking online doctor appointments for patients",
+      "Helping people use video call/health apps",
+      "Maintaining basic patient records"
+    ],
+    "learningPath": [
+      "Month 1: Learn telemedicine software and processes",
+      "Month 2: Assist doctors and clinics with online slots",
+      "Month 3–4: Handle patient calls/chats independently"
+    ]
+  },
+  {
+    "id": "local-language-voice-artist",
+    "name": "Local Language Voice-over / Dubbing Assistant",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Niche",
+    "tags": ["media", "creative"],
+    "suitableInterests": ["Creativity", "Communication", "Design / Content"],
+    "salary": "Approx ₹2–4 LPA (project based)",
+    "skillsNeeded": [
+      "Clear voice in one Indian language",
+      "Reading scripts with expression",
+      "Basic audio recording/editing"
+    ],
+    "learningPath": [
+      "Month 1–2: Practice reading scripts and recording samples",
+      "Month 3: Create a small voice-over portfolio",
+      "Month 4–6: Work with YouTube channels, studios or agencies"
+    ]
+  },
+  {
+    "id": "ecommerce-product-listing-exec",
+    "name": "E‑commerce Product Listing Executive",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "1–3 months",
+    "demand": "High",
+    "tags": ["online", "office"],
+    "suitableInterests": ["Numbers / Data", "Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Using Excel/Sheets to manage product data",
+      "Uploading photos, prices and descriptions on marketplaces",
+      "Checking stock and correcting errors"
+    ],
+    "learningPath": [
+      "Month 1: Learn basics of Amazon/Flipkart/Shope platforms",
+      "Month 2: Practice listing and updating sample products",
+      "Month 3: Work with small e‑commerce sellers/shops"
+    ]
+  },
+  {
+    "id": "short-form-video-editor",
+    "name": "Short-form Video Editor (Reels / Shorts)",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 17,
+    "maxAge": 30,
+    "timeToLearn": "3–6 months",
+    "demand": "High",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content", "Media"],
+    "salary": "Approx ₹2–4 LPA (more with freelance)",
+    "skillsNeeded": [
+      "Using CapCut, VN or Premiere for short videos",
+      "Sense of pacing, beats and trending formats",
+      "Basic color and sound adjustments"
+    ],
+    "learningPath": [
+      "Month 1–2: Edit your own reels/shorts daily",
+      "Month 3–4: Offer editing to local creators/small brands",
+      "Month 5–6: Build a strong showreel and charge higher"
+    ]
+  },
+  {
+    "id": "maker-space-assistant",
+    "name": "Maker Space / Fab Lab Assistant",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "4–6 months",
+    "demand": "Niche",
+    "tags": ["technical", "hands-on"],
+    "suitableInterests": ["Hands-on Work", "Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Operating 3D printers, laser cutters or basic CNC",
+      "Helping users with simple prototypes",
+      "Following safety and maintenance procedures"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn tools in a maker space / lab",
+      "Month 3–4: Assist in workshops and student projects",
+      "Month 5–6: Take responsibility for specific machines/areas"
+    ]
+  },
+  {
+    "id": "sports-coach-assistant",
+    "name": "School / Academy Sports Coach Assistant",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["fitness", "hands-on"],
+    "suitableInterests": ["Hands-on Work", "Leadership", "Teaching / Training"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Basic knowledge of one sport (cricket, football, etc.)",
+      "Handling warm‑ups and drills for kids",
+      "Motivating and managing groups"
+    ],
+    "learningPath": [
+      "Month 1–2: Assist a local coach or academy",
+      "Month 3–4: Take warm‑ups and simple drills alone",
+      "Month 5–6: Handle practice sessions for small groups"
+    ]
+  },
+  {
+    "id": "onboarding-specialist-sme",
+    "name": "Onboarding Specialist for Small Businesses (Software)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["online", "customer-facing"],
+    "suitableInterests": ["Communication", "Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹2.5–4.5 LPA",
+    "skillsNeeded": [
+      "Explaining basic software features to shop/SME owners",
+      "Setting up their accounts and data",
+      "Following up to ensure they actually use the tool"
+    ],
+    "learningPath": [
+      "Month 1: Learn one POS/CRM/accounting app properly",
+      "Month 2–3: Shadow onboarding calls and practise demos",
+      "Month 4–6: Own new customer onboarding targets"
+    ]
+  },
+  {
+    "id": "knowledge-base-writer",
+    "name": "Knowledge Base / Help Center Writer",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "Niche",
+    "tags": ["online", "creative"],
+    "suitableInterests": ["Problem-Solving", "Design / Content", "Tech / Computers"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Writing simple ‘How to’ articles and FAQs",
+      "Taking screenshots and marking steps",
+      "Understanding basic user issues in apps/tools"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn one software deeply and write mock guides",
+      "Month 3–4: Publish help articles for a small product",
+      "Month 5–6: Maintain full help center or docs section"
+    ]
+  },
+  {
+    "id": "workshop-facilitator-junior",
+    "name": "Junior Workshop Facilitator (Skills / Creativity)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Niche",
+    "tags": ["teaching", "creative"],
+    "suitableInterests": ["Teaching / Training", "Creativity", "Teamwork"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Running small group activities (art, coding basics, creativity)",
+      "Keeping participants engaged and on time",
+      "Preparing simple workshop material"
+    ],
+    "learningPath": [
+      "Month 1–2: Assist in weekend workshops or camps",
+      "Month 3–4: Lead ice‑breakers and small segments",
+      "Month 5–6: Plan and run full short workshops yourself"
+    ]
+  },
+  {
+    "id": "campus-ambassador-brand-promoter",
+    "name": "Campus Ambassador / Brand Promoter",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 17,
+    "maxAge": 28,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["field", "marketing"],
+    "suitableInterests": ["Communication", "Sales / Persuasion", "Teamwork"],
+    "salary": "Approx ₹10k–20k/month + incentives",
+    "skillsNeeded": [
+      "Talking to students / youth about brands",
+      "Distributing samples and collecting leads",
+      "Posting and engaging on social media"
+    ],
+    "learningPath": [
+      "Weeks 1–2: Learn brand guidelines and pitch",
+      "Weeks 3–4: Run small campus/area promotions",
+      "Month 2 onwards: Handle bigger campaigns and events"
+    ]
+  },
+  {
+    "id": "inside-relationship-executive",
+    "name": "Inside Relationship Executive (Renewals)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "2–3 months",
+    "demand": "Medium",
+    "tags": ["sales", "online"],
+    "suitableInterests": ["Sales / Persuasion", "Customer Support", "Problem-Solving"],
+    "salary": "Approx ₹2.5–4.5 LPA + incentives",
+    "skillsNeeded": [
+      "Calling existing customers for renewals",
+      "Explaining plan benefits and upgrades",
+      "Recording follow‑ups in CRM"
+    ],
+    "learningPath": [
+      "Month 1: Learn product plans and renewal process",
+      "Month 2: Handle supervised calls",
+      "Month 3: Own monthly renewal targets"
+    ]
+  },
+  {
+    "id": "escalation-support-trainee",
+    "name": "Escalation Support Trainee",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–4 months",
+    "demand": "Medium",
+    "tags": ["customer-facing", "online"],
+    "suitableInterests": ["Customer Support", "Problem-Solving", "Leadership"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Handling difficult customers calmly",
+      "Coordinating with tech/billing teams",
+      "Writing clear emails and summaries"
+    ],
+    "learningPath": [
+      "Month 1: Work as regular support agent",
+      "Month 2–3: Handle escalated tickets with supervision",
+      "Month 4: Move to dedicated escalation queue"
+    ]
+  },
+  {
+    "id": "billing-collections-executive",
+    "name": "Billing & Collections Executive",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["office", "finance"],
+    "suitableInterests": ["Numbers / Data", "Communication"],
+    "salary": "Approx ₹2–3.5 LPA + incentives",
+    "skillsNeeded": [
+      "Calling to remind about pending payments",
+      "Updating payment status in system",
+      "Basic understanding of invoices and due dates"
+    ],
+    "learningPath": [
+      "Weeks 1–2: Learn billing software and scripts",
+      "Weeks 3–4: Handle small portfolio of customers",
+      "Month 2 onwards: Manage bigger collections targets"
+    ]
+  },
+  {
+    "id": "basic-data-cleaning-freelancer",
+    "name": "Basic Data Cleaning Freelancer",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "2–3 months",
+    "demand": "Medium",
+    "tags": ["online"],
+    "suitableInterests": ["Numbers / Data", "Tech / Computers"],
+    "salary": "Approx ₹15k–30k/month (project basis)",
+    "skillsNeeded": [
+      "Using Excel filters, find/replace and basic formulas",
+      "Removing duplicates and correcting formats",
+      "Following clear instructions carefully"
+    ],
+    "learningPath": [
+      "Month 1: Practise cleaning sample data sets",
+      "Month 2: Take small freelance gigs on platforms",
+      "Month 3: Build repeat client base"
+    ]
+  },
+  {
+    "id": "template-based-graphic-designer",
+    "name": "Template-based Graphic Designer",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "2–4 months",
+    "demand": "Medium",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Design / Content", "Creativity"],
+    "salary": "Approx ₹1.8–3.5 LPA",
+    "skillsNeeded": [
+      "Using Canva and ready‑made templates",
+      "Customising designs with brand colors/text",
+      "Exporting files in correct sizes"
+    ],
+    "learningPath": [
+      "Month 1: Recreate popular templates for practice",
+      "Month 2: Design posts for local shops/NGOs",
+      "Month 3–4: Work for agencies or as remote designer"
+    ]
+  },
+  {
+    "id": "presentation-design-assistant",
+    "name": "Presentation Design Assistant",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "2–4 months",
+    "demand": "Niche",
+    "tags": ["creative", "office"],
+    "suitableInterests": ["Design / Content", "Numbers / Data", "Creativity"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Using PowerPoint / Google Slides / Canva",
+      "Turning text + data into visual slides",
+      "Maintaining brand styles in decks"
+    ],
+    "learningPath": [
+      "Month 1: Redesign existing slide decks for practice",
+      "Month 2: Help seniors on client presentations",
+      "Month 3–4: Take full decks for small clients"
+    ]
+  },
+  {
+    "id": "floor-coordinator-retail",
+    "name": "Floor Coordinator (Retail Store)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 19,
+    "maxAge": 35,
+    "timeToLearn": "2–4 months",
+    "demand": "Medium",
+    "tags": ["customer-facing", "teamwork"],
+    "suitableInterests": ["Teamwork", "Leadership", "Hands-on Work"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Assigning sections to sales staff",
+      "Handling customer escalations on floor",
+      "Checking display and stock regularly"
+    ],
+    "learningPath": [
+      "Month 1: Work as retail associate",
+      "Month 2–3: Assist floor manager in shift tasks",
+      "Month 4: Take small floor sections as coordinator"
+    ]
+  },
+  {
+    "id": "shift-supervisor-quick-service",
+    "name": "Shift Supervisor – Quick Service Restaurant",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 19,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "High",
+    "tags": ["hospitality", "hands-on"],
+    "suitableInterests": ["Teamwork", "Leadership", "Hands-on Work"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Managing small team on a shift",
+      "Handling rush hours and basic complaints",
+      "Closing/opening store checklist"
+    ],
+    "learningPath": [
+      "Month 1–2: Work as crew/staff in QSR brand",
+      "Month 3–4: Take responsibility for closing shifts",
+      "Month 5–6: Move into official shift supervisor role"
+    ]
+  },
+  {
+    "id": "field-installation-technician",
+    "name": "Field Installation Technician (Internet / DTH)",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "2–4 months",
+    "demand": "High",
+    "tags": ["technical", "field"],
+    "suitableInterests": ["Hands-on Work", "Tech / Computers"],
+    "salary": "Approx ₹2–3.5 LPA + incentives",
+    "skillsNeeded": [
+      "Installing routers, DTH boxes or basic wiring",
+      "Explaining basic usage to customers",
+      "Using apps to log jobs and photos"
+    ],
+    "learningPath": [
+      "Month 1: Shadow senior technician on visits",
+      "Month 2–3: Do simple installations under guidance",
+      "Month 4: Handle your own daily installation targets"
+    ]
+  },
+  {
+    "id": "basic-it-field-support",
+    "name": "Basic IT Field Support Executive",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["technical", "field"],
+    "suitableInterests": ["Tech / Computers", "Hands-on Work", "Problem-Solving"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Installing software and basic troubleshooting",
+      "Setting up printers/Wi‑Fi in offices",
+      "Explaining simple fixes to non-tech users"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn OS, networking and common issues",
+      "Month 3–4: Work under senior IT support engineer",
+      "Month 5–6: Manage small client sites independently"
+    ]
+  },
+  {
+    "id": "after-school-activity-tutor",
+    "name": "After-school Activity Tutor (Art / Coding / Dance Basics)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "2–4 months",
+    "demand": "Medium",
+    "tags": ["teaching", "creative"],
+    "suitableInterests": ["Teaching / Training", "Creativity", "People"],
+    "salary": "Approx ₹1.8–3 LPA (more with batches)",
+    "skillsNeeded": [
+      "Basic skill in one area (art, dance, coding for kids, etc.)",
+      "Handling small kids’ groups",
+      "Planning simple activity sessions"
+    ],
+    "learningPath": [
+      "Month 1: Improve your own skill + plan 4–6 simple lessons",
+      "Month 2: Start with 3–5 students from neighbourhood",
+      "Month 3–4: Grow batches via word of mouth"
+    ]
+  },
+  {
+    "id": "online-course-support-mentor",
+    "name": "Online Course Support Mentor",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["online", "teaching"],
+    "suitableInterests": ["Teaching / Training", "Communication", "Tech / Computers"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Guiding students through online course content",
+      "Clearing basic doubts over chat/video",
+      "Tracking progress and nudging them"
+    ],
+    "learningPath": [
+      "Month 1–2: Complete one course as a learner first",
+      "Month 3: Answer doubts on forums/groups",
+      "Month 4–6: Work as paid mentor for edtech/coaches"
+    ]
+  },
+  {
+    "id": "coding-bootcamp-junior-mentor",
+    "name": "Coding Bootcamp Junior Mentor (Basics)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "4–6 months",
+    "demand": "Medium",
+    "tags": ["technical", "teaching"],
+    "suitableInterests": ["Tech / Computers", "Teaching / Training", "Problem-Solving"],
+    "salary": "Approx ₹3–5 LPA",
+    "skillsNeeded": [
+      "Solid basics of HTML, CSS, JS or one backend language",
+      "Helping students debug simple errors",
+      "Reviewing assignments and giving feedback"
+    ],
+    "learningPath": [
+      "Month 1–3: Finish a bootcamp or self‑study path yourself",
+      "Month 4: Help juniors in doubt sessions",
+      "Month 5–6: Become part‑time junior mentor"
+    ]
+  },
+  {
+    "id": "knowledge-process-intern",
+    "name": "Knowledge Process Intern (Research & Summaries)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "3–6 months",
+    "demand": "Niche",
+    "tags": ["online", "research"],
+    "suitableInterests": ["Problem-Solving", "Numbers / Data", "Design / Content"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Searching the web for specific information",
+      "Collecting data into spreadsheets/docs",
+      "Writing short summaries and insights"
+    ],
+    "learningPath": [
+      "Month 1: Practise doing small research tasks for yourself",
+      "Month 2–3: Take freelance micro‑tasks (research, list building)",
+      "Month 4–6: Join KPO / research support team"
+    ]
+  },
+  {
+    "id": "local-tour-guide-assistant",
+    "name": "Local Tour Guide Assistant",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "2–4 months",
+    "demand": "Niche",
+    "tags": ["hospitality", "field"],
+    "suitableInterests": ["Communication", "Leadership", "Hands-on Work"],
+    "salary": "Approx ₹1.8–3 LPA + tips",
+    "skillsNeeded": [
+      "Explaining basic history and stories of local places",
+      "Managing small tourist groups",
+      "Coordinating with travel operators"
+    ],
+    "learningPath": [
+      "Month 1: Learn about local attractions and routes",
+      "Month 2: Assist experienced guides",
+      "Month 3–4: Handle small groups in one language"
+    ]
+  },
+  {
+    "id": "creator-success-manager",
+    "name": "Creator Success Manager (Influencer Support)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "Niche",
+    "tags": ["online", "media"],
+    "suitableInterests": ["Creativity", "Communication", "Design / Content"],
+    "salary": "Approx ₹2.5–4.5 LPA",
+    "skillsNeeded": [
+      "Coordinating with influencers/creators",
+      "Helping them plan content calendars",
+      "Tracking performance of posts and campaigns"
+    ],
+    "learningPath": [
+      "Month 1–2: Manage social media for one small creator",
+      "Month 3–4: Learn basic analytics and campaign tracking",
+      "Month 5–6: Join influencer marketing / creator management agency"
+    ]
+  },
+   {
+    "id": "local-delivery-helper-18plus",
+    "name": "Local Delivery Helper (Shops / Warehouses)",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "2 weeks",
+    "demand": "High",
+    "tags": ["hands-on", "field"],
+    "suitableInterests": ["Hands-on Work", "Teamwork"],
+    "salary": "Approx ₹1.2–2.2 LPA + incentives",
+    "skillsNeeded": [
+      "Carrying and organising packages",
+      "Using basic navigation / address reading",
+      "Following safety and delivery instructions"
+    ],
+    "learningPath": [
+      "Week 1: Learn routes and loading/unloading",
+      "Week 2: Assist main delivery staff",
+      "Month 2 onwards: Take regular shifts independently"
+    ]
+  },
+  {
+    "id": "night-shift-security-guard",
+    "name": "Night Shift Security Guard (Gated Community)",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 21,
+    "maxAge": 50,
+    "timeToLearn": "1 month",
+    "demand": "Medium",
+    "tags": ["security", "hands-on"],
+    "suitableInterests": ["Hands-on Work", "Leadership"],
+    "salary": "Approx ₹1.5–2.5 LPA + night allowance",
+    "skillsNeeded": [
+      "Gate entry logging and visitor verification",
+      "Patrolling and reporting unusual activity",
+      "Basic emergency response awareness"
+    ],
+    "learningPath": [
+      "Week 1: Security procedures and logbooks",
+      "Week 2–3: Shadow senior guard at night",
+      "Week 4: Handle independent night shift with supervision"
+    ]
+  },
+  {
+    "id": "senior-customer-greeter",
+    "name": "Customer Greeter / Store Guide (Senior-friendly)",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 28,
+    "maxAge": 50,
+    "timeToLearn": "2–4 weeks",
+    "demand": "Niche",
+    "tags": ["customer-facing"],
+    "suitableInterests": ["Communication", "Customer Support", "Teamwork"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Welcoming customers and guiding them to sections",
+      "Answering basic product/location questions",
+      "Handling simple complaints and passing to manager"
+    ],
+    "learningPath": [
+      "Week 1: Learn store layout and policies",
+      "Week 2: Practice greeting and guiding customers",
+      "Week 3–4: Take full shift as store greeter"
+    ]
+  },
+  {
+    "id": "youth-club-activity-leader",
+    "name": "Youth Club Activity Leader",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 19,
+    "maxAge": 30,
+    "timeToLearn": "2–3 months",
+    "demand": "Niche",
+    "tags": ["teaching", "field"],
+    "suitableInterests": ["Leadership", "Teamwork", "Teaching / Training"],
+    "salary": "Approx ₹1.8–3.2 LPA",
+    "skillsNeeded": [
+      "Running group games, discussions and events",
+      "Handling teens/young adults respectfully",
+      "Basic report writing for NGO/club"
+    ],
+    "learningPath": [
+      "Month 1: Volunteer at youth centre / NGO",
+      "Month 2: Run small activities under supervision",
+      "Month 3: Lead regular club sessions independently"
+    ]
+  },
+  {
+    "id": "early-morning-stock-handler",
+    "name": "Early Morning Stock Handler (Supermarket)",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "2–3 weeks",
+    "demand": "High",
+    "tags": ["hands-on", "logistics"],
+    "suitableInterests": ["Hands-on Work", "Teamwork"],
+    "salary": "Approx ₹1.5–2.8 LPA",
+    "skillsNeeded": [
+      "Unloading goods from trucks",
+      "Placing items on shelves in correct order",
+      "Checking dates and basic stock rotation"
+    ],
+    "learningPath": [
+      "Week 1: Learn stock codes and shelf mapping",
+      "Week 2: Work in a small section with a mentor",
+      "Month 2 onwards: Cover full aisle/section responsibility"
+    ]
+  },
+  {
+    "id": "evening-tuition-center-helper",
+    "name": "Evening Tuition Centre Helper",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["teaching"],
+    "suitableInterests": ["Teaching / Training", "Teamwork", "Communication"],
+    "salary": "Approx ₹1.2–2.4 LPA (part-time friendly)",
+    "skillsNeeded": [
+      "Maintaining attendance and basic discipline",
+      "Helping students with simple doubts/notes",
+      "Arranging class materials and schedules"
+    ],
+    "learningPath": [
+      "Month 1: Assist main teacher with admin and doubt support",
+      "Month 2: Take small groups for revision",
+      "Month 3 onwards: Handle one subject batch with guidance"
+    ]
+  },
+  {
+    "id": "weekend-event-promoter",
+    "name": "Weekend Event Promoter / Host",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 28,
+    "timeToLearn": "2–4 weeks",
+    "demand": "Medium",
+    "tags": ["field", "media"],
+    "suitableInterests": ["Communication", "Creativity", "Teamwork"],
+    "salary": "Approx ₹800–1500 per event day",
+    "skillsNeeded": [
+      "Announcing offers/activities on mic",
+      "Engaging crowds in games/contests",
+      "Coordinating with event manager and brand team"
+    ],
+    "learningPath": [
+      "Week 1: Shadow event host at malls/college events",
+      "Week 2–3: Co-host smaller segments",
+      "Week 4 onwards: Host full small events independently"
+    ]
+  },
+  {
+    "id": "home-services-coordinator",
+    "name": "Home Services Coordinator (Plumber / Electrician / Cleaner Booking)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 20,
+    "maxAge": 38,
+    "timeToLearn": "2–3 months",
+    "demand": "Medium",
+    "tags": ["customer-facing", "office"],
+    "suitableInterests": ["Customer Support", "Problem-Solving", "Teamwork"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Booking and scheduling multiple service visits",
+      "Coordinating between customers and technicians",
+      "Tracking completion and feedback in CRM/app"
+    ],
+    "learningPath": [
+      "Month 1: Learn service categories and booking tools",
+      "Month 2: Manage a small zone/area",
+      "Month 3 onwards: Handle full city cluster or multiple zones"
+    ]
+  },
+  {
+    "id": "small-shop-pos-operator",
+    "name": "POS Operator / Billing Executive (Small Shop)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "1–2 months",
+    "demand": "High",
+    "tags": ["office", "customer-facing"],
+    "suitableInterests": ["Numbers / Data", "Customer Support"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Operating billing software / POS machine",
+      "Handling cash, UPI, card payments",
+      "Managing basic daily cash summary"
+    ],
+    "learningPath": [
+      "Week 1: Learn POS system and bill formats",
+      "Week 2–3: Bill under supervision during rush hours",
+      "Month 2 onwards: Take full shift billing responsibilities"
+    ]
+  },
+  {
+    "id": "sr-citizen-companion-basic",
+    "name": "Senior Citizen Companion (Non-medical)",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 22,
+    "maxAge": 50,
+    "timeToLearn": "1–2 months",
+    "demand": "Niche",
+    "tags": ["field", "care"],
+    "suitableInterests": ["Hands-on Work", "Communication", "Helping"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Talking, reading, walking with senior citizens",
+      "Helping with basic tasks (no medical procedures)",
+      "Reporting daily updates to family/agency"
+    ],
+    "learningPath": [
+      "Month 1: Work alongside experienced caregiver",
+      "Month 2: Handle 1–2 regular clients for few hours/day",
+      "Month 3 onwards: Manage fixed client schedule"
+    ]
+  },
+  {
+    "id": "parent-liaison-school-bus",
+    "name": "Parent Liaison – School Bus / Van",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 25,
+    "maxAge": 45,
+    "timeToLearn": "2–3 weeks",
+    "demand": "Medium",
+    "tags": ["field", "care"],
+    "suitableInterests": ["Teamwork", "Communication", "Leadership"],
+    "salary": "Approx ₹1.5–2.5 LPA (part-time hours)",
+    "skillsNeeded": [
+      "Ensuring children board/leave safely",
+      "Maintaining attendance and reporting issues",
+      "Coordinating with parents and school transport manager"
+    ],
+    "learningPath": [
+      "Week 1: Learn route, student list and rules",
+      "Week 2: Assist on morning/evening runs",
+      "Week 3 onwards: Take full responsibility for one route"
+    ]
+  },
+  {
+    "id": "festival-popup-shop-helper",
+    "name": "Festival Pop-up Shop Helper",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 17,
+    "maxAge": 35,
+    "timeToLearn": "1 week",
+    "demand": "Seasonal",
+    "tags": ["hands-on", "sales"],
+    "suitableInterests": ["Sales / Persuasion", "Hands-on Work", "Teamwork"],
+    "salary": "Approx ₹500–1000/day (seasonal)",
+    "skillsNeeded": [
+      "Setting up stalls and displays",
+      "Pitching festive offers to walk‑in customers",
+      "Packing and basic billing support"
+    ],
+    "learningPath": [
+      "Days 1–3: Assist with stall setup and shadow selling",
+      "Days 4–7: Sell and restock during peak hours",
+      "Future seasons: Move to stall lead with higher pay"
+    ]
+  },
+  {
+    "id": "basic-it-troubleshooter-home",
+    "name": "Basic IT Troubleshooter (Home Visits)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 20,
+    "maxAge": 40,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["technical", "field"],
+    "suitableInterests": ["Tech / Computers", "Hands-on Work", "Problem-Solving"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Fixing basic PC/mobile issues (slow device, apps, Wi‑Fi)",
+      "Helping seniors/non-tech users",
+      "Explaining simple steps in easy language"
+    ],
+    "learningPath": [
+      "Month 1–2: Practise solving common tech issues",
+      "Month 3–4: Assist a local IT service provider",
+      "Month 5–6: Take own service calls via apps/word of mouth"
+    ]
+  },
+  {
+    "id": "evening-gym-frontdesk-exec",
+    "name": "Evening Gym Front Desk Executive",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["fitness", "customer-facing"],
+    "suitableInterests": ["Communication", "Customer Support", "Teamwork"],
+    "salary": "Approx ₹1.5–3 LPA",
+    "skillsNeeded": [
+      "Handling walk‑in enquiries and basic tours",
+      "Managing membership records and payments",
+      "Coordinating with trainers for schedules"
+    ],
+    "learningPath": [
+      "Month 1: Learn gym software and packages",
+      "Month 2: Handle evening desk with mentor nearby",
+      "Month 3 onwards: Manage full front desk alone"
+    ]
+  },
+  {
+    "id": "community-digital-helper",
+    "name": "Community Digital Helper (Govt / Bank Forms)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 45,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["office", "field"],
+    "suitableInterests": ["Helping", "Tech / Computers", "Communication"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Filling online forms for govt/bank/schemes",
+      "Scanning, uploading documents, printing receipts",
+      "Explaining steps to low‑digital‑literacy users"
+    ],
+    "learningPath": [
+      "Month 1: Practise forms on CSC/similar platforms",
+      "Month 2: Serve walk‑in clients at centre or kiosk",
+      "Month 3 onwards: Build regular client base in area"
+    ]
+  },
+  {
+    "id": "kyc-document-verification-assistant",
+    "name": "KYC & Document Verification Assistant",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "1–2 months",
+    "demand": "High",
+    "tags": ["office", "finance"],
+    "suitableInterests": ["Numbers / Data", "Customer Support", "Problem-Solving"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Checking ID/address proofs for completeness",
+      "Uploading/marking status in KYC tools",
+      "Flagging suspicious or mismatched data"
+    ],
+    "learningPath": [
+      "Week 1: Learn KYC norms and software",
+      "Week 2: Verify documents under supervision",
+      "Week 3–4: Handle full KYC queues independently"
+    ]
+  },
+  {
+    "id": "loan-processing-backoffice-assistant",
+    "name": "Loan Processing Back Office Assistant",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 19,
+    "maxAge": 35,
+    "timeToLearn": "2–3 months",
+    "demand": "Medium",
+    "tags": ["office", "finance"],
+    "suitableInterests": ["Numbers / Data", "Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹2.2–4 LPA",
+    "skillsNeeded": [
+      "Entering customer and loan details accurately",
+      "Checking basic eligibility checklists",
+      "Coordinating with sales/branch teams"
+    ],
+    "learningPath": [
+      "Month 1: Learn loan products and checklists",
+      "Month 2: Process simple, low-ticket files",
+      "Month 3: Handle full file lifecycle with QA checks"
+    ]
+  },
+  {
+    "id": "basic-insurance-support-executive",
+    "name": "Basic Insurance Support Executive (Non-sales)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 20,
+    "maxAge": 38,
+    "timeToLearn": "2–3 months",
+    "demand": "Medium",
+    "tags": ["office", "customer-facing"],
+    "suitableInterests": ["Customer Support", "Communication", "Numbers / Data"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Answering policy/renewal related queries",
+      "Helping with basic claim form filling",
+      "Recording service requests in CRM"
+    ],
+    "learningPath": [
+      "Month 1: Learn policy types, terms and FAQs",
+      "Month 2: Handle supervised calls/emails",
+      "Month 3: Move to own ticket queue with metrics"
+    ]
+  },
+  {
+    "id": "solar-panel-installation-helper",
+    "name": "Solar Panel Installation Helper",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["hands-on", "technical"],
+    "suitableInterests": ["Hands-on Work", "Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Helping mount panels safely on rooftops",
+      "Basic wiring under supervision",
+      "Using safety gear and tools properly"
+    ],
+    "learningPath": [
+      "Month 1–2: Safety training and basic tools",
+      "Month 3–4: Assist in small installations",
+      "Month 5–6: Take responsibility for segments of the job"
+    ]
+  },
+  {
+    "id": "solar-maintenance-technician-junior",
+    "name": "Junior Solar Maintenance Technician",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+        "Dropped out after 10th",
+        "Dropped out after 11th",
+        "Dropped out after 12th",
+        "Dropped out from college"
+    ],
+    "minAge": 19,
+    "maxAge": 40,
+    "timeToLearn": "4–6 months",
+    "demand": "Medium",
+    "tags": ["technical", "field"],
+    "suitableInterests": ["Hands-on Work", "Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Cleaning and basic health-check of panels",
+      "Checking inverters and simple faults",
+      "Using apps/meters to record readings"
+    ],
+    "learningPath": [
+      "Month 1–2: Train with senior technician",
+      "Month 3–4: Handle routine maintenance visits",
+      "Month 5–6: Take independent service routes"
+    ]
+  },
+  {
+    "id": "beauty-therapist-trainee-home-salon",
+    "name": "Beauty Therapist Trainee (Home Salon / Studio)",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "4–6 months",
+    "demand": "Medium",
+    "tags": ["hands-on", "hospitality"],
+    "suitableInterests": ["Creativity", "Hands-on Work", "Customer Support"],
+    "salary": "Approx ₹1.8–3 LPA + tips",
+    "skillsNeeded": [
+      "Basic facials, waxing, threading, clean-ups",
+      "Maintaining hygiene standards",
+      "Handling clients politely at home/centre"
+    ],
+    "learningPath": [
+      "Month 1–2: Join short beauty course and practise",
+      "Month 3–4: Assist main beautician in services",
+      "Month 5–6: Take own appointments under brand/salon"
+    ]
+  },
+  {
+    "id": "basic-tailoring-assistant",
+    "name": "Basic Tailoring & Alteration Assistant",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 45,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["hands-on", "creative"],
+    "suitableInterests": ["Hands-on Work", "Creativity"],
+    "salary": "Approx ₹1.5–3 LPA",
+    "skillsNeeded": [
+      "Operating basic sewing machine",
+      "Simple alterations: length, waist, repairs",
+      "Taking basic measurements from customers"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn stitching basics on scrap cloth",
+      "Month 3–4: Work in local boutique/tailor shop",
+      "Month 5–6: Handle alteration orders independently"
+    ]
+  },
+  {
+    "id": "packaging-and-labelling-assistant",
+    "name": "Packaging & Labelling Assistant (Small Factory)",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 45,
+    "timeToLearn": "2–4 weeks",
+    "demand": "High",
+    "tags": ["hands-on", "logistics"],
+    "suitableInterests": ["Hands-on Work", "Teamwork"],
+    "salary": "Approx ₹1.5–2.8 LPA",
+    "skillsNeeded": [
+      "Packing finished goods safely",
+      "Applying correct labels/codes",
+      "Following simple quality checks"
+    ],
+    "learningPath": [
+      "Week 1: Learn packing standards and tools",
+      "Week 2: Work on one product line",
+      "Month 2 onwards: Switch between lines/shifts as needed"
+    ]
+  },
+  {
+    "id": "cold-storage-operations-helper",
+    "name": "Cold Storage Operations Helper",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["hands-on", "logistics"],
+    "suitableInterests": ["Hands-on Work", "Teamwork"],
+    "salary": "Approx ₹1.8–3 LPA + allowances",
+    "skillsNeeded": [
+      "Handling goods in chilled/freezer areas",
+      "Maintaining temperature logs",
+      "Following PPE and safety norms"
+    ],
+    "learningPath": [
+      "Week 1–2: Safety and temperature training",
+      "Week 3–4: Shadow senior staff on loading/unloading",
+      "Month 2 onwards: Handle assigned sections/rows"
+    ]
+  },
+  {
+    "id": "quality-checker-basic-garments",
+    "name": "Basic Quality Checker – Garment Unit",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["hands-on", "factory"],
+    "suitableInterests": ["Hands-on Work", "Numbers / Data"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Visually checking stitching, buttons, zips",
+      "Counting and recording accepted/rejected pieces",
+      "Flagging recurring defects to supervisor"
+    ],
+    "learningPath": [
+      "Week 1: Learn defect types and QC checklist",
+      "Week 2–3: Work on one product line with mentor",
+      "Month 2 onwards: Inspect full batch segments"
+    ]
+  },
+  {
+    "id": "jr-warehouse-inventory-reconciler",
+    "name": "Junior Warehouse Inventory Reconciler",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 19,
+    "maxAge": 35,
+    "timeToLearn": "2–3 months",
+    "demand": "Medium",
+    "tags": ["logistics", "data"],
+    "suitableInterests": ["Numbers / Data", "Hands-on Work", "Problem-Solving"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Counting and matching physical stock to system",
+      "Investigating small mismatches",
+      "Using handheld scanners/Excel sheets"
+    ],
+    "learningPath": [
+      "Month 1: Learn warehouse layout and inventory system",
+      "Month 2: Assist in cycle counts and stock checks",
+      "Month 3: Own daily/weekly reconciliation tasks"
+    ]
+  },
+  {
+    "id": "reception-cum-admin-assistant-clinic",
+    "name": "Reception cum Admin Assistant (Clinic)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 20,
+    "maxAge": 38,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["customer-facing", "health"],
+    "suitableInterests": ["Customer Support", "Communication", "Numbers / Data"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Patient registration and appointment booking",
+      "Collecting fees and issuing receipts",
+      "Maintaining simple daily reports"
+    ],
+    "learningPath": [
+      "Week 1: Learn clinic software and process flow",
+      "Week 2: Work with senior receptionist",
+      "Month 2 onwards: Manage front desk independently"
+    ]
+  },
+  {
+    "id": "jr-hr-coordinator-recruitment-support",
+    "name": "Junior HR Coordinator – Recruitment Support",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 19,
+    "maxAge": 32,
+    "timeToLearn": "2–4 months",
+    "demand": "Medium",
+    "tags": ["office", "online"],
+    "suitableInterests": ["Communication", "Numbers / Data", "Teamwork"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Shortlisting resumes using given criteria",
+      "Scheduling interviews and follow-ups",
+      "Maintaining candidate trackers"
+    ],
+    "learningPath": [
+      "Month 1: Learn job portals and screening basics",
+      "Month 2: Handle scheduling for one hiring manager",
+      "Month 3–4: Manage end‑to‑end coordination for multiple roles"
+    ]
+  },
+  {
+    "id": "online-marketplace-chat-seller-support",
+    "name": "Online Marketplace Chat Seller Support",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "1–2 months",
+    "demand": "High",
+    "tags": ["online", "customer-facing"],
+    "suitableInterests": ["Customer Support", "Communication", "Tech / Computers"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Helping sellers list/update products",
+      "Answering payout/logistics related questions",
+      "Raising tickets to internal teams where needed"
+    ],
+    "learningPath": [
+      "Week 1: Learn seller panel and policies",
+      "Week 2–3: Practise with mock seller queries",
+      "Week 4 onwards: Take live chats with targets"
+    ]
+  },
+  {
+    "id": "basic-copywriter-social-ads",
+    "name": "Basic Copywriter – Social Ads & Posts",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content", "Communication"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Writing hooks, captions and basic ad copy",
+      "Adapting tone for different brands",
+      "Working with designers on creatives"
+    ],
+    "learningPath": [
+      "Month 1–2: Re-write sample ads and posts for practice",
+      "Month 3–4: Create content for 1–2 small brands",
+      "Month 5–6: Join agency/brand as junior copywriter"
+    ]
+  },
+  {
+    "id": "podcast-editing-assistant",
+    "name": "Podcast Editing & Show Notes Assistant",
+    "type": "job",
+    "minEducation": "10th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "3–6 months",
+    "demand": "Niche",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content", "Tech / Computers"],
+    "salary": "Approx ₹2–3.5 LPA (higher as freelancer)",
+    "skillsNeeded": [
+      "Using basic audio editing tools",
+      "Removing noise/umms and adding intro/outro",
+      "Writing short summaries and episode titles"
+    ],
+    "learningPath": [
+      "Month 1–2: Edit your own practice podcasts",
+      "Month 3–4: Work with 1–2 small podcasters",
+      "Month 5–6: Manage multiple shows or join an agency"
+    ]
+  },
+  {
+    "id": "social-media-content-creator",
+    "name": "Social Media Content Creator",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "High",
+    "tags": ["online", "creative"],
+    "suitableInterests": ["Creativity", "Design / Content", "Communication"],
+    "salary": "Approx ₹2–4 LPA for freshers",
+    "skillsNeeded": [
+      "Basic Canva or design tools",
+      "Understanding of Instagram, YouTube, etc.",
+      "Idea generation and storytelling"
+    ],
+    "learningPath": [
+      "Month 1: Learn basics of social platforms and simple design",
+      "Month 2–3: Create daily posts/reels on your own profiles",
+      "Month 4–6: Manage small brand pages or internships"
+    ]
+  },
+  {
+    "id": "graphic-designer-junior",
+    "name": "Junior Graphic Designer",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "6–9 months",
+    "demand": "High",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content"],
+    "salary": "Approx ₹2.5–5 LPA",
+    "skillsNeeded": [
+      "Basics of Photoshop / Figma / similar tools",
+      "Sense of colours, fonts and layout",
+      "Ability to follow brand guidelines"
+    ],
+    "learningPath": [
+      "Month 1–3: Learn one design tool and recreate existing posters",
+      "Month 4–6: Build portfolio with 15–20 sample designs",
+      "Month 7–9: Freelance or apply for junior designer roles"
+    ]
+  },
+  {
+    "id": "video-editor-reels-youtube",
+    "name": "Video Editor (Reels / YouTube)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–8 months",
+    "demand": "High",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content", "Media"],
+    "salary": "Approx ₹2–5 LPA",
+    "skillsNeeded": [
+      "Basic editing in CapCut / Premiere / DaVinci",
+      "Cutting, transitions, text and music syncing",
+      "Understanding of short-form trends"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn one editing tool and edit your own clips",
+      "Month 3–4: Edit reels/shorts for friends/college events",
+      "Month 5–8: Build showreel and apply to agencies/creators"
+    ]
+  },
+  {
+    "id": "content-writer-seo-basic",
+    "name": "Content Writer (Blogs & SEO)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["online", "creative"],
+    "suitableInterests": ["Creativity", "Design / Content", "Communication"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Clear writing in English or regional language",
+      "Basic SEO and keyword usage",
+      "Research and summarising information"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn blog/SEO basics and write sample articles",
+      "Month 3–4: Publish on Medium / personal blog",
+      "Month 5–6: Freelance or join agencies as junior writer"
+    ]
+  },
+  {
+    "id": "ui-ux-designer-trainee",
+    "name": "UI/UX Designer (Trainee)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "6–12 months",
+    "demand": "Medium",
+    "tags": ["creative", "technical"],
+    "suitableInterests": ["Creativity", "Design / Content", "Tech / Computers"],
+    "salary": "Approx ₹3–6 LPA (after training)",
+    "skillsNeeded": [
+      "Wireframing and simple prototypes",
+      "Basic Figma/Adobe XD skills",
+      "Understanding of user flows"
+    ],
+    "learningPath": [
+      "Month 1–3: Learn UX fundamentals and Figma",
+      "Month 4–6: Redesign 3–4 popular apps as practice",
+      "Month 7–12: Build portfolio and apply to product companies"
+    ]
+  },
+  {
+    "id": "junior-choreographer-assistant",
+    "name": "Junior Choreographer / Dance Assistant",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "6–12 months (intensive practice)",
+    "demand": "Medium",
+    "tags": ["creative", "performance"],
+    "suitableInterests": ["Creativity", "Media", "Hands-on"],
+    "salary": "Approx ₹2–4 LPA (higher per-show earnings possible)",
+    "skillsNeeded": [
+      "Strong foundation in at least one dance style",
+      "Ability to remember and teach choreography",
+      "Stage coordination and team handling"
+    ],
+    "learningPath": [
+      "Month 1–3: Train regularly at a dance academy",
+      "Month 4–6: Assist main choreographer in classes/shows",
+      "Month 7–12: Take own batches or small event projects"
+    ]
+  },
+  {
+    "id": "dance-fitness-instructor",
+    "name": "Dance Fitness Instructor",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["creative", "fitness"],
+    "suitableInterests": ["Creativity", "Health", "Leadership"],
+    "salary": "Approx ₹2–4 LPA + per‑class incentives",
+    "skillsNeeded": [
+      "Basic dance + stamina",
+      "Cueing moves to music safely",
+      "Motivating groups during workouts"
+    ],
+    "learningPath": [
+      "Month 1–2: Take dance/fitness classes and build stamina",
+      "Month 3–4: Do a certified dance‑fitness instructor course",
+      "Month 5–6: Start group classes in gyms or studios"
+    ]
+  },
+  {
+    "id": "junior-singer-live-gigs",
+    "name": "Junior Singer for Live Gigs / Events",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "6–18 months (training)",
+    "demand": "Niche",
+    "tags": ["creative", "performance"],
+    "suitableInterests": ["Creativity", "Media", "People"],
+    "salary": "Approx ₹1.5–4 LPA equivalent (per‑show payments)",
+    "skillsNeeded": [
+      "Good pitch and rhythm",
+      "Stage presence and mic handling",
+      "Repertoire of popular songs"
+    ],
+    "learningPath": [
+      "Month 1–6: Take regular vocal lessons and practise daily",
+      "Month 7–9: Perform at open mics, college fests, small events",
+      "Month 10–18: Join band/agency and do paid shows"
+    ]
+  },
+  {
+    "id": "creative-ads-copywriter-junior",
+    "name": "Junior Creative Copywriter (Ads & Social)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "4–8 months",
+    "demand": "Medium",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content", "Communication"],
+    "salary": "Approx ₹3–6 LPA",
+    "skillsNeeded": [
+      "Writing catchy headlines and captions",
+      "Understanding brand tone",
+      "Basic idea of ads and funnels"
+    ],
+    "learningPath": [
+      "Month 1–2: Study popular ads and practise rewriting them",
+      "Month 3–4: Create a small portfolio (social posts, ad scripts)",
+      "Month 5–8: Intern or join agency as junior copywriter"
+    ]
+  },
+  {
+    "id": "presentation-designer-canva",
+    "name": "Presentation & Canva Designer",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "2–4 months",
+    "demand": "Medium",
+    "tags": ["creative", "online"],
+    "suitableInterests": ["Creativity", "Design / Content"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Using Canva/PowerPoint templates smartly",
+      "Arranging text, icons and images clearly",
+      "Following brand colours and typography"
+    ],
+    "learningPath": [
+      "Month 1: Learn Canva/PowerPoint and recreate sample decks",
+      "Month 2–3: Make decks for friends, college or mock startups",
+      "Month 4 onwards: Freelance or join agencies/consulting teams"
+    ]
+  },
+  {
+    "id": "junior-data-analyst",
+    "name": "Junior Data Analyst",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "6–12 months",
+    "demand": "High",
+    "tags": ["online", "technical"],
+    "suitableInterests": ["Numbers / Data", "Tech / Computers", "Problem-Solving"],
+    "salary": "Approx ₹3–6 LPA",
+    "skillsNeeded": [
+      "Excel/Sheets and basic formulas",
+      "SQL or basic database querying",
+      "Simple dashboards in Power BI / Tableau"
+    ],
+    "learningPath": [
+      "Month 1–3: Learn Excel and basic SQL",
+      "Month 4–6: Build 2–3 small dashboard projects",
+      "Month 7–12: Apply for analyst internships/trainee roles"
+    ]
+  },
+  {
+    "id": "tech-support-associate",
+    "name": "Technical Support Associate (IT / SaaS)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "High",
+    "tags": ["technical", "communication"],
+    "suitableInterests": ["Tech / Computers", "Problem-Solving", "Customer Support"],
+    "salary": "Approx ₹2.5–4.5 LPA",
+    "skillsNeeded": [
+      "Basic understanding of software/hardware issues",
+      "Clear written and spoken communication",
+      "Ticketing tools and documentation"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn basic OS/networking issues and FAQs",
+      "Month 3–4: Practise mock support calls/chats",
+      "Month 5–6: Join as L1 support in IT/SaaS companies"
+    ]
+  },
+  {
+    "id": "retail-visual-merch-assistant",
+    "name": "Retail Visual Merchandising Assistant",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "1–3 months",
+    "demand": "Medium",
+    "tags": ["customer-facing", "field"],
+    "suitableInterests": ["Creativity", "Business", "Hands-on"],
+    "salary": "Approx ₹1.8–3.2 LPA",
+    "skillsNeeded": [
+      "Arranging products and displays",
+      "Basic sense of colour and layout",
+      "Coordination with store staff"
+    ],
+    "learningPath": [
+      "Month 1: Learn brand guidelines and display rules",
+      "Month 2: Assist senior merchandiser across stores",
+      "Month 3 onwards: Handle sections or small stores independently"
+    ]
+  },
+  {
+    "id": "warehouse-operations-assistant",
+    "name": "Warehouse Operations Assistant",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "1–2 months",
+    "demand": "High",
+    "tags": ["hands-on", "logistics"],
+    "suitableInterests": ["Hands-on Work", "Teamwork"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Picking, packing and scanning goods",
+      "Basic stock counting",
+      "Following safety rules and shift discipline"
+    ],
+    "learningPath": [
+      "Week 1–2: Learn layouts, barcodes and safety",
+      "Week 3–4: Work under supervisor in one zone",
+      "Month 2 onwards: Handle daily targets with team"
+    ]
+  },
+  {
+    "id": "front-office-executive-clinic",
+    "name": "Front Office Executive (Clinic / Small Hospital)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["customer-facing", "health"],
+    "suitableInterests": ["Customer Support", "Communication", "Health"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Patient registration and appointment booking",
+      "Phone handling and basic billing",
+      "Soft skills with anxious patients"
+    ],
+    "learningPath": [
+      "Week 1: Learn clinic software and process",
+      "Week 2–3: Shadow senior front-office staff",
+      "Week 4 onwards: Manage desk with light supervision"
+    ]
+  },
+  {
+    "id": "junior-account-assistant-tally",
+    "name": "Junior Accounts Assistant (Tally / GST)",
+    "type": "job",
+    "minEducation": "12th (Commerce preferred)",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["office", "finance"],
+    "suitableInterests": ["Money", "Numbers / Data", "Business"],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Basic accounting concepts",
+      "Using Tally or similar software",
+      "Invoice, GST entry and bank reconciliation"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn Tally and fundamentals of accounting",
+      "Month 3–4: Practise on dummy books and invoices",
+      "Month 5–6: Join CA firms or SMEs as accounts assistant"
+    ]
+  },
+  {
+    "id": "solar-installation-technician",
+    "name": "Solar Installation Technician (Rooftop)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["technical", "hands-on"],
+    "suitableInterests": ["Hands-on Work", "Technology", "Problem-Solving"],
+    "salary": "Approx ₹2.5–4 LPA",
+    "skillsNeeded": [
+      "Basic electrical safety",
+      "Panel mounting and wiring under supervision",
+      "Using tools, ladders and PPE"
+    ],
+    "learningPath": [
+      "Month 1–2: Take short solar/EV technician course",
+      "Month 3–4: Assist senior technicians on live sites",
+      "Month 5–6: Lead small residential installations"
+    ]
+  },
+  {
+    "id": "quality-checker-packaged-food",
+    "name": "Quality Checker (Packaged Food Unit)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 35,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["hands-on", "factory"],
+    "suitableInterests": ["Hands-on Work", "Numbers / Data"],
+    "salary": "Approx ₹1.8–3 LPA",
+    "skillsNeeded": [
+      "Checking packaging, weight and expiry",
+      "Recording rejects and basic reports",
+      "Understanding hygiene requirements"
+    ],
+    "learningPath": [
+      "Week 1: Learn QC checklist and sampling method",
+      "Week 2–3: Work under QC supervisor in one line",
+      "Month 2 onwards: Handle routine checks independently"
+    ]
+  },
+  {
+    "id": "security-guard-residential",
+    "name": "Security Guard (Residential / Commercial)",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 20,
+    "maxAge": 50,
+    "timeToLearn": "2–4 weeks",
+    "demand": "High",
+    "tags": ["hands-on", "security"],
+    "suitableInterests": ["Hands-on Work", "Leadership"],
+    "salary": "Approx ₹1.8–3 LPA + night allowance",
+    "skillsNeeded": [
+      "Gate management and visitor entry",
+      "Basic emergency response awareness",
+      "Following society/company rules"
+    ],
+    "learningPath": [
+      "Week 1: Security procedures and logbook training",
+      "Week 2: Shadow an experienced guard",
+      "Week 3–4: Take independent shifts with periodic checks"
+    ]
+  },
+  {
+    "id": "field-collection-executive",
+    "name": "Field Collection Executive (Non-banking / Utilities)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 38,
+    "timeToLearn": "1–2 months",
+    "demand": "Medium",
+    "tags": ["field", "sales"],
+    "suitableInterests": ["Communication", "Sales / Persuasion", "Hands-on Work"],
+    "salary": "Approx ₹1.8–4 LPA + incentives",
+    "skillsNeeded": [
+      "Visiting customers for reminders/collections",
+      "Maintaining basic records in apps or sheets",
+      "Handling tough conversations politely"
+    ],
+    "learningPath": [
+      "Month 1: Learn scripts, routes and safety",
+      "Month 2: Accompany senior staff for visits",
+      "Month 3 onwards: Manage own daily visit targets"
+    ]
+  },
+  {
+    "id": "junior-hr-recruitment-coordinator",
+    "name": "Junior HR Recruitment Coordinator",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["office"],
+    "suitableInterests": ["People", "Communication", "Teamwork"],
+    "salary": "Approx ₹2.5–4.5 LPA",
+    "skillsNeeded": [
+      "Shortlisting CVs as per simple criteria",
+      "Scheduling interviews and confirmations",
+      "Maintaining candidate trackers"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn job portals and HR basics",
+      "Month 3–4: Handle interview scheduling for one team",
+      "Month 5–6: Coordinate multiple roles end‑to‑end"
+    ]
+  },
+  {
+    "id": "junior-facility-technician",
+    "name": "Junior Facility Maintenance Technician",
+    "type": "job",
+    "minEducation": "8th / 10th",
+    "eligibleStatus": [
+      "Dropped out before 10th",
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 40,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["hands-on", "technical"],
+    "suitableInterests": ["Hands-on Work", "Problem-Solving"],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Basic electrical/plumbing/AC knowledge",
+      "Use of hand tools safely",
+      "Following checklists for building upkeep"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn basics under senior technician",
+      "Month 3–4: Handle simple complaints independently",
+      "Month 5–6: Manage routine maintenance rounds"
+    ]
+  },
+  {
+    "id": "junior-data-analyst",
+    "name": "Junior Data Analyst",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "6–12 months",
+    "demand": "High",
+    "tags": ["online", "technical"],
+    "suitableInterests": [
+      "Numbers / Data",
+      "Problem-Solving",
+      "Tech / Computers"
+    ],
+    "salary": "Approx ₹3–6 LPA",
+    "skillsNeeded": [
+      "Excel/Sheets and basic formulas",
+      "SQL or basic database querying",
+      "Simple dashboards in Power BI / Tableau"
+    ],
+    "learningPath": [
+      "Month 1–3: Learn Excel and basic SQL",
+      "Month 4–6: Build 2–3 small dashboard projects",
+      "Month 7–12: Apply for analyst internships/trainee roles"
+    ]
+  },
+  {
+    "id": "tech-support-associate",
+    "name": "Technical Support Associate (IT / SaaS)",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "High",
+    "tags": ["technical", "communication"],
+    "suitableInterests": [
+      "Customer Support",
+      "Problem-Solving",
+      "Tech / Computers"
+    ],
+    "salary": "Approx ₹2.5–4.5 LPA",
+    "skillsNeeded": [
+      "Basic understanding of software/hardware issues",
+      "Clear written and spoken communication",
+      "Ticketing tools and documentation"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn basic OS/networking issues and FAQs",
+      "Month 3–4: Practise mock support calls/chats",
+      "Month 5–6: Join as L1 support in IT/SaaS companies"
+    ]
+  },
+  {
+    "id": "retail-visual-merch-assistant",
+    "name": "Retail Visual Merchandising Assistant",
+    "type": "job",
+    "minEducation": "10th / 12th",
+    "eligibleStatus": [
+      "Dropped out after 10th",
+      "Dropped out after 11th",
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "1–3 months",
+    "demand": "Medium",
+    "tags": ["customer-facing", "field"],
+    "suitableInterests": [
+      "Creativity",
+      "Design / Content",
+      "Hands-on Work"
+    ],
+    "salary": "Approx ₹1.8–3.2 LPA",
+    "skillsNeeded": [
+      "Arranging products and displays attractively",
+      "Understanding basic brand and display guidelines",
+      "Coordination with store staff for implementation"
+    ],
+    "learningPath": [
+      "Month 1: Learn brand guidelines and display rules",
+      "Month 2: Assist senior merchandiser across stores",
+      "Month 3 onwards: Handle sections or small stores independently"
+    ]
+  },
+  {
+    "id": "inside-sales-representative",
+    "name": "Inside Sales Representative",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "2–4 months",
+    "demand": "High",
+    "tags": ["sales", "office"],
+    "suitableInterests": [
+      "Sales / Persuasion",
+      "Communication",
+      "Customer Support"
+    ],
+    "salary": "Approx ₹2–5 LPA + incentives",
+    "skillsNeeded": [
+      "Cold calling or warm calling",
+      "Understanding product benefits and objections",
+      "Using CRM tools to track leads"
+    ],
+    "learningPath": [
+      "Month 1: Learn product and basic sales scripts",
+      "Month 2: Start supervised calls with feedback",
+      "Month 3–4: Own a target with incentives"
+    ]
+  },
+  {
+    "id": "operations-coordinator",
+    "name": "Operations Coordinator (Back Office)",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["operations", "office"],
+    "suitableInterests": [
+      "Teamwork",
+      "Problem-Solving",
+      "Numbers / Data"
+    ],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Basic Excel and reporting",
+      "Coordinating between teams and tracking tasks",
+      "Following checklists and SLAs"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn processes and reporting format",
+      "Month 3–4: Own a small process or region",
+      "Month 5–6: Improve efficiency using data"
+    ]
+  },
+  {
+    "id": "content-designer",
+    "name": "Junior Content & Design Associate",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 30,
+    "timeToLearn": "3–9 months",
+    "demand": "High",
+    "tags": ["creative", "online"],
+    "suitableInterests": [
+      "Creativity",
+      "Design / Content",
+      "Communication"
+    ],
+    "salary": "Approx ₹2–4 LPA",
+    "skillsNeeded": [
+      "Basic Canva/Figma or similar tools",
+      "Simple copywriting for posts and ads",
+      "Understanding brand tone and layouts"
+    ],
+    "learningPath": [
+      "Month 1–2: Learn design basics and create sample posts",
+      "Month 3–5: Work on small freelance or NGO projects",
+      "Month 6–9: Apply for agency or in‑house content roles"
+    ]
+  },
+  {
+    "id": "training-assistant",
+    "name": "Training / Coaching Assistant",
+    "type": "job",
+    "minEducation": "12th",
+    "eligibleStatus": [
+      "Dropped out after 12th",
+      "Dropped out from college"
+    ],
+    "minAge": 18,
+    "maxAge": 32,
+    "timeToLearn": "3–6 months",
+    "demand": "Medium",
+    "tags": ["education", "people"],
+    "suitableInterests": [
+      "Teaching / Training",
+      "Communication",
+      "Teamwork"
+    ],
+    "salary": "Approx ₹2–3.5 LPA",
+    "skillsNeeded": [
+      "Explaining concepts in simple language",
+      "Helping in class management or online sessions",
+      "Creating basic worksheets or practice tasks"
+    ],
+    "learningPath": [
+      "Month 1–2: Assist a tutor / trainer in sessions",
+      "Month 3–4: Take small doubt‑solving or practice groups",
+      "Month 5–6: Handle independent small batches"
+    ]
+  }
+
+]

@@ -1,0 +1,42 @@
+/* src/styles/Profile.css */
+
+.profile-page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 24px;
+}
+
+.profile-max-width {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Register Parent Button */
+.register-parent-btn {
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.register-parent-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-page-container {
+    padding: 16px;
+  }
+
+  .register-parent-btn {
+    width: 100%;
+  }
+}

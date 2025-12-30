@@ -1,0 +1,236 @@
+/* === PRODUCTION-READY CONSULTATIONS (STABLE FLEXBOX) === */
+.consultations-modern {
+    margin-bottom: var(--space-lg);
+}
+
+.section-header-v3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+    padding: var(--space-lg) var(--space-lg) 0;
+}
+
+.section-title-v3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+}
+
+.icon-box-v3 {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: var(--primary-glow);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.bookings-list-v3 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
+}
+
+.booking-card-v3 {
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    /* Ensure gap between avatar and meta */
+    transition: all 0.2s ease;
+}
+
+.booking-card-v3:hover {
+    border-color: var(--primary-light);
+    transform: translateX(2px);
+}
+
+.consultant-profile-v3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    /* Take available space */
+    min-width: 0;
+    /* Critical for parent flex */
+}
+
+.avatar-mini-v3 {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--primary);
+    border: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+
+.consultant-info-v3 {
+    min-width: 0;
+}
+
+.consultant-info-v3 h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.consultant-info-v3 p {
+    font-size: 11px;
+    color: var(--text-sub);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.booking-meta-v3 {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.meta-pill-v3 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-body);
+    padding: 4px 8px;
+    background: var(--bg-main);
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+}
+
+.meta-pill-v3 svg {
+    font-size: 10px;
+    color: var(--text-sub);
+}
+
+.status-badge-v3 {
+    padding: 4px 10px;
+    border-radius: 4px;
+    /* More modern than pill */
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 70px;
+    text-align: center;
+}
+
+.status-badge-v3.accepted {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.status-badge-v3.pending {
+    background: #fef9c3;
+    color: #854d0e;
+    border: 1px solid #fef08a;
+}
+
+.status-badge-v3.rejected {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* View History Button Styling */
+.btn-toggle-past {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--bg-main);
+    border: 1px solid var(--border-main);
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-toggle-past.active {
+    background: var(--primary-glow);
+    color: var(--primary);
+    border-color: var(--primary-light);
+}
+
+.btn-book-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-book-icon:hover {
+    background: var(--primary-light);
+}
+
+/* === MOBILE === */
+@media (max-width: 768px) {
+    .section-header-v3 {
+        padding: var(--space-lg) var(--space-md) 0;
+    }
+
+    .bookings-list-v3 {
+        padding: var(--space-md) var(--space-md) var(--space-lg);
+    }
+
+    .booking-card-v3 {
+        flex-direction: row;
+        align-items: center;
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .consultant-profile-v3 {
+        gap: 10px;
+    }
+
+    .avatar-mini-v3 {
+        width: 32px;
+        height: 32px;
+    }
+
+    .booking-meta-v3 {
+        display: none;
+        /* Hide secondary meta on narrow mobile to keep it clean */
+    }
+
+    .status-badge-v3 {
+        min-width: 60px;
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+}

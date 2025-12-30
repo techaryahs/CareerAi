@@ -1,0 +1,67 @@
+{
+  "CA": {
+    "country": "Canada",
+    "visa": "Study Permit",
+    "exam": "IELTS / TOEFL / PTE",
+    "funds": "Tuition + ₹10–12 Lakhs GIC",
+    "processing": "4–8 weeks",
+    "success": "High",
+    "tips": [
+      "Strong Statement of Purpose (SOP)",
+      "Clear study gap explanation",
+      "Proper financial documentation"
+    ]
+  },
+  "US": {
+    "country": "United States",
+    "visa": "F-1 Visa",
+    "exam": "IELTS / TOEFL",
+    "funds": "1st year tuition + living expenses",
+    "processing": "2–6 weeks",
+    "success": "Medium",
+    "tips": [
+      "Confident visa interview",
+      "Clear intent to return",
+      "University ranking matters"
+    ]
+  },
+  "UK": {
+    "country": "United Kingdom",
+    "visa": "Student Visa",
+    "exam": "IELTS / PTE",
+    "funds": "Tuition + living cost",
+    "processing": "3–6 weeks",
+    "success": "High",
+    "tips": [
+      "CAS letter accuracy",
+      "Financial proof consistency",
+      "Clear academic progression"
+    ]
+  },
+  "AU": {
+    "country": "Australia",
+    "visa": "Subclass 500",
+    "exam": "IELTS / PTE",
+    "funds": "Tuition + living cost",
+    "processing": "4–8 weeks",
+    "success": "Medium–High",
+    "tips": [
+      "Genuine Student (GS) statement",
+      "Academic relevance",
+      "Financial stability"
+    ]
+  },
+  "DE": {
+    "country": "Germany",
+    "visa": "National Study Visa",
+    "exam": "IELTS (for English programs)",
+    "funds": "Blocked Account (~€11,000)",
+    "processing": "6–10 weeks",
+    "success": "High",
+    "tips": [
+      "Blocked account proof",
+      "University admission letter",
+      "Clear academic continuity"
+    ]
+  }
+}

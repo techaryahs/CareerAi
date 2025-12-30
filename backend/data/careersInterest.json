@@ -1,0 +1,1381 @@
+[
+  {
+    "title": "Data Scientist",
+    "category": "Technology",
+    "description": "Analyzes and interprets complex data to help organizations make informed decisions.",
+    "skills": ["Python", "Machine Learning", "Statistics", "SQL"],
+    "roadmap": [
+      "Get a degree in Computer Science/Statistics",
+      "Learn Python & ML libraries",
+      "Build real-world projects",
+      "Apply for internships"
+    ],
+    "salary": "₹8–20 LPA",
+    "colleges": ["IIT Bombay", "IIIT Hyderabad", "BITS Pilani"]
+  },
+  {
+    "title": "Software Engineer",
+    "category": "Technology",
+    "description": "Designs, develops, and maintains software applications.",
+    "skills": ["Java", "C++", "Problem Solving", "Data Structures"],
+    "roadmap": [
+      "Complete CS/IT degree",
+      "Learn programming languages",
+      "Contribute to open-source",
+      "Crack coding interviews"
+    ],
+    "salary": "₹6–18 LPA",
+    "colleges": ["IIT Delhi", "IIT Madras", "NIT Trichy"]
+  },
+  {
+    "title": "Graphic Designer",
+    "category": "Design",
+    "description": "Creates visual content to communicate ideas using design software.",
+    "skills": ["Photoshop", "Illustrator", "Creativity"],
+    "roadmap": [
+      "Learn design tools",
+      "Create portfolio",
+      "Work freelance projects",
+      "Join a design agency"
+    ],
+    "salary": "₹3–8 LPA",
+    "colleges": ["NID Ahmedabad", "MIT Institute of Design"]
+  },
+  {
+    "title": "Doctor",
+    "category": "Health",
+    "description": "Diagnoses and treats illnesses to improve patient health.",
+    "skills": ["Medical Knowledge", "Patience", "Critical Thinking"],
+    "roadmap": [
+      "Clear NEET exam",
+      "Pursue MBBS",
+      "Complete internship",
+      "Specialize in a field"
+    ],
+    "salary": "₹8–25 LPA",
+    "colleges": ["AIIMS Delhi", "CMC Vellore", "JIPMER Puducherry"]
+  },
+  {
+    "title": "Teacher",
+    "category": "Education",
+    "description": "Guides and educates students in academic or vocational subjects.",
+    "skills": ["Communication", "Patience", "Subject Expertise"],
+    "roadmap": [
+      "Get relevant degree",
+      "Complete B.Ed/M.Ed",
+      "Gain teaching experience",
+      "Specialize in subject"
+    ],
+    "salary": "₹3–7 LPA",
+    "colleges": ["Delhi University", "Banaras Hindu University"]
+  },
+  {
+    "title": "Entrepreneur",
+    "category": "Business",
+    "description": "Builds and manages startups, taking financial risks to innovate.",
+    "skills": ["Leadership", "Risk Management", "Networking"],
+    "roadmap": [
+      "Identify business idea",
+      "Build MVP",
+      "Raise funding",
+      "Scale company"
+    ],
+    "salary": "Varies widely (₹0–50+ LPA)",
+    "colleges": ["IIM Ahmedabad", "IIM Bangalore", "XLRI Jamshedpur"]
+  },
+  {
+    "title": "Mechanical Engineer",
+    "category": "Engineering",
+    "description": "Designs and develops machines, engines, and mechanical systems.",
+    "skills": ["AutoCAD", "Problem Solving", "Thermodynamics"],
+    "roadmap": [
+      "Pursue B.Tech in Mechanical Engineering",
+      "Do internships",
+      "Learn design tools",
+      "Prepare for GATE/placements"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IIT Kharagpur", "IIT Roorkee", "NIT Surathkal"]
+  },
+  {
+    "title": "Civil Engineer",
+    "category": "Engineering",
+    "description": "Plans, designs, and supervises construction of infrastructure projects.",
+    "skills": ["AutoCAD", "Structural Analysis", "Project Management"],
+    "roadmap": [
+      "Pursue Civil Engineering degree",
+      "Learn CAD tools",
+      "Gain site experience",
+      "Specialize in structural design"
+    ],
+    "salary": "₹4–10 LPA",
+    "colleges": ["IIT Kanpur", "IIT Guwahati", "NIT Warangal"]
+  },
+  {
+    "title": "Chartered Accountant",
+    "category": "Finance",
+    "description": "Handles taxation, auditing, and financial advisory for individuals and companies.",
+    "skills": ["Accounting", "Taxation", "Analytical Thinking"],
+    "roadmap": [
+      "Register with ICAI",
+      "Clear CA Foundation",
+      "Clear CA Intermediate",
+      "Clear CA Final"
+    ],
+    "salary": "₹7–20 LPA",
+    "colleges": ["ICAI", "Delhi University", "Mumbai University"]
+  },
+  {
+    "title": "Lawyer",
+    "category": "Law",
+    "description": "Represents clients in legal matters and provides legal advice.",
+    "skills": ["Research", "Communication", "Critical Thinking"],
+    "roadmap": [
+      "Clear CLAT exam",
+      "Pursue LLB/BA-LLB",
+      "Do internships",
+      "Specialize in legal field"
+    ],
+    "salary": "₹4–15 LPA",
+    "colleges": ["NLSIU Bangalore", "NALSAR Hyderabad", "NLU Delhi"]
+  },
+  {
+    "title": "Digital Marketer",
+    "category": "Business",
+    "description": "Promotes products or services through online platforms to reach and engage customers.",
+    "skills": ["SEO", "Social Media Marketing", "Google Ads", "Content Marketing"],
+    "roadmap": [
+      "Learn basics of marketing",
+      "Get certified in digital marketing",
+      "Run ad campaigns",
+      "Work with agencies or startups"
+    ],
+    "salary": "₹3–12 LPA",
+    "colleges": ["IIM Indore", "MICA Ahmedabad", "SPJIMR Mumbai"]
+  },
+  {
+    "title": "Psychologist",
+    "category": "Health",
+    "description": "Studies mental processes and behavior to help people with psychological issues.",
+    "skills": ["Counseling", "Empathy", "Critical Thinking", "Research"],
+    "roadmap": [
+      "Pursue BA/BSc in Psychology",
+      "Do Masters in Clinical/Applied Psychology",
+      "Get license/certification",
+      "Work in clinics or hospitals"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["TISS Mumbai", "Delhi University", "Christ University"]
+  },
+  {
+    "title": "Journalist",
+    "category": "Media",
+    "description": "Researches, writes, and reports news to keep the public informed.",
+    "skills": ["Writing", "Communication", "Investigative Skills"],
+    "roadmap": [
+      "Get a degree in Journalism/Mass Comm",
+      "Intern with news agencies",
+      "Specialize in print/digital/TV",
+      "Work with reputed publications"
+    ],
+    "salary": "₹3–9 LPA",
+    "colleges": ["IIMC Delhi", "Jamia Millia Islamia", "Symbiosis Pune"]
+  },
+  {
+    "title": "Architect",
+    "category": "Design",
+    "description": "Designs buildings and structures while ensuring functionality and aesthetics.",
+    "skills": ["AutoCAD", "3D Design", "Creativity", "Structural Knowledge"],
+    "roadmap": [
+      "Clear NATA/JEE Arch exam",
+      "Pursue B.Arch",
+      "Work with architectural firms",
+      "Specialize in sustainable design"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["CEPT Ahmedabad", "SPA Delhi", "JJ School of Architecture"]
+  },
+  {
+    "title": "Pharmacist",
+    "category": "Health",
+    "description": "Prepares and dispenses medicines while advising patients on their safe use.",
+    "skills": ["Pharmacology", "Attention to Detail", "Patient Care"],
+    "roadmap": [
+      "Clear pharmacy entrance exams",
+      "Pursue B.Pharm/M.Pharm",
+      "Get registered license",
+      "Work in hospitals or pharma companies"
+    ],
+    "salary": "₹3–8 LPA",
+    "colleges": ["NIPER Mohali", "Manipal College of Pharmacy", "BITS Pilani"]
+  },
+  {
+    "title": "Pilot",
+    "category": "Aviation",
+    "description": "Operates aircraft to transport passengers and cargo safely.",
+    "skills": ["Navigation", "Decision-Making", "Technical Knowledge"],
+    "roadmap": [
+      "Clear 12th with PCM",
+      "Join flying school (DGCA approved)",
+      "Earn Commercial Pilot License (CPL)",
+      "Join airlines"
+    ],
+    "salary": "₹12–40 LPA",
+    "colleges": ["Indira Gandhi Institute of Aeronautics", "CAE Oxford", "IGRUA Raebareli"]
+  },
+  {
+    "title": "Chef",
+    "category": "Hospitality",
+    "description": "Prepares meals and manages kitchen operations in restaurants or hotels.",
+    "skills": ["Cooking", "Creativity", "Time Management"],
+    "roadmap": [
+      "Join hotel management course",
+      "Specialize in cuisine",
+      "Gain experience in kitchens",
+      "Work in hotels or open restaurant"
+    ],
+    "salary": "₹2–10 LPA",
+    "colleges": ["IHM Delhi", "IHM Mumbai", "IHM Bangalore"]
+  },
+  {
+    "title": "Fashion Designer",
+    "category": "Design",
+    "description": "Creates clothing and accessories while keeping up with fashion trends.",
+    "skills": ["Sketching", "Textile Knowledge", "Creativity"],
+    "roadmap": [
+      "Pursue degree/diploma in Fashion Design",
+      "Build a fashion portfolio",
+      "Intern with designers",
+      "Launch own label or join fashion house"
+    ],
+    "salary": "₹3–12 LPA",
+    "colleges": ["NIFT Delhi", "NIFT Mumbai", "Pearl Academy"]
+  },
+  {
+    "title": "Police Officer",
+    "category": "Government",
+    "description": "Maintains law and order, investigates crimes, and ensures public safety.",
+    "skills": ["Discipline", "Physical Fitness", "Investigation"],
+    "roadmap": [
+      "Clear UPSC/State Police exams",
+      "Undergo police training",
+      "Serve in state or central police",
+      "Climb ranks with experience"
+    ],
+    "salary": "₹4–15 LPA",
+    "colleges": ["National Police Academy Hyderabad", "State Police Academies"]
+  },
+  {
+    "title": "Actor",
+    "category": "Arts",
+    "description": "Performs in films, television, theater, or digital media to entertain audiences.",
+    "skills": ["Acting", "Voice Modulation", "Creativity"],
+    "roadmap": [
+      "Join drama/theater school",
+      "Build acting portfolio",
+      "Work in theater/short films",
+      "Audition for TV/films"
+    ],
+    "salary": "₹2 LPA – Crores (varies highly)",
+    "colleges": ["FTII Pune", "NSD Delhi", "Whistling Woods Mumbai"]
+  },
+  {
+    "title": "Biotechnologist",
+    "category": "Science",
+    "description": "Applies biology and technology to develop products in healthcare, agriculture, and environment.",
+    "skills": ["Molecular Biology", "Lab Skills", "Research"],
+    "roadmap": [
+      "Complete BSc in Biotechnology",
+      "Pursue MSc or PhD",
+      "Work in labs or biotech firms",
+      "Contribute to research projects"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IIT Delhi", "IISc Bangalore", "Amity University"]
+  },
+  {
+    "title": "Environmental Scientist",
+    "category": "Science",
+    "description": "Studies the environment and develops solutions to environmental problems.",
+    "skills": ["Environmental Studies", "Data Analysis", "Field Research"],
+    "roadmap": [
+      "Earn degree in Environmental Science",
+      "Work on conservation projects",
+      "Specialize in climate studies",
+      "Join NGOs or govt organizations"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["TERI University", "IIT Bombay", "Delhi University"]
+  },
+  {
+    "title": "Economist",
+    "category": "Finance",
+    "description": "Analyzes economic data, trends, and policies to guide businesses and governments.",
+    "skills": ["Statistics", "Econometrics", "Analytical Skills"],
+    "roadmap": [
+      "Get BA in Economics",
+      "Pursue MA/MPhil/PhD",
+      "Work with think tanks or RBI",
+      "Consult for businesses"
+    ],
+    "salary": "₹5–15 LPA",
+    "colleges": ["Delhi School of Economics", "ISI Kolkata", "JNU Delhi"]
+  },
+  {
+    "title": "Content Writer",
+    "category": "Media",
+    "description": "Creates engaging written content for websites, blogs, and social media.",
+    "skills": ["Writing", "Research", "Creativity"],
+    "roadmap": [
+      "Develop strong writing skills",
+      "Start blogging/freelancing",
+      "Build portfolio",
+      "Work with media firms"
+    ],
+    "salary": "₹2–7 LPA",
+    "colleges": ["Symbiosis Pune", "Christ University", "Amity University"]
+  },
+  {
+    "title": "Animator",
+    "category": "Arts",
+    "description": "Creates moving images and visual effects for media and entertainment.",
+    "skills": ["Animation Software", "Storytelling", "Creativity"],
+    "roadmap": [
+      "Learn animation tools (Maya, Blender)",
+      "Pursue diploma/degree in Animation",
+      "Work on projects",
+      "Join film studios or gaming firms"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["Arena Animation", "Whistling Woods Mumbai", "MAAC"]
+  },
+  {
+    "title": "Event Manager",
+    "category": "Management",
+    "description": "Plans and organizes events like conferences, weddings, and concerts.",
+    "skills": ["Planning", "Networking", "Budgeting"],
+    "roadmap": [
+      "Earn degree in Event Management/Marketing",
+      "Work as event coordinator",
+      "Build vendor network",
+      "Start own event firm"
+    ],
+    "salary": "₹3–12 LPA",
+    "colleges": ["NIM Bangalore", "NAEMD Mumbai", "NIEM Pune"]
+  },
+  {
+    "title": "Cybersecurity Analyst",
+    "category": "Technology",
+    "description": "Protects systems and networks from cyberattacks.",
+    "skills": ["Networking", "Cybersecurity Tools", "Ethical Hacking"],
+    "roadmap": [
+      "Pursue degree in CS/IT",
+      "Get certifications (CEH, CISSP)",
+      "Work in IT security",
+      "Specialize in incident response"
+    ],
+    "salary": "₹6–18 LPA",
+    "colleges": ["IITs", "IIITs", "Amrita Vishwa Vidyapeetham"]
+  },
+  {
+    "title": "Robotics Engineer",
+    "category": "Engineering",
+    "description": "Designs and builds robots and automation systems.",
+    "skills": ["Robotics", "Embedded Systems", "AI/ML"],
+    "roadmap": [
+      "Get B.Tech in Robotics/Mechanical/CS",
+      "Do robotics projects",
+      "Intern in robotics labs",
+      "Work in manufacturing/AI companies"
+    ],
+    "salary": "₹5–15 LPA",
+    "colleges": ["IIT Kanpur", "IIT Bombay", "BITS Pilani"]
+  },
+  {
+    "title": "HR Manager",
+    "category": "Management",
+    "description": "Manages recruitment, employee relations, and organizational culture.",
+    "skills": ["Communication", "Leadership", "Conflict Resolution"],
+    "roadmap": [
+      "Earn BBA/MBA in HR",
+      "Gain experience in HR roles",
+      "Work in corporates",
+      "Specialize in talent management"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["XLRI Jamshedpur", "TISS Mumbai", "IIM Ranchi"]
+  },
+  {
+    "title": "Game Developer",
+    "category": "Technology",
+    "description": "Creates and programs video games for consoles, PCs, and mobile.",
+    "skills": ["C++", "Unity/Unreal Engine", "Problem Solving"],
+    "roadmap": [
+      "Pursue CS/Game Design degree",
+      "Learn game engines",
+      "Develop indie games",
+      "Work in gaming studios"
+    ],
+    "salary": "₹4–15 LPA",
+    "colleges": ["ICAT Chennai", "MAAC", "IIT Bombay (Design + Tech)"]
+  },
+  {
+    "title": "AI Researcher",
+    "category": "Technology",
+    "description": "Develops advanced artificial intelligence models and algorithms.",
+    "skills": ["Deep Learning", "Mathematics", "Python", "Research"],
+    "roadmap": [
+      "Earn B.Tech in CS/AI",
+      "Pursue MSc/PhD in AI/ML",
+      "Publish research papers",
+      "Work in AI labs or tech companies"
+    ],
+    "salary": "₹10–30 LPA",
+    "colleges": ["IIT Madras", "IISc Bangalore", "IIIT Hyderabad"]
+  },
+  {
+    "title": "Astronomer",
+    "category": "Science",
+    "description": "Studies celestial objects, space, and the universe.",
+    "skills": ["Physics", "Mathematics", "Research"],
+    "roadmap": [
+      "Complete BSc in Physics",
+      "Do MSc/PhD in Astronomy/Astrophysics",
+      "Join ISRO or research institutes",
+      "Work on space projects"
+    ],
+    "salary": "₹5–15 LPA",
+    "colleges": ["IISc Bangalore", "IIT Kanpur", "TIFR Mumbai"]
+  },
+  {
+    "title": "Veterinarian",
+    "category": "Health",
+    "description": "Provides medical care for animals.",
+    "skills": ["Animal Care", "Surgery", "Patience"],
+    "roadmap": [
+      "Clear veterinary entrance exam",
+      "Pursue BVSc & AH",
+      "Intern in clinics",
+      "Work in hospitals or start own practice"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IVRI Bareilly", "TANUVAS Chennai", "Bombay Veterinary College"]
+  },
+  {
+    "title": "Sociologist",
+    "category": "Social Science",
+    "description": "Studies society, culture, and social behavior.",
+    "skills": ["Research", "Data Analysis", "Critical Thinking"],
+    "roadmap": [
+      "Pursue BA in Sociology",
+      "Complete MA/PhD",
+      "Work in NGOs or govt organizations",
+      "Publish sociological research"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["Delhi University", "JNU Delhi", "TISS Mumbai"]
+  },
+  {
+    "title": "Librarian",
+    "category": "Education",
+    "description": "Manages library resources and helps people access information.",
+    "skills": ["Information Management", "Organization", "Communication"],
+    "roadmap": [
+      "Earn degree/diploma in Library Science",
+      "Get library management experience",
+      "Work in schools, colleges, or public libraries"
+    ],
+    "salary": "₹2–6 LPA",
+    "colleges": ["IGNOU", "Delhi University", "Banaras Hindu University"]
+  },
+  {
+    "title": "Marine Biologist",
+    "category": "Science",
+    "description": "Studies marine organisms and ecosystems.",
+    "skills": ["Biology", "Diving", "Research"],
+    "roadmap": [
+      "Pursue BSc in Marine Biology/Zoology",
+      "Do MSc/PhD in Marine Sciences",
+      "Work with research organizations",
+      "Contribute to ocean conservation"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["Andhra University", "Kerala University of Fisheries", "IISc Bangalore"]
+  },
+  {
+    "title": "Political Scientist",
+    "category": "Politics",
+    "description": "Researches political systems, policies, and governance.",
+    "skills": ["Research", "Critical Thinking", "Public Policy"],
+    "roadmap": [
+      "Complete BA in Political Science",
+      "Pursue MA/PhD",
+      "Work in govt, think tanks, or journalism"
+    ],
+    "salary": "₹4–15 LPA",
+    "colleges": ["JNU Delhi", "Delhi University", "Ashoka University"]
+  },
+  {
+    "title": "Archaeologist",
+    "category": "History",
+    "description": "Studies human history through excavation and analysis of artifacts.",
+    "skills": ["History", "Fieldwork", "Research"],
+    "roadmap": [
+      "Earn BA in History/Archaeology",
+      "Do MA/PhD in Archaeology",
+      "Join ASI or museums",
+      "Work on excavation projects"
+    ],
+    "salary": "₹3–9 LPA",
+    "colleges": ["Deccan College Pune", "Delhi University", "Banaras Hindu University"]
+  },
+  {
+    "title": "Social Worker",
+    "category": "Social Service",
+    "description": "Helps individuals and communities improve their well-being.",
+    "skills": ["Counseling", "Empathy", "Community Engagement"],
+    "roadmap": [
+      "Pursue BA in Social Work",
+      "Complete MSW",
+      "Work with NGOs or government programs"
+    ],
+    "salary": "₹2–7 LPA",
+    "colleges": ["TISS Mumbai", "Delhi University", "Jamia Millia Islamia"]
+  },
+  {
+    "title": "Tour Guide",
+    "category": "Hospitality",
+    "description": "Guides tourists by explaining places of interest and history.",
+    "skills": ["Communication", "History Knowledge", "Hospitality"],
+    "roadmap": [
+      "Learn multiple languages",
+      "Take certification in tourism",
+      "Work with travel agencies",
+      "Start freelance guiding"
+    ],
+    "salary": "₹2–6 LPA",
+    "colleges": ["IHM Pusa", "IGNOU Tourism Studies", "Amity Institute of Travel & Tourism"]
+  },
+  {
+    "title": "Blockchain Developer",
+    "category": "Technology",
+    "description": "Builds decentralized applications and smart contracts on blockchain platforms.",
+    "skills": ["Solidity", "Ethereum", "Cryptography", "Web3"],
+    "roadmap": [
+      "Learn blockchain basics",
+      "Master smart contract languages",
+      "Work on DeFi/NFT projects",
+      "Contribute to open-source blockchain"
+    ],
+    "salary": "₹6–20 LPA",
+    "colleges": ["IITs", "IIITs", "Online Blockchain Certifications"]
+  },
+  {
+    "title": "UX/UI Designer",
+    "category": "Design",
+    "description": "Designs user interfaces and improves user experiences for digital products.",
+    "skills": ["Figma", "Wireframing", "User Research", "Prototyping"],
+    "roadmap": [
+      "Learn design tools",
+      "Understand UX principles",
+      "Build portfolio",
+      "Work with product teams"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["NID Ahmedabad", "IIT Bombay IDC", "Pearl Academy"]
+  },
+  {
+    "title": "Statistician",
+    "category": "Mathematics",
+    "description": "Applies statistical methods to collect, analyze, and interpret data.",
+    "skills": ["Mathematics", "R", "Python", "Data Analysis"],
+    "roadmap": [
+      "Pursue BSc in Statistics/Maths",
+      "Do MSc/PhD in Statistics",
+      "Work in research, govt, or corporates"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["ISI Kolkata", "Delhi University", "IIT Kanpur"]
+  },
+  {
+    "title": "Digital Content Creator",
+    "category": "Media",
+    "description": "Produces engaging video, audio, or written content for digital platforms.",
+    "skills": ["Video Editing", "Storytelling", "Social Media"],
+    "roadmap": [
+      "Start a YouTube/blog",
+      "Learn editing & production",
+      "Collaborate with brands",
+      "Monetize content"
+    ],
+    "salary": "₹2 LPA – Crores (varies widely)",
+    "colleges": ["Self-Taught", "Short Courses (Coursera, Udemy)"]
+  },
+  {
+    "title": "Actuary",
+    "category": "Finance",
+    "description": "Assesses financial risks using mathematics, statistics, and financial theory.",
+    "skills": ["Mathematics", "Risk Analysis", "Finance"],
+    "roadmap": [
+      "Pursue BSc/BA in Math/Economics",
+      "Pass actuarial exams (IFoA/IAI)",
+      "Work in insurance/banking"
+    ],
+    "salary": "₹6–20 LPA",
+    "colleges": ["University of Mumbai", "ISI Kolkata", "IFoA UK"]
+  },
+  {
+    "title": "Interior Designer",
+    "category": "Design",
+    "description": "Designs functional and aesthetically pleasing interior spaces.",
+    "skills": ["AutoCAD", "Creativity", "Space Planning"],
+    "roadmap": [
+      "Get diploma/degree in Interior Design",
+      "Build interior design portfolio",
+      "Work in design firms",
+      "Start independent projects"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["CEPT University", "NID Ahmedabad", "Pearl Academy"]
+  },
+  {
+    "title": "Dietitian/Nutritionist",
+    "category": "Health",
+    "description": "Advises individuals on diet and nutrition for better health and wellness.",
+    "skills": ["Nutrition Science", "Counseling", "Health Knowledge"],
+    "roadmap": [
+      "Earn BSc/MSc in Nutrition/Dietetics",
+      "Do internship in hospitals",
+      "Get certification",
+      "Work in clinics, gyms, or independently"
+    ],
+    "salary": "₹3–8 LPA",
+    "colleges": ["Lady Irwin College Delhi", "SNDT University Mumbai", "IHMCTAN"]
+  },
+  {
+    "title": "Mechanical CAD Designer",
+    "category": "Engineering",
+    "description": "Creates 2D and 3D models of mechanical parts and systems using CAD software.",
+    "skills": ["AutoCAD", "SolidWorks", "Engineering Knowledge"],
+    "roadmap": [
+      "Learn CAD software",
+      "Get certification",
+      "Work in mechanical industries",
+      "Specialize in product design"
+    ],
+    "salary": "₹3–9 LPA",
+    "colleges": ["IITs", "NITs", "Private CAD Institutes"]
+  },
+  {
+    "title": "Wildlife Photographer",
+    "category": "Arts",
+    "description": "Captures images of wildlife and nature for media, research, and conservation.",
+    "skills": ["Photography", "Patience", "Editing"],
+    "roadmap": [
+      "Learn photography basics",
+      "Invest in camera gear",
+      "Build wildlife portfolio",
+      "Work with magazines or NGOs"
+    ],
+    "salary": "₹2–8 LPA",
+    "colleges": ["National Institute of Photography", "Online Photography Courses"]
+  },
+  {
+    "title": "Sports Coach",
+    "category": "Sports",
+    "description": "Trains and mentors athletes to improve performance in sports.",
+    "skills": ["Sports Knowledge", "Leadership", "Fitness"],
+    "roadmap": [
+      "Get degree in Physical Education",
+      "Specialize in a sport",
+      "Get coaching certification",
+      "Work with teams or academies"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["LNIPE Gwalior", "NIS Patiala", "Delhi University"]
+  },
+  {
+    "title": "Civil Servant (IAS/IPS/IFS)",
+    "category": "Government",
+    "description": "Works in administrative services to manage governance, law enforcement, and public policy.",
+    "skills": ["Leadership", "Decision Making", "Public Policy"],
+    "roadmap": [
+      "Graduate in any field",
+      "Clear UPSC Civil Services Exam",
+      "Undergo training at LBSNAA",
+      "Serve in various government departments"
+    ],
+    "salary": "₹8–25 LPA",
+    "colleges": ["Any UG College (exam-based entry)", "LBSNAA Training Academy"]
+  },
+  {
+    "title": "Teacher (Special Education)",
+    "category": "Education",
+    "description": "Supports students with learning disabilities and special needs.",
+    "skills": ["Patience", "Empathy", "Teaching Skills"],
+    "roadmap": [
+      "Earn B.Ed in Special Education",
+      "Get RCI Certification",
+      "Work in inclusive schools",
+      "Specialize in disability education"
+    ],
+    "salary": "₹3–8 LPA",
+    "colleges": ["NIEPID Hyderabad", "Jamia Millia Islamia", "IGNOU"]
+  },
+  {
+    "title": "Urban Planner",
+    "category": "Architecture",
+    "description": "Designs and plans urban spaces, ensuring sustainable city development.",
+    "skills": ["GIS Tools", "Architecture", "Data Analysis"],
+    "roadmap": [
+      "Complete B.Plan or B.Arch",
+      "Pursue Masters in Urban Planning",
+      "Work with govt/real estate firms",
+      "Contribute to smart city projects"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["SPA Delhi", "CEPT Ahmedabad", "IIT Kharagpur"]
+  },
+  {
+    "title": "Forensic Scientist",
+    "category": "Science",
+    "description": "Analyzes crime scene evidence for law enforcement investigations.",
+    "skills": ["Chemistry", "Biology", "Analytical Thinking"],
+    "roadmap": [
+      "Earn BSc in Forensic Science",
+      "Specialize in Criminology or Toxicology",
+      "Work with police or CBI/IB",
+      "Contribute to investigations"
+    ],
+    "salary": "₹4–10 LPA",
+    "colleges": ["Gujarat Forensic Sciences University", "Delhi University", "Amity University"]
+  },
+  {
+    "title": "Ethical Hacker",
+    "category": "Technology",
+    "description": "Tests and secures IT systems by identifying vulnerabilities before attackers do.",
+    "skills": ["Penetration Testing", "Networking", "Cybersecurity"],
+    "roadmap": [
+      "Pursue CS/IT degree",
+      "Get CEH, OSCP certifications",
+      "Work as penetration tester",
+      "Specialize in red team security"
+    ],
+    "salary": "₹6–18 LPA",
+    "colleges": ["IIITs", "IITs", "Private Cybersecurity Institutes"]
+  },
+  {
+    "title": "Industrial Designer",
+    "category": "Design",
+    "description": "Designs everyday products combining usability and aesthetics.",
+    "skills": ["CAD", "Sketching", "Prototyping"],
+    "roadmap": [
+      "Complete degree in Industrial Design",
+      "Work on product design projects",
+      "Join manufacturing firms",
+      "Specialize in sustainable design"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IIT Bombay (IDC)", "NID Ahmedabad", "MIT Institute of Design"]
+  },
+  {
+    "title": "Meteorologist",
+    "category": "Science",
+    "description": "Studies weather patterns and forecasts climate changes.",
+    "skills": ["Atmospheric Science", "Mathematics", "Data Modeling"],
+    "roadmap": [
+      "Pursue BSc in Meteorology/Physics",
+      "Do MSc in Atmospheric Science",
+      "Work with IMD, ISRO, or TV media",
+      "Specialize in climate research"
+    ],
+    "salary": "₹4–10 LPA",
+    "colleges": ["IIT Kharagpur", "IIT Delhi", "IISc Bangalore"]
+  },
+  {
+    "title": "Linguist",
+    "category": "Language",
+    "description": "Studies languages, their structure, and helps in translation and NLP projects.",
+    "skills": ["Languages", "Analytical Skills", "Research"],
+    "roadmap": [
+      "Earn BA/MA in Linguistics",
+      "Specialize in translation or NLP",
+      "Work in AI, education, or government",
+      "Contribute to language preservation"
+    ],
+    "salary": "₹3–9 LPA",
+    "colleges": ["JNU Delhi", "EFLU Hyderabad", "Delhi University"]
+  },
+  {
+    "title": "Geologist",
+    "category": "Science",
+    "description": "Studies earth materials, minerals, and processes for exploration and research.",
+    "skills": ["Geology", "Mapping", "Fieldwork"],
+    "roadmap": [
+      "Earn BSc in Geology",
+      "Do MSc/PhD in Geoscience",
+      "Work in mining, oil, or research",
+      "Join ONGC, GSI, or academia"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IIT Roorkee", "Banaras Hindu University", "Presidency University"]
+  },
+  {
+    "title": "Air Traffic Controller",
+    "category": "Aviation",
+    "description": "Manages aircraft movements to ensure safe takeoffs and landings.",
+    "skills": ["Decision Making", "Attention to Detail", "Communication"],
+    "roadmap": [
+      "Graduate in any discipline (preferably Science/Engg)",
+      "Clear AAI recruitment exam",
+      "Undergo ATC training",
+      "Work at airports across India"
+    ],
+    "salary": "₹6–15 LPA",
+    "colleges": ["AAI Training Institute", "IIM Bangalore (aviation electives)"]
+  },
+  {
+    "title": "Artificial Intelligence Engineer",
+    "category": "Technology",
+    "description": "Designs and implements AI models and systems to solve real-world problems.",
+    "skills": ["Python", "Deep Learning", "NLP", "TensorFlow"],
+    "roadmap": [
+      "Get a degree in CS/AI/ML",
+      "Master AI frameworks",
+      "Work on AI projects",
+      "Join AI labs or tech firms"
+    ],
+    "salary": "₹8–25 LPA",
+    "colleges": ["IIT Madras", "IIIT Hyderabad", "IISc Bangalore"]
+  },
+  {
+    "title": "Occupational Therapist",
+    "category": "Health",
+    "description": "Helps patients recover and improve daily living skills after illness or injury.",
+    "skills": ["Therapy Skills", "Patience", "Rehabilitation"],
+    "roadmap": [
+      "Pursue BOT/MOT degree",
+      "Intern at hospitals",
+      "Get certification",
+      "Work in rehabilitation centers"
+    ],
+    "salary": "₹3–8 LPA",
+    "colleges": ["AIIMS Delhi", "CMC Vellore", "SRM University"]
+  },
+  {
+    "title": "Sound Engineer",
+    "category": "Media",
+    "description": "Works with sound production for films, music, and live events.",
+    "skills": ["Audio Mixing", "Sound Editing", "Acoustics"],
+    "roadmap": [
+      "Learn sound engineering",
+      "Work in studios",
+      "Intern with music/film companies",
+      "Specialize in live sound or recording"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["FTII Pune", "SAE Institute", "Whistling Woods Mumbai"]
+  },
+  {
+    "title": "Astronaut",
+    "category": "Space",
+    "description": "Trains to travel and work in outer space missions.",
+    "skills": ["Physics", "Engineering", "Physical Fitness"],
+    "roadmap": [
+      "Pursue degree in Engineering/Science",
+      "Work in ISRO/space research",
+      "Clear astronaut selection tests",
+      "Undergo rigorous training"
+    ],
+    "salary": "₹10–30 LPA",
+    "colleges": ["ISRO Training Centers", "IITs", "IISc Bangalore"]
+  },
+  {
+    "title": "Film Director",
+    "category": "Arts",
+    "description": "Directs movies and manages the creative vision of films.",
+    "skills": ["Storytelling", "Leadership", "Creativity"],
+    "roadmap": [
+      "Study film direction",
+      "Make short films",
+      "Assist established directors",
+      "Direct feature films"
+    ],
+    "salary": "₹5 LPA – Crores",
+    "colleges": ["FTII Pune", "Satyajit Ray Film Institute", "Whistling Woods Mumbai"]
+  },
+  {
+    "title": "Biomedical Engineer",
+    "category": "Engineering",
+    "description": "Develops medical devices and technologies to improve healthcare.",
+    "skills": ["Biology", "Electronics", "Problem Solving"],
+    "roadmap": [
+      "Earn B.Tech in Biomedical Engineering",
+      "Do internships in hospitals",
+      "Specialize in medical devices",
+      "Work in healthcare companies"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IIT Bombay", "MIT Manipal", "VIT Vellore"]
+  },
+  {
+    "title": "Foreign Language Interpreter",
+    "category": "Language",
+    "description": "Translates spoken communication between different languages.",
+    "skills": ["Multilingual", "Listening", "Communication"],
+    "roadmap": [
+      "Learn foreign languages",
+      "Get certification in interpretation",
+      "Work with embassies or corporates",
+      "Specialize in legal/business interpretation"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["JNU Delhi", "EFLU Hyderabad", "Goethe Institute"]
+  },
+  {
+    "title": "Criminologist",
+    "category": "Social Science",
+    "description": "Studies crime, its causes, and prevention strategies.",
+    "skills": ["Research", "Sociology", "Critical Thinking"],
+    "roadmap": [
+      "Pursue BA/MA in Criminology",
+      "Specialize in criminal psychology",
+      "Work with police, CBI, or universities"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["TISS Mumbai", "Lok Nayak Jayaprakash Institute", "Delhi University"]
+  },
+  {
+    "title": "Artificial Intelligence Ethics Specialist",
+    "category": "Technology",
+    "description": "Ensures responsible and ethical use of AI in organizations.",
+    "skills": ["AI Knowledge", "Ethics", "Policy Analysis"],
+    "roadmap": [
+      "Study CS/AI + Ethics courses",
+      "Work in AI companies",
+      "Contribute to policy research",
+      "Advise governments and corporates"
+    ],
+    "salary": "₹6–15 LPA",
+    "colleges": ["IIITs", "IIMs (Tech Policy)", "IISc Bangalore"]
+  },
+  {
+    "title": "Travel Blogger",
+    "category": "Media",
+    "description": "Explores destinations and shares travel experiences online.",
+    "skills": ["Writing", "Photography", "Social Media Marketing"],
+    "roadmap": [
+      "Start travel blog or YouTube",
+      "Learn photography & SEO",
+      "Collaborate with brands",
+      "Monetize through sponsorships"
+    ],
+    "salary": "₹2 LPA – Crores",
+    "colleges": ["Self-Taught", "Workshops", "Online Courses"]
+  },
+  {
+    "title": "Genetic Counselor",
+    "category": "Health",
+    "description": "Advises patients on genetic conditions and inherited diseases.",
+    "skills": ["Genetics", "Counseling", "Medical Knowledge"],
+    "roadmap": [
+      "Earn MSc in Genetics/Genetic Counseling",
+      "Work in hospitals or labs",
+      "Get certification",
+      "Assist families with genetic risk assessment"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["AIIMS Delhi", "IISc Bangalore", "Manipal Academy of Higher Education"]
+  },
+  {
+    "title": "Marine Engineer",
+    "category": "Engineering",
+    "description": "Designs, develops, and maintains ships, submarines, and offshore structures.",
+    "skills": ["Marine Systems", "Mechanical Engineering", "Problem Solving"],
+    "roadmap": [
+      "Pursue B.Tech in Marine Engineering",
+      "Train at maritime institutes",
+      "Work in shipping/navy companies"
+    ],
+    "salary": "₹5–15 LPA",
+    "colleges": ["Indian Maritime University", "Tolani Maritime Institute", "IIT Madras"]
+  },
+  {
+    "title": "Cartographer",
+    "category": "Science",
+    "description": "Creates maps and visual representations of geographic data.",
+    "skills": ["GIS", "Geography", "Data Visualization"],
+    "roadmap": [
+      "Earn degree in Geography/Geomatics",
+      "Learn GIS tools",
+      "Work with survey departments or mapping firms"
+    ],
+    "salary": "₹3–9 LPA",
+    "colleges": ["Delhi University", "IIT Roorkee", "Anna University"]
+  },
+  {
+    "title": "Fashion Stylist",
+    "category": "Design",
+    "description": "Advises clients on clothing, makeup, and accessories to improve their image.",
+    "skills": ["Fashion Knowledge", "Creativity", "Communication"],
+    "roadmap": [
+      "Learn fashion styling",
+      "Assist senior stylists",
+      "Build portfolio",
+      "Work with celebrities/brands"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["NIFT Delhi", "Pearl Academy", "JD Institute of Fashion Technology"]
+  },
+  {
+    "title": "Zoologist",
+    "category": "Science",
+    "description": "Studies animals and their ecosystems to aid conservation efforts.",
+    "skills": ["Biology", "Field Research", "Observation"],
+    "roadmap": [
+      "Pursue BSc in Zoology",
+      "Do MSc/PhD in Zoology/Wildlife Biology",
+      "Work in research, conservation, or zoos"
+    ],
+    "salary": "₹3–9 LPA",
+    "colleges": ["Delhi University", "Banaras Hindu University", "Madras University"]
+  },
+  {
+    "title": "E-commerce Manager",
+    "category": "Business",
+    "description": "Manages online retail platforms and digital sales strategies.",
+    "skills": ["Digital Marketing", "Business Strategy", "SEO"],
+    "roadmap": [
+      "Earn MBA or BBA in Marketing",
+      "Gain experience in online sales",
+      "Work with e-commerce firms"
+    ],
+    "salary": "₹5–15 LPA",
+    "colleges": ["IIM Ahmedabad", "IIM Calcutta", "MICA Ahmedabad"]
+  },
+  {
+    "title": "Art Curator",
+    "category": "Arts",
+    "description": "Manages art collections and exhibitions in museums and galleries.",
+    "skills": ["Art History", "Research", "Management"],
+    "roadmap": [
+      "Study Art History or Museum Studies",
+      "Intern with galleries",
+      "Work in museums or cultural centers"
+    ],
+    "salary": "₹4–10 LPA",
+    "colleges": ["JNU Delhi", "MS University Baroda", "Ashoka University"]
+  },
+  {
+    "title": "Supply Chain Analyst",
+    "category": "Management",
+    "description": "Analyzes and optimizes logistics and supply chain operations.",
+    "skills": ["Data Analysis", "Logistics", "Problem Solving"],
+    "roadmap": [
+      "Earn BBA/MBA in Operations",
+      "Work in logistics or manufacturing",
+      "Specialize in supply chain analytics"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IIM Bangalore", "NITIE Mumbai", "XLRI Jamshedpur"]
+  },
+  {
+    "title": "Astronomy Educator",
+    "category": "Education",
+    "description": "Teaches astronomy and promotes space science awareness.",
+    "skills": ["Physics", "Public Speaking", "Teaching"],
+    "roadmap": [
+      "Get degree in Physics/Astronomy",
+      "Work in planetariums or science centers",
+      "Create astronomy outreach programs"
+    ],
+    "salary": "₹3–8 LPA",
+    "colleges": ["IITs", "IUCAA Pune", "Delhi University"]
+  },
+  {
+    "title": "Fitness Trainer",
+    "category": "Health",
+    "description": "Guides individuals in exercise, nutrition, and fitness routines.",
+    "skills": ["Fitness Knowledge", "Motivation", "Diet Planning"],
+    "roadmap": [
+      "Earn certification in personal training",
+      "Gain hands-on gym experience",
+      "Specialize in yoga, pilates, or bodybuilding"
+    ],
+    "salary": "₹2–8 LPA",
+    "colleges": ["ACE Certification", "ISSA", "YMCA Institute Delhi"]
+  },
+  {
+    "title": "Game Designer",
+    "category": "Technology",
+    "description": "Designs game mechanics, storylines, and user experiences for video games.",
+    "skills": ["Creativity", "Game Engines", "Storytelling"],
+    "roadmap": [
+      "Pursue degree in Game Design/CS",
+      "Learn Unity/Unreal Engine",
+      "Work on indie projects",
+      "Join a gaming studio"
+    ],
+    "salary": "₹4–15 LPA",
+    "colleges": ["ICAT Chennai", "MAAC", "Whistling Woods Mumbai"]
+  },
+  {
+    "title": "Public Relations Specialist",
+    "category": "Business",
+    "description": "Manages public image and communications for individuals or organizations.",
+    "skills": ["Communication", "Networking", "Crisis Management"],
+    "roadmap": [
+      "Earn degree in Mass Communication/PR",
+      "Intern with PR firms",
+      "Build media relations",
+      "Work in corporate or agencies"
+    ],
+    "salary": "₹3–12 LPA",
+    "colleges": ["MICA Ahmedabad", "Symbiosis Pune", "Delhi University"]
+  },
+  {
+    "title": "Arms and Ammunition Engineer",
+    "category": "Defense",
+    "description": "Designs and develops defense equipment, arms, and ammunition.",
+    "skills": ["Mechanical Engineering", "Defense Tech", "Problem Solving"],
+    "roadmap": [
+      "Pursue B.Tech in Mechanical/Electrical",
+      "Specialize in defense engineering",
+      "Work in DRDO, HAL, or defense firms"
+    ],
+    "salary": "₹6–20 LPA",
+    "colleges": ["DRDO Research Labs", "IITs", "Defense Institutes"]
+  },
+  {
+    "title": "Oceanographer",
+    "category": "Science",
+    "description": "Studies ocean currents, ecosystems, and marine resources.",
+    "skills": ["Marine Biology", "Geophysics", "Data Analysis"],
+    "roadmap": [
+      "Earn BSc in Oceanography/Marine Sciences",
+      "Do MSc/PhD",
+      "Work in research institutes or ISRO projects"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["Andhra University", "Goa University", "IIT Madras"]
+  },
+  {
+    "title": "Event Photographer",
+    "category": "Arts",
+    "description": "Captures special events such as weddings, conferences, and festivals.",
+    "skills": ["Photography", "Editing", "Creativity"],
+    "roadmap": [
+      "Learn photography basics",
+      "Build event photography portfolio",
+      "Work freelance or with event firms"
+    ],
+    "salary": "₹2–10 LPA",
+    "colleges": ["National Institute of Photography", "Online Photography Courses"]
+  },
+  {
+    "title": "Robotics Process Automation (RPA) Developer",
+    "category": "Technology",
+    "description": "Creates automation scripts and bots to optimize business processes.",
+    "skills": ["UiPath", "Automation Anywhere", "Problem Solving"],
+    "roadmap": [
+      "Learn RPA tools",
+      "Do certification",
+      "Work in IT/consulting firms",
+      "Specialize in intelligent automation"
+    ],
+    "salary": "₹5–15 LPA",
+    "colleges": ["IITs", "IIITs", "Private RPA Training Institutes"]
+  },
+  {
+    "title": "Speech Therapist",
+    "category": "Health",
+    "description": "Treats patients with speech, language, and communication disorders.",
+    "skills": ["Therapy", "Patience", "Communication"],
+    "roadmap": [
+      "Pursue BASLP/MASLP degree",
+      "Intern at clinics",
+      "Get RCI license",
+      "Work in schools or hospitals"
+    ],
+    "salary": "₹3–9 LPA",
+    "colleges": ["AIISH Mysore", "AIIMS Delhi", "NIMHANS Bangalore"]
+  },
+  {
+    "title": "Archaeological Conservator",
+    "category": "History",
+    "description": "Preserves and restores ancient artifacts and monuments.",
+    "skills": ["Restoration", "Chemistry", "History Knowledge"],
+    "roadmap": [
+      "Study Archaeology/Conservation",
+      "Intern with museums",
+      "Work in ASI or cultural institutes"
+    ],
+    "salary": "₹3–8 LPA",
+    "colleges": ["Deccan College Pune", "Delhi Institute of Heritage", "BHU"]
+  },
+  {
+    "title": "Renewable Energy Engineer",
+    "category": "Engineering",
+    "description": "Develops technologies for solar, wind, and renewable power systems.",
+    "skills": ["Electrical Engineering", "Sustainability", "Project Design"],
+    "roadmap": [
+      "Earn B.Tech in Electrical/Mechanical",
+      "Specialize in renewable energy",
+      "Work in energy firms or research"
+    ],
+    "salary": "₹5–15 LPA",
+    "colleges": ["IIT Bombay", "NIT Trichy", "TERI University"]
+  },
+  {
+    "title": "Copywriter",
+    "category": "Media",
+    "description": "Writes advertising and promotional content to attract audiences.",
+    "skills": ["Writing", "Creativity", "Marketing"],
+    "roadmap": [
+      "Develop strong writing skills",
+      "Intern with ad agencies",
+      "Build portfolio",
+      "Work with creative teams"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["MICA Ahmedabad", "Symbiosis Pune", "Amity University"]
+  },
+  {
+    "title": "Data Analyst",
+    "category": "Technology",
+    "description": "Collects, processes, and analyzes data to help organizations make informed decisions.",
+    "skills": ["SQL", "Excel", "Python", "Data Visualization"],
+    "roadmap": [
+      "Earn degree in CS/Statistics",
+      "Learn analytics tools",
+      "Work on real datasets",
+      "Join analytics teams"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IITs", "ISI Kolkata", "Delhi University"]
+  },
+  {
+    "title": "Airline Cabin Crew",
+    "category": "Hospitality",
+    "description": "Ensures passenger safety and provides service on flights.",
+    "skills": ["Communication", "Customer Service", "Safety Training"],
+    "roadmap": [
+      "Complete 12th grade",
+      "Do cabin crew training",
+      "Join airlines",
+      "Specialize in international travel"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["Frankfinn Institute", "Air Hostess Academy", "IHM Institutes"]
+  },
+  {
+    "title": "Artificial Intelligence Product Manager",
+    "category": "Management",
+    "description": "Oversees AI-powered product development and deployment.",
+    "skills": ["Product Management", "AI Knowledge", "Leadership"],
+    "roadmap": [
+      "Earn MBA or B.Tech",
+      "Work in product roles",
+      "Specialize in AI/ML",
+      "Manage AI-driven products"
+    ],
+    "salary": "₹10–30 LPA",
+    "colleges": ["IIMs", "ISB Hyderabad", "IITs (Tech Management)"]
+  },
+  {
+    "title": "Digital Illustrator",
+    "category": "Arts",
+    "description": "Creates digital artwork for books, games, and online media.",
+    "skills": ["Illustrator", "Photoshop", "Creativity"],
+    "roadmap": [
+      "Learn digital art tools",
+      "Build illustration portfolio",
+      "Work freelance or with studios"
+    ],
+    "salary": "₹2–8 LPA",
+    "colleges": ["NID Ahmedabad", "Pearl Academy", "Private Art Schools"]
+  },
+  {
+    "title": "Tourism Manager",
+    "category": "Hospitality",
+    "description": "Manages tourism operations, travel services, and tour companies.",
+    "skills": ["Travel Knowledge", "Management", "Networking"],
+    "roadmap": [
+      "Pursue BBA/MBA in Tourism",
+      "Work in travel agencies",
+      "Manage tourism companies",
+      "Specialize in international travel"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IITTM Gwalior", "Amity University", "IGNOU Tourism Studies"]
+  },
+  {
+    "title": "Food Technologist",
+    "category": "Science",
+    "description": "Develops, processes, and improves food products for safety and quality.",
+    "skills": ["Food Chemistry", "Biotechnology", "Quality Control"],
+    "roadmap": [
+      "Earn BSc in Food Technology",
+      "Pursue MSc in Food Science",
+      "Work in FMCG companies",
+      "Specialize in R&D"
+    ],
+    "salary": "₹3–9 LPA",
+    "colleges": ["NIFTEM Sonipat", "CFTRI Mysore", "IIT Kharagpur"]
+  },
+  {
+    "title": "Drone Operator",
+    "category": "Technology",
+    "description": "Operates drones for photography, surveying, delivery, or defense.",
+    "skills": ["Drone Flying", "Navigation", "Mapping"],
+    "roadmap": [
+      "Get drone pilot certification",
+      "Work in surveying/photography",
+      "Join drone startups",
+      "Specialize in defense or logistics"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["DGCA Approved Training Centers", "Private Drone Institutes"]
+  },
+  {
+    "title": "NGO Manager",
+    "category": "Social Service",
+    "description": "Leads non-governmental organizations to run social projects and campaigns.",
+    "skills": ["Leadership", "Fundraising", "Community Work"],
+    "roadmap": [
+      "Earn degree in Social Work/Management",
+      "Gain NGO field experience",
+      "Lead social campaigns",
+      "Scale NGO operations"
+    ],
+    "salary": "₹3–10 LPA",
+    "colleges": ["TISS Mumbai", "Delhi University", "IGNOU"]
+  },
+  {
+    "title": "Web Developer",
+    "category": "Technology",
+    "description": "Builds and maintains websites and web applications.",
+    "skills": ["HTML", "CSS", "JavaScript", "React/Node.js"],
+    "roadmap": [
+      "Learn front-end and back-end skills",
+      "Build personal projects",
+      "Work as a full-stack developer",
+      "Join IT firms or freelance"
+    ],
+    "salary": "₹4–15 LPA",
+    "colleges": ["IITs", "IIITs", "Private Coding Bootcamps"]
+  },
+  {
+    "title": "Agricultural Scientist",
+    "category": "Science",
+    "description": "Researches crop production and develops methods to improve yield and sustainability.",
+    "skills": ["Agronomy", "Biology", "Research"],
+    "roadmap": [
+      "Earn BSc in Agriculture",
+      "Pursue MSc/PhD",
+      "Work in ICAR, research, or agri-tech firms"
+    ],
+    "salary": "₹4–12 LPA",
+    "colleges": ["IARI Delhi", "GB Pant University", "Punjab Agricultural University"]
+  }
+]

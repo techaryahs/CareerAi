@@ -1,0 +1,76 @@
+/* === TEACHING DETAILS (V4) === */
+.teaching-details-v4 {
+    background: white;
+    padding: 32px;
+    border-radius: var(--teacher-radius);
+    border: 1px solid var(--teacher-border);
+    box-shadow: var(--teacher-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.details-title-v4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--teacher-text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+.details-grid-v4 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detail-item-v4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid var(--teacher-border);
+}
+
+.detail-label-v4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--teacher-text-sub);
+}
+
+.detail-label-v4 svg {
+    color: var(--teacher-primary);
+    font-size: 16px;
+}
+
+.detail-value-v4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--teacher-text-main);
+}
+
+.price-tag-v4 {
+    color: var(--teacher-primary);
+    font-size: 18px;
+}
+
+.mode-badge-v4 {
+    padding: 4px 12px;
+    background: rgba(37, 99, 235, 0.1);
+    /* Light primary background */
+    color: var(--primary);
+    /* High contrast primary text */
+    border: 1px solid var(--primary);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}

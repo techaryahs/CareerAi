@@ -1,0 +1,111 @@
+/* === PARENT DESIGN TOKENS (SYNCED WITH STUDENT) === */
+:root {
+    --primary: #4f46e5;
+    --primary-light: #6366f1;
+    --primary-glow: rgba(79, 70, 229, 0.15);
+
+    --bg-main: #fcfdfe;
+    --bg-card: #ffffff;
+
+    --text-main: #0f172a;
+    --text-body: #334155;
+    --text-sub: #64748b;
+
+    --border-main: #e2e8f0;
+    --border-subtle: #f1f5f9;
+
+    --radius-md: 10px;
+    --radius-lg: 14px;
+
+    --space-md: 10px;
+    --space-lg: 16px;
+    --space-xl: 20px;
+
+    --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.profile-page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+    background: var(--bg-main);
+    min-height: 100vh;
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+    animation: entrance 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.profile-main-column,
+.profile-side-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    min-width: 0;
+}
+
+.stats-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-main);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.stats-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.stats-card .card-header {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-subtle);
+    background: linear-gradient(to right, #f8fafc, #ffffff);
+}
+
+.stats-card .card-header h3 {
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+}
+
+.stats-card .card-body {
+    padding: var(--space-lg);
+}
+
+@keyframes entrance {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.no-data-info {
+    text-align: center;
+    padding: 20px;
+}
+
+.sub-text {
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-top: 4px;
+}
+
+/* Response for smaller screens */
+@media (max-width: 1024px) {
+    .profile-layout {
+        grid-template-columns: 1fr;
+    }
+}

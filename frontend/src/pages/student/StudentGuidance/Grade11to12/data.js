@@ -1,0 +1,167 @@
+export const QUESTIONS = [
+  {
+    id: 1,
+    text: "I am naturally inclined towards Maths and Physics–based subjects.",
+    options: [
+      { label: "Strongly Agree", score: 10 },
+      { label: "Agree", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Disagree", score: 4 },
+      { label: "Strongly Disagree", score: 2 },
+    ],
+  },
+  {
+    id: 2,
+    text: "I feel excited about working in technology or engineering fields.",
+    options: [
+      { label: "Very Excited", score: 10 },
+      { label: "Excited", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Not Very Excited", score: 4 },
+      { label: "Not At All", score: 2 },
+    ],
+  },
+  {
+    id: 3,
+    text: "I enjoy learning about biology, medicine, or healthcare.",
+    options: [
+      { label: "Strongly Yes", score: 10 },
+      { label: "Yes", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Not Really", score: 4 },
+      { label: "No", score: 2 },
+    ],
+  },
+  {
+    id: 4,
+    text: "I prefer solving problems through research and deep analysis.",
+    options: [
+      { label: "Very Much", score: 10 },
+      { label: "Somewhat", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Rarely", score: 4 },
+      { label: "Never", score: 2 },
+    ],
+  },
+  {
+    id: 5,
+    text: "I am interested in business, finance, or entrepreneurship.",
+    options: [
+      { label: "Strongly Interested", score: 10 },
+      { label: "Interested", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Slightly Interested", score: 4 },
+      { label: "Not Interested", score: 2 },
+    ],
+  },
+  {
+    id: 6,
+    text: "I enjoy creative fields like design, writing, media, or arts.",
+    options: [
+      { label: "Very Much", score: 10 },
+      { label: "Somewhat", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Not Much", score: 4 },
+      { label: "Not At All", score: 2 },
+    ],
+  },
+  {
+    id: 7,
+    text: "I am motivated by innovation and building new ideas or products.",
+    options: [
+      { label: "Strongly Motivated", score: 10 },
+      { label: "Motivated", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Less Motivated", score: 4 },
+      { label: "Not Motivated", score: 2 },
+    ],
+  },
+  {
+    id: 8,
+    text: "Helping people and improving lives motivates me.",
+    options: [
+      { label: "Strongly Agree", score: 10 },
+      { label: "Agree", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Disagree", score: 4 },
+      { label: "Strongly Disagree", score: 2 },
+    ],
+  },
+  {
+    id: 9,
+    text: "I see myself taking leadership or managerial roles in the future.",
+    options: [
+      { label: "Definitely Yes", score: 10 },
+      { label: "Probably Yes", score: 8 },
+      { label: "Not Sure", score: 6 },
+      { label: "Probably No", score: 4 },
+      { label: "Definitely No", score: 2 },
+    ],
+  },
+  {
+    id: 10,
+    text: "I prefer learning through structured notes and logical explanations.",
+    options: [
+      { label: "Strongly Prefer", score: 10 },
+      { label: "Prefer", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Rarely Prefer", score: 4 },
+      { label: "Do Not Prefer", score: 2 },
+    ],
+  },
+  {
+    id: 11,
+    text: "I want my career to create a strong social or creative impact.",
+    options: [
+      { label: "Strongly Want", score: 10 },
+      { label: "Want", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Not Much", score: 4 },
+      { label: "Not At All", score: 2 },
+    ],
+  },
+  {
+    id: 12,
+    text: "I prefer working independently with creative freedom.",
+    options: [
+      { label: "Strongly Prefer", score: 10 },
+      { label: "Prefer", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Rarely Prefer", score: 4 },
+      { label: "Do Not Prefer", score: 2 },
+    ],
+  },
+  {
+    id: 13,
+    text: "I am interested in advanced topics like AI, robotics, or data science.",
+    options: [
+      { label: "Very Interested", score: 10 },
+      { label: "Interested", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Slightly Interested", score: 4 },
+      { label: "Not Interested", score: 2 },
+    ],
+  },
+  {
+    id: 14,
+    text: "I usually make decisions based on data and logical reasoning.",
+    options: [
+      { label: "Always", score: 10 },
+      { label: "Often", score: 8 },
+      { label: "Sometimes", score: 6 },
+      { label: "Rarely", score: 4 },
+      { label: "Never", score: 2 },
+    ],
+  },
+  {
+    id: 15,
+    text: "I feel inspired by careers like engineer, doctor, entrepreneur, or designer.",
+    options: [
+      { label: "Highly Inspired", score: 10 },
+      { label: "Inspired", score: 8 },
+      { label: "Neutral", score: 6 },
+      { label: "Slightly Inspired", score: 4 },
+      { label: "Not Inspired", score: 2 },
+    ],
+  },
+];

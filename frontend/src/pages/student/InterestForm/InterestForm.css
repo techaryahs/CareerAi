@@ -1,0 +1,273 @@
+/* Main container */
+.interest-page-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1f2937;
+  background-color: #f9fafb;
+}
+
+/* Headings */
+.interest-page-container h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1e3a8a;
+}
+
+/* Interest Grid */
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.interest-item {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.interest-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  background-color: #f0f9ff;
+}
+
+.interest-item.selected {
+  border-color: #2563eb;
+  background: #e0f2fe;
+}
+
+.interest-item .icon {
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #2563eb;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.btn-prim,
+.btn-second {
+  padding: 0.7rem 1.6rem;
+  font-size: 1rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  /* height: 40px; */
+}
+
+.btn-prim {
+  background-color: #2563eb;
+  color: white;
+}
+
+.btn-second {
+  background-color: #e5e7eb;
+  color: black;
+  border: none;
+  padding: 7px 15px 10px;
+  /* Increased vertical padding for better centering */
+  border-radius: 6px;
+  /* margin-top: 2px; */
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  /* Optional: adjust for visual balance */
+  font-weight: 500;
+}
+
+.btn-prim:hover {
+  background-color: #1e40af;
+}
+
+.btn-second:hover {
+  background-color: #d1d5db;
+}
+
+/* Career Suggestions */
+.career-suggestions h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #111827;
+}
+
+/* Filter Chips */
+.filter-chips {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.chip {
+  display: inline-block;
+  background: #f3f4f6;
+  color: #374151;
+  padding: 0.5rem 1rem;
+  margin: 0.4rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.chip.active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.chip:hover {
+  background-color: #dbeafe;
+}
+
+/* Career List */
+.career-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.career-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.career-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.career-card h4 {
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.badge {
+  display: inline-block;
+  background: #dbeafe;
+  color: #2563eb;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.career-card p {
+  color: #4b5563;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Inside grid */
+.career-grid {
+  display: grid;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); */
+  gap: 1.5rem;
+}
+
+.career-grid h5 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #111827;
+  font-size: 0.95rem;
+}
+
+/* Tags */
+.tag {
+  background: #d1fae5;
+  color: #065f46;
+  display: flex;
+  flex-wrap: wrap;
+  width: 66%;
+  padding: 0.4rem 0.8rem;
+  margin: 0.3rem 0.3rem 0 0;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.tag.green {
+  background-color: #bbf7d0;
+  color: #15803d;
+}
+
+/* Salary box */
+.salary-box {
+  background: linear-gradient(to right, #dbeafe, #d1fae5);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.salary-box strong {
+  font-size: 1.2rem;
+  color: #2563eb;
+}
+
+.salary-box p {
+  font-size: 0.8rem;
+  color: #374151;
+  margin-top: 0.3rem;
+}
+
+/* Roadmap list */
+.career-grid ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.career-grid li {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: #374151;
+  display: flex;
+  align-items: center;
+}
+
+.career-grid li::before {
+  content: "→ ";
+  color: #3b82f6;
+  margin-right: 0.3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .interest-grid {
+    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  }
+}

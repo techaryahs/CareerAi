@@ -1,0 +1,66 @@
+/* === PREMIUM TEACHER PROFILE (V4) === */
+:root {
+    --teacher-primary: #6366f1;
+    --teacher-primary-light: #818cf8;
+    --teacher-primary-dark: #4f46e5;
+    --teacher-bg: #f8fafc;
+    --teacher-card-bg: rgba(255, 255, 255, 0.9);
+    --teacher-text-main: #0f172a;
+    --teacher-text-sub: #64748b;
+    --teacher-border: rgba(226, 232, 240, 0.8);
+    --teacher-radius: 20px;
+    --teacher-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --teacher-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.teacher-profile-wrapper-v4 {
+    min-height: 100vh;
+    background-color: var(--teacher-bg);
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+    color: var(--teacher-text-main);
+}
+
+.teacher-profile-container-v4 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.teacher-grid-v4 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+/* Common Animations */
+.animate-slide-up {
+    animation: slideUpT 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpT {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    .teacher-grid-v4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .teacher-profile-wrapper-v4 {
+        padding: 20px 12px;
+    }
+}

@@ -1,0 +1,129 @@
+/* === PRODUCTION-READY CAREER INTERESTS (COMPACT) === */
+.interests-content-v3 {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.marketing-hero-v3 {
+    text-align: center;
+    padding: var(--space-xs) 0;
+}
+
+.hero-icon-v3 {
+    width: 42px;
+    /* Reduced from 48px */
+    height: 42px;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    color: var(--primary);
+    border-radius: 50%;
+    margin: 0 auto var(--space-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+}
+
+.marketing-hero-v3 h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.marketing-hero-v3 p {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-sub);
+    margin-bottom: var(--space-md);
+}
+
+.benefit-grid-v3 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Tight vertical gap */
+    margin-bottom: var(--space-lg);
+    width: 100%;
+}
+
+.benefit-tag-v3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-body);
+    transition: all 0.2s ease;
+    text-align: left;
+    /* Ensure text is left aligned relative to icon */
+}
+
+.benefit-tag-v3 svg {
+    color: var(--primary);
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.benefit-tag-v3:hover {
+    border-color: var(--primary-light);
+    transform: translateX(4px);
+}
+
+/* Quiz Results State */
+.quiz-results-v3 {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.score-card-v3 {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border: 1px solid var(--border-main);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.score-visual-v3 {
+    width: 54px;
+    height: 54px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.score-label-v3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.score-value-v3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.score-text-v3 {
+    display: none;
+    /* Hide for extreme compact */
+}
+
+.career-meta-v3 {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-sub);
+    margin-top: 4px;
+}

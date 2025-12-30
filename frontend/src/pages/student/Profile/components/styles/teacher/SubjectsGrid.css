@@ -1,0 +1,54 @@
+/* === SUBJECTS GRID (V4) === */
+.subjects-grid-v4 {
+    background: white;
+    padding: 32px;
+    border-radius: var(--teacher-radius);
+    border: 1px solid var(--teacher-border);
+    box-shadow: var(--teacher-shadow);
+}
+
+.subjects-header-v4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.subjects-title-v4 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teacher-text-main);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+.subjects-title-v4 svg {
+    color: #a855f7;
+}
+
+.subjects-container-v4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.subject-chip-v4 {
+    padding: 12px 16px;
+    background: #fdf4ff;
+    color: #a855f7;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    border: 1px solid #f5d0fe;
+    transition: all 0.2s;
+}
+
+.subject-chip-v4:hover {
+    background: #fae8ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(168, 85, 247, 0.1);
+}

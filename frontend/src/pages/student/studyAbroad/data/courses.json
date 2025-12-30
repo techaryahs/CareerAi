@@ -1,0 +1,82 @@
+  [
+    {
+      "id": "CS-CA-01",
+      "name": "MSc Computer Science",
+      "university": "University of Toronto",
+      "country": "Canada",
+      "countryCode": "CA",
+      "level": "Master’s Degree",
+      "duration": "2 Years",
+      "tuition": "₹22 Lakhs / year",
+      "intake": "Fall",
+      "eligibility": {
+        "education": "Bachelor’s Degree",
+        "minPercentage": "65%",
+        "ielts": "6.5"
+      }
+    },
+    {
+      "id": "DS-IE-01",
+      "name": "MSc Data Analytics",
+      "university": "Trinity College Dublin",
+      "country": "Ireland",
+      "countryCode": "IE",
+      "level": "Master’s Degree",
+      "duration": "1 Year",
+      "tuition": "₹18 Lakhs / year",
+      "intake": "Fall",
+      "eligibility": {
+        "education": "Bachelor’s Degree",
+        "minPercentage": "60%",
+        "ielts": "6.5"
+      }
+    },
+    {
+      "id": "MBA-UK-01",
+      "name": "MBA",
+      "university": "University of Manchester",
+      "country": "United Kingdom",
+      "countryCode": "UK",
+      "level": "Master’s Degree",
+      "duration": "1 Year",
+      "tuition": "₹28 Lakhs / year",
+      "intake": "Fall",
+      "eligibility": {
+        "education": "Bachelor’s Degree",
+        "minPercentage": "55%",
+        "ielts": "6.5"
+      }
+    },
+    {
+      "id": "ENG-DE-01",
+      "name": "MSc Mechanical Engineering",
+      "university": "Technical University of Munich",
+      "country": "Germany",
+      "countryCode": "DE",
+      "level": "Master’s Degree",
+      "duration": "2 Years",
+      "tuition": "Low / Free",
+      "intake": "Winter",
+      "eligibility": {
+        "education": "Bachelor’s Degree",
+        "minPercentage": "60%",
+        "ielts": "6.5"
+      }
+    },
+    {
+      "id": "BS-US-01",
+      "name": "BS Computer Science",
+      "university": "Arizona State University",
+      "country": "United States",
+      "countryCode": "US",
+      "level": "Bachelor’s Degree",
+      "duration": "4 Years",
+      "tuition": "₹25 Lakhs / year",
+      "intake": "Fall",
+      "eligibility": {
+        "education": "12th Pass",
+        "minPercentage": "60%",
+        "ielts": "6.0"
+      }
+    }
+  ]

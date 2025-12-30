@@ -1,0 +1,227 @@
+/* Intro Section */
+.quiz-intro {
+  max-width: 600px;
+  margin: 4rem auto;
+  /* background: #f9fafb; */
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  /* box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06); */
+  /* border: 1px solid #e5e7eb; */
+  /* animation: fadeIn 0.4s ease-in; */
+}
+
+.quiz-intro h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.quiz-intro p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.quiz-benefits {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+}
+
+.quiz-benefits li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+/* Quiz Container */
+.quiz-container {
+  max-width: 750px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.quiz-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #1e3a8a;
+}
+
+/* Question Card */
+.question-card {
+  background: #f8fafc;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.q-count {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.question-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+/* Options Buttons */
+.options {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.options button {
+  padding: 0.9rem 1.2rem;
+  background: #e0e7ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #1e3a8a;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.options button:hover {
+  background: #dbeafe;
+  border-color: #2563eb;
+}
+
+/* Progress Bar */
+.progress-bar {
+  background: #e5e7eb;
+  height: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #2563eb, #60a5fa);
+  transition: width 0.4s ease-in-out;
+}
+
+/* Result Section */
+.result-section {
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.result-section h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #1e40af;
+}
+
+.traits {
+  font-weight: 600;
+  margin: 1rem 0;
+  color: #1f2937;
+}
+
+.suggestion {
+  font-size: 1.05rem;
+  color: #334155;
+  margin-bottom: 2rem;
+}
+
+/* Roadmap & Colleges */
+.modal-section {
+  text-align: left;
+  margin: 1.5rem auto;
+  padding: 1rem 1.5rem;
+  background: #f1f5f9;
+  border-left: 4px solid #2563eb;
+  border-radius: 12px;
+  max-width: 600px;
+}
+
+.modal-section strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #1e3a8a;
+  font-size: 1.1rem;
+}
+
+.modal-section ul {
+  list-style: none;
+  /* padding-left: 1rem; */
+}
+
+.modal-section li {
+  margin: 0.3rem 0;
+  color: #1f2937;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+}
+
+.modal-section li::before {
+  content: "•";
+  margin-right: 8px;
+  color: #2563eb;
+  font-size: 1.2rem;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.85rem 1.8rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  /* margin-top: 1rem; */
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadein {
+  animation: fadeIn 0.5s ease;
+}

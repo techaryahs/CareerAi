@@ -1,0 +1,252 @@
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;   /* full screen */
+  background: #f5f7fa; /* light background (change as you like) */
+  padding: 20px;
+}
+
+.register-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+  border-radius: 16px;
+  padding: 20px;
+  gap: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* floating effect */
+  color: #333;
+}
+
+.register-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  color: white;
+  padding: 20px;
+  max-width: 450px;
+  text-align: center;
+}
+
+.register-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.register-info p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.register-illustration {
+  margin-top: 20px;
+  width: 250px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.register-box {
+  flex: 1;
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+  max-width: 500px;
+  margin: 20px;
+  box-sizing: border-box;
+}
+
+.register-box h2 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-grid label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.form-grid input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.form-grid input:focus {
+  border-color: #007bff;
+  box-shadow: 0px 0px 8px rgba(0,123,255,0.3);
+  outline: none;
+}
+
+.privacy-check {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.sub-btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sub-btn:hover {
+  background: #0056b3;
+  transform: scale(1.02);
+}
+
+.login-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-link a {
+  color: #007bff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Loader spinner */
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ---------- Responsive Styles ---------- */
+
+/* For tablets */
+@media (max-width: 992px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* single column form */
+  }
+  .register-container {
+    padding: 15px;
+  }
+  .register-box, .register-info {
+    padding: 30px;
+    max-width: 100%;
+  }
+  .register-info h1 {
+    font-size: 2rem;
+  }
+  .register-info p {
+    font-size: 1rem;
+  }
+  .privacy-check {
+  display: flex;
+  align-items: flex-start; /* align checkbox to top of label */
+  gap: 10px;
+  font-size: 0.9rem;
+  flex-wrap: wrap; /* allow label to wrap on small screens */
+  margin-top: 20px;
+}
+
+.privacy-check input {
+  margin-top: 2px; /* align checkbox with first line of text */
+}
+
+.privacy-check label {
+  flex: 1; /* take remaining space */
+  min-width: 0; /* prevent overflow on small screens */
+  line-height: 1.4;
+}
+
+}
+
+/* For mobile */
+@media (max-width: 600px) {
+  .register-container {
+    flex-direction: column; /* stack elements vertically */
+    padding: 10px;
+  }
+  .register-info {
+    padding: 20px;
+  }
+  .register-box {
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 12px;
+  }
+  .register-info h1 {
+    font-size: 1.8rem;
+  }
+  .register-info p {
+    font-size: 0.95rem;
+  }
+  .register-illustration {
+    width: 180px;
+  }
+  .sub-btn {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .privacy-check {
+  display: flex;
+  align-items: flex-start; /* align checkbox to top of label */
+  gap: 10px;
+  font-size: 0.9rem;
+  flex-wrap: wrap; /* allow label to wrap on small screens */
+  margin-top: 20px;
+}
+
+.privacy-check input {
+  margin-top: 2px; /* align checkbox with first line of text */
+}
+
+.privacy-check label {
+  flex: 1; /* take remaining space */
+  min-width: 0; /* prevent overflow on small screens */
+  line-height: 1.4;
+}
+
+}

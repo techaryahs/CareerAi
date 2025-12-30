@@ -1,0 +1,176 @@
+/* === PRODUCTION-READY HEATMAP (COMPACT & FIXED WIDTH) === */
+.activity-heatmap-v3 {
+    width: 100%;
+}
+
+.heatmap-card-v3 {
+    padding: var(--space-xl) var(--space-lg);
+}
+
+.heatmap-header-v3 {
+    margin-bottom: var(--space-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heatmap-grid-wrapper-v3 {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    /* Center the grid if it's smaller than card */
+}
+
+.heatmap-grid-v3 {
+    display: flex;
+    gap: 12px;
+}
+
+.heatmap-labels-v3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2px 0;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-sub);
+    width: 24px;
+}
+
+.heatmap-weeks-v3 {
+    display: flex;
+    gap: 3px;
+}
+
+.heatmap-week-v3 {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 10px;
+}
+
+.heatmap-day-v3 {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: #edf2f7;
+    /* level-0 */
+    transition: all 0.2s ease;
+}
+
+.heatmap-day-v3.level-1 {
+    background: #bee3f8;
+}
+
+.heatmap-day-v3.level-2 {
+    background: #90cdf4;
+}
+
+.heatmap-day-v3.level-3 {
+    background: #4299e1;
+}
+
+.heatmap-day-v3.level-4 {
+    background: #2b6cb0;
+}
+
+.legend-box-v3.level-0 {
+    background: #edf2f7;
+}
+
+.legend-box-v3.level-1 {
+    background: #bee3f8;
+}
+
+.legend-box-v3.level-2 {
+    background: #90cdf4;
+}
+
+.legend-box-v3.level-3 {
+    background: #4299e1;
+}
+
+.legend-box-v3.level-4 {
+    background: #2b6cb0;
+}
+
+.heatmap-grid-inner {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+}
+
+.heatmap-months-v3 {
+    position: relative;
+    height: 18px;
+    margin-left: 36px;
+    /* Align with week grid offset (labels 24px + gap 12px) */
+    margin-bottom: 8px;
+}
+
+.month-label-abs {
+    position: absolute;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-sub);
+    white-space: nowrap;
+}
+
+.heatmap-footer-v3 {
+    margin-top: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heatmap-legend-v3 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-sub);
+}
+
+.legend-box-v3 {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.h-stat-v3 {
+    font-size: 10px;
+    /* Reduced from 11px */
+    font-weight: 600;
+    color: var(--text-body);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* === MOBILE === */
+@media (max-width: 640px) {
+    .heatmap-card-v3 {
+        padding: var(--space-md);
+    }
+
+    .heatmap-header-v3 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .heatmap-months-v3 {
+        padding-left: 28px;
+        font-size: 8px;
+    }
+
+    .heatmap-footer-v3 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}

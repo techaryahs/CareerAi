@@ -1,0 +1,160 @@
+/* === DESIGN TOKENS (RESTORED ORIGINAL THEME) === */
+:root {
+    /* Typography */
+    --font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* Colors - Original Navy/Blue Palette */
+    --primary: #004080;
+    --primary-light: #007acc;
+    --primary-dark: #002d5a;
+    --primary-glow: rgba(0, 64, 128, 0.1);
+
+    --accent-blue: #00bfff;
+    --accent-gold: #ffd700;
+
+    --bg-main: #f0f2f5;
+    --bg-card: #ffffff;
+
+    --text-main: #1a202c;
+    --text-body: #4a5568;
+    --text-sub: #718096;
+
+    --border-subtle: #edf2f7;
+    --border-main: #e2e8f0;
+
+    /* Spacing Scale - Extra Compact */
+    --space-xs: 2px;
+    --space-sm: 6px;
+    --space-md: 10px;
+    --space-lg: 16px;
+    --space-xl: 24px;
+
+    /* Shadows - Original Soft Elevation */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 12px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 1px 6px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    --radius-sm: 4px;
+    --radius-md: 10px;
+    --radius-lg: 20px;
+    --radius-pill: 50px;
+}
+
+/* === BASE RESET === */
+body {
+    font-family: var(--font-body);
+    color: var(--text-body);
+    background: var(--bg-main);
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    /* Professional standard */
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 24px !important;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 20px !important;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 16px !important;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+/* === GLOBAL LAYOUT UTILS === */
+.profile-page-wrapper {
+    max-width: 1200px;
+    /* More compact width */
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+    animation: entrance 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.profile-main-column,
+.profile-side-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    min-width: 0;
+}
+
+.card-v3 {
+    background: var(--bg-card);
+    border: 1px solid var(--border-main);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-v3:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+    /* Subtle hover effect */
+}
+
+/* === GLOBAL ANIMATIONS === */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes entrance {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-entrance {
+    animation: entrance 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* === MOBILE RESPONSIVE === */
+@media (max-width: 1024px) {
+    .profile-page-wrapper {
+        padding: 0;
+        /* Remove padding for seamless mobile look */
+    }
+
+    .profile-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        padding: 0 var(--space-md) var(--space-xl);
+        /* Add padding here for content below header */
+    }
+
+    .profile-main-column,
+    .profile-side-column {
+        gap: var(--space-md);
+    }
+}

@@ -1,0 +1,59 @@
+.student-info-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.student-basic {
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px dashed var(--border-main);
+}
+
+.student-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.student-email {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin: 4px 0 0 0;
+}
+
+.btn-action-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid var(--border-main);
+    border-radius: 12px;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-action-small:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    transform: translateX(4px);
+}
+
+/* === MOBILE === */
+@media (max-width: 640px) {
+    .student-info-summary {
+        gap: 12px;
+    }
+
+    .btn-action-small {
+        width: 100%;
+    }
+}

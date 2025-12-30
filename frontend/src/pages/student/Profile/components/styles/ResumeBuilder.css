@@ -1,0 +1,138 @@
+.resume-builder-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9fafb;
+}
+
+.resume-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.resume-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.resume-form {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.generate-btn,
+.download-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.5rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.generate-btn:hover,
+.download-btn:hover {
+  background: #1e40af;
+}
+
+.error-text {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.resume-preview-section {
+  margin-top: 2rem;
+}
+
+.rendered-markdown {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  line-height: 1.6;
+}
+
+.rendered-markdown h1,
+.rendered-markdown h2,
+.rendered-markdown h3 {
+  color: #1f2937;
+}
+
+.resume-preview {
+  width: 100%;
+  max-width: 700px;    /* safe page width */
+  margin: 0 auto;
+  padding: 20px;       /* space inside */
+  font-family: "Times New Roman", serif;
+  line-height: 1.5;
+  overflow-wrap: break-word;  /* break long words */
+  word-wrap: break-word;      /* older fallback */
+  box-sizing: border-box;     /* include padding in width */
+}
+
+.top-line {
+  height: 4px;
+  background-color: #0066cc; /* blue */
+  margin-bottom: 20px;
+}
+
+.resume-name {
+  color: #0066cc; /* blue name */
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+.resume-preview p {
+  white-space: pre-wrap;  /* keep line breaks, wrap long text */
+}
+
+.resume-contact {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  margin: 20px 0 5px;
+}
+
+.blue-line {
+  height: 2px;
+  background-color: #0066cc; /* blue line under section */
+  margin: 10px 0;
+}
+
+.icon {
+  font-size: 16px;
+}
+

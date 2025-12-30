@@ -1,0 +1,512 @@
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+/* Overall Layout */
+.admin-dashboard {
+  background: #f3f4f6;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  padding: 2rem;
+  min-height: 100vh;
+  color: #1f2937;
+}
+
+/* Header */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 1.2rem;
+}
+
+.admin-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.logout-btn,
+.register-consultant-btn {
+  background: #1e40af;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.logout-btn {
+  background: #ef4444;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+.apikey-btn,
+.register-consultant-btn {
+  background: #1e40af;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.apikey-btn {
+  background: #e68b14;
+}
+
+.apikey-btn:hover {
+  background: #8e5204;
+}
+
+.register-consultant-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Section Headings */
+.admin-section {
+  margin-top: 3rem;
+}
+
+.admin-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 1.2rem;
+  border-left: 6px solid #1d4ed8;
+  padding-left: 14px;
+}
+
+/* Grid layout */
+.receipt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.8rem;
+}
+
+/* Receipt Cards */
+.receipt-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.4rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+  text-align: center;
+  position: relative;
+  border-top: 5px solid #1d4ed8;
+}
+
+.receipt-card:hover {
+  transform: translateY(-3px);
+}
+
+.receipt-card.pending {
+  border-top-color: #f59e0b;
+  background: #fff7ed;
+}
+
+.receipt-card.approved {
+  border-top-color: #10b981;
+  background: #ecfdf5;
+}
+
+.receipt-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.receipt-card p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.receipt-card strong {
+  color: #111827;
+}
+
+.receipt-card small {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.action-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.accept-btn,
+.deny-btn {
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.accept-btn {
+  background-color: #22c55e;
+  color: white;
+}
+
+.accept-btn:hover {
+  background-color: #16a34a;
+}
+
+.deny-btn {
+  background-color: #f43f5e;
+  color: white;
+}
+
+.deny-btn:hover {
+  background-color: #e11d48;
+}
+
+/* === MODAL BACKDROP === */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+  animation: fadeInBackdrop 0.4s ease-in-out;
+}
+
+@keyframes fadeInBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* === REGISTER MODAL === */
+.register-modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 720px;
+  border-radius: 20px;
+  padding: 2.2rem 2rem;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  animation: fadeInSlideUp 0.4s ease-in-out;
+  max-height: 92vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Close button styling */
+.clos-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  line-height: 1;
+}
+
+.clos-btn:hover {
+  color: #ff4d4f;   /* turns red on hover */
+  transform: scale(1.2);
+}
+
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* === MODAL HEADER === */
+.modal-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.modal-header h2 {
+  font-size: 1.8rem;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.close-btn {
+  /* background: transparent; */
+  border: none;
+  font-size: 1.0rem;
+  font-weight: bold;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin-right: -11px;
+  /* margin-bottom: 10px; */
+}
+
+.close-btn:hover {
+  color: #ef4444;
+}
+
+/* === FORM STYLING === */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Section Label */
+.form-section-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin: 1.2rem 0 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.4rem;
+}
+
+/* Input Fields */
+.modal-form input,
+.modal-form textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #f9fafb;
+  color: #111827;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+.modal-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* === IMAGE UPLOAD === */
+.upload-section input[type="file"] {
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.upload-section button {
+  padding: 0.5rem 1rem;
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.upload-section button:hover {
+  background-color: #1d4ed8;
+}
+
+.image-preview {
+  margin-top: 0.5rem;
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* === TIME SLOT SECTION === */
+.add-slot {
+  background-color: #e0e7ff;
+  color: #1e3a8a;
+  font-size: 0.9rem;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.add-slot:hover {
+  background-color: #c7d2fe;
+}
+
+/* === SUBMIT BUTTON === */
+.submit-btn {
+  background: linear-gradient(to right, #10b981, #34d399);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(to right, #059669, #10b981);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+/* === SCROLLBAR === */
+.register-modal::-webkit-scrollbar {
+  width: 8px;
+}
+.register-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.register-modal::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.2);
+  border-radius: 10px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 700px) {
+  .register-modal {
+    padding: 1.6rem 1.2rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
+
+/* Reuse overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Base modal content */
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
+  position: relative;
+}
+
+/* Specific to API key modal */
+.api-key-modal h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.api-key-modal input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.api-key-modal input:focus {
+  border-color: #007bff;
+}
+
+/* Actions container */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+/* Buttons */
+.submit-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+}
+
+.close-btn {
+  background: #ccc;
+  color: #333;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.close-btn:hover {
+  background: #999;
+}
+
+/* Optional fade in */
+@keyframes fadeIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+

@@ -1,0 +1,92 @@
+.services-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.services-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.services-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.service-link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.service-link:hover {
+  transform: scale(1.02);
+}
+
+.service-card {
+  background: #ffffff;
+  padding: 30px 11px;
+  border-radius: 18px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+  text-align: center;
+  position: relative;
+}
+
+.service-card:hover {
+  background-color: #f0f8ff;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+.service-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #2563eb;
+}
+
+.service-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.badge.new {
+  background-color: #ef4444;
+}
+
+.badge.premium {
+  background-color: #f59e0b;
+}
+
+.badge.upcoming {
+  background-color: #9ca3af;
+}

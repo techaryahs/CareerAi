@@ -1,0 +1,259 @@
+.college-page-wrapper {
+  padding: 4rem 2rem;
+  background: #f9fafe;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.hero-section {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  color: #475569;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  background-color: #f8fafc;
+  transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: #00d4ff;
+  outline: none;
+}
+
+.or-separator {
+  color: #64748b;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.search-btn {
+  background: #00d4ff;
+  color: #1e3a8a;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover:not(:disabled) {
+  background-color: #00b3dd;
+  transform: translateY(-2px);
+}
+
+.search-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.icon-container {
+  background: white;
+  color: #00d4ff;
+  border-radius: 50%;
+  padding: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.results-section {
+  max-width: 1000px;
+  margin: 4rem auto 2rem;
+}
+
+.results-section h2 {
+  font-size: 1.8rem;
+  color: #1e3a8a;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.college-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.college-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background: white;
+  border-left: 6px solid #00d4ff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.college-card:hover {
+  transform: translateY(-6px);
+}
+
+.college-card-left {
+  flex: 1;
+  /* padding-right: 2rem; */
+}
+.dash{
+  border-right: 2px dashed #cbd5e1;
+  /* height: 100%; */
+}
+
+.college-badge {
+  background: #00d4ff;
+  color: #fff;
+  font-weight: bold;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+}
+
+.college-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.college-ranking {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+
+.college-card-right {
+  flex: 2;
+  /* padding-left: 2rem; */
+}
+
+.college-card-right ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.college-card-right li {
+  margin-bottom: 0.6rem;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.college-card-right a {
+  color: #00d4ff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.branch-cutoffs {
+  padding-left: 1.5rem;
+  margin-top: 0.4rem;
+}
+
+.branch-cutoffs li {
+  margin-bottom: 4px;
+}
+
+/* Error Message */
+.error-text {
+  color: #dc2626;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+/* Loader */
+.loading-strip-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.loading-strip {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  background: #00d4ff;
+  border-radius: 50%;
+  animation: moveDot 1.5s linear infinite;
+}
+
+.dot1 { animation-delay: 0s; }
+.dot2 { animation-delay: 0.3s; }
+.dot3 { animation-delay: 0.6s; }
+
+
+@keyframes moveDot {
+  0% { transform: translateX(0); opacity: 0.3; }
+  50% { transform: translateX(20px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 0.3; }
+}
+
+@keyframes colorCycle {
+  0% { background-color: #00d4ff; }
+  25% { background-color: #3f51b5; }
+  50% { background-color: #007bff; }
+  75% { background-color: #00aacc; }
+  100% { background-color: #00d4ff; }
+}
+
+.search-btn.searching {
+  animation: colorCycle 3s infinite;
+  color: #fff !important;
+}
+
+.search-btn.searching .icon-container {
+  animation: spin 1s linear infinite;
+  background: #ffffff;
+  color: #00d4ff;
+}
+
+@media screen and (max-width: 768px){
+  .dash{
+    display: none;
+  }
+  .college-card-left{
+    padding-bottom: 2rem;
+  border-bottom: 2px dashed #cbd5e1;
+  }
+}
