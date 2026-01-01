@@ -37,17 +37,15 @@ const Chat = () => {
 
   // ✅ SINGLE SOURCE OF API TRUTH
   const API =  import.meta.env.VITE_CHATAPI_URL;
-;
-  console.log(API,user);
 
   const thinkingTexts = [
     "Thinking...",
-    "Analyzing your question...",
-    "Doing deep research...",
-    "Connecting career data...",
-    "Evaluating best paths...",
-    "Reasoning carefully...",
-    "Generating a personalized answer..."
+    // "Analyzing your question...",
+    // "Doing deep research...",
+    // "Connecting career data...",
+    // "Evaluating best paths...",
+    // "Reasoning carefully...",
+    // "Generating a personalized answer..."
   ];
 
   const [thinkingIndex, setThinkingIndex] = useState(0);
@@ -190,6 +188,7 @@ const Chat = () => {
     ]);
 
   } catch (err) {
+    console.log(err)
     console.error("Chat API Error:", err);
     setMessages(prev => [
       ...prev,

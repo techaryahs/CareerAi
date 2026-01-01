@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../api';
+import "./AdminDashboard.css"
 
 
 const CLOUDINARY_UPLOAD_PRESET = 'unsigned_receipts';

@@ -1,9 +1,19 @@
 const Booking = require("../models/Booking");
 const Consultant = require("../models/Consultant");
-const User = require("../models/user");
+const User = require("../models/User");
 const Teacher = require("../models/Teacher");
 // const transporter = require("../utils/transporter"); // nodemailer instance
 const sendEmail = require("../utils/sendEmail");     // used in bookConsultant
+const crypto = require('crypto');
+
+const SECRET_KEY = process.env.MEETING_SECRET_KEY || 'careergenai-meeting-secret-2024';
+
+const generateMeetingId = (sessionId) => {
+  const hmac = crypto.createHmac('sha256', SECRET_KEY);
+  hmac.update(sessionId.toString());
+  const hash = hmac.digest('hex');
+  return hash.substring(0, 12).toUpperCase();
+};
 
 function escapeRegex(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -15,7 +25,7 @@ function escapeRegex(text) {
 ========================= */
 exports.bookConsultant = async (req, res) => {
   try {
-    const {
+    let {
       consultantId,
       consultantEmail,
       consultantName,
@@ -29,8 +39,28 @@ exports.bookConsultant = async (req, res) => {
       userPlan
     } = req.body;
 
-    if (!consultantId || !consultantEmail || !date || !time || !userEmail || !userPhone) {
+    if (!consultantId || !date || !time || !userEmail || !userPhone) {
       return res.status(400).json({ message: 'Missing required data' });
+    }
+
+    // Fetch consultant info if missing (Stronger Fetch)
+    if (!consultantEmail || !consultantName) {
+        const consultant = await Consultant.findById(consultantId).populate('user');
+        if (consultant) {
+            consultantEmail = consultantEmail || consultant.user?.email || consultant.email;
+            consultantName = consultantName || consultant.name || consultant.user?.name;
+        } else {
+            // Check if it's a teacher
+            const teacher = await Teacher.findById(consultantId).populate('user');
+            if (teacher) {
+                consultantEmail = teacher.user?.email || teacher.email;
+                consultantName = teacher.fullName || teacher.user?.name;
+            }
+        }
+    }
+
+    if (!consultantEmail) {
+        return res.status(400).json({ message: 'Consultant email not found' });
     }
 
     if (consultantType === "Premium" && userPlan !== "Premium") {
@@ -53,6 +83,9 @@ exports.bookConsultant = async (req, res) => {
       return res.status(400).json({ message: 'Slot already booked' });
     }
 
+    // Generate deterministic meeting ID
+    const meetingId = generateMeetingId(`${consultantId}-${date}-${time}-${userEmail}`);
+
     const booking = await Booking.create({
       consultantId,
       consultantEmail,
@@ -64,31 +97,37 @@ exports.bookConsultant = async (req, res) => {
       userPhone,
       userId,
       consultantType,
-      userPlan
+      userPlan,
+      meetingId
     });
 
-    await sendEmail(
-      userEmail,
-      "Your CareerGenAI Consultation is Confirmed",
-      "",
-      `<p>Your appointment with <b>${consultantName}</b> is confirmed.</p>
-       <p>Date: <b>${date}</b></p>
-       <p>Time: <b>${time}</b></p>`
-    );
+    try {
+        await sendEmail(
+            userEmail,
+            "Your CareerGenAI Consultation is Confirmed",
+            "",
+            `<p>Your appointment with <b>${consultantName}</b> is confirmed.</p>
+             <p>Date: <b>${date}</b></p>
+             <p>Time: <b>${time}</b></p>
+             <p>Meeting ID: <b>${meetingId}</b></p>`
+        );
 
-    await sendEmail(
-      consultantEmail,
-      "New Consultation Booking",
-      "",
-      `<p>You have a new booking from <b>${userName}</b>.</p>`
-    );
+        await sendEmail(
+            consultantEmail,
+            "New Consultation Booking",
+            "",
+            `<p>You have a new booking from <b>${userName}</b>.</p>`
+        );
 
-    await sendEmail(
-      process.env.ADMIN_NOTIFY_TO,
-      "New Consultation Booking (Admin Copy)",
-      "",
-      `<p>User: ${userName} (${userEmail})</p>`
-    );
+        await sendEmail(
+            process.env.ADMIN_NOTIFY_TO || "admin@careergenai.com",
+            "New Consultation Booking (Admin Copy)",
+            "",
+            `<p>User: ${userName} (${userEmail})</p><p>Mentor: ${consultantName}</p>`
+        );
+    } catch (emailErr) {
+        console.warn("⚠️ Email notification failed, but booking was successful:", emailErr.message);
+    }
 
     res.json({ message: "Booking successful", booking });
 
@@ -263,20 +302,20 @@ exports.getBookedSlots = async (req, res) => {
 exports.getUserCounselling = async (req, res) => {
   try {
     const bookings = await Booking.find({ userEmail: req.params.email })
+      .populate('consultantId')
       .sort({ date: -1 });
 
-    // Populate consultant profile images
-    const bookingsWithImages = await Promise.all(
-      bookings.map(async (booking) => {
-        const consultant = await Consultant.findById(booking.consultantId);
-        return {
-          ...booking.toObject(),
-          consultantProfileImage: consultant?.image || null  // Use 'image' field
-        };
-      })
-    );
+    const enrichedBookings = await Promise.all(bookings.map(async (b) => {
+        const bookingObj = b.toObject();
+        // Ensure student name is there (fetch from User if missing in booking)
+        if (!bookingObj.userName) {
+            const user = await User.findOne({ email: req.params.email });
+            bookingObj.userName = user?.name || "Student";
+        }
+        return bookingObj;
+    }));
 
-    res.json({ bookings: bookingsWithImages });
+    res.json({ bookings: enrichedBookings });
   } catch (error) {
     console.error('Error in getUserCounselling:', error);
     res.status(500).json({ message: 'Server error' });
@@ -302,7 +341,7 @@ exports.getUserBookings = async (req, res) => {
    CONSULTANTS LIST
 ========================= */
 exports.getAllConsultants = async (req, res) => {
-  const consultants = await Consultant.find({});
+  const consultants = await Consultant.find({}).populate('user', 'email name');
   res.json({ consultants });
 };
 
@@ -310,9 +349,52 @@ exports.getAllConsultants = async (req, res) => {
    CONSULTANT BOOKINGS
 ========================= */
 exports.getConsultantBookings = async (req, res) => {
-  const bookings = await Booking.find({ consultantId: req.params.consultantId })
-    .sort({ date: 1, time: 1 });
-  res.json(bookings);
+  try {
+    const { consultantId } = req.params; // Can be User ID or Profile ID
+    const { email } = req.query;
+    console.log(`🔍 [Dashboard] Fetching bookings. ID: ${consultantId}, Email: ${email}`);
+
+    if (!consultantId || consultantId === "undefined") {
+      return res.status(400).json({ message: "Invalid ID provided" });
+    }
+
+    // 1. Resolve Profile IDs for this User (could be Consultant or Teacher profile)
+    const consultantProfiles = await Consultant.find({ user: consultantId });
+    const teacherProfiles = await Teacher.find({ user: consultantId });
+    
+    const profileIds = [
+        ...consultantProfiles.map(p => p._id),
+        ...teacherProfiles.map(p => p._id)
+    ];
+
+    // 2. Build a multi-prong query
+    let bookingsQuery = { $or: [] };
+
+    // Prong A: Direct ID matches (the passed ID is already a Profile ID)
+    bookingsQuery.$or.push({ consultantId: consultantId });
+    bookingsQuery.$or.push({ teacherId: consultantId });
+
+    // Prong B: Mapped Profile IDs (the passed ID was a User ID)
+    if (profileIds.length > 0) {
+        bookingsQuery.$or.push({ consultantId: { $in: profileIds } });
+        bookingsQuery.$or.push({ teacherId: { $in: profileIds } });
+    }
+
+    // Prong C: Email Fallback (Bulletproof for dev/seed data)
+    if (email) {
+        bookingsQuery.$or.push({ consultantEmail: email });
+        bookingsQuery.$or.push({ teacherEmail: email });
+    }
+
+    const bookings = await Booking.find(bookingsQuery)
+      .sort({ date: 1, time: 1 });
+
+    console.log(`📊 [Dashboard] Found ${bookings.length} bookings using query:`, JSON.stringify(bookingsQuery));
+    res.json(bookings);
+  } catch (err) {
+    console.error("❌ [Dashboard] Error:", err.message);
+    res.status(500).json({ message: "Error fetching bookings" });
+  }
 };
 
 /* =========================
@@ -341,12 +423,12 @@ exports.acceptBooking = async (req, res) => {
 
     const user = await User.findOne({ email: booking.userEmail });
 
-    await transporter.sendMail({
-      from: `"Career GenAI" <${process.env.EMAIL_USER}>`,
-      to: booking.userEmail,
-      subject: "✅ Appointment Accepted",
-      html: `<p>Hello ${user?.name || "User"}, your booking is accepted.</p>`
-    });
+    await sendEmail(
+      booking.userEmail,
+      "✅ Appointment Accepted",
+      "",
+      `<p>Hello ${user?.name || "User"}, your booking is accepted.</p>`
+    );
 
     res.json({ message: "Booking accepted and email sent", booking });
 
@@ -368,16 +450,78 @@ exports.rejectBooking = async (req, res) => {
 
     const user = await User.findOne({ email: booking.userEmail });
 
-    await transporter.sendMail({
-      from: `"Career GenAI" <${process.env.EMAIL_USER}>`,
-      to: booking.userEmail,
-      subject: "❌ Appointment Rejected",
-      html: `<p>Hello ${user?.name || "User"}, your booking was rejected.</p>`
-    });
+    await sendEmail(
+      booking.userEmail,
+      "❌ Appointment Rejected",
+      "",
+      `<p>Hello ${user?.name || "User"}, your booking was rejected.</p>`
+    );
 
     res.json({ message: "Booking rejected and email sent", booking });
 
   } catch {
     res.status(500).json({ message: "Server error" });
+  }
+};
+/* =========================
+   SEED DUMMY CONSULTANTS
+========================= */
+exports.seedConsultants = async (req, res) => {
+  try {
+    // If user is authenticated, use their real ID. 
+    // Otherwise check body for a userId (helpful for testing via Postman)
+    const creatorId = req.user?.id || req.body.userId || "64b0f1a2c3d4e5f6a7b8c9d0";
+
+    const dummyConsultants = [
+      {
+        name: "Dr. Aryan Sharma",
+        email: req.user?.email || "aryan@example.com",
+        role: "Senior Career Pathologist",
+        expertise: "Science & Engineering",
+        experience: "10+ Years",
+        bio: "Expert in helping students find their passion in STEM fields with a proven track record of successful placements.",
+        image: "https://randomuser.me/api/portraits/men/32.jpg",
+        price: 0,
+        isPremium: false,
+        user: creatorId
+      },
+      {
+        name: "Ms. Priya Varma",
+        email: req.user?.email || "priya@example.com",
+        role: "Academic Counselor",
+        expertise: "Arts & Humanities",
+        experience: "8 Years",
+        bio: "Specializes in creative fields and helps students build portfolios for top design and arts colleges.",
+        image: "https://randomuser.me/api/portraits/women/44.jpg",
+        price: 500,
+        isPremium: true,
+        user: creatorId
+      },
+      {
+        name: "Personal Counselor",
+        email: req.user?.email || "mentor@example.com",
+        role: "Premium Mentor",
+        expertise: "Holistic Guidance",
+        experience: "15 Years",
+        bio: "One-on-one personal guidance for high-achievers. Available only for premium subscribers.",
+        image: "https://randomuser.me/api/portraits/men/85.jpg",
+        price: 1500,
+        isPremium: true,
+        user: creatorId
+      }
+    ];
+
+    // Warning: This is a simple seeding for demo, in production use a script
+    for (const consultant of dummyConsultants) {
+      const exists = await Consultant.findOne({ name: consultant.name });
+      if (!exists) {
+        await Consultant.create(consultant);
+      }
+    }
+
+    res.json({ message: "Consultants seeded successfully" });
+  } catch (err) {
+    console.error("❌ Seeding error:", err.message);
+    res.status(500).json({ message: "Seeding failed" });
   }
 };

@@ -15,5 +15,6 @@ router.get("/consultant/:consultantId", bookingCtrl.getConsultantBookings);
 router.get("/teacher-bookings/:teacherId", bookingCtrl.getTeacherBookings);
 router.put("/:id/accept", bookingCtrl.acceptBooking);
 router.put("/:id/reject", bookingCtrl.rejectBooking);
+router.post("/seed", bookingCtrl.seedConsultants);
 
 module.exports = router;

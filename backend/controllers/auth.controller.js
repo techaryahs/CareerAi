@@ -344,6 +344,8 @@ exports.registerConsultant = async (req, res) => {
     // 3️⃣ CREATE CONSULTANT PROFILE
     const newConsultant = new Consultant({
       user: newUser._id,
+      name,
+      email: normalizedEmail,
       role: consultantRole,
       expertise,
       experience,

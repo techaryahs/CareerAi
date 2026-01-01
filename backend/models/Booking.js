@@ -33,6 +33,7 @@ const bookingSchema = new mongoose.Schema(
       enum: ["pending", "accepted", "rejected"],
       default: "pending"
     },
+    meetingId: { type: String }, // For video calls
   },
   { timestamps: true }
 );

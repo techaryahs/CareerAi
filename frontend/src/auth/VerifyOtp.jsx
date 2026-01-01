@@ -12,7 +12,8 @@ const VerifyOtp = () => {
 
   const verifyOtp = async (enteredOtp) => {
     try {
-      const res = await api.post("/auth/verify-otp", {
+      console.log(enteredOtp);
+      const res = await api.post("/api/auth/verify-otp", {
         email,
         otp: enteredOtp,
       });
@@ -32,7 +33,7 @@ const VerifyOtp = () => {
 
   const handleResendOtp = async () => {
     try {
-      await api.post("/auth/resend-otp", { email });
+      await api.post("/api/auth/resend-otp", { email });
       alert("✅ New OTP sent successfully!");
     } catch (err) {
       console.error(err);

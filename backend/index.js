@@ -4,6 +4,9 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const setupWebRTCSignaling = require('./webrtc-signaling');
 
 // Middleware
 app.use(cors());
@@ -59,5 +62,8 @@ app.use("/api/activity", require("./routes/activityRoutes"));
 
 
 
+// Setup WebRTC Signaling
+setupWebRTCSignaling(server);
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

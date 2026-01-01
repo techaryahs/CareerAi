@@ -1,0 +1,438 @@
+/* Video Call Room - Full Responsive Styles */
+
+.video-call-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    overflow: hidden;
+}
+
+.main-video-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+/* Video Display Wrapper */
+.video-display-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Main Video Stream */
+.main-video {
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    max-height: 675px;
+    object-fit: contain;
+    border-radius: 16px;
+    background: #1a1a2e;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Waiting Screen */
+.waiting-screen,
+.connecting-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+.waiting-screen svg,
+.connecting-screen svg {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2rem;
+    opacity: 0.7;
+}
+
+.waiting-screen h2,
+.connecting-screen h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.waiting-screen p,
+.connecting-screen p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Self View (Picture-in-Picture) */
+.self-view {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 240px;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    z-index: 20;
+    transition: all 0.3s ease;
+}
+
+.self-view:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+.self-view video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Control Bar */
+.control-bar-wrapper {
+    padding: 1.5rem;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.control-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.control-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.control-btn.muted,
+.control-btn.camera-off {
+    background: rgba(239, 68, 68, 0.8);
+}
+
+.control-btn.end-call {
+    background: #ef4444;
+    width: 64px;
+    height: 64px;
+}
+
+.control-btn.end-call:hover {
+    background: #dc2626;
+}
+
+.control-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Chat Panel */
+.chat-panel-wrapper {
+    width: 0;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    transition: width 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-panel-wrapper.open {
+    width: 350px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ===================================
+   RESPONSIVE BREAKPOINTS
+   =================================== */
+
+/* Tablet (Portrait) - 768px and below */
+@media (max-width: 768px) {
+    .top-bar {
+        padding: 0.75rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .video-display-wrapper {
+        padding: 0.5rem;
+    }
+
+    .main-video {
+        max-width: 100%;
+        max-height: none;
+        border-radius: 12px;
+    }
+
+    /* Self View - Smaller on tablets */
+    .self-view {
+        width: 180px;
+        height: 135px;
+        bottom: 5.5rem;
+        right: 1rem;
+    }
+
+    /* Control Bar */
+    .control-bar-wrapper {
+        padding: 1rem;
+    }
+
+    .control-bar {
+        gap: 0.75rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 40px;
+    }
+
+    .control-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .control-btn.end-call {
+        width: 56px;
+        height: 56px;
+    }
+
+    .control-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Chat Panel - Full width on tablet */
+    .chat-panel-wrapper.open {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        max-width: 400px;
+        height: 100%;
+        z-index: 30;
+    }
+
+    .waiting-screen svg,
+    .connecting-screen svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .waiting-screen h2,
+    .connecting-screen h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Mobile (Portrait) - 480px and below */
+@media (max-width: 480px) {
+    .top-bar {
+        padding: 0.5rem;
+    }
+
+    .video-display-wrapper {
+        padding: 0.25rem;
+    }
+
+    .main-video {
+        border-radius: 8px;
+    }
+
+    /* Self View - Compact on mobile */
+    .self-view {
+        width: 120px;
+        height: 90px;
+        bottom: 4.5rem;
+        right: 0.5rem;
+        border-radius: 8px;
+        border-width: 2px;
+    }
+
+    /* Control Bar - Compact */
+    .control-bar-wrapper {
+        padding: 0.5rem;
+    }
+
+    .control-bar {
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        flex-wrap: nowrap;
+    }
+
+    .control-btn {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+    }
+
+    .control-btn.end-call {
+        width: 52px;
+        height: 52px;
+    }
+
+    .control-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Chat Panel - Full screen on mobile */
+    .chat-panel-wrapper.open {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        z-index: 40;
+    }
+
+    /* Smaller waiting screen elements */
+    .waiting-screen svg,
+    .connecting-screen svg {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 1rem;
+    }
+
+    .waiting-screen h2,
+    .connecting-screen h2 {
+        font-size: 1.125rem;
+    }
+
+    .waiting-screen p,
+    .connecting-screen p {
+        font-size: 0.875rem;
+    }
+
+    .waiting-screen,
+    .connecting-screen {
+        padding: 1rem;
+    }
+}
+
+/* Large Desktop - 1440px and above */
+@media (min-width: 1440px) {
+    .self-view {
+        width: 280px;
+        height: 210px;
+        bottom: 2rem;
+        right: 2rem;
+    }
+
+    .control-bar {
+        gap: 1.5rem;
+        padding: 1.25rem 2.5rem;
+    }
+
+    .control-btn {
+        width: 64px;
+        height: 64px;
+    }
+
+    .control-btn.end-call {
+        width: 72px;
+        height: 72px;
+    }
+
+    .control-btn svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Landscape Mobile - Special handling */
+@media (max-width: 896px) and (orientation: landscape) {
+    .self-view {
+        width: 140px;
+        height: 105px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .control-bar-wrapper {
+        padding: 0.75rem;
+    }
+
+    .control-bar {
+        padding: 0.5rem 1rem;
+    }
+
+    .waiting-screen,
+    .connecting-screen {
+        padding: 1rem;
+    }
+}
+
+/* Touch-friendly adjustments */
+@media (pointer: coarse) {
+    .control-btn {
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    .control-btn:hover {
+        transform: none;
+    }
+
+    .control-btn:active {
+        transform: scale(0.9);
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+    .self-view,
+    .control-btn,
+    .chat-panel-wrapper {
+        transition: none;
+    }
+}
