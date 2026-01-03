@@ -9,6 +9,7 @@ import { FaBars, FaTimes, FaUserCircle, FaUser, FaHistory, FaChartLine, FaSignOu
 const NAV_CONFIG = {
   common: [
     { title: "Home", path: "/", roles: ["student", "consultant", "admin", "guest"] }, 
+    { title: "Career Journey", path: "/services", roles: ["student", "guest"] },
   ],
   student: [
     { title: "Career Journey", path: "/services" },
@@ -96,7 +97,7 @@ export default function Navbar() {
           {/* 1️⃣ LEFT: LOGO */}
           <NavLink to="/" className="flex items-center gap-3 z-10">
              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-900 font-bold text-xl ring-2 ring-indigo-400">
-               CG
+               <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-full"/>
              </div>
             <span className="text-2xl font-bold bg-linear-to-r from-blue-200 to-white bg-clip-text text-transparent">
               CareerGenAI

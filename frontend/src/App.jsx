@@ -129,12 +129,35 @@ function App() {
             />
             <Route path="/verify-otp" element={<VerifyOtp />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
-            <Route path="/pricing" element={<PremiumPlans />} />
+            
             {/* Root route – Home for guests, redirects to dashboard for logged‑in users */}
+            <Route path="/services" element={<CareerJourney />} />
 
+            <Route
+                path="/student-guidance/5th-7th"
+                element={<JuniorGuidance />}
+              />
+              <Route
+                path="/student-guidance/8th-10th"
+                element={<SeniorGuidance />}
+              />
+              <Route
+                path="/student-guidance/11th-12th"
+                element={<PostGuidence />}
+              />
+              <Route path="/student-guidance" element={<MainPage />} />
+
+              <Route path="/interest-form" element={<InterestForm />} />
+
+              <Route path="/careerquiz" element={<CareerQuiz />} />
+              
             {/* Protected routes based on user roles */}
             <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
+
+              <Route path="/pricing" element={<PremiumPlans />} />
+
               <Route path="/services" element={<CareerJourney />} />
+              
               <Route path="/student-guidance" element={<MainPage />} />
               <Route
                 path="/student-guidance/5th-7th"

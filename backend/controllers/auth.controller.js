@@ -156,6 +156,9 @@ exports.resendOtp = async (req, res) => {
 exports.verifyOtp = async (req, res) => {
   const { email, otp } = req.body;
   const storedOtp = otpStore.get(email);
+  console.log("otp", otp);
+  console.log("email", email);
+  console.log("otp2", storedOtp);
 
   if (storedOtp === otp) {
     await User.findOneAndUpdate({ email }, { isVerified: true });

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Lock, RefreshCw, ChevronRight } from "lucide-react"; // Icons
 
+import { useNavigate } from "react-router-dom";
+
 // Components
 import { questions } from "./data";
 import QuizHome from "./QuizHome";
@@ -17,6 +19,13 @@ const CareerQuiz = () => {
   const [answers, setAnswers] = useState({});
   const [showResults, setShowResults] = useState(false); // Stores the result object
   const [showPremiumPopup, setShowPremiumPopup] = useState(false);
+
+  const isGuest = !user || !user._id;
+  const navigate = useNavigate();
+
+
+  const LOCAL_PROGRESS_KEY = "guest_career_quiz_progress";
+  const LOCAL_RESULT_KEY = "guest_career_quiz_result";
 
   console.log(user)
   // --- Configuration ---
@@ -43,8 +52,35 @@ const CareerQuiz = () => {
   // --- 1. On Load: Check User & Restore Progress ---
   useEffect(() => {
     const initPage = async () => {
-      if (!user?._id) return;
 
+      // -------------------------------
+      // ✅ GUEST USER → LOCAL STORAGE
+      // -------------------------------
+      if (isGuest) {
+        const localResult = localStorage.getItem(LOCAL_RESULT_KEY);
+        const localProgress = localStorage.getItem(LOCAL_PROGRESS_KEY);
+
+        if (localResult) {
+          setShowResults(JSON.parse(localResult));
+          setCurrentScreen("results");
+          return;
+        }
+
+        if (localProgress) {
+          const parsed = JSON.parse(localProgress);
+          setAnswers(parsed.answers || {});
+          setCurrentQuestion(parsed.currentQuestionIndex || 0);
+          setCurrentScreen("quiz");
+          return;
+        }
+
+        setCurrentScreen("home");
+        return;
+      }
+
+      // --------------------------------
+      // ✅ LOGGED-IN USER → DATABASE
+      // --------------------------------
       try {
         const response = await axios.get(
           `${API_URL}/api/progress/get-progress/${user._id}`
@@ -53,27 +89,21 @@ const CareerQuiz = () => {
         if (response.data.success && response.data.data) {
           const report = response.data.data;
 
-          // A. If Result Exists -> Go to Result Screen (Locked or Unlocked handled in Render)
-          if (report.stageResults && report.stageResults[STAGE_KEY]) {
+          if (report.stageResults?.[STAGE_KEY]) {
             setShowResults(report.stageResults[STAGE_KEY]);
             setCurrentScreen("results");
             return;
           }
 
-          // B. If Partial Progress -> Resume Quiz
-          if (report.stageProgress && report.stageProgress[STAGE_KEY]) {
+          if (report.stageProgress?.[STAGE_KEY]) {
             const saved = report.stageProgress[STAGE_KEY];
-            if (
-              saved.currentQuestionIndex >= 0 &&
-              saved.currentQuestionIndex < questions.length
-            ) {
-              setAnswers(deserializeAnswers(saved.answers));
-              setCurrentQuestion(saved.currentQuestionIndex);
-              setCurrentScreen("quiz");
-              return;
-            }
+            setAnswers(deserializeAnswers(saved.answers));
+            setCurrentQuestion(saved.currentQuestionIndex);
+            setCurrentScreen("quiz");
+            return;
           }
         }
+
         setCurrentScreen("home");
       } catch (error) {
         console.error("Sync Error:", error);
@@ -82,7 +112,8 @@ const CareerQuiz = () => {
     };
 
     initPage();
-  }, [API_URL, user]);
+  }, [user]);
+
 
   // --- 2. Logic: Calculate & Save ---
   const calculateResults = async () => {
@@ -128,18 +159,23 @@ const CareerQuiz = () => {
     setCurrentScreen("results");
 
     // 2. Save to DB (We save it even if they are free, so it's ready when they upgrade)
-    if (user?._id) {
-      try {
-        await axios.post(`${API_URL}/api/progress/save-result`, {
-          userId: user._id,
-          stage: STAGE_KEY,
-          resultData: resultData,
-          categoryName: CATEGORY_NAME,
-        });
-      } catch (error) {
-        console.error("❌ Error saving result:", error);
+    if (isGuest) {
+      localStorage.setItem(
+        LOCAL_RESULT_KEY,
+        JSON.stringify(resultData)
+      );
+    } else {
+        try {
+          await axios.post(`${API_URL}/api/progress/save-result`, {
+            userId: user._id,
+            stage: STAGE_KEY,
+            resultData: resultData,
+            categoryName: CATEGORY_NAME,
+          });
+        } catch (error) {
+          console.error("❌ Error saving result:", error);
+        }
       }
-    }
   };
 
   // --- Handlers ---
@@ -155,7 +191,16 @@ const CareerQuiz = () => {
     setAnswers(updatedAnswers);
 
     // Background save
-    if (user?._id) {
+    if (isGuest) {
+      localStorage.setItem(
+          LOCAL_PROGRESS_KEY,
+          JSON.stringify({
+            currentQuestionIndex: currentQuestion,
+            answers: updatedAnswers,
+          })
+      );
+    }
+    else {
       axios
         .post(`${API_URL}/api/progress/save-quiz-progress`, {
           userId: user._id,
@@ -201,17 +246,20 @@ const CareerQuiz = () => {
   };
 
   const handleRetake = async () => {
-    if (user?._id) {
-      await axios
-        .post(`${API_URL}/api/progress/reset-progress`, {
-          userId: user._id,
-          stage: STAGE_KEY,
-          categoryName: CATEGORY_NAME,
-        })
-        .catch(console.error);
+    if (isGuest) {
+      localStorage.removeItem(LOCAL_PROGRESS_KEY);
+      localStorage.removeItem(LOCAL_RESULT_KEY);
+    } else {
+      await axios.post(`${API_URL}/api/progress/reset-progress`, {
+        userId: user._id,
+        stage: STAGE_KEY,
+        categoryName: CATEGORY_NAME,
+      });
     }
+
     startQuiz();
   };
+
 
   // --- RENDER ---
 
@@ -229,7 +277,7 @@ const CareerQuiz = () => {
 
   // logic: If Premium -> Show Full Results. If Free -> Show Locked View
   if (currentScreen === "results") {
-    if (user.isPremium) {
+    if (user?.isPremium) {
       return (
         <QuizResults
           showResults={showResults}
@@ -274,7 +322,7 @@ const CareerQuiz = () => {
             {/* Action Buttons */}
             <div className="space-y-3">
               <button
-                onClick={() => setShowPremiumPopup(true)}
+                onClick={() => navigate("/pricing")}
                 className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
               >
                 Show My Results <ChevronRight className="w-5 h-5" />
