@@ -2,8 +2,10 @@
 import React, { useMemo, useState } from "react";
 import { useBooking } from "../context/BookingContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function EduSubjectSelect({ onNext }) {
+  const navigate = useNavigate();
   const {
     availableSubjects,
     selectedSubjects,
@@ -35,7 +37,7 @@ export default function EduSubjectSelect({ onNext }) {
           There are no specific subjects listed for this program yet, but you can still find expert tutors for this field.
         </p>
         <button
-          onClick={onNext}
+          onClick={() => navigate("/edu/tutors")}
           className="px-8 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg"
         >
           View Available Tutors
@@ -139,7 +141,7 @@ export default function EduSubjectSelect({ onNext }) {
         className="sticky bottom-0 bg-white pt-4 border-t"
       >
         <button
-          onClick={onNext}
+          onClick={() => navigate("/edu/tutors")}
           className="w-full py-4 rounded-2xl font-black transition-all flex items-center justify-center gap-2 shadow-lg bg-blue-600 text-white hover:bg-blue-700 hover:shadow-blue-500/25 active:scale-[0.98]"
         >
           {selectedSubjects.length === 0

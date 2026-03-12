@@ -41,7 +41,7 @@ export default function EduCartPage() {
   const grandTotal = baseTotal + platformFee + taxAmount;
 
   const handleCheckout = () => {
-    navigate("/edu/checkout");
+    navigate("/edu/payment");
   };
 
   if (!selectedSubjects.length) {

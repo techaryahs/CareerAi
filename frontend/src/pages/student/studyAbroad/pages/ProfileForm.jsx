@@ -1,6 +1,7 @@
 // src/studyAbroad/pages/ProfileForm.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { logStudentActivity } from "../../../../utils/logActivity";
 
 const STORAGE_KEY = "study_abroad_user_data";
 
@@ -43,6 +44,14 @@ const ProfileForm = () => {
 
   const handleSubmit = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+
+    // ✅ LOG ACTIVITY
+    logStudentActivity(
+      "STUDY_ABROAD",
+      "Submitted Study Abroad Profile",
+      `User built their profile for ${formData.preferredCountries.join(", ") || "various countries"}`
+    );
+
     navigate("/services/study-abroad/countries");
   };
 
@@ -198,10 +207,9 @@ const ProfileForm = () => {
                   type="button"
                   onClick={() => toggleCountry(country)}
                   className={`px-4 py-2 rounded-full border text-sm transition
-                    ${
-                      selected
-                        ? "bg-indigo-50 border-indigo-600 text-indigo-700"
-                        : "bg-white border-slate-300 text-slate-700 hover:bg-slate-100"
+                    ${selected
+                      ? "bg-indigo-50 border-indigo-600 text-indigo-700"
+                      : "bg-white border-slate-300 text-slate-700 hover:bg-slate-100"
                     }`}
                 >
                   {country}

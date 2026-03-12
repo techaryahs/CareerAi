@@ -24,7 +24,7 @@ const bookingSchema = new mongoose.Schema(
     },
 
     date: { type: String, required: true }, // Format: YYYY-MM-DD
-    time: { type: String, required: true }, // Format: "10:00 AM"
+    time: { type: String, required: true }, // Format: "HH:mm" (24-hour)
     userEmail: { type: String, required: true },
     userPhone: { type: String, required: true },
     userName: { type: String },

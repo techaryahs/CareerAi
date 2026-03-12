@@ -1,7 +1,9 @@
 // src/AllComponents.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X } from "lucide-react";
-import {Routes, Route, useParams,useNavigate} from 'react-router-dom';
+import { Routes, Route, useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
+import { logStudentActivity } from "../../../utils/logActivity";
 import jsPDF from 'jspdf';
 // import html2canvas from 'html2canvas';
 // import { generatePDF, generatePDFWithPuppeteer } from './utils';
@@ -62,9 +64,9 @@ export const defaultResumeData = {
 
 
 
-  // 3. Return null or a loader while redirecting to avoid flickering
+// 3. Return null or a loader while redirecting to avoid flickering
 
-const DownloadButton = () => {
+const DownloadButton = ({ startTimeRef }) => {
   const [showPremiumPopup, setShowPremiumPopup] = useState(false);
   const [user, setUser] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -79,6 +81,11 @@ const DownloadButton = () => {
 
   const handleDownload = async () => {
     const resumeContent = document.getElementById("resume-preview")?.firstElementChild;
+
+    // Calculate duration
+    const durationInSeconds = startTimeRef?.current
+      ? Math.max(1, Math.floor((Date.now() - startTimeRef.current) / 1000))
+      : 0;
 
     if (!user?.isPremium) {
       setShowPremiumPopup(true);
@@ -103,6 +110,17 @@ const DownloadButton = () => {
 
     try {
       await html2pdf().from(resumeContent).set(options).save();
+
+      // ✅ LOG ACTIVITY
+      logStudentActivity(
+        "RESUME_BUILDER",
+        "Downloaded Resume",
+        "Student downloaded a PDF of their resume",
+        {},
+        durationInSeconds,
+        null,
+        "Completed"
+      );
     } catch (error) {
       console.error("Error generating PDF:", error);
       alert("Failed to generate PDF. Please try again.");
@@ -116,11 +134,10 @@ const DownloadButton = () => {
       <button
         onClick={handleDownload}
         disabled={isGenerating}
-        className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-          isGenerating
-            ? "bg-gray-400 text-gray-200 cursor-not-allowed"
-            : "bg-blue-600 text-white hover:bg-blue-700"
-        }`}
+        className={`px-6 py-3 rounded-lg font-medium transition-colors ${isGenerating
+          ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+          : "bg-blue-600 text-white hover:bg-blue-700"
+          }`}
       >
         {isGenerating ? (
           <div className="flex items-center">
@@ -174,7 +191,7 @@ const ResumeForm = () => {
   const [activeSection, setActiveSection] = useState('personal');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const formRef = useRef(null);
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const isPremium = user?.isPremium || false;
@@ -736,17 +753,54 @@ const ResumePreview = ({ templateComponent: TemplateComponent }) => {
 // );
 // --- Resume Builder Page ---
 const ResumeBuilderPage = ({ getTemplateComponent, templates }) => {
-  const { templateId } = useParams();
-  const { selectedTemplate, setSelectedTemplate } = useResumeContext();
+  const startTime = useRef(Date.now());
+  const { type } = useParams();
+  const { selectedTemplate, setSelectedTemplate, resumeData, updateResumeData } = useResumeContext();
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (templateId && templateId !== selectedTemplate) {
-      const template = (templates || []).find(t => t.id === templateId);
-      if (template) {
-        setSelectedTemplate(templateId);
+    const fetchProfile = async () => {
+      if (!user?._id && !user?.id) return;
+
+      const isExecutive = type === 'executive';
+      const hasData = resumeData?.personal?.firstName;
+
+      // Force fetch for executive or if data is missing
+      if (isExecutive || !hasData) {
+        setLoading(true);
+        try {
+          const userId = user._id || user.id;
+          const response = await fetch(`http://localhost:5000/api/profile/${userId}`);
+          const result = await response.json();
+
+          if (result.profile) {
+            const fullName = result.profile.name || "";
+            const [firstName, ...lastNameParts] = fullName.split(' ');
+            const lastName = lastNameParts.join(' ');
+
+            updateResumeData({
+              ...resumeData,
+              personal: {
+                ...resumeData.personal,
+                firstName: firstName || '',
+                lastName: lastName || '',
+                email: result.profile.email || '',
+                phone: result.profile.mobile || '',
+              }
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching profile for resume:", error);
+        } finally {
+          setLoading(false);
+        }
       }
-    }
-  }, [templateId, selectedTemplate, setSelectedTemplate, templates]);
+    };
+
+    fetchProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id, user?._id, type]);
 
   const TemplateComponent = getTemplateComponent
     ? getTemplateComponent(selectedTemplate)
@@ -754,6 +808,14 @@ const ResumeBuilderPage = ({ getTemplateComponent, templates }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+          <div className="bg-white p-6 rounded-xl shadow-xl flex flex-col items-center gap-4">
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
+            <p className="text-gray-700 font-medium">Syncing your profile...</p>
+          </div>
+        </div>
+      )}
       <div className="container items-center mx-auto px-4">
         {/* Page Header */}
         <motion.div
@@ -840,7 +902,7 @@ const ResumeBuilderPage = ({ getTemplateComponent, templates }) => {
               <p className="text-gray-600 mb-4">
                 Once satisfied, download your resume as a high-quality PDF file.
               </p>
-              <DownloadButton />
+              <DownloadButton startTimeRef={startTime} />
             </div>
           </motion.div>
 
@@ -896,7 +958,7 @@ const Template1 = ({ data }) => {
     education = [],
     skills = [],
     projects = [],
-    certifications= [],
+    certifications = [],
   } = data || {};
 
   const textWrapStyle = {
@@ -1005,12 +1067,12 @@ const Template1 = ({ data }) => {
         {/* Header */}
         <header className="pb-3 mb-4 section-block">
           <h1 className="text-3xl font-bold text-gray-900 mb-1" style={textWrapStyle}>
-            {personal?.firstName || 'First'} {personal?.lastName || 'Last'}
+            {personal?.firstName || ''} {personal?.lastName || ''}
           </h1>
           <div className="text-sm text-gray-600 space-y-1" style={textWrapStyle}>
-            <div>{personal?.email || 'email@example.com'}</div>
-            <div>{personal?.phone || '+1 (555) 123-4567'}</div>
-            <div>{personal?.location || 'City, State'}</div>
+            <div>{personal?.email || ''}</div>
+            <div>{personal?.phone || ''}</div>
+            <div>{personal?.location || ''}</div>
           </div>
         </header>
 
@@ -1116,32 +1178,32 @@ const Template1 = ({ data }) => {
           </section>
         )}
 
-          {certifications.length > 0 && (
-            <section className="trim avoid-break">
-              <h2 className="text-xl font-semibold mb-3 border-b-2 border-black pb-2 text-blue-600">Certifications</h2>
-              <ul className="modern-list">
-                {certifications.map((cert, index) => (
-                  <li key={index} className="wrap" style={{ display: 'block' }}>
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-gray-800 text-sm font-medium">{cert.name}</span>
-                      {cert.issued && <span className="text-xs text-gray-500">{cert.issued}</span>}
-                    </div>
-                    {cert.org && <p className="text-gray-600 text-xs mt-1">{cert.org}</p>}
-                    {cert.id && <p className="text-gray-500 text-xs">ID: {cert.id}</p>}
-                    {cert.url && (
-                      <p className="text-blue-600 text-xs wrap">{cert.url}</p>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+        {certifications.length > 0 && (
+          <section className="trim avoid-break">
+            <h2 className="text-xl font-semibold mb-3 border-b-2 border-black pb-2 text-blue-600">Certifications</h2>
+            <ul className="modern-list">
+              {certifications.map((cert, index) => (
+                <li key={index} className="wrap" style={{ display: 'block' }}>
+                  <div className="flex justify-between items-baseline">
+                    <span className="text-gray-800 text-sm font-medium">{cert.name}</span>
+                    {cert.issued && <span className="text-xs text-gray-500">{cert.issued}</span>}
+                  </div>
+                  {cert.org && <p className="text-gray-600 text-xs mt-1">{cert.org}</p>}
+                  {cert.id && <p className="text-gray-500 text-xs">ID: {cert.id}</p>}
+                  {cert.url && (
+                    <p className="text-blue-600 text-xs wrap">{cert.url}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </div>
     </div>
   );
 };
 
-export default Template1;
+// export default Template1;
 
 
 // template2.jsx
@@ -1157,9 +1219,9 @@ const Template2 = ({ data }) => {
 
   // Unified, print-safe contact icons
   const contacts = [
-    { icon: '✉', value: personal?.email || 'email@example.com' },
-    { icon: '☎', value: personal?.phone || 'Phone number' },
-    { icon: '📍', value: personal?.location || 'City, Country' },
+    { icon: '✉', value: personal?.email || '' },
+    { icon: '☎', value: personal?.phone || '' },
+    { icon: '📍', value: personal?.location || '' },
   ];
 
   return (
@@ -1293,7 +1355,7 @@ const Template2 = ({ data }) => {
         >
           <header className="mb-5 trim avoid-break">
             <h1 className="text-2xl font-bold wrap">
-              {personal?.firstName || 'First'} {personal?.lastName || 'Last'}
+              {personal?.firstName || ''} {personal?.lastName || ''}
             </h1>
             {personal?.title && (
               <p className="text-blue-300 text-sm mt-1 wrap">{personal.title}</p>
@@ -1484,14 +1546,14 @@ const Template3 = ({ data }) => {
       {/* Header with improved line separators */}
       <header className="text-center py-6 border-b-2 border-gray-300">
         <h1 className="text-3xl font-thin mb-4 tracking-wide wrap">
-          {personal?.firstName || 'First'} <span className="font-normal">{personal?.lastName || 'Last'}</span>
+          {personal?.firstName || ''} <span className="font-normal">{personal?.lastName || ''}</span>
         </h1>
         <div className="contact-inline text-gray-600">
-          <span className="wrap">{personal?.email || 'email@example.com'}</span>
+          <span className="wrap">{personal?.email || ''}</span>
           <span className="contact-sep">|</span>
-          <span className="wrap">{personal?.phone || '+1 (555) 123-4567'}</span>
+          <span className="wrap">{personal?.phone || ''}</span>
           <span className="contact-sep">|</span>
-          <span className="wrap">{personal?.location || 'City, State'}</span>
+          <span className="wrap">{personal?.location || ''}</span>
         </div>
       </header>
 
@@ -1625,9 +1687,9 @@ const Template4 = ({ data }) => {
 
   // Contact rows rendered from a single, explicit mapping
   const contactRows = [
-    { glyph: '✉', value: personal?.email || 'email@example.com' },
-    { glyph: '☎', value: personal?.phone || 'Phone Number' },
-    { glyph: '📍', value: personal?.location || 'City, Country' }
+    { glyph: '✉', value: personal?.email || '' },
+    { glyph: '☎', value: personal?.phone || '' },
+    { glyph: '📍', value: personal?.location || '' },
   ];
 
   return (
@@ -1727,7 +1789,7 @@ const Template4 = ({ data }) => {
             letterSpacing: '1px'
           }}
         >
-          {personal?.firstName || 'First'} {personal?.lastName || 'Last'}
+          {personal?.firstName || ''} {personal?.lastName || ''}
         </h1>
 
         <div className="contact-inline" style={{ fontSize: '10pt' }}>
@@ -1950,12 +2012,12 @@ const Template5 = ({ data }) => {
         <div className="flex items-center justify-between print:flex-wrap print:gap-4">
           <div className="flex-min0">
             <h1 className="text-3xl font-bold mb-2 wrap">
-              {personal?.firstName || "First"} {personal?.lastName || "Last"}
+              {personal?.firstName || ""} {personal?.lastName || ""}
             </h1>
             <div className="space-y-1 text-green-100">
-              <p className="wrap">✉ {personal?.email || "email@example.com"}</p>
-              <p className="wrap">📞 {personal?.phone || "+1 (555) 123-4567"}</p>
-              <p className="wrap">📍 {personal?.location || "City, State"}</p>
+              <p className="wrap">✉ {personal?.email || ""}</p>
+              <p className="wrap">☎ {personal?.phone || ""}</p>
+              <p className="wrap">📍 {personal?.location || ""}</p>
             </div>
           </div>
         </div>
@@ -2175,14 +2237,14 @@ const Template6 = ({ data }) => {
       {/* Header */}
       <header className="bg-blue-800 text-white p-8">
         <h1 className="text-4xl font-bold mb-2 wrap">
-          {personal?.firstName || 'First'} {personal?.lastName || 'Last'}
+          {personal?.firstName || ''} {personal?.lastName || ''}
         </h1>
         <div className="flex flex-wrap items-center gap-x-2 text-sm wrap">
-          <span className="wrap">{personal?.email || 'email@example.com'}</span>
-          <span className="text-blue-200">|</span>
-          <span className="wrap">{personal?.phone || '+1 (555) 123-4567'}</span>
-          <span className="text-blue-200">|</span>
-          <span className="wrap">{personal?.location || 'City, State'}</span>
+          <span className="wrap">{personal?.email || ''}</span>
+          <span className="mx-2 opacity-50">|</span>
+          <span className="wrap">{personal?.phone || ''}</span>
+          <span className="mx-2 opacity-50">|</span>
+          <span className="wrap">{personal?.location || ''}</span>
         </div>
       </header>
 
@@ -2588,3 +2650,5 @@ export {
   Template6Alt,
   Router
 };
+
+export default ResumeBuilderPage;

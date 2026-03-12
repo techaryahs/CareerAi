@@ -1,18 +1,8 @@
-import React, { useState } from "react";
 import { useBooking } from "../context/BookingContext";
 import { motion, AnimatePresence } from "framer-motion";
-
-// ===============================
-// IMPORT ALL STEPS
-// ===============================
-import EduCareerSelect from "./EduCareerSelect";
-import EduBranchSelect from "./EduBranchSelect";
-import EduSemesterSelect from "./EduSemesterSelect";
-import EduSubjectSelect from "./EduSubjectSelect";
-import EduTutorList from "./EduTutorList";
-import EduCartPage from "./EduCartPage";
-import PaymentRedirection from "./PaymentRedirection";
-import EduSuccessPage from "./EduSuccessPage";
+import { logStudentActivity } from "../../../../utils/logActivity";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 // ===============================
 // PROGRESS BAR
@@ -40,7 +30,7 @@ function ProgressBar({ step }) {
         <motion.div
           className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-600 to-indigo-700 shadow-[0_0_10px_rgba(37,99,235,0.4)]"
           initial={{ width: 0 }}
-          animate={{ width: `${(step / steps.length) * 100}%` }}
+          animate={{ width: `${(Math.min(step, 7) / steps.length) * 100}%` }}
           transition={{ duration: 0.8, ease: "circOut" }}
         />
       </div>
@@ -72,29 +62,72 @@ function ProgressBar({ step }) {
 // MAIN PAGE
 // ===============================
 export default function EduHomePage() {
-  const [step, setStep] = useState(1);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Derive step from path
+  const getStep = () => {
+    const path = location.pathname.split("/").pop();
+    switch (path) {
+      case "edu":
+      case "career": return 1;
+      case "branch": return 2;
+      case "semester": return 3;
+      case "subject": return 4;
+      case "tutors": return 5;
+      case "cart": return 6;
+      case "payment": return 7;
+      case "success": return 7; // Success and payment are final stages
+      default: return 1;
+    }
+  };
+
+  const step = getStep();
+
+  useEffect(() => {
+    if (step === 7) {
+      logStudentActivity(
+        "EDU_TUTOR",
+        "Booked EduTutor Session",
+        "Student successfully completed an EduTutor booking"
+      );
+    }
+  }, [step]);
 
   const {
-    selectedSubjects,
-    // actions
     setSelectedCareer,
     setSelectedBranch,
     setSelectedSubjects,
     setSelectedSemester,
-    addTutorAndSlot,
     resetFlow,
   } = useBooking();
 
   const handleBack = () => {
     if (step === 1) return;
 
-    if (step === 2) setSelectedCareer(null);
-    if (step === 3) setSelectedBranch(null);
-    if (step === 4) setSelectedSubjects([]);
-    if (step === 5) setSelectedSubjects([]);
-    if (step === 6) resetFlow();
-
-    setStep(step - 1);
+    if (step === 2) {
+      setSelectedCareer(null);
+      navigate("/edu/career");
+    }
+    if (step === 3) {
+      setSelectedBranch(null);
+      navigate("/edu/branch");
+    }
+    if (step === 4) {
+      setSelectedSubjects([]);
+      navigate("/edu/semester");
+    }
+    if (step === 5) {
+      setSelectedSubjects([]);
+      navigate("/edu/subject");
+    }
+    if (step === 6) {
+      navigate("/edu/tutors");
+    }
+    if (step === 7) {
+      resetFlow();
+      navigate("/edu/career");
+    }
   };
 
   return (
@@ -102,7 +135,7 @@ export default function EduHomePage() {
       <div className="max-w-4xl mx-auto">
         <ProgressBar step={step} />
 
-        {step > 1 && step < 8 && (
+        {step > 1 && step < 7 && (
           <motion.button
             whileHover={{ x: -4 }}
             whileTap={{ scale: 0.95 }}
@@ -116,68 +149,14 @@ export default function EduHomePage() {
 
         <AnimatePresence mode="wait">
           <motion.div
-            key={step}
+            key={location.pathname}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] p-6 sm:p-10 border border-white/50 backdrop-blur-sm"
           >
-            {step === 1 && (
-              <EduCareerSelect
-                onSelect={(careerId) => {
-                  setSelectedCareer(careerId);
-                  setSelectedBranch(null);
-                  setSelectedSubjects([]);
-                  setStep(2);
-                }}
-              />
-            )}
-
-            {step === 2 && (
-              <EduBranchSelect
-                onSelect={(branchId) => {
-                  setSelectedBranch(branchId);
-                  setSelectedSubjects([]);
-                  setStep(3);
-                }}
-              />
-            )}
-
-            {step === 3 && (
-              <EduSemesterSelect
-                onSelect={(semesterId) => {
-                  // semester now drives subject filtering in context
-                  setSelectedSemester(semesterId);
-                  setStep(4);
-                }}
-              />
-            )}
-
-            {step === 4 && (
-              <EduSubjectSelect
-                selectedSubjects={selectedSubjects}
-                setSelectedSubjects={setSelectedSubjects}
-                onNext={() => setStep(5)}
-              />
-            )}
-
-            {step === 5 && (
-              <EduTutorList
-                onSelect={(tutorId, slot) => {
-                  addTutorAndSlot(tutorId, slot);
-                  setStep(6);
-                }}
-              />
-            )}
-
-            {step === 6 && <EduCartPage onCheckout={() => setStep(7)} />}
-
-            {step === 7 && (
-              <PaymentRedirection onSuccess={() => setStep(8)} />
-            )}
-
-            {step === 8 && <EduSuccessPage />}
+            <Outlet />
           </motion.div>
         </AnimatePresence>
       </div>

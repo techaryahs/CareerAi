@@ -3,6 +3,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useAuth } from "../../context/AuthContext";
+import api from "../../api"; // ✅ Fixed import
 
 const BookSlot = () => {
   const { user } = useAuth();
@@ -19,13 +20,22 @@ const BookSlot = () => {
 
   const API = import.meta.env.VITE_API_URL;
 
+  // Helper to format 24h to 12h for UI
+  const formatTimeForDisplay = (time24h) => {
+    const [hours, minutes] = time24h.split(":").map(Number);
+    const suffix = hours >= 12 ? "PM" : "AM";
+    const hours12 = ((hours + 11) % 12 + 1);
+    return `${hours12}:${minutes.toString().padStart(2, "0")} ${suffix}`;
+  };
+
   /* =========================
      FETCH BOOKED SLOTS
   ========================= */
   const fetchBookedSlots = useCallback(async () => {
     if (!date) return;
     try {
-      const res = await axios.get(`${API}/api/bookings/booked-slots`, {
+      // Use api instance for consistency
+      const res = await api.get("/api/bookings/booked-slots", {
         params: { consultantId, date },
       });
       setBookedTimes(res.data.bookedTimes || []);
@@ -33,7 +43,7 @@ const BookSlot = () => {
       console.error("❌ Failed to fetch booked slots:", err.message);
       setBookedTimes([]);
     }
-  }, [API, consultantId, date]);
+  }, [consultantId, date]);
 
   /* =========================
      INITIAL LOAD
@@ -85,7 +95,7 @@ const BookSlot = () => {
         date,
         time,
         userEmail: userData?.email,
-        userId: userData?._id, // ✅ Pass student's User ID
+        userId: userData?._id,
         userPhone: userData?.mobile || userData?.phone || "Not Provided",
         userName: userData?.name || userData?.fullName || "User",
         userPlan: userData?.isPremium ? "Premium" : "Standard",
@@ -105,17 +115,17 @@ const BookSlot = () => {
   };
 
   /* =========================
-     AVAILABLE TIME SLOTS
+     AVAILABLE TIME SLOTS (24h Format)
   ========================= */
   const availableTimes = [
-    "10:00 AM",
-    "11:00 AM",
-    "12:00 PM",
-    "04:00 PM",
-    "05:00 PM",
-    "06:00 PM",
-    "07:00 PM",
-    "08:00 PM",
+    "10:00",
+    "11:00",
+    "12:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
   ];
 
   /* =========================
@@ -129,10 +139,7 @@ const BookSlot = () => {
 
     if (today.toDateString() !== selected.toDateString()) return false;
 
-    const [timePart, modifier] = slot.split(" ");
-    let [hours, minutes] = timePart.split(":").map(Number);
-    if (modifier === "PM" && hours !== 12) hours += 12;
-    if (modifier === "AM" && hours === 12) hours = 0;
+    let [hours, minutes] = slot.split(":").map(Number);
     minutes = minutes || 0;
 
     const slotDate = new Date(selected);
@@ -189,15 +196,14 @@ const BookSlot = () => {
                     disabled={disabled}
                     onClick={() => setTime(t)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium border transition
-                      ${
-                        disabled
-                          ? "bg-gray-100 text-gray-400 cursor-not-allowed filter blur-sm opacity-60"
-                          : time === t
+                      ${disabled
+                        ? "bg-gray-100 text-gray-400 cursor-not-allowed filter blur-sm opacity-60"
+                        : time === t
                           ? "bg-blue-600 text-white shadow-md"
                           : "bg-white text-gray-700 hover:bg-blue-50 border-gray-300"
                       }`}
                   >
-                    {t} {bookedTimes.includes(t) && "❌"}
+                    {formatTimeForDisplay(t)} {bookedTimes.includes(t) && "❌"}
                   </motion.button>
                 );
               })}
@@ -215,10 +221,9 @@ const BookSlot = () => {
             onClick={handleBooking}
             disabled={isBooking}
             className={`px-6 py-2 rounded-lg font-semibold shadow-sm transition text-sm
-              ${
-                isBooking
-                  ? "bg-gray-400 text-white cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700 text-white"
+              ${isBooking
+                ? "bg-gray-400 text-white cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 text-white"
               }`}
           >
             {isBooking ? "Booking..." : "✅ Confirm Appointment"}

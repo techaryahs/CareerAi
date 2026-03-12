@@ -15,12 +15,14 @@ import jsPDF from "jspdf";
 import PremiumPopup from "../../../components/PremiumPlans/PremiumPlans";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
+import { logStudentActivity } from "../../../utils/logActivity";
+import { useEffect } from "react";
 
-const QuizResults = ({ showResults, onRetake, onHome }) => {
+const QuizResults = ({ showResults, onRetake, onHome, duration }) => {
   const navigate = useNavigate();
   const reportRef = useRef(null);
   const { user } = useAuth();
-  console.log(user);
+
   // Premium Check
   if (!user?.isPremium) {
     return (
@@ -36,6 +38,21 @@ const QuizResults = ({ showResults, onRetake, onHome }) => {
   }
 
   const { topPaths, allScores, personalityType } = showResults;
+  const quizScore = topPaths[0][1] || 0; // Use top match score as the activity score
+
+  useEffect(() => {
+    if (showResults) {
+      logStudentActivity(
+        "CAREER_QUIZ",
+        "Quiz Completed",
+        `Student completed career quiz. Top match: ${topPaths[0][0]}`,
+        { personalityType, topPaths: topPaths.slice(0, 3) },
+        duration || 0,
+        quizScore,
+        "Completed"
+      );
+    }
+  }, [showResults, topPaths, duration, quizScore, personalityType]);
 
   const top5ChartData = [...allScores]
     .sort(([, a], [, b]) => b - a)
@@ -79,6 +96,13 @@ const QuizResults = ({ showResults, onRetake, onHome }) => {
       const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
       pdf.save("Career_Gen_AI_Report.pdf");
+
+      // ✅ LOG ACTIVITY
+      logStudentActivity(
+        "CAREER_QUIZ",
+        "Downloaded Quiz Report",
+        "Student downloaded their career quiz report PDF"
+      );
     } catch (err) {
       console.error(err);
       alert("Failed to download report.");
@@ -141,13 +165,12 @@ const QuizResults = ({ showResults, onRetake, onHome }) => {
             {topPaths.slice(0, 3).map(([domain, score], i) => (
               <div
                 key={domain}
-                className={`mb-4 p-5 border rounded-xl ${
-                  i === 0
-                    ? "bg-green-50 border-green-200"
-                    : i === 1
+                className={`mb-4 p-5 border rounded-xl ${i === 0
+                  ? "bg-green-50 border-green-200"
+                  : i === 1
                     ? "bg-blue-50 border-blue-200"
                     : "bg-orange-50 border-orange-200"
-                }`}
+                  }`}
               >
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-base font-semibold text-gray-800">

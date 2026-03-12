@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Search,
   Zap,
@@ -12,22 +12,25 @@ import {
   Lock
 } from "lucide-react";
 
-import PremiumPlans from "../../../components/PremiumPlans/PremiumPlans"; // ⭐ REQUIRED
-import {useAuth} from "../../../context/AuthContext";
+import { logStudentActivity } from "../../../utils/logActivity";
+import { useAuth } from "../../../context/AuthContext";
+import PremiumPlans from "../../../components/PremiumPlans/PremiumPlans";
+
 // ------------------------------------------------------------------
 // MAIN COMPONENT
 // ------------------------------------------------------------------
 const CareerDifferencesAnalyzer = () => {
+  const startTime = useRef(Date.now());
   const [career1, setCareer1] = useState("");
   const [career2, setCareer2] = useState("");
   const [analysis, setAnalysis] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const {user} = useAuth();
+  const { user } = useAuth();
   const isPremium = user?.isPremium == true;
   // ⭐ PREMIUM CHECK
-  
+
 
   // ⭐ POPUP STATE
   const [showPremiumPopup, setShowPremiumPopup] = useState(false);
@@ -52,6 +55,10 @@ const CareerDifferencesAnalyzer = () => {
   const [filteredSuggestions2, setFilteredSuggestions2] = useState([]);
   const [showSuggestions1, setShowSuggestions1] = useState(false);
   const [showSuggestions2, setShowSuggestions2] = useState(false);
+
+  useEffect(() => {
+    startTime.current = Date.now();
+  }, []);
 
 
 
@@ -108,6 +115,29 @@ const CareerDifferencesAnalyzer = () => {
         summary: `${matchedKey1} and ${matchedKey2} differ based on responsibilities, skills, education, salary, and industry demand.`,
         keyInsight: `The biggest difference is that ${data1.free.summary.toLowerCase()}, while ${data2.free.summary.toLowerCase()}.`,
       });
+
+      // ✅ LOG ACTIVITY
+      const durationInSeconds = Math.max(
+        1,
+        Math.floor((Date.now() - startTime.current) / 1000)
+      );
+
+      await logStudentActivity(
+        "CAREER_COMPARE",
+        "Compared Careers",
+        `Student compared ${matchedKey1} vs ${matchedKey2}`,
+        {
+          career1: matchedKey1,
+          career2: matchedKey2
+        },
+        durationInSeconds,   // duration
+        null,                // score (no score here)
+        "Completed"
+      );
+
+      // Reset start time for next action
+      startTime.current = Date.now();
+
     } catch (err) {
       setError("Failed to load Career_Comparision.json");
     }

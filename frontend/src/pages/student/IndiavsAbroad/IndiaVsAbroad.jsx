@@ -1,14 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import data from "./india_vs_abroad.json";
 import { useState } from "react";
+import { logStudentActivity } from "../../../utils/logActivity";
 
 export default function IndiaVsAbroad() {
   const navigate = useNavigate();
   const [field, setField] = useState("");
+  const startTime = React.useRef(Date.now());
+
+  const handleCompare = () => {
+    navigate("/compare-result", { state: { field } });
+
+    const durationInSeconds = Math.max(1, Math.floor((Date.now() - startTime.current) / 1000));
+
+    logStudentActivity(
+      "STUDY_ABROAD",
+      "Compared India vs Abroad",
+      `Student compared India vs Abroad for ${field}`,
+      { field },
+      durationInSeconds,
+      null,
+      "Completed"
+    );
+  };
 
   return (
-   <div className="min-h-screen bg-[#f4f7ff] flex items-center justify-center px-4">
-<div className="bg-white rounded-2xl shadow-xl p-10 w-full max-w-xl">
+    <div className="min-h-screen bg-[#f4f7ff] flex items-center justify-center px-4">
+      <div className="bg-white rounded-2xl shadow-xl p-10 w-full max-w-xl">
         <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-4">
           India vs Abroad
         </h1>
@@ -33,19 +51,8 @@ export default function IndiaVsAbroad() {
 
         <button
           disabled={!field}
-          onClick={() =>
-            navigate("/compare-result", { state: { field } })
-          }
-        className="
-  bg-blue-600
-  text-white
-  px-8 py-3
-  rounded-xl
-  font-semibold
-  shadow-md
-  hover:bg-blue-700
-  transition
-"
+          onClick={handleCompare}
+          className="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold shadow-md hover:bg-blue-700 transition"
         >
           Compare Now
         </button>

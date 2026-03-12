@@ -7,11 +7,14 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const setupWebRTCSignaling = require('./webrtc-signaling');
+const featureActivityRoutes = require("./routes/featureActivity.routes");
 
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+const path = require("path");
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Database Connection
 connectDB()
@@ -19,7 +22,7 @@ connectDB()
 
 
 
-app.get("/", (req, res)=> {
+app.get("/", (req, res) => {
   res.send("Server is running");
 });
 // Routes
@@ -58,6 +61,8 @@ app.use("/api/teacher", require("./routes/teacher.routes"));
 
 // 💓 Activity Manager (Heartbeat & Stats)
 app.use("/api/activity", require("./routes/activityRoutes"));
+
+app.use("/api/feature-activity", featureActivityRoutes);
 
 
 

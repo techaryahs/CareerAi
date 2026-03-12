@@ -1,6 +1,7 @@
 // src/studyAbroad/pages/Home.jsx
 import React from "react";
 import { Link } from "react-router-dom";
+import { logStudentActivity } from "../../../../utils/logActivity";
 
 const Home = () => {
   return (
@@ -25,7 +26,10 @@ const Home = () => {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link to="/services/study-abroad/profile">
+            <Link
+              to="/services/study-abroad/profile"
+              onClick={() => logStudentActivity("STUDY_ABROAD", "Started Study Abroad Planning", "User started study abroad journey")}
+            >
               <button className="rounded-full bg-indigo-600 px-8 py-3 text-white font-semibold shadow-md hover:bg-indigo-700 transition">
                 Start Planning
               </button>

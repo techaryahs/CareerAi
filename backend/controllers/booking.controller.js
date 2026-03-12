@@ -39,28 +39,30 @@ exports.bookConsultant = async (req, res) => {
       userPlan
     } = req.body;
 
+    console.log(`📡 [Booking] Request: ${req.body.date} ${req.body.time} for ID: ${consultantId}`);
+
     if (!consultantId || !date || !time || !userEmail || !userPhone) {
       return res.status(400).json({ message: 'Missing required data' });
     }
 
     // Fetch consultant info if missing (Stronger Fetch)
     if (!consultantEmail || !consultantName) {
-        const consultant = await Consultant.findById(consultantId).populate('user');
-        if (consultant) {
-            consultantEmail = consultantEmail || consultant.user?.email || consultant.email;
-            consultantName = consultantName || consultant.name || consultant.user?.name;
-        } else {
-            // Check if it's a teacher
-            const teacher = await Teacher.findById(consultantId).populate('user');
-            if (teacher) {
-                consultantEmail = teacher.user?.email || teacher.email;
-                consultantName = teacher.fullName || teacher.user?.name;
-            }
+      const consultant = await Consultant.findById(consultantId).populate('user');
+      if (consultant) {
+        consultantEmail = consultantEmail || consultant.user?.email || consultant.email;
+        consultantName = consultantName || consultant.name || consultant.user?.name;
+      } else {
+        // Check if it's a teacher
+        const teacher = await Teacher.findById(consultantId).populate('user');
+        if (teacher) {
+          consultantEmail = teacher.user?.email || teacher.email;
+          consultantName = teacher.fullName || teacher.user?.name;
         }
+      }
     }
 
     if (!consultantEmail) {
-        return res.status(400).json({ message: 'Consultant email not found' });
+      return res.status(400).json({ message: 'Consultant email not found' });
     }
 
     if (consultantType === "Premium" && userPlan !== "Premium") {
@@ -80,6 +82,7 @@ exports.bookConsultant = async (req, res) => {
 
     const alreadyBooked = await Booking.findOne({ consultantId, date, time });
     if (alreadyBooked) {
+      console.warn(`🚫 [Booking] Conflict found: ${date} ${time} for consultant ${consultantId}`);
       return res.status(400).json({ message: 'Slot already booked' });
     }
 
@@ -102,31 +105,31 @@ exports.bookConsultant = async (req, res) => {
     });
 
     try {
-        await sendEmail(
-            userEmail,
-            "Your CareerGenAI Consultation is Confirmed",
-            "",
-            `<p>Your appointment with <b>${consultantName}</b> is confirmed.</p>
+      await sendEmail(
+        userEmail,
+        "Your CareerGenAI Consultation is Confirmed",
+        "",
+        `<p>Your appointment with <b>${consultantName}</b> is confirmed.</p>
              <p>Date: <b>${date}</b></p>
              <p>Time: <b>${time}</b></p>
              <p>Meeting ID: <b>${meetingId}</b></p>`
-        );
+      );
 
-        await sendEmail(
-            consultantEmail,
-            "New Consultation Booking",
-            "",
-            `<p>You have a new booking from <b>${userName}</b>.</p>`
-        );
+      await sendEmail(
+        consultantEmail,
+        "New Consultation Booking",
+        "",
+        `<p>You have a new booking from <b>${userName}</b>.</p>`
+      );
 
-        await sendEmail(
-            process.env.ADMIN_NOTIFY_TO || "admin@careergenai.com",
-            "New Consultation Booking (Admin Copy)",
-            "",
-            `<p>User: ${userName} (${userEmail})</p><p>Mentor: ${consultantName}</p>`
-        );
+      await sendEmail(
+        process.env.ADMIN_NOTIFY_TO || "admin@careergenai.com",
+        "New Consultation Booking (Admin Copy)",
+        "",
+        `<p>User: ${userName} (${userEmail})</p><p>Mentor: ${consultantName}</p>`
+      );
     } catch (emailErr) {
-        console.warn("⚠️ Email notification failed, but booking was successful:", emailErr.message);
+      console.warn("⚠️ Email notification failed, but booking was successful:", emailErr.message);
     }
 
     res.json({ message: "Booking successful", booking });
@@ -160,6 +163,7 @@ exports.bookTeacher = async (req, res) => {
 
     const alreadyBooked = await Booking.findOne({ teacherId, date, time });
     if (alreadyBooked) {
+      console.warn(`🚫 [Teacher Booking] Conflict found: ${date} ${time} for teacher ${teacherId}`);
       return res.status(400).json({ message: 'Slot already booked' });
     }
 
@@ -268,6 +272,7 @@ exports.getTeacherBookedSlots = async (req, res) => {
       return res.status(400).json({ message: 'Missing teacherId or date' });
     }
 
+    console.log(`🔍 [Teacher Slots] Fetching for: ${teacherId} on ${date}`);
     const bookings = await Booking.find({ teacherId, date });
     const bookedTimes = bookings.map(b => b.time);
 
@@ -287,6 +292,7 @@ exports.getBookedSlots = async (req, res) => {
       return res.status(400).json({ message: 'Missing consultantId or date' });
     }
 
+    console.log(`🔍 [Consultant Slots] Fetching for: ${consultantId} on ${date}`);
     const bookings = await Booking.find({ consultantId, date });
     const bookedTimes = bookings.map(b => b.time);
 
@@ -306,13 +312,13 @@ exports.getUserCounselling = async (req, res) => {
       .sort({ date: -1 });
 
     const enrichedBookings = await Promise.all(bookings.map(async (b) => {
-        const bookingObj = b.toObject();
-        // Ensure student name is there (fetch from User if missing in booking)
-        if (!bookingObj.userName) {
-            const user = await User.findOne({ email: req.params.email });
-            bookingObj.userName = user?.name || "Student";
-        }
-        return bookingObj;
+      const bookingObj = b.toObject();
+      // Ensure student name is there (fetch from User if missing in booking)
+      if (!bookingObj.userName) {
+        const user = await User.findOne({ email: req.params.email });
+        bookingObj.userName = user?.name || "Student";
+      }
+      return bookingObj;
     }));
 
     res.json({ bookings: enrichedBookings });
@@ -361,10 +367,10 @@ exports.getConsultantBookings = async (req, res) => {
     // 1. Resolve Profile IDs for this User (could be Consultant or Teacher profile)
     const consultantProfiles = await Consultant.find({ user: consultantId });
     const teacherProfiles = await Teacher.find({ user: consultantId });
-    
+
     const profileIds = [
-        ...consultantProfiles.map(p => p._id),
-        ...teacherProfiles.map(p => p._id)
+      ...consultantProfiles.map(p => p._id),
+      ...teacherProfiles.map(p => p._id)
     ];
 
     // 2. Build a multi-prong query
@@ -376,14 +382,14 @@ exports.getConsultantBookings = async (req, res) => {
 
     // Prong B: Mapped Profile IDs (the passed ID was a User ID)
     if (profileIds.length > 0) {
-        bookingsQuery.$or.push({ consultantId: { $in: profileIds } });
-        bookingsQuery.$or.push({ teacherId: { $in: profileIds } });
+      bookingsQuery.$or.push({ consultantId: { $in: profileIds } });
+      bookingsQuery.$or.push({ teacherId: { $in: profileIds } });
     }
 
     // Prong C: Email Fallback (Bulletproof for dev/seed data)
     if (email) {
-        bookingsQuery.$or.push({ consultantEmail: email });
-        bookingsQuery.$or.push({ teacherEmail: email });
+      bookingsQuery.$or.push({ consultantEmail: email });
+      bookingsQuery.$or.push({ teacherEmail: email });
     }
 
     const bookings = await Booking.find(bookingsQuery)

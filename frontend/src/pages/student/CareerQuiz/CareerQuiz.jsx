@@ -14,6 +14,7 @@ import { useAuth } from "../../../context/AuthContext";
 const CareerQuiz = () => {
   const { user, loading: authLoading } = useAuth();
   // --- State ---
+  const startTime = useRef(Date.now());
   const [currentScreen, setCurrentScreen] = useState("loading");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -165,17 +166,17 @@ const CareerQuiz = () => {
         JSON.stringify(resultData)
       );
     } else {
-        try {
-          await axios.post(`${API_URL}/api/progress/save-result`, {
-            userId: user._id,
-            stage: STAGE_KEY,
-            resultData: resultData,
-            categoryName: CATEGORY_NAME,
-          });
-        } catch (error) {
-          console.error("❌ Error saving result:", error);
-        }
+      try {
+        await axios.post(`${API_URL}/api/progress/save-result`, {
+          userId: user._id,
+          stage: STAGE_KEY,
+          resultData: resultData,
+          categoryName: CATEGORY_NAME,
+        });
+      } catch (error) {
+        console.error("❌ Error saving result:", error);
       }
+    }
   };
 
   // --- Handlers ---
@@ -193,11 +194,11 @@ const CareerQuiz = () => {
     // Background save
     if (isGuest) {
       localStorage.setItem(
-          LOCAL_PROGRESS_KEY,
-          JSON.stringify({
-            currentQuestionIndex: currentQuestion,
-            answers: updatedAnswers,
-          })
+        LOCAL_PROGRESS_KEY,
+        JSON.stringify({
+          currentQuestionIndex: currentQuestion,
+          answers: updatedAnswers,
+        })
       );
     }
     else {
@@ -278,11 +279,15 @@ const CareerQuiz = () => {
   // logic: If Premium -> Show Full Results. If Free -> Show Locked View
   if (currentScreen === "results") {
     if (user?.isPremium) {
+      // Calculate final quiz duration
+      const quizDuration = Math.max(1, Math.floor((Date.now() - startTime.current) / 1000));
+
       return (
         <QuizResults
           showResults={showResults}
           onRetake={handleRetake}
           onHome={goToHome}
+          duration={quizDuration}
         />
       );
     } else {

@@ -1,8 +1,10 @@
 import { EDU_CAREERS } from "../data/EduCareers.jsx";
 import React, { useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function EduCareerSelect({ onSelect }) {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
   const careers = useMemo(() => {
@@ -63,7 +65,10 @@ export default function EduCareerSelect({ onSelect }) {
             transition={{ delay: idx * 0.05 }}
             whileHover={{ y: -5, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => onSelect(career.id)}
+            onClick={() => {
+              if (onSelect) onSelect(career.id);
+              navigate("/edu/branch");
+            }}
             className="group relative flex flex-col items-start p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-xl hover:border-blue-300 transition-all text-left overflow-hidden ring-1 ring-black/[0.03]"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-50 rounded-bl-full -mr-10 -mt-10 group-hover:scale-110 transition-transform duration-500" />

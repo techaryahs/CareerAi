@@ -2,8 +2,10 @@ import { useBooking } from "../context/BookingContext";
 import React, { useMemo } from "react";
 import { getStagesByBranch } from "../data/EduStageTemplates";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function EduSemesterSelect({ onSelect }) {
+  const navigate = useNavigate();
   const { selectedBranch, allCareers, selectedCareer, availableBranches } = useBooking();
 
   const stages = useMemo(() => {
@@ -70,7 +72,10 @@ export default function EduSemesterSelect({ onSelect }) {
             transition={{ delay: idx * 0.05 }}
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => onSelect(stage.id)}
+            onClick={() => {
+              if (onSelect) onSelect(stage.id);
+              navigate("/edu/subject");
+            }}
             className="flex flex-col items-center justify-center p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg hover:border-blue-500 hover:text-blue-700 transition-all text-center aspect-square md:aspect-auto"
           >
             <span className="text-3xl font-black text-blue-600 mb-2">{(stage.name || "").match(/\d+/)}</span>
@@ -84,7 +89,10 @@ export default function EduSemesterSelect({ onSelect }) {
               No specific stages found. You can proceed to view all subjects.
             </p>
             <button
-              onClick={() => onSelect(1)} // Default to 1 if no stages defined
+              onClick={() => {
+                if (onSelect) onSelect(1);
+                navigate("/edu/subject");
+              }}
               className="mt-4 text-blue-600 font-semibold hover:underline"
             >
               Proceed to Subjects &rarr;

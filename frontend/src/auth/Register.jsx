@@ -72,9 +72,9 @@ const Register = () => {
     try {
       // Use the API instance instead of fetch
       await api.post("api/auth/register", { ...formData, isPremium: false });
-      
+
       alert("✅ OTP sent to your email!");
-      navigate(`/verify-otp?email=${formData.email}`);
+      navigate(`/verify-otp?email=${encodeURIComponent(formData.email)}`);
 
     } catch (err) {
       console.error(err);
@@ -98,7 +98,7 @@ const Register = () => {
               with AI-driven guidance!
             </p>
           </div>
-          
+
           <img
             src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
             alt="illustration"

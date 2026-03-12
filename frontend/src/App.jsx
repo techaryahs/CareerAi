@@ -32,13 +32,7 @@ import CourseResults from "./pages/student/studyAbroad/pages/CourseResults";
 import VisaGuide from "./pages/student/studyAbroad/pages/VisaGuide";
 import StudyAbroadActionPlan from "./pages/student/studyAbroad/pages/ActionPlan";
 
-import DropoutHome from "./pages/student/dropout/pages/Home";
-import DropoutInfo from "./pages/student/dropout/pages/DropoutInfo";
-import PathChoice from "./pages/student/dropout/pages/PathChoice";
-import PathDetail from "./pages/student/dropout/pages/PathDetail";
-import EducationResults from "./pages/student/dropout/pages/EducationResults";
-import JobResults from "./pages/student/dropout/pages/JobResults";
-import ActionPlan from "./pages/student/dropout/pages/ActionPlan";
+import DropoutFlow from "./pages/student/dropout/pages/DropoutFlow";
 
 import TutorialHome from "./pages/student/Tutorials/TutorialHome";
 import DepartmentView from "./pages/student/Tutorials/DepartmentView";
@@ -76,7 +70,7 @@ import IndiaVsAbroadCompare from "./pages/student/IndiavsAbroad/CompareResult";
 import IndiaVsAbroad from "./pages/student/IndiavsAbroad/IndiaVsAbroad";
 
 import { ResumeProvider } from "./context/ResumeContext";
-import ResumeBuilderPage from "./pages/student/ResumeBuilder/AllComponents";
+import ResumeBuilderPage, { Template1, Template2, Template3, Template4, Template5, Template6 } from "./pages/student/ResumeBuilder/AllComponents";
 
 import EduHomePage from "./pages/student/EduTutor/MainPage/EduHomePage";
 import EduCareerSelect from "./pages/student/EduTutor/MainPage/EduCareerSelect";
@@ -129,35 +123,35 @@ function App() {
             />
             <Route path="/verify-otp" element={<VerifyOtp />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
-            
+
             {/* Root route – Home for guests, redirects to dashboard for logged‑in users */}
             <Route path="/services" element={<CareerJourney />} />
 
             <Route
-                path="/student-guidance/5th-7th"
-                element={<JuniorGuidance />}
-              />
-              <Route
-                path="/student-guidance/8th-10th"
-                element={<SeniorGuidance />}
-              />
-              <Route
-                path="/student-guidance/11th-12th"
-                element={<PostGuidence />}
-              />
-              <Route path="/student-guidance" element={<MainPage />} />
+              path="/student-guidance/5th-7th"
+              element={<JuniorGuidance />}
+            />
+            <Route
+              path="/student-guidance/8th-10th"
+              element={<SeniorGuidance />}
+            />
+            <Route
+              path="/student-guidance/11th-12th"
+              element={<PostGuidence />}
+            />
+            <Route path="/student-guidance" element={<MainPage />} />
 
-              <Route path="/interest-form" element={<InterestForm />} />
+            <Route path="/interest-form" element={<InterestForm />} />
 
-              <Route path="/careerquiz" element={<CareerQuiz />} />
-              
+            <Route path="/careerquiz" element={<CareerQuiz />} />
+
             {/* Protected routes based on user roles */}
             <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
 
               <Route path="/pricing" element={<PremiumPlans />} />
 
               <Route path="/services" element={<CareerJourney />} />
-              
+
               <Route path="/student-guidance" element={<MainPage />} />
               <Route
                 path="/student-guidance/5th-7th"
@@ -247,28 +241,7 @@ function App() {
 
               <Route path="/my-activity" element={<MyActivity />} />
 
-              <Route path="/services/dropout" element={<DropoutHome />} />
-              <Route path="/services/dropout/info" element={<DropoutInfo />} />
-              <Route
-                path="/services/dropout/path-choice"
-                element={<PathChoice />}
-              />
-              <Route
-                path="/services/dropout/path/:id"
-                element={<PathDetail />}
-              />
-              <Route
-                path="/services/dropout/education-results"
-                element={<EducationResults />}
-              />
-              <Route
-                path="/services/dropout/job-results"
-                element={<JobResults />}
-              />
-              <Route
-                path="/services/dropout/action-plan"
-                element={<ActionPlan />}
-              />
+              <Route path="/services/dropout" element={<DropoutFlow />} />
               <Route path="/resume-builder/1" element={<ResumeBuilder />} />
 
               {/* Study Abroad Service Routes */}
@@ -299,6 +272,10 @@ function App() {
               />
               <Route
                 path="/AllComponents"
+                element={<Navigate to="/AllComponents/standard" replace />}
+              />
+              <Route
+                path="/AllComponents/:type"
                 element={
                   <ResumeProvider>
                     <ResumeBuilderPage

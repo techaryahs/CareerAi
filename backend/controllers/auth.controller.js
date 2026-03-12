@@ -37,9 +37,10 @@ exports.register = async (req, res) => {
 
     // 🔢 Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    otpStore.set(normalizedEmail, otp);
+    const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes from now
+    otpStore.set(normalizedEmail, { otp, expiresAt });
 
-    console.log("📌 Generated OTP for student:", otp);
+    console.log("📌 Generated OTP for student:", otp, "Expires at:", new Date(expiresAt).toLocaleString());
 
     // 📧 Send OTP
     await sendEmail(
@@ -79,7 +80,7 @@ exports.register = async (req, res) => {
           </div>
 
           <p style="font-size:14px;">
-            ⏰ This OTP is valid for <b>5 minutes</b>.
+            ⏰ This OTP is valid for <b>10 minutes</b>.
           </p>
 
           <p style="font-size:14px;color:#64748b;">
@@ -112,8 +113,12 @@ exports.register = async (req, res) => {
 exports.resendOtp = async (req, res) => {
   try {
     const { email } = req.body;
+    if (!email) {
+      console.warn("⚠️ Resend OTP called without email");
+      return res.status(400).json({ error: "Email is required to resend OTP" });
+    }
     const normalizedEmail = email.toLowerCase().trim();
-    
+
     // Check if user exists
     const user = await User.findOne({ email: normalizedEmail });
     if (!user) {
@@ -126,19 +131,20 @@ exports.resendOtp = async (req, res) => {
 
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    otpStore.set(normalizedEmail, otp);
+    const expiresAt = Date.now() + 10 * 60 * 1000;
+    otpStore.set(normalizedEmail, { otp, expiresAt });
 
-    console.log(`📌 Resent OTP for ${normalizedEmail}: ${otp}`);
+    console.log(`📌 Resent OTP for ${normalizedEmail}: ${otp} (Expires: ${new Date(expiresAt).toLocaleTimeString()})`);
 
     await sendEmail(
-      normalizedEmail, 
-      "Resend - Verify Your Email", 
-      "", 
+      normalizedEmail,
+      "Resend - Verify Your Email",
+      "",
       `<div style="font-family:Arial,sans-serif;padding:20px;">
          <h2>Hello ${user.name},</h2>
          <p>Here is your new OTP for verification:</p>
          <h1 style="color:#1e40af;letter-spacing:5px;">${otp}</h1>
-         <p>Valid for 5 minutes.</p>
+         <p>Valid for 10 minutes.</p>
        </div>`
     );
 
@@ -154,18 +160,43 @@ exports.resendOtp = async (req, res) => {
    VERIFY OTP
 ========================= */
 exports.verifyOtp = async (req, res) => {
-  const { email, otp } = req.body;
-  const storedOtp = otpStore.get(email);
-  console.log("otp", otp);
-  console.log("email", email);
-  console.log("otp2", storedOtp);
+  try {
+    const { email, otp } = req.body;
+    const normalizedEmail = email?.toLowerCase().trim();
+    const storedData = otpStore.get(normalizedEmail);
 
-  if (storedOtp === otp) {
-    await User.findOneAndUpdate({ email }, { isVerified: true });
-    otpStore.delete(email);
+    console.log("📌 OTP Verification Attempt:");
+    console.log("   - Email:", normalizedEmail);
+    console.log("   - Entered OTP:", otp);
+    console.log("   - Stored Data:", storedData);
+
+    if (!storedData) {
+      return res.status(400).json({ error: 'No OTP found for this email. Please register again.' });
+    }
+
+    // Robust comparison (string vs string)
+    const isOtpMatch = storedData.otp.toString() === otp.toString();
+    const isExpired = Date.now() > storedData.expiresAt;
+
+    if (!isOtpMatch) {
+      console.warn("   ❌ OTP Mismatch");
+      return res.status(400).json({ error: 'Invalid OTP' });
+    }
+
+    if (isExpired) {
+      console.warn("   ❌ OTP Expired. Now:", new Date().toLocaleString(), "Expires:", new Date(storedData.expiresAt).toLocaleString());
+      otpStore.delete(normalizedEmail);
+      return res.status(400).json({ error: 'OTP has expired. Please resend.' });
+    }
+
+    console.log("   ✅ OTP Verified Successfully");
+    await User.findOneAndUpdate({ email: normalizedEmail }, { isVerified: true });
+    otpStore.delete(normalizedEmail);
     res.json({ message: 'OTP verified successfully' });
-  } else {
-    res.status(400).json({ error: 'Invalid or expired OTP' });
+
+  } catch (error) {
+    console.error("❌ verifyOtp Error:", error);
+    res.status(500).json({ error: "Server error during verification" });
   }
 };
 
@@ -196,27 +227,27 @@ exports.login = async (req, res) => {
 
     // Use the model method matchPassword
     if (user && (await user.matchPassword(password))) {
-       
-       // Optional: Email Verification Check (if still needed, user didn't explicitly ask to remove it but "clean login" usually implies standard checks. I'll keep it for safety unless they strictly said "use EXACTLY this logic". Their snippet didn't have verification check. I will COMMENT IT OUT to strictly follow "use this type of logic" request, ensuring minimum friction).
-       // if (user.role !== "admin" && !user.isVerified) { ... } 
-       
-      //  user.lastLogin = Date.now();
-       await user.save();
 
-       res.json({
-         message: "Login successful",
-         token: generateToken(user._id, user.role),
-         user: {
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            role: user.role,
-            isVerified: user.isVerified,
-            mobile: user.mobile,
-            profileImage: user.profileImage,
-            isPremium: user.isPremium
-         }
-       });
+      // Optional: Email Verification Check (if still needed, user didn't explicitly ask to remove it but "clean login" usually implies standard checks. I'll keep it for safety unless they strictly said "use EXACTLY this logic". Their snippet didn't have verification check. I will COMMENT IT OUT to strictly follow "use this type of logic" request, ensuring minimum friction).
+      // if (user.role !== "admin" && !user.isVerified) { ... } 
+
+      //  user.lastLogin = Date.now();
+      await user.save();
+
+      res.json({
+        message: "Login successful",
+        token: generateToken(user._id, user.role),
+        user: {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          isVerified: user.isVerified,
+          mobile: user.mobile,
+          profileImage: user.profileImage,
+          isPremium: user.isPremium
+        }
+      });
     } else {
       res.status(401).json({ error: "Invalid email or password" });
     }
@@ -296,9 +327,27 @@ exports.registerTeacher = async (req, res) => {
     newUser.teacherProfile = newTeacher._id;
     await newUser.save();
 
+    // 5️⃣ GENERATE & SEND OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresAt = Date.now() + 10 * 60 * 1000;
+    otpStore.set(normalizedEmail, { otp, expiresAt });
+
+    console.log("📌 Generated OTP for Teacher:", otp);
+
+    const emailHtml = `
+      <div style="font-family:Arial,sans-serif;padding:20px;">
+        <h2>Hello ${fullName}, 👋</h2>
+        <p>Thank you for registering as a Teacher on <b>CareerGenAI</b>.</p>
+        <p>Your OTP is: <b style="font-size:24px;color:#1e40af;">${otp}</b></p>
+        <p>This OTP is valid for 10 minutes.</p>
+      </div>
+    `;
+
+    await sendEmail(normalizedEmail, "Verify Teacher Account - CareerGenAI", "", emailHtml);
+
     res.status(201).json({
-      message: "Teacher registered successfully.",
-      teacher: { _id: newUser._id, email: newUser.email, role: newUser.role }
+      message: "Teacher registered successfully. Please verify your email.",
+      email: normalizedEmail
     });
 
   } catch (error) {
@@ -312,27 +361,47 @@ exports.registerTeacher = async (req, res) => {
 ========================= */
 exports.registerConsultant = async (req, res) => {
   try {
-    const { 
-        name, 
-        email, 
-        password, 
-        role: consultantRole, 
-        expertise, 
-        experience, 
-        bio, 
-        availability, 
-        image 
+    console.log("📌 Incoming Consultant Registration Payload:", req.body);
+    console.log("📌 Incoming File Data:", req.file);
+
+    let {
+      name,
+      email,
+      password,
+      role: consultantRole,
+      expertise,
+      experience,
+      bio,
+      availability,
+      image
     } = req.body;
 
-    const normalizedEmail = email.toLowerCase().trim();
+    // 1️⃣ HANDLE MULTIPART (FormData) PARSING
+    if (req.file) {
+      image = `/uploads/${req.file.filename}`;
+    }
 
-    // 1️⃣ CHECK UNIQUE EMAIL
+    if (typeof availability === 'string') {
+      try {
+        availability = JSON.parse(availability);
+      } catch (e) {
+        console.warn("⚠️ Failed to parse availability string, keeping as is:", e.message);
+      }
+    }
+
+    const normalizedEmail = email?.toLowerCase().trim();
+
+    if (!normalizedEmail || !password || !name) {
+      return res.status(400).json({ error: "Missing required basic fields (name, email, password)" });
+    }
+
+    // 2️⃣ CHECK UNIQUE EMAIL
     const existingUser = await User.findOne({ email: normalizedEmail });
     if (existingUser) {
       return res.status(400).json({ error: "Email already registered" });
     }
 
-    // 2️⃣ CREATE USER (Role: consultant)
+    // 3️⃣ CREATE USER (Role: consultant)
     const newUser = new User({
       name,
       email: normalizedEmail,
@@ -340,11 +409,11 @@ exports.registerConsultant = async (req, res) => {
       password: password,
       role: "consultant",
       isPremium: true,
-      isVerified: false 
+      isVerified: false
     });
     await newUser.save();
 
-    // 3️⃣ CREATE CONSULTANT PROFILE
+    // 4️⃣ CREATE CONSULTANT PROFILE
     const newConsultant = new Consultant({
       user: newUser._id,
       name,
@@ -359,13 +428,14 @@ exports.registerConsultant = async (req, res) => {
     });
     await newConsultant.save();
 
-    // 4️⃣ LINK PROFILE
+    // 5️⃣ LINK PROFILE
     newUser.consultantProfile = newConsultant._id;
     await newUser.save();
 
-    // 5️⃣ GENERATE & SEND OTP
+    // 6️⃣ GENERATE & SEND OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    otpStore.set(normalizedEmail, otp);
+    const expiresAt = Date.now() + 10 * 60 * 1000;
+    otpStore.set(normalizedEmail, { otp, expiresAt });
 
     console.log("📌 Generated OTP for Consultant:", otp);
 
@@ -374,7 +444,7 @@ exports.registerConsultant = async (req, res) => {
         <h2>Hello ${name}, 👋</h2>
         <p>Thank you for registering as a Consultant on <b>CareerGenAI</b>.</p>
         <p>Your OTP is: <b style="font-size:24px;color:#1e40af;">${otp}</b></p>
-        <p>This OTP is valid for 5 minutes.</p>
+        <p>This OTP is valid for 10 minutes.</p>
       </div>
     `;
 
@@ -387,7 +457,14 @@ exports.registerConsultant = async (req, res) => {
 
   } catch (error) {
     console.error("❌ Consultant Registration Error:", error);
-    res.status(500).json({ error: "Server error" });
+
+    // Check for Mongoose Validation Error
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(val => val.message);
+      return res.status(400).json({ error: messages.join(', ') });
+    }
+
+    res.status(500).json({ error: "Server error: " + error.message });
   }
 };
 
@@ -397,7 +474,7 @@ exports.registerConsultant = async (req, res) => {
 exports.registerParent = async (req, res) => {
   try {
     const { parentName, email, password, studentId } = req.body;
-    
+
     // Check existing
     const existing = await User.findOne({ email });
     if (existing) return res.status(400).json({ error: "Email already registered" });
@@ -405,17 +482,17 @@ exports.registerParent = async (req, res) => {
     // Validate Student
     const student = await User.findById(studentId);
     if (!student || student.role !== "student") {
-        return res.status(404).json({ error: "Student not found" });
+      return res.status(404).json({ error: "Student not found" });
     }
 
     // Create Parent
     const parent = new User({
-        name: parentName,
-        email,
-        password,
-        role: "parent",
-        parentOf: [student._id],
-        isVerified: false
+      name: parentName,
+      email,
+      password,
+      role: "parent",
+      parentOf: [student._id],
+      isVerified: false
     });
     await parent.save();
 
@@ -423,17 +500,18 @@ exports.registerParent = async (req, res) => {
     student.parents.push(parent._id);
     await student.save();
 
-   // Generate OTP
-   const otp = Math.floor(100000 + Math.random() * 900000).toString();
-   otpStore.set(email, otp);
+    // Generate OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresAt = Date.now() + 10 * 60 * 1000;
+    otpStore.set(email, { otp, expiresAt });
 
-   await sendEmail(email, "Verify Parent Account", "", `<p>OTP: ${otp}</p>`);
+    await sendEmail(email, "Verify Parent Account", "", `<p>OTP: ${otp}</p><p>Valid for 10 mins.</p>`);
 
-   res.status(201).json({ message: "Parent registered", parentId: parent._id });
+    res.status(201).json({ message: "Parent registered", parentId: parent._id });
 
   } catch (error) {
-      console.error("❌ Parent Error:", error);
-      res.status(500).json({ error: "Server error" });
+    console.error("❌ Parent Error:", error);
+    res.status(500).json({ error: "Server error" });
   }
 };
 
@@ -441,33 +519,51 @@ exports.registerParent = async (req, res) => {
    FORGOT / RESET PASSWORD
 ========================= */
 exports.forgotPassword = async (req, res) => {
-    // Existing logic... 
-    // Simplified for brevity, assume similar structure finding User by email
-    const { email } = req.body;
-    const user = await User.findOne({ email });
-    if(!user) return res.status(404).json({error: "User not found"});
-    
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    otpStore.set(email, { otp, expiresAt: Date.now() + 600000 });
-    
-    await sendEmail(email, "Reset Password", "", `<p>OTP: ${otp}</p>`);
-    res.json({message: "OTP sent"});
+  // Existing logic... 
+  // Simplified for brevity, assume similar structure finding User by email
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) return res.status(404).json({ error: "User not found" });
+
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  otpStore.set(email, { otp, expiresAt: Date.now() + 600000 });
+
+  await sendEmail(email, "Reset Password", "", `<p>OTP: ${otp}</p>`);
+  res.json({ message: "OTP sent" });
 };
 
 exports.verifyForgotOtp = async (req, res) => {
-    const { email, otp } = req.body;
-    const data = otpStore.get(email);
-    if (!data || data.otp !== otp) return res.status(400).json({error: "Invalid OTP"});
-    res.json({message: "Verified"});
+  const { email, otp } = req.body;
+  const data = otpStore.get(email);
+
+  if (!data) return res.status(400).json({ error: "No OTP found" });
+
+  const isOtpMatch = data.otp.toString() === otp.toString();
+  const isExpired = Date.now() > data.expiresAt;
+
+  if (!isOtpMatch) return res.status(400).json({ error: "Invalid OTP" });
+  if (isExpired) return res.status(400).json({ error: "OTP expired" });
+
+  res.json({ message: "Verified" });
 };
 
 exports.resetPassword = async (req, res) => {
-    const { email, otp, newPassword } = req.body;
-    const data = otpStore.get(email);
-    if (!data || data.otp !== otp) return res.status(400).json({error: "Invalid OTP"});
-    
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await User.findOneAndUpdate({ email }, { password: hashedPassword });
+  const { email, otp, newPassword } = req.body;
+  const data = otpStore.get(email);
+
+  if (!data) return res.status(400).json({ error: "No OTP found" });
+
+  const isOtpMatch = data.otp.toString() === otp.toString();
+  const isExpired = Date.now() > data.expiresAt;
+
+  if (!isOtpMatch) return res.status(400).json({ error: "Invalid OTP" });
+  if (isExpired) {
     otpStore.delete(email);
-    res.json({message: "Password reset"});
+    return res.status(400).json({ error: "OTP expired" });
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+  await User.findOneAndUpdate({ email }, { password: hashedPassword });
+  otpStore.delete(email);
+  res.json({ message: "Password reset" });
 };

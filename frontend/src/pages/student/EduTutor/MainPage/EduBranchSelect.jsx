@@ -1,9 +1,8 @@
-import { useBooking } from "../context/BookingContext";
-import React, { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function EduBranchSelect({ onSelect }) {
   const { availableBranches, selectedCareer, allCareers } = useBooking();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
   const careerName = useMemo(() => {
@@ -77,7 +76,10 @@ export default function EduBranchSelect({ onSelect }) {
             transition={{ delay: idx * 0.05 }}
             whileHover={{ scale: 1.02, backgroundColor: "rgba(239, 246, 255, 1)" }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => onSelect(branch.id)}
+            onClick={() => {
+              if (onSelect) onSelect(branch.id);
+              navigate("/edu/semester");
+            }}
             className="group relative flex flex-col items-start p-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md hover:border-blue-400 transition-all text-left overflow-hidden"
           >
             <div className="flex w-full justify-between items-center">

@@ -37,8 +37,8 @@ const Login = () => {
         try {
           await api.post("/api/auth/resend-otp", { email: user.email });
           alert("⚠️ Account not verified. A new OTP has been sent.");
-        } catch (ignored) {}
-        navigate(`/verify-otp?email=${user.email}`);
+        } catch (ignored) { }
+        navigate(`/verify-otp?email=${encodeURIComponent(user.email)}`);
         return;
       }
 

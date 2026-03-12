@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/PageLoader/PageLoader";
-import PremiumPopup from "../../../components/PremiumPlans/PremiumPlans"; 
+import PremiumPopup from "../../../components/PremiumPlans/PremiumPlans";
 
 import template1Img from "../../../assets/template/resume1.png";
 import template2Img from "../../../assets/template/resume2.png";
 import template3Img from "../../../assets/template/resume3.png";
 
-import {useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 
 const premiumImages = [
   "/template 1.png",
@@ -22,8 +22,8 @@ export default function ResumeTemplateSelector() {
   const navigate = useNavigate();
   const [pageLoading, setPageLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
-  
-  const {user} = useAuth();
+
+  const { user } = useAuth();
   const isPremium = user?.isPremium || false;
 
   const handleSelectTemplate = (templateId, isLocked) => {
@@ -98,7 +98,7 @@ export default function ResumeTemplateSelector() {
       {/* --- FULL WIDTH PREMIUM SECTION --- */}
       <div className="w-full max-w-5xl">
         <div
-          onClick={() => isPremium ? navigate("/AllComponents") : setShowPopup(true)}
+          onClick={() => isPremium ? navigate("/AllComponents/executive") : setShowPopup(true)}
           className="group cursor-pointer relative p-6 md:p-10 border-2 border-yellow-500 rounded-2xl shadow-xl bg-white overflow-hidden transition-all duration-300 transform hover:shadow-2xl"
         >
           {!user.isPremium && (
@@ -120,23 +120,23 @@ export default function ResumeTemplateSelector() {
               PRO ACCESS
             </span>
           </div>
-          
+
           {/* MARQUEE CONTAINER (FULL WIDTH) */}
           <div className="relative w-full h-56 bg-gray-50 rounded-xl overflow-hidden border border-yellow-100 mb-6">
             <div className="animate-marquee flex gap-4 p-4">
               {[...premiumImages, ...premiumImages, ...premiumImages].map((img, index) => (
-                <img 
-                  key={index} 
-                  src={img} 
-                  alt="preview" 
-                  className="h-48 w-36 object-cover rounded-lg shadow-md border border-gray-200 transition-transform hover:scale-105" 
+                <img
+                  key={index}
+                  src={img}
+                  alt="preview"
+                  className="h-48 w-36 object-cover rounded-lg shadow-md border border-gray-200 transition-transform hover:scale-105"
                 />
               ))}
             </div>
             <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
             <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
           </div>
-          
+
           <button className={`w-full py-4 rounded-xl text-xl font-bold shadow-lg transition-all bg-yellow-600 text-white`}>
             {isPremium ? "Explore Executive Templates" : "Upgrade to Pro Now"}
           </button>

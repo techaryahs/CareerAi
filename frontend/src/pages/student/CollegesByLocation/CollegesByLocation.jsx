@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { logStudentActivity } from "../../../utils/logActivity";
 import './CollegesByLocation.css';
 // import PremiumPopup from '../components/PremiumPlans';
 import { staticColleges } from '../../data/staticColleges';
@@ -11,8 +12,9 @@ const TopColleges = () => {
   const [collegeName, setCollegeName] = useState('');
   const [percentile, setPercentile] = useState('');
   const [colleges, setColleges] = useState([]);
+  const startTime = React.useRef(Date.now());
   const [loading, setLoading] = useState(false);
-  const [pageLoading, setPageLoading] = useState(true); 
+  const [pageLoading, setPageLoading] = useState(true);
   const [error, setError] = useState('');
   const [, setUser] = useState(null);
   // const [showPremiumPopup, setShowPremiumPopup] = useState(false);
@@ -30,93 +32,106 @@ const TopColleges = () => {
         .catch((err) => console.error('Failed to fetch user:', err));
     }
 
-    const timer = setTimeout(() => setPageLoading(false), 1200); 
+    const timer = setTimeout(() => setPageLoading(false), 1200);
     return () => clearTimeout(timer);
   }, [API]);
 
-const handleSearch = async () => {
-  if ((!percentile || !course) && !collegeName) {
-    return alert('Please enter Percentile & Course OR College Name');
-  }
+  const handleSearch = async () => {
+    if ((!percentile || !course) && !collegeName) {
+      return alert('Please enter Percentile & Course OR College Name');
+    }
 
-  setLoading(true);
-  setError('');
-  setColleges([]);
+    // ✅ LOG ACTIVITY (Log as soon as search starts)
+    const durationInSeconds = Math.max(1, Math.floor((Date.now() - startTime.current) / 1000));
 
-  // 🔹 Always start with static colleges
-  let filteredColleges = [...staticColleges];
-
-  const inputCourse = course.trim().toLowerCase();
-  const inputCollegeName = collegeName.trim().toLowerCase();
-  const inputLocation = location.trim().toLowerCase();
-
-  if (inputCollegeName) {
-    filteredColleges = filteredColleges.filter((clg) =>
-      clg.name.toLowerCase().includes(inputCollegeName)
+    logStudentActivity(
+      "COLLEGE_BY_LOCATION",
+      "Searched Colleges by Location",
+      `User searched for ${course || collegeName} in ${location}`,
+      { course, location, collegeName, percentile },
+      durationInSeconds,
+      null,
+      "Completed"
     );
-  } else {
-    if (inputCourse) {
+
+    setLoading(true);
+    setError('');
+    setColleges([]);
+
+    // 🔹 Always start with static colleges
+    let filteredColleges = [...staticColleges];
+
+    const inputCourse = course.trim().toLowerCase();
+    const inputCollegeName = collegeName.trim().toLowerCase();
+    const inputLocation = location.trim().toLowerCase();
+
+    if (inputCollegeName) {
       filteredColleges = filteredColleges.filter((clg) =>
-        clg.course.toLowerCase().includes(inputCourse)
+        clg.name.toLowerCase().includes(inputCollegeName)
       );
+    } else {
+      if (inputCourse) {
+        filteredColleges = filteredColleges.filter((clg) =>
+          clg.course.toLowerCase().includes(inputCourse)
+        );
+      }
+      if (inputLocation) {
+        filteredColleges = filteredColleges.filter((clg) =>
+          clg.location.toLowerCase().includes(inputLocation)
+        );
+      }
+      if (percentile) {
+        filteredColleges = filteredColleges.filter((clg) => {
+          if (clg.cutOffs) {
+            return Object.values(clg.cutOffs).some((cutoff) => {
+              const numericCutoff = parseFloat(cutoff.toString().replace('%', ''));
+              return parseFloat(percentile) >= numericCutoff;
+            });
+          }
+          return false;
+        });
+      }
     }
-    if (inputLocation) {
-      filteredColleges = filteredColleges.filter((clg) =>
-        clg.location.toLowerCase().includes(inputLocation)
-      );
+
+    // ✅ If static matches exist, show them immediately
+    if (filteredColleges.length > 0) {
+      setColleges(filteredColleges);
     }
-    if (percentile) {
-      filteredColleges = filteredColleges.filter((clg) => {
-        if (clg.cutOffs) {
-          return Object.values(clg.cutOffs).some((cutoff) => {
-            const numericCutoff = parseFloat(cutoff.toString().replace('%', ''));
-            return parseFloat(percentile) >= numericCutoff;
-          });
-        }
-        return false;
+
+    try {
+      // 🔹 Try API call
+      const res = await axios.post(`${API}/api/colleges`, {
+        percentile,
+        course,
+        location,
+        collegeName,
       });
+
+      const dynamicColleges = res.data.colleges || [];
+
+      const combined = [
+        ...filteredColleges,
+        ...dynamicColleges.filter(
+          (dyn) => !filteredColleges.some((stat) => stat.name === dyn.name)
+        ),
+      ];
+
+      if (combined.length > 0) {
+        setColleges(combined);
+      } else if (filteredColleges.length === 0) {
+        setError('❌ No results found for your criteria.');
+      }
+    } catch (err) {
+      console.error("API failed:", err);
+
+      // ✅ Only show error if static also empty
+      if (filteredColleges.length === 0) {
+        setError('⚠️ Error retrieving college list. Please try again.');
+      }
+    } finally {
+      setLoading(false);
     }
-  }
-
-  // ✅ If static matches exist, show them immediately
-  if (filteredColleges.length > 0) {
-    setColleges(filteredColleges);
-  }
-
-  try {
-    // 🔹 Try API call
-    const res = await axios.post(`${API}/api/colleges`, {
-      percentile,
-      course,
-      location,
-      collegeName,
-    });
-
-    const dynamicColleges = res.data.colleges || [];
-
-    const combined = [
-      ...filteredColleges,
-      ...dynamicColleges.filter(
-        (dyn) => !filteredColleges.some((stat) => stat.name === dyn.name)
-      ),
-    ];
-
-    if (combined.length > 0) {
-      setColleges(combined);
-    } else if (filteredColleges.length === 0) {
-      setError('❌ No results found for your criteria.');
-    }
-  } catch (err) {
-    console.error("API failed:", err);
-
-    // ✅ Only show error if static also empty
-    if (filteredColleges.length === 0) {
-      setError('⚠️ Error retrieving college list. Please try again.');
-    }
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
 
 

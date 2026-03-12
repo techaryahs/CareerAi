@@ -14,8 +14,13 @@ const verifyToken = (req, res, next) => {
     // Verify token using secret
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Attach user ID to request object
-    req.user = { id: decoded.userId };
+    // Attach user ID and role to request object
+    // We attach both id and _id for compatibility with various controllers
+    req.user = {
+      id: decoded.userId,
+      _id: decoded.userId,
+      role: decoded.role
+    };
     next();
   } catch (err) {
     console.error('Invalid token:', err.message);

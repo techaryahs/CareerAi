@@ -8,7 +8,14 @@ const VerifyOtp = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const email = new URLSearchParams(location.search).get("email");
+  const emailParam = new URLSearchParams(location.search).get("email");
+  const emailState = location.state?.email;
+  const email = emailParam || emailState;
+
+  console.log("📌 VerifyOtp Component loaded:");
+  console.log("   - emailParam:", emailParam);
+  console.log("   - emailState:", emailState);
+  console.log("   - effective email:", email);
 
   const verifyOtp = async (enteredOtp) => {
     try {
@@ -94,17 +101,17 @@ const VerifyOtp = () => {
         </div>
 
         <button
-           onClick={() => {
-              const enteredOtp = otp.join("");
-              if (enteredOtp.length === 6) verifyOtp(enteredOtp);
-           }}
-           className="w-full bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-lg transform transition-all duration-200 hover:scale-[1.01] hover:shadow-lg"
+          onClick={() => {
+            const enteredOtp = otp.join("");
+            if (enteredOtp.length === 6) verifyOtp(enteredOtp);
+          }}
+          className="w-full bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-lg transform transition-all duration-200 hover:scale-[1.01] hover:shadow-lg"
         >
           Verify OTP
         </button>
-        
+
         <div className="mt-6 text-center text-sm text-gray-500">
-           Didn't receive code? <button onClick={handleResendOtp} className="text-indigo-600 font-semibold hover:underline bg-transparent border-none cursor-pointer">Resend OTP</button>
+          Didn't receive code? <button onClick={handleResendOtp} className="text-indigo-600 font-semibold hover:underline bg-transparent border-none cursor-pointer">Resend OTP</button>
         </div>
       </div>
     </div>

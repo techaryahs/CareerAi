@@ -34,6 +34,13 @@ const steps = [
                 path: "/student-guidance",
                 label: "Get Guidance"
             },
+            {
+                title: "College by location",
+                desc: "Find colleges based on your location.",
+                icon: <Globe className="w-8 h-8 text-blue-500" />,
+                path: "/college",
+                label: "Find Colleges"
+            }
         ]
 
     },
@@ -93,11 +100,18 @@ const steps = [
                 label: "Open EduTutor"
             },
             {
-                title: "India vs Abroad",
+                title: "Study Abroad",
                 desc: "Decide where to study based on costs and ROI.",
                 icon: <Globe className="w-8 h-8 text-blue-500" />,
-                path: "/india-vs-abroad",
+                path: "/services/study-abroad",
                 label: "Compare Now"
+            },
+            {
+                title: "Dropout Risk Assessment",
+                desc: "Calculate the impact of dropping out on your future prospects.",
+                icon: <Globe className="w-8 h-8 text-blue-500" />,
+                path: "/services/dropout",
+                label: "Assess Risk"
             }
         ]
     },

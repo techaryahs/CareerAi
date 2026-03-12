@@ -10,7 +10,8 @@ router.get("/me", verifyToken, authCtrl.getMe);
 router.post("/register", authCtrl.register);              // Student register
 router.post("/register-parent", authCtrl.registerParent); // ✅ Parent register (NEW)
 router.post("/register-teacher", authCtrl.registerTeacher); // ✅ Teacher register (NEW)
-router.post("/register-consultant", authCtrl.registerConsultant); // ✅ Consultant register (NEW)
+const upload = require("../config/multer.config");
+router.post("/register-consultant", upload.single('image'), authCtrl.registerConsultant); // ✅ Consultant register (NEW)
 
 router.post("/verify-otp", authCtrl.verifyOtp);
 router.post("/resend-otp", authCtrl.resendOtp);
