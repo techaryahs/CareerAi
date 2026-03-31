@@ -42,7 +42,11 @@ exports.getUserByEmail = async (req, res) => {
       await user.save();
     }
 
-    res.json(user);
+    // ✅ Explicitly add the role finding (since some models might not have it)
+    const userObj = user.toObject();
+    userObj.role = role;
+    
+    res.json(userObj);
   } catch (error) {
     console.error("Error fetching user:", error);
     res.status(500).json({ message: 'Server error' });

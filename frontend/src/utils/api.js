@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5001";
+const API = import.meta.env.REACT_APP_API_URL || "http://localhost:5001";
 
 const api = axios.create({
     baseURL: API,

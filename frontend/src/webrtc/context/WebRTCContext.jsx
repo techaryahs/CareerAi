@@ -202,7 +202,6 @@ export const WebRTCProvider = ({ children }) => {
 
     // Socket
     socket,
-    connected,
     error,
     url,
     transport,
