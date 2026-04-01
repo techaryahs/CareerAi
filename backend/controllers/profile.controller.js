@@ -103,3 +103,64 @@ exports.addProfileItem = async (req, res) => {
     res.status(500).json({ message: "Server error adding profile section" });
   }
 };
+
+exports.updateProfileItem = async (req, res) => {
+  try {
+    const { section, itemId, data } = req.body;
+    const userId = req.params.userId || (req.user ? req.user.id : null);
+
+    if (!userId) return res.status(401).json({ message: "Authentication required" });
+    if (!section || !itemId || !data) return res.status(400).json({ message: "Missing information" });
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    if (!user.profile || !user.profile[section]) {
+      return res.status(404).json({ message: "Section not found" });
+    }
+
+    const itemIndex = user.profile[section].findIndex(item => item._id.toString() === itemId);
+    if (itemIndex === -1) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    // Merge existing data with new data
+    user.profile[section][itemIndex] = { ...user.profile[section][itemIndex].toObject(), ...data };
+    
+    user.markModified(`profile.${section}`);
+    await user.save();
+
+    res.json({ message: "Item updated successfully", profile: user.profile });
+  } catch (err) {
+    console.error("Profile item update error:", err);
+    res.status(500).json({ message: "Server error updating profile item" });
+  }
+};
+
+exports.deleteProfileItem = async (req, res) => {
+  try {
+    const { section, itemId } = req.body;
+    const userId = req.params.userId || (req.user ? req.user.id : null);
+
+    if (!userId) return res.status(401).json({ message: "Authentication required" });
+    if (!section || !itemId) return res.status(400).json({ message: "Missing section or itemId" });
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    if (!user.profile || !user.profile[section]) {
+      return res.status(404).json({ message: "Section not found" });
+    }
+
+    user.profile[section] = user.profile[section].filter(item => item._id.toString() !== itemId);
+    
+    user.markModified(`profile.${section}`);
+    await user.save();
+
+    res.json({ message: "Item deleted successfully", profile: user.profile });
+  } catch (err) {
+    console.error("Profile item deletion error:", err);
+    res.status(500).json({ message: "Server error deleting profile item" });
+  }
+};
+

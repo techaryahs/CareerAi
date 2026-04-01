@@ -96,6 +96,8 @@ exports.updateProfile = async (req, res) => {
 
     if (name) user.name = name;
     if (mobile) user.mobile = mobile;
+    if (req.body.country) user.country = req.body.country;
+    if (req.body.state) user.state = req.body.state;
     if (bio) user.profile.bio = bio;
     if (location) user.profile.location = location;
     if (portfolio) user.profile.portfolio = portfolio;

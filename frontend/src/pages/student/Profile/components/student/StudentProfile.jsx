@@ -40,7 +40,7 @@ const PROFILE_SECTIONS = [
     { id: 'test_scores', title: 'Test Scores', icon: <FaFileInvoice /> },
 ];
 
-export default function StudentProfile({ user, onProfileUpdate, onAddItem }) {
+export default function StudentProfile({ user, onProfileUpdate, onAddItem, onUpdateItem, onDeleteItem }) {
     const [isEditing, setIsEditing] = useState(false);
     const [cards, setCards] = useState(RECOMMENDED_CARDS);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -106,6 +106,9 @@ export default function StudentProfile({ user, onProfileUpdate, onAddItem }) {
                     user={user} 
                     onClose={() => setIsEditing(false)} 
                     onSave={async (data) => { await onProfileUpdate(data); setIsEditing(false); }} 
+                    onAddItem={onAddItem}
+                    onUpdateItem={onUpdateItem}
+                    onDeleteItem={onDeleteItem}
                 />
             </div>
         );
