@@ -4,7 +4,7 @@
 // For localhost development
 const getBaseUrl = () => {
   const envUrl =
-    import.meta.env.VITE_WEBRTC_SERVER_URL || import.meta.env.VITE_API_URL;
+    import.meta.env.VITE_WEBRTC_SERVER_URL || import.meta.env.REACT_APP_API_URL;
   if (envUrl) return envUrl;
 
   // Fallback to current domain but port 5001 for backend

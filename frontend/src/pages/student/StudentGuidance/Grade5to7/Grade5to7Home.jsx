@@ -23,7 +23,7 @@ export default function Grade5to7Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   // Configuration
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
+  const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5001";
   const STAGE_KEY = "stage5to7";
   const CATEGORY_NAME = "Self-Assessment 5th to 7th";
 

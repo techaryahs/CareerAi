@@ -3,7 +3,7 @@ import axios from "axios";
 import { FaUserShield, FaEnvelope, FaLock, FaKey, FaArrowLeft, FaCheck } from 'react-icons/fa';
 
 const ParentRegisterModal = ({ studentId, onClose }) => {
-  const API = import.meta.env.VITE_API_URL;
+  const API = import.meta.env.REACT_APP_API_URL;
 
   const [step, setStep] = useState('register'); // 'register' or 'verify'
   const [loading, setLoading] = useState(false);

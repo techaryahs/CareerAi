@@ -18,7 +18,7 @@ const BookSlot = () => {
   const [isBooking, setIsBooking] = useState(false);
   const [userEmail, setUserEmail] = useState("");
 
-  const API = import.meta.env.VITE_API_URL;
+  const API = import.meta.env.REACT_APP_API_URL;
 
   // Helper to format 24h to 12h for UI
   const formatTimeForDisplay = (time24h) => {

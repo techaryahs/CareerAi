@@ -122,7 +122,7 @@ const Consult = () => {
   useEffect(() => {
     const fetchConsultants = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/bookings/consultants`);
+        const res = await axios.get(`${import.meta.env.REACT_APP_API_URL}/api/bookings/consultants`);
         setConsultants(res.data.consultants || []);
       } catch (err) {
         console.error("❌ Failed to fetch consultants:", err.message);
