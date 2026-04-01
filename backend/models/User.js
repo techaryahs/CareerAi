@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    dob: { type: String },
+    gender: { type: String },
+    country: { type: String },
+    state: { type: String },
     role: {
       type: String,
       enum: ["student", "teacher", "consultant", "parent", "admin"],

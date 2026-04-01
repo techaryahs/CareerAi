@@ -144,11 +144,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 13px 16px;
+    padding: 10px 14px;
     background: #fff;
     border: 1.5px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 15px;
+    border-radius: 10px;
+    font-size: 14px;
     color: #0f172a;
     font-weight: 500;
     cursor: pointer;
@@ -387,9 +387,10 @@
 
 .wide-input-with-icon svg {
     position: absolute;
-    left: 16px;
+    left: 14px;
     color: #94a3b8;
     pointer-events: none;
+    font-size: 14px;
 }
 
 .wide-input-with-icon.disabled svg.wide-lock-icon {
@@ -409,11 +410,11 @@
 .wide-form-group input,
 .wide-form-group textarea {
     width: 100%;
-    padding: 14px 16px 14px 48px;
+    padding: 10px 14px 10px 42px;
     background-color: #fff;
     border: 1.5px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 15px;
+    border-radius: 10px;
+    font-size: 14px;
     color: #0f172a;
     font-weight: 500;
     transition: all 0.2s;
