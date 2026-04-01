@@ -1,68 +1,53 @@
-const mongoose = require("mongoose");
-const User = require("../models/user");
+const User = require("../models/User");
 
-/* =========================
-   GET PROFILE (WITH SERVICES)
-========================= */
 exports.getProfile = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const user = await User.findById(req.user.id)
+      .select("-password")
+      .populate("profile.teacherProfile profile.consultantProfile");
 
-    if (mongoose.connection.readyState !== 1) {
-      return res.status(503).json({ error: "Database not available" });
-    }
-
-    const user = await User.findById(userId).lean();
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ message: "User not found" });
     }
 
-    res.json({
-      profile: {
-        name: user.name,
-        email: user.email,
-        mobile: user.mobile,
-        avatar:
-          user.avatar ||
-          "https://placehold.co/200x200/E2E8F0/1A237E?text=U"
-      },
-      premium: {
-        isPremium: user.isPremium,
-        premiumPlan: user.premiumPlan,
-        premiumStartAt: user.premiumStartAt,
-        premiumExpiresAt: user.premiumExpiresAt
-      },
-      services: user.serviceActivity || {}
-    });
+    // Auto init profile if missing
+    if (!user.profile) {
+      user.profile = {};
+      await user.save();
+    }
 
-  } catch (error) {
-    console.error("Get profile error:", error);
-    res.status(500).json({ error: "Failed to fetch profile" });
+    res.json(user);
+  } catch (err) {
+    console.error("Profile fetch error:", err);
+    res.status(500).json({ message: "Server error fetching profile" });
   }
 };
 
-/* =========================
-   UPDATE PROFILE
-========================= */
 exports.updateProfile = async (req, res) => {
   try {
-    const { userId } = req.params;
-    const { name, email, mobile, avatar } = req.body;
-
-    if (mongoose.connection.readyState !== 1) {
-      return res.status(503).json({ error: "Database not available" });
+    const { name, mobile, bio, location, portfolio } = req.body;
+    let imagePath = null;
+    if (req.file) {
+      imagePath = `/uploads/${req.file.filename}`;
     }
 
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { name, email, mobile, avatar },
-      { new: true }
-    );
+    let user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    
+    if (!user.profile) user.profile = {};
 
-    res.json(updatedUser);
+    if (name) user.name = name;
+    if (mobile) user.mobile = mobile;
+    if (bio) user.profile.bio = bio;
+    if (location) user.profile.location = location;
+    if (portfolio) user.profile.portfolio = portfolio;
+    if (imagePath) user.profile.profileImage = imagePath;
 
-  } catch (error) {
-    console.error("Update profile error:", error);
-    res.status(500).json({ error: "Failed to update profile" });
+    await user.save();
+    
+    res.json({ message: "Profile updated successfully", user });
+  } catch (err) {
+    console.error("Profile update error:", err);
+    res.status(500).json({ message: "Server error updating profile" });
   }
 };
