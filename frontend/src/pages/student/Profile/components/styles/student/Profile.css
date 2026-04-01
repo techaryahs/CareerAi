@@ -112,6 +112,359 @@ h4 {
     /* Subtle hover effect */
 }
 
+/* === RECOMMENDED SECTION (YMGRAD STYLE) === */
+.recommended-section-v3 {
+    padding: var(--space-xl);
+    margin-bottom: var(--space-lg);
+}
+
+.section-header-v3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: var(--space-xl);
+}
+
+.icon-box-v3.star {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    border: 1px solid var(--border-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-sub);
+}
+
+.section-title-v3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px !important;
+    color: var(--text-body);
+}
+
+.profile-status-v3 {
+    margin-bottom: var(--space-xl);
+}
+
+.status-label-v3 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+.status-count-v3 {
+    color: var(--text-sub);
+}
+
+.progress-bar-v3 {
+    height: 8px;
+    background: #f0f2f5;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-fill-v3 {
+    height: 100%;
+    background: var(--primary); /* Blue theme */
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.status-tip-v3 {
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.5;
+}
+
+/* === RECOMMENDATIONS CAROUSEL === */
+.recommendations-carousel-v3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.carousel-track-v3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    flex-grow: 1;
+}
+
+.carousel-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border-main);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-sub);
+    transition: all 0.2s;
+}
+
+.carousel-btn:hover:not(:disabled) {
+    background: #f8f9fa;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.rec-card-v3 {
+    border: 1px solid var(--border-main);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+    background: #fff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rec-card-v3:hover {
+    border-color: var(--primary-light);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transform: translateY(-4px);
+}
+
+.rec-card-header {
+    display: flex;
+    gap: 16px;
+}
+
+.rec-card-emoji {
+    font-size: 32px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.rec-card-text h4 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+
+.rec-card-text p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.5;
+}
+
+.rec-card-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-skip-v3, .btn-add-v3 {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.btn-skip-v3 {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
+.btn-add-v3 {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-skip-v3:hover { background: #e5e7eb; transform: translateY(-1px); }
+.btn-add-v3:hover { background: var(--primary-light); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0, 64, 128, 0.2); }
+.btn-add-v3:active, .btn-skip-v3:active { transform: translateY(0); }
+
+/* === PROFILE SECTIONS LIST === */
+.profile-sections-list-v3 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: var(--space-xl);
+}
+
+.section-row-v3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: 12px;
+}
+
+.section-row-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.section-row-icon {
+    font-size: 18px;
+    color: var(--text-sub);
+    width: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.section-row-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-body);
+}
+
+.section-add-btn-v3 {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary); /* Blue theme */
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.section-add-btn-v3:hover {
+    transform: scale(1.1);
+    background: var(--primary-light);
+}
+
+/* === STUDY ABROAD COMMON CARD STYLE === */
+.study-card-v3 {
+    background: #ffffff;
+    border-radius: var(--radius-md, 12px);
+    border: 1px solid var(--border-main, #e2e8f0);
+    padding: 24px;
+    transition: all 0.3s ease;
+}
+
+.study-card-v3:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+    border-color: var(--primary-light, #007acc);
+}
+
+.study-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.study-card-inner.items-start {
+    align-items: flex-start;
+}
+
+.study-card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--primary-glow, rgba(0, 64, 128, 0.05));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--primary, #004080);
+    flex-shrink: 0;
+}
+
+.study-card-info {
+    flex-grow: 1;
+}
+
+.study-card-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main, #1a202c);
+    margin: 0;
+}
+
+.study-card-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-sub, #718096);
+    text-transform: uppercase;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+}
+
+.study-card-description {
+    font-size: 13px;
+    color: var(--text-sub, #718096);
+    line-height: 1.5;
+    margin-top: 6px;
+}
+
+.study-action-btn-blue {
+    background: var(--primary, #004080);
+    color: #ffffff !important;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    width: fit-content;
+    text-decoration: none;
+}
+
+.study-action-btn-blue:hover {
+    background: var(--primary-light, #007acc);
+    gap: 15px;
+}
+
+/* === QUIZ & MARKETING SPECIFIC === */
+.score-badge-study {
+    width: 54px;
+    height: 54px;
+    background: var(--primary, #004080);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.benefit-list-study {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.career-iq-study-style {
+    margin-bottom: var(--space-lg, 16px);
+}
+
 /* === GLOBAL ANIMATIONS === */
 @keyframes shimmer {
     0% {
@@ -143,18 +496,20 @@ h4 {
 @media (max-width: 1024px) {
     .profile-page-wrapper {
         padding: 0;
-        /* Remove padding for seamless mobile look */
     }
 
     .profile-layout {
         grid-template-columns: 1fr;
         gap: var(--space-md);
         padding: 0 var(--space-md) var(--space-xl);
-        /* Add padding here for content below header */
     }
 
     .profile-main-column,
     .profile-side-column {
         gap: var(--space-md);
+    }
+    
+    .carousel-track-v3 {
+        grid-template-columns: 1fr;
     }
 }

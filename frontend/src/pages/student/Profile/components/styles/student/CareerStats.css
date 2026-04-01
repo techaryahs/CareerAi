@@ -1,86 +1,25 @@
-/* === RESTORED ORIGINAL CAREER STATS === */
-.career-stats-modern {
-    margin-bottom: var(--space-lg);
-}
-
-.stats-grid-modern {
+/* === STUDY ABROAD DASHBOARD STYLE GRID === */
+.stats-grid-study-abroad {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-md);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg, 16px);
+    margin-bottom: var(--space-lg, 16px);
 }
 
-.stat-card-v3 {
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
-    background: #fff;
-    border: 1px solid var(--border-main);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.2s ease;
-    box-shadow: var(--shadow-sm);
-    text-align: center;
+/* Specific overrides for stat cards if any */
+.study-card-v3.streak .study-card-icon {
+    color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.05);
 }
 
-.stat-card-v3:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+.study-card-v3.roadmaps .study-card-icon {
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.05);
 }
 
-.stat-icon-v3 {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    color: #fff;
-    background: var(--primary);
-}
-
-.stat-info-v3 {
-    width: 100%;
-}
-
-.stat-value-v3 {
-    font-size: 18px;
-    /* Reduced from 20px */
-    font-weight: 700;
-    color: var(--primary);
-    display: block;
-}
-
-.stat-label-v3 {
-    font-size: 10px;
-    /* Reduced from 11px */
-    font-weight: 600;
-    color: var(--text-sub);
-    text-transform: uppercase;
-}
-
-/* === MOBILE RESPONSIVE (Strict) === */
-@media (max-width: 1024px) {
-    .stats-grid-modern {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
+/* === MOBILE RESPONSIVE === */
 @media (max-width: 480px) {
-    .stats-grid-modern {
+    .stats-grid-study-abroad {
         grid-template-columns: 1fr;
-        gap: var(--space-sm);
-    }
-
-    .stat-card-v3 {
-        flex-direction: row;
-        align-items: center;
-        padding: 18px 20px;
-        gap: 20px;
-    }
-
-    .stat-value-v3 {
-        font-size: 22px;
     }
 }

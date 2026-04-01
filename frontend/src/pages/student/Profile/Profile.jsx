@@ -59,12 +59,41 @@ const Profile = () => {
     };
   }, [authUser, API]);
 
+  const handleAddItem = async (section, data) => {
+    try {
+      const userId = user?._id || user?.id || authUser?._id || authUser?.id;
+
+      if (!userId) {
+        alert("User session not found. Please log in again.");
+        throw new Error("No User ID");
+      }
+
+      console.log(`Adding item to ${section}:`, data);
+
+      const res = await axios.post(`${API}/api/user/profile/${userId}/add-item`, {
+        section,
+        data,
+      });
+
+      if (res.data?.profile) {
+        const updatedUser = { ...user, profile: res.data.profile };
+        setUser(updatedUser);
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+      }
+    } catch (err) {
+      console.error("Add item error details:", err.response?.data || err.message);
+      const msg = err.response?.data?.message || err.message;
+      alert(`❌ Failed to add profile section: ${msg}`);
+      throw err; // Re-throw so the UI doesn't mark it as added
+    }
+  };
+
   const handleProfileUpdate = async (updates) => {
     try {
-      const storedUser = JSON.parse(localStorage.getItem("user"));
+      const userId = user?._id || user?.id || authUser?._id || authUser?.id;
 
       const res = await axios.post(`${API}/api/user/update-profile`, {
-        userId: storedUser._id || storedUser.id,
+        userId: userId,
         ...updates,
       });
 
@@ -75,6 +104,7 @@ const Profile = () => {
     } catch (err) {
       console.error("Profile update error:", err);
       alert("❌ Failed to update profile");
+      throw err;
     }
   };
 
@@ -93,7 +123,11 @@ const Profile = () => {
       <div className="profile-wrapper">
 
         {user.role === "student" && (
-          <StudentProfile user={user} onProfileUpdate={handleProfileUpdate} />
+          <StudentProfile 
+            user={user} 
+            onProfileUpdate={handleProfileUpdate} 
+            onAddItem={handleAddItem}
+          />
         )}
 
         {user.role === "consultant" && <ConsultantProfile user={user} />}

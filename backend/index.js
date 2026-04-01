@@ -48,8 +48,8 @@ app.use("/api/progress", require("./routes/progressRoutes"));
 
 app.use('/api/enquiry', require('./routes/enquiryRoutes'));
 
-// 🧑‍🎤 Profile (IMPORTANT – WAS MISSING)
-app.use("/api", require("./routes/profile.routes"));
+// 🧑‍🎤 Profile
+app.use("/api/user", require("./routes/profile.routes"));
 
 // 👪 Parent
 // 👨‍👩‍👧 Parent Dashboard

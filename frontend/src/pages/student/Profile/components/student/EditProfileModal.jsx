@@ -12,13 +12,13 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
     const [formData, setFormData] = useState({
         name: user?.name || '',
         mobile: user?.mobile || '',
-        bio: user?.bio || '',
-        location: user?.location || '',
-        portfolio: user?.portfolio || '',
-        targetUniversity: user?.targetUniversity || 'Inter American University of Puerto Rico - San German',
-        interestedMajor: user?.interestedMajor || 'Biology',
-        interestedTerm: user?.interestedTerm || 'Fall',
-        interestedYear: user?.interestedYear || '2025'
+        bio: user?.profile?.bio || '',
+        location: user?.profile?.location || '',
+        portfolio: user?.profile?.portfolio || '',
+        targetUniversity: user?.profile?.targetUniversity || 'Inter American University of Puerto Rico - San German',
+        interestedMajor: user?.profile?.interestedMajor || 'Biology',
+        interestedTerm: user?.profile?.interestedTerm || 'Fall',
+        interestedYear: user?.profile?.interestedYear || '2025'
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
@@ -59,7 +59,21 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            await onSave(formData);
+            // Structuring data for the new backend updateProfile (merging into profile)
+            const updates = {
+                name: formData.name,
+                mobile: formData.mobile,
+                profile: {
+                    bio: formData.bio,
+                    location: formData.location,
+                    portfolio: formData.portfolio,
+                    targetUniversity: formData.targetUniversity,
+                    interestedMajor: formData.interestedMajor,
+                    interestedTerm: formData.interestedTerm,
+                    interestedYear: formData.interestedYear
+                }
+            };
+            await onSave(updates);
             onClose();
         } catch (error) {
             console.error('Error saving profile:', error);
