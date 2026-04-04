@@ -19,7 +19,7 @@ const TopColleges = () => {
   const [, setUser] = useState(null);
   // const [showPremiumPopup, setShowPremiumPopup] = useState(false);
 
-  const API = import.meta.env.VITE_API_URL;
+  const API = import.meta.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));

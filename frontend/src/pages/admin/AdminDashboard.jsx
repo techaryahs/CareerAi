@@ -21,7 +21,7 @@ const AdminDashboard = () => {
 
   const fetchActivityStats = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/activity/stats`);
+      const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/activity/stats`);
       const data = await res.json();
       setActivityStats(data);
     } catch (err) {
@@ -37,7 +37,7 @@ const AdminDashboard = () => {
 
   const fetchUsersWithReceipts = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/receipts`);
+      const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/admin/receipts`);
       const data = await res.json();
       setUsersWithReceipts(data.users || []);
     } catch (err) {
@@ -52,7 +52,7 @@ const AdminDashboard = () => {
 
   const handleApiKeySubmit = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/save-api-key`, {
+      const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/admin/save-api-key`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ apiKey: apiKeyInput })
@@ -74,7 +74,7 @@ const AdminDashboard = () => {
 
   const handleApprove = async (email, plan) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/approve`, {
+      const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/admin/approve`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, plan })
@@ -94,7 +94,7 @@ const AdminDashboard = () => {
 
   const handleDeny = async (email) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/deny`, {
+      const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/admin/deny`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
@@ -290,7 +290,7 @@ const UserVisitStats = () => {
 
   const fetchUserStats = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/activity/user-stats`);
+      const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/activity/user-stats`);
       const data = await res.json();
       setUsers(data);
     } catch (error) {

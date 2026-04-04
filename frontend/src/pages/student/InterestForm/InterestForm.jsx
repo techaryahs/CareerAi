@@ -183,7 +183,7 @@ export default function InterestForm() {
 
   const [, setUser] = useState(null);
   const { user } = useAuth();
-  const API = import.meta.env.VITE_API_URL || "http://localhost:5001";
+  const API = import.meta.env.REACT_APP_API_URL || "http://localhost:5001";
 
   useEffect(() => {
     if (user?.email) {

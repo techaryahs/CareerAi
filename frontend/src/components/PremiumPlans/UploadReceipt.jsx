@@ -51,7 +51,7 @@ const UploadReceipt = () => {
       console.log('✅ Uploaded Image URL:', data.secure_url);
 
       // Send to backend
-      const backendRes = await fetch(`${process.env.REACT_APP_API_URL}/api/receipt`, {
+      const backendRes = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/receipt`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

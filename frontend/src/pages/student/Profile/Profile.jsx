@@ -17,12 +17,12 @@ import ParentProfile from "./components/parent/ParentProfile";
 import { useAuth } from "../../../context/AuthContext";
 
 const Profile = () => {
-  const { user: authUser, role: authRole } = useAuth(); // ✅ FIX
+  const { user: authUser } = useAuth();
   const [user, setUser] = useState(null);
   const [pageLoading, setPageLoading] = useState(true);
   const [showParentModal, setShowParentModal] = useState(false);
 
-  const API = import.meta.env.VITE_API_URL;
+  const API = import.meta.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (!authUser) {
@@ -36,8 +36,10 @@ const Profile = () => {
       try {
         const res = await axios.get(`${API}/api/user/${authUser.email}`);
         if (res.data) {
-          setUser(res.data);
-          localStorage.setItem("user", JSON.stringify(res.data));
+          // ✅ Ensure role is present (backend now sends it, but safety first)
+          const updatedUser = { ...res.data, role: res.data.role || authUser.role };
+          setUser(updatedUser);
+          localStorage.setItem("user", JSON.stringify(updatedUser));
         }
       } catch (err) {
         console.error("Fresh user fetch error:", err);

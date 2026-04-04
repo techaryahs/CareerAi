@@ -8,7 +8,7 @@ import EditProfileModal from "./EditProfileModal";
 import "../styles/student/Profile.css";
 
 export default function StudentProfile({ user, onProfileUpdate }) {
-    const [showEditModal, setShowEditModal] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
     if (!user) {
         return (
@@ -20,14 +20,27 @@ export default function StudentProfile({ user, onProfileUpdate }) {
 
     const handleEditProfile = async (profileData) => {
         await onProfileUpdate(profileData);
+        setIsEditing(false); // Switch back to profile view after save
     };
+
+    if (isEditing) {
+        return (
+            <div className="profile-page-wrapper animate-fade-in">
+                <EditProfileModal 
+                    user={user} 
+                    onClose={() => setIsEditing(false)} 
+                    onSave={handleEditProfile} 
+                />
+            </div>
+        );
+    }
 
     return (
         <div className="profile-page-wrapper">
             {/* High-End Profile Header */}
             <ProfileHeader
                 user={user}
-                onEditRequest={() => setShowEditModal(true)}
+                onEditRequest={() => setIsEditing(true)}
             />
 
             {/* Production-Level Layout Grid */}
@@ -45,15 +58,6 @@ export default function StudentProfile({ user, onProfileUpdate }) {
                     {/* <RecentActivity user={user} /> */}
                 </div>
             </div>
-
-            {/* Modal at ROOT level to avoid transform clipping */}
-            {showEditModal && (
-                <EditProfileModal
-                    user={user}
-                    onClose={() => setShowEditModal(false)}
-                    onSave={handleEditProfile}
-                />
-            )}
         </div>
     );
 }

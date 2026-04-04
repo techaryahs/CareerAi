@@ -13,7 +13,7 @@ const UpcomingConsultations = () => {
     const [pastBookings, setPastBookings] = useState([]);
     const [loading, setLoading] = useState(true);
     const {user} =useAuth();
-    const API = import.meta.env.VITE_API_URL;
+    const API = import.meta.env.REACT_APP_API_URL;
 
     useEffect(() => {
         fetchBookings();

@@ -71,7 +71,7 @@ const Register = () => {
 
     try {
       // Use the API instance instead of fetch
-      await api.post("api/auth/register", { ...formData, isPremium: false });
+      await api.post("/api/auth/register", { ...formData, isPremium: false });
 
       alert("✅ OTP sent to your email!");
       navigate(`/verify-otp?email=${encodeURIComponent(formData.email)}`);

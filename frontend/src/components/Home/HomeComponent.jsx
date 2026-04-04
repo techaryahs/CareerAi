@@ -133,7 +133,7 @@ const HomeComponent = () => {
   //   return softwareEngineerImg; // Default fallback
   // };
 
-  const API = import.meta.env.VITE_API_URL;
+  const API = import.meta.env.REACT_APP_API_URL;
 
   // console.log(API);
 

@@ -8,7 +8,7 @@ const RecentActivity = ({ user }) => {
     const [loading, setLoading] = useState(true);
 
     const cleanAPI = React.useMemo(() => {
-        const rawAPI = import.meta.env.VITE_API_URL || "http://localhost:5001";
+        const rawAPI = import.meta.env.REACT_APP_API_URL || "http://localhost:5001";
         return rawAPI.endsWith("/") ? rawAPI.slice(0, -1) : rawAPI;
     }, []);
 

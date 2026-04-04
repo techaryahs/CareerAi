@@ -87,7 +87,7 @@ const CareerCard = ({ career, index }) => {
 const PopularCareersSection = () => {
   const [loading, setLoading] = useState(true);
   const [careers, setCareers] = useState([]);
-  const API = import.meta.env.VITE_API_URL;
+  const API = import.meta.env.REACT_APP_API_URL;
 
   useEffect(() => {
     // In a real scenario, this might fetch from API

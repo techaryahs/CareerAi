@@ -67,7 +67,7 @@ export default function EduTutorList() {
 
       setFetching(true);
       try {
-        const API = process.env.REACT_APP_API_URL || "http://localhost:5001";
+        const API = import.meta.env.REACT_APP_API_URL || "http://localhost:5001";
 
         // Combine subject names and manual query
         const subjectNames = selectedSubjects.map(id => subjectsById[id]?.name).filter(Boolean).join(" ");

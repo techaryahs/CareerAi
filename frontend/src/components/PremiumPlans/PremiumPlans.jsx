@@ -25,7 +25,7 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
     const plan = map[selectedPlan];
     if (!plan) return alert("Select a plan first");
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/premium/activate`, {
+    fetch(`${import.meta.env.REACT_APP_API_URL}/api/premium/activate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: user.email, plan }),

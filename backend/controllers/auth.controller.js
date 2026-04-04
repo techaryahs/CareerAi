@@ -29,8 +29,10 @@ exports.register = async (req, res) => {
       mobile,
       password: password, // Pre-save hook will hash
       role: "student",
-      isPremium: false,
-      isVerified: false,
+      profile: {
+        isPremium: false,
+        isVerified: false
+      }
     });
 
     await newUser.save();
@@ -94,7 +96,7 @@ exports.register = async (req, res) => {
           </p>
         </div>
       </div>
-      ` // Simplified for brevity, original HTML logs showed it was working
+      `
     );
 
     res.status(200).json({
@@ -125,7 +127,7 @@ exports.resendOtp = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    if (user.isVerified) {
+    if (user.profile && user.profile.isVerified) {
       return res.status(400).json({ message: "User is already verified" });
     }
 
@@ -184,13 +186,20 @@ exports.verifyOtp = async (req, res) => {
     }
 
     if (isExpired) {
-      console.warn("   ❌ OTP Expired. Now:", new Date().toLocaleString(), "Expires:", new Date(storedData.expiresAt).toLocaleString());
+      console.warn("   ❌ OTP Expired");
       otpStore.delete(normalizedEmail);
       return res.status(400).json({ error: 'OTP has expired. Please resend.' });
     }
 
     console.log("   ✅ OTP Verified Successfully");
-    await User.findOneAndUpdate({ email: normalizedEmail }, { isVerified: true });
+
+    // Find User to get ID, then update Profile
+    const user = await User.findOne({ email: normalizedEmail });
+    if (user) {
+      user.profile.isVerified = true;
+      await user.save();
+    }
+
     otpStore.delete(normalizedEmail);
     res.json({ message: 'OTP verified successfully' });
 
@@ -201,15 +210,12 @@ exports.verifyOtp = async (req, res) => {
 };
 
 /* =========================
-   LOGIN (Basic Student)
+   LOGIN
 ========================= */
 const generateToken = (id, role) => {
   return jwt.sign({ userId: id, role }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
-/* =========================
-   LOGIN (Simplified)
-========================= */
 exports.login = async (req, res) => {
 
   try {
@@ -221,18 +227,15 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: "Email and password are required" });
     }
 
-    // 1️⃣ FIND USER (Basic)
-    // Removed populate to avoid StrictPopulateError during schema transition
-    const user = await User.findOne({ email });
+    // 1️⃣ FIND USER and populate nested Linked profiles
+    const user = await User.findOne({ email }).populate('profile.teacherProfile profile.consultantProfile');
 
     // Use the model method matchPassword
     if (user && (await user.matchPassword(password))) {
 
-      // Optional: Email Verification Check (if still needed, user didn't explicitly ask to remove it but "clean login" usually implies standard checks. I'll keep it for safety unless they strictly said "use EXACTLY this logic". Their snippet didn't have verification check. I will COMMENT IT OUT to strictly follow "use this type of logic" request, ensuring minimum friction).
-      // if (user.role !== "admin" && !user.isVerified) { ... } 
-
-      //  user.lastLogin = Date.now();
       await user.save();
+
+      const profile = user.profile || {};
 
       res.json({
         message: "Login successful",
@@ -242,10 +245,10 @@ exports.login = async (req, res) => {
           name: user.name,
           email: user.email,
           role: user.role,
-          isVerified: user.isVerified,
+          isVerified: profile.isVerified || false,
           mobile: user.mobile,
-          profileImage: user.profileImage,
-          isPremium: user.isPremium
+          profileImage: profile.profileImage || profile.teacherProfile?.image || profile.consultantProfile?.image || null,
+          isPremium: profile.isPremium || false
         }
       });
     } else {
@@ -262,9 +265,16 @@ exports.login = async (req, res) => {
 ========================= */
 exports.getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    const user = await User.findById(req.user.id).select("-password").populate('profile.teacherProfile profile.consultantProfile');
+
     if (!user) {
       return res.status(404).json({ error: "User not found" });
+    }
+
+    // Safety fallback
+    if (!user.profile) {
+      user.profile = {};
+      await user.save();
     }
     res.json({ success: true, user });
   } catch (err) {
@@ -293,21 +303,10 @@ exports.registerTeacher = async (req, res) => {
       return res.status(400).json({ error: "Email already registered" });
     }
 
-    // 2️⃣ CREATE USER (Role: teacher)
-    const newUser = new User({
-      name: fullName,
-      email: normalizedEmail,
-      mobile: phone.replace('+91', ''),
-      password: password, // Hashed by pre-save
-      role: "teacher",
-      isPremium: false,
-      isVerified: false // Needs admin/OTP verification
-    });
-    await newUser.save();
-
-    // 3️⃣ CREATE TEACHER PROFILE
+    // 2️⃣ CREATE TEACHER PROFILE
+    // We need to create the newTeacher first to get its ID, then pass it down
+    let newTeacherId = null;
     const newTeacher = new Teacher({
-      user: newUser._id,
       experienceYears: Number(experienceYears),
       bio,
       teachingField,
@@ -321,13 +320,29 @@ exports.registerTeacher = async (req, res) => {
       qualificationFile,
       idProofFile
     });
-    await newTeacher.save();
 
-    // 4️⃣ LINK PROFILE
-    newUser.teacherProfile = newTeacher._id;
+    // We'll set the user ref after user is created
+    // But we need to save the user first to get User ID.
+
+    // 2️⃣ CREATE USER (Role: teacher)
+    const newUser = new User({
+      name: fullName,
+      email: normalizedEmail,
+      mobile: phone.replace('+91', ''),
+      password: password, // Hashed by pre-save
+      role: "teacher",
+      profile: {
+        isPremium: false,
+        isVerified: false,
+        teacherProfile: newTeacher._id
+      }
+    });
     await newUser.save();
 
-    // 5️⃣ GENERATE & SEND OTP
+    newTeacher.user = newUser._id;
+    await newTeacher.save();
+
+    // 6️⃣ GENERATE & SEND OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiresAt = Date.now() + 10 * 60 * 1000;
     otpStore.set(normalizedEmail, { otp, expiresAt });
@@ -401,21 +416,7 @@ exports.registerConsultant = async (req, res) => {
       return res.status(400).json({ error: "Email already registered" });
     }
 
-    // 3️⃣ CREATE USER (Role: consultant)
-    const newUser = new User({
-      name,
-      email: normalizedEmail,
-      mobile: '0000000000', // Placeholder
-      password: password,
-      role: "consultant",
-      isPremium: true,
-      isVerified: false
-    });
-    await newUser.save();
-
-    // 4️⃣ CREATE CONSULTANT PROFILE
     const newConsultant = new Consultant({
-      user: newUser._id,
       name,
       email: normalizedEmail,
       role: consultantRole,
@@ -426,13 +427,27 @@ exports.registerConsultant = async (req, res) => {
       availability: availability || [], // Now array of objects {day, startTime, endTime}
       bookings: []
     });
-    await newConsultant.save();
 
-    // 5️⃣ LINK PROFILE
-    newUser.consultantProfile = newConsultant._id;
+    // 3️⃣ CREATE USER (Role: consultant)
+    const newUser = new User({
+      name,
+      email: normalizedEmail,
+      mobile: '0000000000', // Placeholder
+      password: password,
+      role: "consultant",
+      profile: {
+          isPremium: true,
+          isVerified: false,
+          consultantProfile: newConsultant._id
+      }
+    });
     await newUser.save();
 
-    // 6️⃣ GENERATE & SEND OTP
+    // 4️⃣ SAVE CONSULTANT
+    newConsultant.user = newUser._id;
+    await newConsultant.save();
+
+    // 7️⃣ GENERATE & SEND OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiresAt = Date.now() + 10 * 60 * 1000;
     otpStore.set(normalizedEmail, { otp, expiresAt });
@@ -440,13 +455,13 @@ exports.registerConsultant = async (req, res) => {
     console.log("📌 Generated OTP for Consultant:", otp);
 
     const emailHtml = `
-      <div style="font-family:Arial,sans-serif;padding:20px;">
+        <div style="font-family:Arial,sans-serif;padding:20px;">
         <h2>Hello ${name}, 👋</h2>
         <p>Thank you for registering as a Consultant on <b>CareerGenAI</b>.</p>
         <p>Your OTP is: <b style="font-size:24px;color:#1e40af;">${otp}</b></p>
         <p>This OTP is valid for 10 minutes.</p>
       </div>
-    `;
+        `;
 
     await sendEmail(normalizedEmail, "Verify Consultant Account - CareerGenAI", "", emailHtml);
 
@@ -485,19 +500,23 @@ exports.registerParent = async (req, res) => {
       return res.status(404).json({ error: "Student not found" });
     }
 
-    // Create Parent
+    // Create Parent User
     const parent = new User({
       name: parentName,
       email,
       password,
       role: "parent",
-      parentOf: [student._id],
-      isVerified: false
+      profile: {
+          parentOf: [student._id],
+          isVerified: false
+      }
     });
     await parent.save();
 
-    // Link to Student
-    student.parents.push(parent._id);
+    // Link Student to Parent Profile
+    if (!student.profile) student.profile = {};
+    if (!student.profile.parents) student.profile.parents = [];
+    student.profile.parents.push(parent._id);
     await student.save();
 
     // Generate OTP
@@ -519,8 +538,6 @@ exports.registerParent = async (req, res) => {
    FORGOT / RESET PASSWORD
 ========================= */
 exports.forgotPassword = async (req, res) => {
-  // Existing logic... 
-  // Simplified for brevity, assume similar structure finding User by email
   const { email } = req.body;
   const user = await User.findOne({ email });
   if (!user) return res.status(404).json({ error: "User not found" });

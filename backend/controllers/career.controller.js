@@ -1,8 +1,7 @@
-
 const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
-
+const User = require("../models/User");
 
 // ✅ Correct JSON file path
 const filePath = path.join(__dirname, "../data/careersInterest.json");
@@ -52,7 +51,6 @@ exports.recommendCareers = (req, res) => {
   }
 };
 
-
 /* =========================
    GET COLLEGES (AI)
 ========================= */
@@ -65,11 +63,21 @@ exports.getColleges = async (req, res) => {
     });
   }
 
-  const collegeTemplate = `...YOUR TEMPLATE EXACTLY AS-IS...`;
+  const collegeTemplate = `[
+  {
+    "top_course": "B.Tech Computer Science",
+    "location": "Mumbai, Maharashtra",
+    "rating": "4.8/5",
+    "exam_accepted": "MHT-CET / JEE Mains",
+    "average_package": "12 LPA",
+    "fees": "1.5 Lakhs/year",
+    "description": "Reputed college known for high placement rates."
+  }
+]`;
 
   const prompt = collegeName
-    ? `Give complete detailed information about the college "${collegeName}" in valid JSON format including branch-wise cutoffs like:\n${collegeTemplate}`
-    : `Suggest top 10 reputed colleges in ${location} that offer a degree or specialization in "${course}". Return ONLY valid JSON with branch-wise cutoffs like:\n${collegeTemplate}`;
+    ? `Give complete detailed information about the college "${collegeName}" in valid JSON format including branch-wise cutoffs like:\\n${collegeTemplate}`
+    : `Suggest top 10 reputed colleges in ${location} that offer a degree or specialization in "${course}". Return ONLY valid JSON with branch-wise cutoffs like:\\n${collegeTemplate}`;
 
   try {
     const response = await axios.post(
@@ -92,7 +100,7 @@ exports.getColleges = async (req, res) => {
 
     const parsed = raw.startsWith("[")
       ? JSON.parse(raw)
-      : JSON.parse(raw.match(/\[\s*{[\s\S]*?}\s*\]/)[0]);
+      : JSON.parse(raw.match(/\\[\\s*{[\\s\\S]*?}\\s*\\]/)[0]);
 
     res.json({ colleges: parsed });
 
@@ -100,8 +108,6 @@ exports.getColleges = async (req, res) => {
     res.status(500).json({ error: 'Failed to retrieve valid college data.' });
   }
 };
-
-
 
 exports.getQuizQuestions = async (req, res) => {
   const count = parseInt(req.query.count) || 10;
@@ -155,7 +161,6 @@ Only return valid JSON. No explanation or markdown.
 
     } catch (parseErr) {
       console.error('JSON Parse Error:', parseErr);
-      console.log('Raw output (truncated):', raw.slice(0, 300));
       res.status(500).json({ error: 'Failed to parse quiz questions from AI response.' });
     }
 
@@ -181,19 +186,17 @@ exports.submitQuiz = async (req, res) => {
     }
 
     const student = await User.findById(studentId);
-
-    if (!student) {
-      return res.status(404).json({ message: "Student not found" });
-    }
+    if (!student) return res.status(404).json({ message: "Student not found" });
 
     if (student.role !== "student") {
       return res.status(403).json({ message: "Only students can submit quiz" });
     }
 
     // Init services safely
-    if (!student.services) student.services = {};
-    if (!student.services.quiz) {
-      student.services.quiz = {
+    if (!student.profile) student.profile = {};
+    if (!student.profile.services) student.profile.services = {};
+    if (!student.profile.services.quiz) {
+      student.profile.services.quiz = {
         attempted: false,
         totalAttempts: 0,
         bestScore: 0
@@ -201,23 +204,24 @@ exports.submitQuiz = async (req, res) => {
     }
 
     // Update quiz
-    student.services.quiz.attempted = true;
-    student.services.quiz.totalAttempts += 1;
-    student.services.quiz.bestScore = Math.max(
-      student.services.quiz.bestScore,
+    student.profile.services.quiz.attempted = true;
+    student.profile.services.quiz.totalAttempts += 1;
+    student.profile.services.quiz.bestScore = Math.max(
+      student.profile.services.quiz.bestScore,
       score
     );
-    student.services.quiz.lastAttemptAt = new Date();
+    student.profile.services.quiz.lastAttemptAt = new Date();
 
+    student.markModified('profile');
     await student.save();
 
-    console.log("✅ QUIZ SAVED:", student.services.quiz);
+    console.log("✅ QUIZ SAVED:", student.profile.services.quiz);
 
     return res.json({
       message: "Quiz submitted successfully",
       score,
-      totalAttempts: student.services.quiz.totalAttempts,
-      bestScore: student.services.quiz.bestScore
+      totalAttempts: student.profile.services.quiz.totalAttempts,
+      bestScore: student.profile.services.quiz.bestScore
     });
 
   } catch (err) {
@@ -225,7 +229,6 @@ exports.submitQuiz = async (req, res) => {
     return res.status(500).json({ message: "Failed to save quiz result" });
   }
 };
-
 
 exports.compareCourses = async (req, res) => {
   const { course1, course2 } = req.body;
@@ -250,7 +253,7 @@ Format:
 |-----------|------------|------------|
 | ...       | ...        | ...        |
 
-Strictly return the markdown table. No explanations or headings or markdown fences like \`\`\`.`;
+Strictly return the markdown table. No explanations or headings or markdown fences like \`\`\`. `;
 
   try {
     const response = await axios.post(
@@ -271,14 +274,10 @@ Strictly return the markdown table. No explanations or headings or markdown fenc
     let raw = response.data.choices?.[0]?.message?.content?.trim() || '';
 
     raw = raw
-      .replace(/^```(?:markdown)?/gi, '')
+      .replace(/^```(?: markdown) ?/gi, '')
       .replace(/```$/gi, '')
-      .replace(/^(Here (is|are)[^\n]*\n|Below[^\n]*\n)/i, '')
+      .replace(/^(Here (is|are)[^\\n]*\\n|Below[^\\n]*\\n)/i, '')
       .trim();
-
-    console.log('\n--- AI Raw Output Start ---\n');
-    console.log(raw);
-    console.log('\n--- AI Raw Output End ---\n');
 
     const hasTableSyntax = raw.includes('|') && raw.includes('---');
     if (!hasTableSyntax) {
@@ -296,17 +295,10 @@ Strictly return the markdown table. No explanations or headings or markdown fenc
   }
 };
 
-
 exports.generateResume = async (req, res) => {
   const {
-    name,
-    email,
-    phone,
-    education,
-    skills,
-    experience,
-    projects,
-    summary,
+    name, email, phone, education, skills,
+    experience, projects, summary,
   } = req.body;
 
   const prompt = `
@@ -345,19 +337,21 @@ Return only the resume in markdown format. No introduction or explanation.
     if (!aiReply) {
       return res.status(500).json({ error: 'Empty response from OpenRouter.' });
     }
-    // ✅ Save resume generation result
-if (req.user?.id) {
-  await User.findByIdAndUpdate(req.user.id, {
-    $set: {
-      "serviceActivity.resumeBuilder.created": true,
-      "serviceActivity.resumeBuilder.lastResumeTitle": "AI Generated Resume",
-      "serviceActivity.resumeBuilder.lastUpdated": new Date()
-    },
-    $inc: {
-      "serviceActivity.resumeBuilder.resumeCount": 1
+
+    if (req.user && req.user.id) {
+      let profile = await Profile.findOne({ user: req.user.id });
+      if (profile) {
+        if (!profile.serviceActivity) profile.serviceActivity = {};
+        if (!profile.serviceActivity.resumeBuilder) profile.serviceActivity.resumeBuilder = {};
+
+        profile.serviceActivity.resumeBuilder.used = true;
+        profile.serviceActivity.resumeBuilder.lastUsedAt = new Date();
+
+        // Tell Mongoose the nested mixed object changed, just in case
+        profile.markModified('serviceActivity');
+        await profile.save();
+      }
     }
-  });
-}
 
     res.json({ resume: aiReply });
   } catch (err) {
@@ -370,7 +364,6 @@ exports.getCareers = async (req, res) => {
   const { search, category } = req.query;
   const query = search || category;
 
-  // ✅ REQUIRED FIX
   if (!query) {
     return res.status(400).json({
       error: "Search or category is required"
@@ -420,7 +413,7 @@ No explanation, only valid JSON. No markdown fences.
       .replace(/^```json/, "")
       .replace(/^```/, "")
       .replace(/```$/, "")
-      .replace(/^[^{\[]+/, "")
+      .replace(/^[^^{\\[]+/, "")
       .trim();
 
     const parsed = JSON.parse(raw);
@@ -428,16 +421,6 @@ No explanation, only valid JSON. No markdown fences.
     if (!Array.isArray(parsed)) {
       throw new Error("Invalid JSON structure.");
     }
-    // ✅ Save career roadmap activity
-if (req.user?.id) {
-  await User.findByIdAndUpdate(req.user.id, {
-    $set: {
-      "serviceActivity.careerRoadmap.started": true,
-      "serviceActivity.careerRoadmap.careerName": query,
-      "serviceActivity.careerRoadmap.lastUpdated": new Date()
-    }
-  });
-}
 
     res.json({ careers: parsed });
 
@@ -451,13 +434,20 @@ exports.startRoadmap = async (req, res) => {
   try {
     const { userId, careerName } = req.body;
 
-    await User.findByIdAndUpdate(userId, {
-      $set: {
-        "serviceActivity.careerRoadmap.started": true,
-        "serviceActivity.careerRoadmap.careerName": careerName,
-        "serviceActivity.careerRoadmap.lastUpdated": new Date()
+    if (userId) {
+      let profile = await Profile.findOne({ user: userId });
+      if (profile) {
+        if (!profile.serviceActivity) profile.serviceActivity = {};
+        if (!profile.serviceActivity.careerRoadmap) profile.serviceActivity.careerRoadmap = {};
+
+        profile.serviceActivity.careerRoadmap.used = true;
+        profile.serviceActivity.careerRoadmap.lastUsedAt = new Date();
+        profile.serviceActivity.careerRoadmap.careerPathName = careerName;
+
+        profile.markModified('serviceActivity');
+        await profile.save();
       }
-    });
+    }
 
     res.json({ success: true });
   } catch (err) {
