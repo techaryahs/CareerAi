@@ -152,7 +152,7 @@ const steps = [
 const StepOptionsUI = ({ options, navigate, activeId }) => {
     return (
         <div className="w-full">
-            <div className="flex gap-5 overflow-x-auto md:grid md:grid-cols-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 {options.map((option, i) => (
                     <motion.div
                         key={i}
@@ -163,13 +163,13 @@ const StepOptionsUI = ({ options, navigate, activeId }) => {
                             })
                         }
 
-                        className="bg-white p-7 rounded-[2.5rem] border border-[#f1f5f9] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.08)] hover:border-[#e2e8f0] transition-all cursor-pointer group flex flex-col items-start"
+                        className="bg-white p-4 sm:p-6 rounded-[2.5rem] border border-[#f1f5f9] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.08)] hover:border-[#e2e8f0] transition-all cursor-pointer group flex flex-col items-start"
                     >
                         <div className="bg-[#f8fafc] w-12 h-12 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#0056d2] group-hover:text-white transition-all duration-500">
                             {React.cloneElement(option.icon, { className: 'w-6 h-6' })}
                         </div>
                         <h4 className="text-[14px] font-black text-[#1e293b] mb-2 leading-tight uppercase tracking-tight">{option.title}</h4>
-                        <p className="text-[#64748b] text-[10px] leading-relaxed mb-6 flex-1 font-medium">
+                        <p className="text-[#64748b] text-xs sm:text-sm leading-relaxed mb-6 flex-1 font-medium">
                             {option.desc}
                         </p>
                         <motion.button
@@ -227,15 +227,15 @@ const JourneyStepper = () => {
 
     return (
         <section className="py-5 bg-[#fcfdfe]">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-20">
-                    <h2 className="text-4xl md:text-5xl font-black text-[#0f172a] mb-5 tracking-tight">Your Career Journey</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#0f172a] mb-5 tracking-tight">Your Career Journey</h2>
                     <p className="text-lg text-[#64748b] max-w-2xl mx-auto font-medium leading-relaxed">Follow our elite, data-backed framework to transition from potential to professionals.</p>
                 </div>
 
-                <div className="grid lg:grid-cols-12 gap-6 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     {/* Stepper Sidebar */}
-                    <div className="lg:col-span-4 space-y-4">
+                    <div className="lg:col-span-4 space-y-3 sm:space-y-4">
 
                         {steps.map((step) => (
                             <motion.div
@@ -278,17 +278,17 @@ const JourneyStepper = () => {
                                 initial={{ opacity: 0, scale: 0.98 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.98 }}
-                                className="bg-white rounded-[3.5rem] p-12 md:p-14 border border-[#f1f5f9] shadow-[0_30px_100px_-20px_rgba(0,0,0,0.04)] relative overflow-hidden"
+                                className="bg-white rounded-3xl sm:rounded-[3.5rem] p-5 sm:p-8 md:p-12 border border-[#f1f5f9] shadow-[0_30px_100px_-20px_rgba(0,0,0,0.04)] relative overflow-hidden"
                             >
                                 {/* Professional Background Accent */}
                                 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#f8fafc] rounded-full blur-[100px] opacity-60 -mr-40 -mt-40 -z-10" />
 
                                 <div className="grid md:grid-cols-2 gap-6 items-center mb-3">
                                     <div>
-                                        <span className="inline-block px-2 py-1.2 rounded-full bg-[#f1f5f9] text-[#475569] text-[10px] font-black uppercase tracking-[0.2em] mb-8">
+                                        <span className="inline-block px-2 py-1.2 rounded-full bg-[#f1f5f9] text-[#475569] text-xs sm:text-sm font-black uppercase tracking-[0.2em] mb-8">
                                             Stage {activeStep.id} of 4
                                         </span>
-                                        <h2 className="text-4xl md:text-5xl font-black text-[#0f172a] mb-6 tracking-tight leading-[1.1]">{activeStep.title}</h2>
+                                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#0f172a] mb-6 tracking-tight leading-[1.1]">{activeStep.title}</h2>
                                         <p className="text-[#64748b] text-base leading-relaxed font-medium">
                                             {activeStep.description}
                                         </p>
@@ -317,7 +317,7 @@ const JourneyStepper = () => {
                                 </div>
 
                                 <div className="pt-0 border-t border-[#f8fafc]">
-                                    <h5 className="text-[10px] font-black text-[#94a3b8] uppercase tracking-[0.3em] mb-6">Integrated Professional Tools</h5>
+                                    <h5 className="text-xs sm:text-sm font-black text-[#94a3b8] uppercase tracking-[0.3em] mb-6">Integrated Professional Tools</h5>
                                     <StepOptionsUI
                                         options={activeStep.options}
                                         navigate={navigate}
