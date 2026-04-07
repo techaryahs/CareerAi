@@ -40,7 +40,7 @@ const HeroSection = () => {
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                             onClick={() => navigate('/consult')}
+                            onClick={() => window.location.href = "http://localhost:3000/"} 
                             className="flex items-center justify-center gap-2 bg-white border-2 border-gray-200 hover:bg-[#0041a3] hover:border-blue-400 hover:text-white text-gray-700 px-8 py-4 rounded-xl font-bold text-lg transition-all"
                         >
                             <BookOpen className="w-5 h-5" />
