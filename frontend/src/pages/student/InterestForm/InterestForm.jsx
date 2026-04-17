@@ -266,7 +266,7 @@ export default function InterestForm() {
         backgroundSize: "30px 30px",
       }} />
 
-      <div style={{ position: "relative", zIndex: 1, padding: "72px 24px 100px", maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ position: "relative", zIndex: 1, padding: "40px 16px 60px", width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* ── HERO ── */}
         <div className="if-hero" style={{ textAlign: "center", marginBottom: 52 }}>
@@ -295,8 +295,8 @@ export default function InterestForm() {
             </span>
           </h1>
           <p className="if-sub" style={{
-            maxWidth: 500, margin: "0 auto", color: "#64748B",
-            fontSize: "1rem", lineHeight: 1.7, fontWeight: 400,
+            maxWidth: 500, margin: "0 auto", padding: "20px 12px", color: "#64748B",
+            fontSize: "clamp(0.9rem, 2vw, 1rem)", lineHeight: 1.7, fontWeight: 400,
           }}>
             Select your interests below and we'll recommend the perfect career paths tailored just for you.
           </p>
@@ -346,8 +346,8 @@ export default function InterestForm() {
                   className={`if-interest-item${isSel ? " sel" : ""}`}
                   onClick={() => toggleSelect(item.label)}
                   style={{
-                    display: "flex", flexDirection: "column", alignItems: "center",
-                    justifyContent: "center", gap: 10, padding: "20px 12px",
+                    display: "flex", flexDirection: "row", alignItems: "center",
+                    justifyContent: "center", flexWrap: "wrap", gap: 12, marginTop:36, padding: "16px 10px",
                     borderRadius: 20, cursor: "pointer",
                     background: isSel
                       ? col.bg
@@ -397,20 +397,27 @@ export default function InterestForm() {
         </div>
 
         {/* ── BUTTONS ── */}
-        <div className="if-btns" style={{
-          display: "flex", flexWrap: "wrap", gap: 14,
-          justifyContent: "center", marginTop: 36,
-        }}>
+        <div
+  className="if-btns"
+  style={{
+    display: "flex",
+    flexDirection: "row",   // ✅ CHANGE HERE
+    justifyContent: "center",
+    gap: 12,
+    flexWrap: "wrap",       // ✅ IMPORTANT for mobile
+    marginTop: 36,
+  }}
+>
           <button
             className="if-shimmer-btn"
             onClick={handleSuggest}
             disabled={loading}
             style={{
-              padding: "14px 38px", borderRadius: 16, border: "none",
+              padding: "14px 20px", borderRadius: 14, border: "none",
               color: "#fff", fontSize: 15, fontWeight: 700,
               cursor: "pointer", letterSpacing: "0.02em",
               display: "flex", alignItems: "center", gap: 10,
-              minWidth: 220,
+              maxWidth: "420px",
             }}
           >
             {loading ? (
@@ -434,10 +441,10 @@ export default function InterestForm() {
               setCareers([]); setActiveCategory("All"); setErrorMsg("");
             }}
             style={{
-              padding: "14px 30px", borderRadius: 16,
+              maxWidth: "420px", padding: "14px 20px", borderRadius: 14,
               border: "1.5px solid rgba(0,0,0,.09)",
               background: "rgba(255,255,255,.85)", backdropFilter: "blur(10px)",
-              color: "#64748B", fontSize: 15, fontWeight: 600,
+              color: "#64748B", fontSize: "14px", fontWeight: 600,
               cursor: "pointer",
             }}
           >
@@ -461,7 +468,7 @@ export default function InterestForm() {
 
         {/* ── CAREER RESULTS ── */}
         {showCareers && (
-          <div style={{ marginTop: 64, animation: "if-fadeUp .5s ease both" }}>
+          <div style={{ marginTop: 40, animation: "if-fadeUp .5s ease both" }}>
 
             {/* Section header */}
             <div style={{ textAlign: "center", marginBottom: 36 }}>
@@ -484,7 +491,7 @@ export default function InterestForm() {
 
             {/* Category chips */}
             <div style={{
-              display: "flex", flexWrap: "wrap", gap: 10,
+              display: "flex", flexWrap: "wrap", gap: 12,
               justifyContent: "center", marginBottom: 36,
             }}>
               {categories.map((cat, i) => {
@@ -520,7 +527,7 @@ export default function InterestForm() {
             {/* Cards */}
             <div style={{
               display: "grid", gap: 24,
-              gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
             }}>
               {filteredCareers.map((career, index) => (
                 <CareerCard key={index} career={career} />
@@ -575,7 +582,7 @@ function CareerCard({ career }) {
       }} />
 
       {/* Info grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 20 }}>
 
         {/* Skills */}
         <Section label="Required Skills" accent="#6366F1">
