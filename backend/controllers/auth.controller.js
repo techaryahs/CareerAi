@@ -13,7 +13,7 @@ const otpStore = new Map();
 ========================= */
 exports.register = async (req, res) => {
   try {
-    const { name, email, mobile, password } = req.body;
+    const { name, email, mobile, password, dob, gender, country, state } = req.body;
     const normalizedEmail = email.toLowerCase().trim();
 
     // 🔍 Check existing user
@@ -28,6 +28,10 @@ exports.register = async (req, res) => {
       email: normalizedEmail,
       mobile,
       password: password, // Pre-save hook will hash
+      dob,
+      gender,
+      country,
+      state,
       role: "student",
       profile: {
         isPremium: false,

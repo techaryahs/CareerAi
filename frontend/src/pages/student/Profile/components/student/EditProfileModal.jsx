@@ -3,7 +3,7 @@ import {
     FaUser, FaCog, FaUniversity, FaGraduationCap,
     FaFileAlt, FaChevronLeft, FaPhone, FaMapMarkerAlt,
     FaLink, FaParagraph, FaEnvelope, FaLock, FaTransgender, FaCalendarAlt,
-    FaChevronDown, FaUsers
+    FaChevronDown, FaUsers, FaTrash, FaPlus, FaSchool
 } from 'react-icons/fa';
 import '../styles/student/EditProfileModal.css';
 
@@ -12,13 +12,17 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
     const [formData, setFormData] = useState({
         name: user?.name || '',
         mobile: user?.mobile || '',
-        bio: user?.bio || '',
-        location: user?.location || '',
-        portfolio: user?.portfolio || '',
-        targetUniversity: user?.targetUniversity || 'Inter American University of Puerto Rico - San German',
-        interestedMajor: user?.interestedMajor || 'Biology',
-        interestedTerm: user?.interestedTerm || 'Fall',
-        interestedYear: user?.interestedYear || '2025'
+        bio: user?.profile?.bio || '',
+        location: user?.profile?.location || '',
+        portfolio: user?.profile?.portfolio || '',
+        targetUniversity: user?.profile?.targetUniversity || 'Inter American University of Puerto Rico - San German',
+        interestedMajor: user?.profile?.interestedMajor || 'Biology',
+        interestedTerm: user?.profile?.interestedTerm || 'Fall',
+        interestedYear: user?.profile?.interestedYear || '2025',
+        education: user?.profile?.education || [
+            { type: 'High School', schoolName: '', cgpa: '', cgpaOutOf: '100', backlogs: '0' },
+            { type: "Bachelor's", university: '', major: '', cgpa: '', cgpaOutOf: '100', backlogs: '0' }
+        ]
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
@@ -52,6 +56,25 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        
+        // Add character limits
+        const limits = {
+            name: 50,
+            mobile: 10,
+            location: 100,
+            portfolio: 200,
+            bio: 500
+        };
+
+        if (limits[name] && value.length > limits[name]) return;
+
+        // Numeric filtering for mobile
+        if (name === 'mobile') {
+            const numericValue = value.replace(/[^0-9]/g, '');
+            setFormData(prev => ({ ...prev, [name]: numericValue }));
+            return;
+        }
+
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
@@ -59,7 +82,21 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            await onSave(formData);
+            // Structuring data for the new backend updateProfile (merging into profile)
+            const updates = {
+                name: formData.name,
+                mobile: formData.mobile,
+                profile: {
+                    bio: formData.bio,
+                    location: formData.location,
+                    portfolio: formData.portfolio,
+                    targetUniversity: formData.targetUniversity,
+                    interestedMajor: formData.interestedMajor,
+                    interestedTerm: formData.interestedTerm,
+                    interestedYear: formData.interestedYear
+                }
+            };
+            await onSave(updates);
             onClose();
         } catch (error) {
             console.error('Error saving profile:', error);
@@ -72,9 +109,10 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
     const tabs = [
         { id: 'personal', label: 'Personal Info', icon: <FaUser /> },
         { id: 'settings', label: 'Profile Settings', icon: <FaCog /> },
+        { id: 'education', label: 'Education Details', icon: <FaGraduationCap /> },
         { id: 'university', label: 'Target University Details', icon: <FaUniversity /> },
-        { id: 'scores', label: 'Tests Scores', icon: <FaGraduationCap /> },
-        { id: 'resume', label: 'Upload Resume', icon: <FaFileAlt /> },
+        { id: 'scores', label: 'Tests Scores', icon: <FaFileAlt /> },
+        { id: 'resume', label: 'Upload Resume', icon: <FaUsers /> },
     ];
 
     const renderContent = () => {
@@ -110,6 +148,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                             value={formData.name}
                                             onChange={handleChange}
                                             placeholder="Your full name"
+                                            maxLength={50}
                                             required
                                         />
                                     </div>
@@ -136,11 +175,12 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                     <div className="wide-input-with-icon">
                                         <FaPhone />
                                         <input 
-                                            type="tel" 
+                                            type="text" 
                                             name="mobile"
                                             value={formData.mobile}
                                             onChange={handleChange}
                                             placeholder="10-digit number"
+                                            maxLength={10}
                                         />
                                     </div>
                                 </div>
@@ -164,6 +204,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                             value={formData.location}
                                             onChange={handleChange}
                                             placeholder="e.g. Mumbai, India"
+                                            maxLength={100}
                                         />
                                     </div>
                                 </div>
@@ -177,6 +218,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                             value={formData.portfolio}
                                             onChange={handleChange}
                                             placeholder="https://yourportfolio.com"
+                                            maxLength={200}
                                         />
                                     </div>
                                 </div>
@@ -189,6 +231,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                             value={formData.bio}
                                             onChange={handleChange}
                                             placeholder="Write a short professional bio..."
+                                            maxLength={500}
                                             rows="4"
                                         />
                                     </div>
@@ -403,42 +446,242 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                         </div>
                     </div>
                 );
+            case 'education':
+                return (
+                    <div className="wide-edit-wrapper animate-fade-in">
+                        <div className="wide-section-header">
+                            <h2>Educational Details</h2>
+                        </div>
+
+                        <div className="education-list-container space-y-4">
+                            {formData.education.map((edu, index) => (
+                                <div key={index} className="wide-card-section animate-slide-up" style={{ padding: '20px' }}>
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div className="flex items-center gap-4">
+                                            <div className="edu-icon-circle" style={{ 
+                                                width: '36px', 
+                                                height: '36px', 
+                                                backgroundColor: '#f1f5f9', 
+                                                borderRadius: '50%', 
+                                                display: 'flex', 
+                                                alignItems: 'center', 
+                                                justifyContent: 'center',
+                                                color: '#4f46e5',
+                                                fontSize: '16px'
+                                            }}>
+                                                {edu.type === 'High School' ? <FaSchool /> : <FaGraduationCap />}
+                                            </div>
+                                            <div>
+                                                <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b' }}>{edu.type}</h3>
+                                            </div>
+                                        </div>
+                                        <button 
+                                            type="button" 
+                                            className="text-blue-500 hover:text-blue-700 p-2"
+                                            onClick={() => {
+                                                const newEdu = formData.education.filter((_, i) => i !== index);
+                                                setFormData(prev => ({ ...prev, education: newEdu }));
+                                            }}
+                                        >
+                                            <FaTrash size={18} />
+                                        </button>
+                                    </div>
+
+                                    <div className="wide-form-grid" style={{ gap: '12px' }}>
+                                        {edu.type === 'High School' ? (
+                                            <div className="wide-form-group full-width">
+                                                <label>School Name</label>
+                                                <input
+                                                    type="text"
+                                                    value={edu.schoolName}
+                                                    onChange={(e) => {
+                                                        const val = e.target.value.slice(0, 100);
+                                                        const newEdu = [...formData.education];
+                                                        newEdu[index].schoolName = val;
+                                                        setFormData(prev => ({ ...prev, education: newEdu }));
+                                                    }}
+                                                    placeholder="Enter school name"
+                                                    style={{ border: '1px solid #e2e8f0', background: '#fff' }}
+                                                    maxLength={100}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <div className="wide-form-group full-width">
+                                                    <label>University</label>
+                                                    <div className="wide-dropdown-container">
+                                                        <button 
+                                                            type="button" 
+                                                            className={`wide-custom-selector ${activeDropdown === `uni-${index}` ? 'active' : ''}`}
+                                                            onClick={() => toggleDropdown(`uni-${index}`)}
+                                                            style={{ background: '#fff', border: '1px solid #e2e8f0' }}
+                                                        >
+                                                            <span>{edu.university || 'Select University'}</span>
+                                                            <FaChevronDown style={{ opacity: 0.3 }} />
+                                                        </button>
+                                                        <div className={`wide-dropdown-list ${activeDropdown === `uni-${index}` ? 'show' : ''}`}>
+                                                            {universities.map(uni => (
+                                                                <div 
+                                                                    key={uni} 
+                                                                    className="wide-dropdown-item"
+                                                                    onClick={() => {
+                                                                        const newEdu = [...formData.education];
+                                                                        newEdu[index].university = uni;
+                                                                        setFormData(prev => ({ ...prev, education: newEdu }));
+                                                                        setActiveDropdown(null);
+                                                                    }}
+                                                                >
+                                                                    {uni}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="wide-form-group full-width">
+                                                    <label>Major Studied</label>
+                                                    <div className="wide-dropdown-container">
+                                                        <button 
+                                                            type="button" 
+                                                            className={`wide-custom-selector ${activeDropdown === `major-${index}` ? 'active' : ''}`}
+                                                            onClick={() => toggleDropdown(`major-${index}`)}
+                                                            style={{ background: '#fff', border: '1px solid #e2e8f0' }}
+                                                        >
+                                                            <span>{edu.major || 'Select Major'}</span>
+                                                            <FaChevronDown style={{ opacity: 0.3 }} />
+                                                        </button>
+                                                        <div className={`wide-dropdown-list ${activeDropdown === `major-${index}` ? 'show' : ''}`}>
+                                                            {majors.map(major => (
+                                                                <div 
+                                                                    key={major} 
+                                                                    className="wide-dropdown-item"
+                                                                    onClick={() => {
+                                                                        const newEdu = [...formData.education];
+                                                                        newEdu[index].major = major;
+                                                                        setFormData(prev => ({ ...prev, education: newEdu }));
+                                                                        setActiveDropdown(null);
+                                                                    }}
+                                                                >
+                                                                    {major}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </>
+                                        )}
+
+                                        <div className="wide-form-group" style={{ flex: '1' }}>
+                                            <label>CGPA</label>
+                                            <div className="flex items-center gap-3">
+                                                <input
+                                                    type="text"
+                                                    value={edu.cgpa}
+                                                    onChange={(e) => {
+                                                        // Allow numbers and one decimal point
+                                                        const val = e.target.value.replace(/[^0-9.]/g, '').slice(0, 5);
+                                                        if ((val.match(/\./g) || []).length > 1) return;
+                                                        const newEdu = [...formData.education];
+                                                        newEdu[index].cgpa = val;
+                                                        setFormData(prev => ({ ...prev, education: newEdu }));
+                                                    }}
+                                                    placeholder="Score"
+                                                    style={{ maxWidth: '120px', border: '1px solid #e2e8f0', background: '#fff' }}
+                                                    maxLength={5}
+                                                />
+                                                <span className="text-gray-400">out of</span>
+                                                <div className="wide-dropdown-container" style={{ width: '120px' }}>
+                                                    <button 
+                                                        type="button" 
+                                                        className={`wide-custom-selector ${activeDropdown === `scale-${index}` ? 'active' : ''}`}
+                                                        onClick={() => toggleDropdown(`scale-${index}`)}
+                                                        style={{ background: '#fff', border: '1px solid #e2e8f0' }}
+                                                    >
+                                                        <span>{edu.cgpaOutOf}</span>
+                                                        <FaChevronDown style={{ opacity: 0.3, fontSize: '10px' }} />
+                                                    </button>
+                                                    <div className={`wide-dropdown-list ${activeDropdown === `scale-${index}` ? 'show' : ''}`}>
+                                                        {['100', '10', '4'].map(scale => (
+                                                            <div 
+                                                                key={scale} 
+                                                                className="wide-dropdown-item"
+                                                                onClick={() => {
+                                                                    const newEdu = [...formData.education];
+                                                                    newEdu[index].cgpaOutOf = scale;
+                                                                    setFormData(prev => ({ ...prev, education: newEdu }));
+                                                                    setActiveDropdown(null);
+                                                                }}
+                                                            >
+                                                                {scale}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="wide-form-group" style={{ flex: '1' }}>
+                                            <label>Backlogs</label>
+                                            <input
+                                                type="text"
+                                                value={edu.backlogs}
+                                                onChange={(e) => {
+                                                    const val = e.target.value.replace(/[^0-9]/g, '').slice(0, 2);
+                                                    const newEdu = [...formData.education];
+                                                    newEdu[index].backlogs = val;
+                                                    setFormData(prev => ({ ...prev, education: newEdu }));
+                                                }}
+                                                placeholder="0"
+                                                style={{ border: '1px solid #e2e8f0', background: '#fff' }}
+                                                maxLength={2}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+
+                            <div className="flex justify-center pt-4 pb-12">
+                                <button 
+                                    className="wide-btn-light-blue flex items-center gap-2"
+                                    onClick={() => {
+                                        const types = ['High School', "Bachelor's", "Master's"];
+                                        const currentTypes = formData.education.map(e => e.type);
+                                        const nextType = types.find(t => !currentTypes.includes(t));
+                                        if (nextType) {
+                                            setFormData(prev => ({
+                                                ...prev,
+                                                education: [...prev.education, { 
+                                                    type: nextType, 
+                                                    schoolName: '', 
+                                                    university: '', 
+                                                    major: '', 
+                                                    cgpa: '', 
+                                                    cgpaOutOf: '100', 
+                                                    backlogs: '0' 
+                                                }]
+                                            }));
+                                        } else {
+                                            alert("All education levels added!");
+                                        }
+                                    }}
+                                >
+                                    <FaPlus /> Add more education details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="wide-form-actions-bottom sticky-footer">
+                            <button
+                                onClick={handleSubmit}
+                                className="wide-btn-save main-action"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? 'Saving...' : 'Save Changes'}
+                            </button>
+                        </div>
+                    </div>
+                );
             case 'scores':
-                return (
-                    <div className="wide-edit-wrapper animate-fade-in">
-                        <div className="wide-card-section">
-                            <div className="wide-card-header">
-                                <h2 style={{ fontSize: '36px', color: '#64748b', fontWeight: '500', marginBottom: '16px' }}>Language Score</h2>
-                                <div className="header-line"></div>
-                            </div>
-                            <div style={{ padding: '24px 0' }}>
-                                <button type="button" className="wide-btn-light-blue">
-                                    Add or Edit Tests
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                );
-            case 'resume':
-                return (
-                    <div className="wide-edit-wrapper animate-fade-in">
-                        <div className="wide-card-section">
-                            <div className="wide-resume-icon-header">
-                                <FaUsers />
-                                <span>Resume</span>
-                            </div>
-                            
-                            <div className="wide-resume-card-content">
-                                <p className="wide-resume-hint-text">
-                                    No Resume Uploaded. Only doc, docx and pdf file are allowed
-                                </p>
-                                <button type="button" className="wide-btn-upload-resume">
-                                    Upload Resume
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                );
             default:
                 return null;
         }

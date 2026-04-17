@@ -1,0 +1,13 @@
+/* Career AI Specific card style (if any) */
+.career-ai-study-style {
+    margin-bottom: var(--space-lg, 16px);
+}
+
+.career-ai-study-style .study-card-icon {
+    background: linear-gradient(135deg, #004080 0%, #007acc 100%);
+    color: #ffffff;
+}
+
+.mt-4 {
+    margin-top: 16px;
+}

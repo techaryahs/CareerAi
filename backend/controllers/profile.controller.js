@@ -2,7 +2,10 @@ const User = require("../models/User");
 
 exports.getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id)
+    const userId = req.params.userId || (req.user ? req.user.id : null);
+    if (!userId) return res.status(400).json({ message: "No user ID provided" });
+
+    const user = await User.findById(userId)
       .select("-password")
       .populate("profile.teacherProfile profile.consultantProfile");
 
@@ -10,7 +13,6 @@ exports.getProfile = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Auto init profile if missing
     if (!user.profile) {
       user.profile = {};
       await user.save();
@@ -25,29 +27,79 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const { name, mobile, bio, location, portfolio } = req.body;
+    const userId = req.params.userId || (req.user ? req.user.id : null);
+    if (!userId) return res.status(401).json({ message: "Authentication required" });
+
+    const { name, mobile, profile } = req.body;
     let imagePath = null;
     if (req.file) {
       imagePath = `/uploads/${req.file.filename}`;
     }
 
-    let user = await User.findById(req.user.id);
+    let user = await User.findById(userId);
     if (!user) return res.status(404).json({ message: "User not found" });
-    
+
     if (!user.profile) user.profile = {};
 
     if (name) user.name = name;
     if (mobile) user.mobile = mobile;
-    if (bio) user.profile.bio = bio;
-    if (location) user.profile.location = location;
-    if (portfolio) user.profile.portfolio = portfolio;
+    
+    // Update basic profile fields if they exist at top level or in profile object
+    if (req.body.bio) user.profile.bio = req.body.bio;
+    if (req.body.location) user.profile.location = req.body.location;
+    if (req.body.portfolio) user.profile.portfolio = req.body.portfolio;
+
+    // Bulk update nested profile sections (highSchool, workExperience, etc.)
+    if (profile) {
+      Object.keys(profile).forEach(key => {
+        user.profile[key] = profile[key];
+      });
+      // Handle Mongoose Mixed type or Array re-assignment
+      user.markModified('profile');
+    }
+
     if (imagePath) user.profile.profileImage = imagePath;
 
     await user.save();
-    
     res.json({ message: "Profile updated successfully", user });
   } catch (err) {
     console.error("Profile update error:", err);
     res.status(500).json({ message: "Server error updating profile" });
+  }
+};
+
+exports.addProfileItem = async (req, res) => {
+  try {
+    const { section, data } = req.body;
+    const userId = req.params.userId || (req.user ? req.user.id : null);
+
+    if (!userId) return res.status(401).json({ message: "Authentication required" });
+    if (!section || !data) return res.status(400).json({ message: "Missing section or data" });
+
+    const validSections = [
+      "highSchool", "underGrad", "masters", "testScores", "workExperience", 
+      "research", "projects", "volunteering", "targetUniversities"
+    ];
+
+    if (!validSections.includes(section)) {
+      return res.status(400).json({ message: "Invalid profile section" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    if (!user.profile) user.profile = {};
+    if (!user.profile[section]) user.profile[section] = [];
+
+    user.profile[section].push(data);
+    await user.save();
+
+    res.json({ 
+      message: `${section} added successfully`, 
+      profile: user.profile 
+    });
+  } catch (err) {
+    console.error("Profile add error:", err);
+    res.status(500).json({ message: "Server error adding profile section" });
   }
 };
