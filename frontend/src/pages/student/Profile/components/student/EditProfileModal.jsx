@@ -5,27 +5,81 @@ import {
     FaLink, FaParagraph, FaEnvelope, FaLock, FaTransgender, FaCalendarAlt,
     FaChevronDown, FaUsers, FaTrash, FaPlus, FaSchool
 } from 'react-icons/fa';
+import TestScores from './student_card/TestScores';
 import '../styles/student/EditProfileModal.css';
 
-const EditProfileModal = ({ user, onClose, onSave }) => {
+const EditProfileModal = ({ user, onClose, onSave, onAddItem, onUpdateItem, onDeleteItem }) => {
     const [activeTab, setActiveTab] = useState('personal');
     const [formData, setFormData] = useState({
         name: user?.name || '',
         mobile: user?.mobile || '',
+        country: user?.country || '',
+        state: user?.state || '',
         bio: user?.profile?.bio || '',
-        location: user?.profile?.location || '',
         portfolio: user?.profile?.portfolio || '',
         targetUniversity: user?.profile?.targetUniversity || 'Inter American University of Puerto Rico - San German',
         interestedMajor: user?.profile?.interestedMajor || 'Biology',
         interestedTerm: user?.profile?.interestedTerm || 'Fall',
         interestedYear: user?.profile?.interestedYear || '2025',
-        education: user?.profile?.education || [
-            { type: 'High School', schoolName: '', cgpa: '', cgpaOutOf: '100', backlogs: '0' },
-            { type: "Bachelor's", university: '', major: '', cgpa: '', cgpaOutOf: '100', backlogs: '0' }
+        education: [
+            ...(user?.profile?.highSchool?.map(i => ({ ...i, type: 'High School', section: 'highSchool' })) || []),
+            ...(user?.profile?.underGrad?.map(i => ({ ...i, type: "Bachelor's", section: 'underGrad' })) || []),
+            ...(user?.profile?.masters?.map(i => ({ ...i, type: "Master's", section: 'masters' })) || [])
         ]
     });
+    
+    // Fallback for initial state if empty
+    React.useEffect(() => {
+        if (formData.education.length === 0) {
+            setFormData(prev => ({
+                ...prev,
+                education: [
+                    { type: 'High School', section: 'highSchool', schoolName: '', cgpa: '', outOf: '100', backlogs: '0' },
+                    { type: "Bachelor's", section: 'underGrad', university: '', major: '', cgpa: '', outOf: '100', backlogs: '0' }
+                ]
+            }));
+        }
+    }, []);
+
+    const [initialEducation] = useState(JSON.parse(JSON.stringify(formData.education)));
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
+    const [showTestScorePopup, setShowTestScorePopup] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState(null);
+
+    const hasValidationError = formData.education.some(edu => {
+        const score = parseFloat(edu.cgpa);
+        const scale = parseFloat(edu.outOf);
+        return !isNaN(score) && !isNaN(scale) && score > scale;
+    });
+
+    const DeleteConfirmationModal = ({ onCancel, onConfirm, type }) => (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[3000] p-4">
+            <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl animate-in zoom-in duration-200 text-center">
+                <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <FaTrash className="text-red-500 text-2xl" />
+                </div>
+                <h3 className="text-xl font-black text-gray-800 mb-2 uppercase italic">Really want to delete?</h3>
+                <p className="text-gray-500 text-xs mb-8 leading-relaxed font-medium italic">
+                    Are you sure you want to remove your **{type}** details? This action cannot be undone.
+                </p>
+                <div className="flex gap-4">
+                    <button 
+                        onClick={onCancel}
+                        className="flex-1 py-3 bg-gray-100 text-gray-500 text-xs font-black rounded-xl hover:bg-gray-200 transition-all uppercase tracking-widest italic"
+                    >
+                        Cancel
+                    </button>
+                    <button 
+                        onClick={onConfirm}
+                        className="flex-1 py-3 bg-red-500 text-white text-xs font-black rounded-xl hover:bg-red-600 transition-all shadow-lg shadow-red-200 uppercase tracking-widest italic"
+                    >
+                        Yes, Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
 
     const universities = [
         'ABM College', 'Aalborg University', 'Aarhus University',
@@ -86,6 +140,8 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
             const updates = {
                 name: formData.name,
                 mobile: formData.mobile,
+                country: formData.country,
+                state: formData.state,
                 profile: {
                     bio: formData.bio,
                     location: formData.location,
@@ -96,7 +152,33 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                     interestedYear: formData.interestedYear
                 }
             };
+            if (hasValidationError) return;
             await onSave(updates);
+
+            // Handle Education modular updates
+            for (const edu of formData.education) {
+                const section = edu.section || (edu.type === 'High School' ? 'highSchool' : edu.type === "Bachelor's" ? 'underGrad' : 'masters');
+                const cleanData = { ...edu };
+                delete cleanData.type;
+                delete cleanData.section;
+                const itemId = cleanData._id;
+                delete cleanData._id;
+
+                if (itemId) {
+                    // Update existing item if it changed
+                    const initial = initialEducation.find(i => i._id === itemId);
+                    if (JSON.stringify(initial) !== JSON.stringify(edu)) {
+                        await onUpdateItem(section, itemId, cleanData);
+                    }
+                } else {
+                    // Add new item (only if it has content)
+                    const hasContent = cleanData.schoolName || cleanData.university || cleanData.cgpa;
+                    if (hasContent) {
+                        await onAddItem(section, cleanData);
+                    }
+                }
+            }
+
             onClose();
         } catch (error) {
             console.error('Error saving profile:', error);
@@ -106,11 +188,14 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
         }
     };
 
+    const hasEducation = (user?.profile?.highSchool?.length > 0 || user?.profile?.underGrad?.length > 0 || user?.profile?.masters?.length > 0);
+    const hasUniversity = (user?.profile?.targetUniversity || user?.profile?.targetUniversities?.length > 0);
+
     const tabs = [
         { id: 'personal', label: 'Personal Info', icon: <FaUser /> },
         { id: 'settings', label: 'Profile Settings', icon: <FaCog /> },
-        { id: 'education', label: 'Education Details', icon: <FaGraduationCap /> },
-        { id: 'university', label: 'Target University Details', icon: <FaUniversity /> },
+        ...(hasEducation ? [{ id: 'education', label: 'Education Details', icon: <FaGraduationCap /> }] : []),
+        ...(hasUniversity ? [{ id: 'university', label: 'Target University Details', icon: <FaUniversity /> }] : []),
         { id: 'scores', label: 'Tests Scores', icon: <FaFileAlt /> },
         { id: 'resume', label: 'Upload Resume', icon: <FaUsers /> },
     ];
@@ -194,17 +279,31 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                 <div className="header-line"></div>
                             </div>
                             <div className="wide-form-grid">
-                                <div className="wide-form-group full-width">
-                                    <label>Location</label>
+                                <div className="wide-form-group">
+                                    <label>Country</label>
                                     <div className="wide-input-with-icon">
                                         <FaMapMarkerAlt />
                                         <input
                                             type="text"
-                                            name="location"
-                                            value={formData.location}
+                                            name="country"
+                                            value={formData.country}
                                             onChange={handleChange}
-                                            placeholder="e.g. Mumbai, India"
-                                            maxLength={100}
+                                            placeholder="e.g. India"
+                                            maxLength={50}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="wide-form-group">
+                                    <label>State</label>
+                                    <div className="wide-input-with-icon">
+                                        <FaMapMarkerAlt />
+                                        <input
+                                            type="text"
+                                            name="state"
+                                            value={formData.state}
+                                            onChange={handleChange}
+                                            placeholder="e.g. Maharashtra"
+                                            maxLength={50}
                                         />
                                     </div>
                                 </div>
@@ -242,8 +341,8 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                         <div className="wide-form-actions-bottom sticky-footer">
                             <button
                                 onClick={handleSubmit}
-                                className="wide-btn-save main-action"
-                                disabled={isSubmitting}
+                                className={`wide-btn-save main-action ${hasValidationError ? 'opacity-50 cursor-not-allowed filter grayscale' : ''}`}
+                                disabled={isSubmitting || hasValidationError}
                             >
                                 {isSubmitting ? 'Saving...' : 'Save Changes'}
                             </button>
@@ -284,12 +383,7 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                 <div className="header-line"></div>
                             </div>
                             <div className="wide-form-grid">
-                                <div className="wide-form-group full-width">
-                                    <label>Username</label>
-                                    <div className="wide-input-with-icon disabled">
-                                        <input type="text" value={`shree001`} disabled />
-                                    </div>
-                                </div>
+
                                 <div className="wide-form-group full-width">
                                     <div className="wide-row-horizontal">
                                         <span className="row-label" title="Private profiles are only visible to approved followers">Private profile</span>
@@ -313,8 +407,8 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                         <div className="wide-form-actions-bottom sticky-footer">
                             <button
                                 onClick={handleSubmit}
-                                className="wide-btn-save main-action"
-                                disabled={isSubmitting}
+                                className={`wide-btn-save main-action ${hasValidationError ? 'opacity-50 cursor-not-allowed filter grayscale' : ''}`}
+                                disabled={isSubmitting || hasValidationError}
                             >
                                 {isSubmitting ? 'Saving...' : 'Save Changes'}
                             </button>
@@ -438,8 +532,8 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                         <div className="wide-form-actions-bottom sticky-footer">
                             <button
                                 onClick={handleSubmit}
-                                className="wide-btn-save main-action"
-                                disabled={isSubmitting}
+                                className={`wide-btn-save main-action ${hasValidationError ? 'opacity-50 cursor-not-allowed filter grayscale' : ''}`}
+                                disabled={isSubmitting || hasValidationError}
                             >
                                 {isSubmitting ? 'Saving...' : 'Save Changes'}
                             </button>
@@ -477,13 +571,10 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                         </div>
                                         <button 
                                             type="button" 
-                                            className="text-blue-500 hover:text-blue-700 p-2"
-                                            onClick={() => {
-                                                const newEdu = formData.education.filter((_, i) => i !== index);
-                                                setFormData(prev => ({ ...prev, education: newEdu }));
-                                            }}
+                                            className="text-red-400 hover:text-red-600 p-2 transition-colors"
+                                            onClick={() => setItemToDelete({ index, type: edu.type, section: edu.section || (edu.type === 'High School' ? 'highSchool' : edu.type === "Bachelor's" ? 'underGrad' : 'masters'), itemId: edu._id })}
                                         >
-                                            <FaTrash size={18} />
+                                            <FaTrash size={16} />
                                         </button>
                                     </div>
 
@@ -590,34 +681,39 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                                     maxLength={5}
                                                 />
                                                 <span className="text-gray-400">out of</span>
-                                                <div className="wide-dropdown-container" style={{ width: '120px' }}>
-                                                    <button 
-                                                        type="button" 
-                                                        className={`wide-custom-selector ${activeDropdown === `scale-${index}` ? 'active' : ''}`}
-                                                        onClick={() => toggleDropdown(`scale-${index}`)}
-                                                        style={{ background: '#fff', border: '1px solid #e2e8f0' }}
-                                                    >
-                                                        <span>{edu.cgpaOutOf}</span>
-                                                        <FaChevronDown style={{ opacity: 0.3, fontSize: '10px' }} />
-                                                    </button>
-                                                    <div className={`wide-dropdown-list ${activeDropdown === `scale-${index}` ? 'show' : ''}`}>
-                                                        {['100', '10', '4'].map(scale => (
-                                                            <div 
-                                                                key={scale} 
-                                                                className="wide-dropdown-item"
-                                                                onClick={() => {
-                                                                    const newEdu = [...formData.education];
-                                                                    newEdu[index].cgpaOutOf = scale;
-                                                                    setFormData(prev => ({ ...prev, education: newEdu }));
-                                                                    setActiveDropdown(null);
-                                                                }}
-                                                            >
-                                                                {scale}
-                                                            </div>
-                                                        ))}
+                                                    <div className="wide-dropdown-container" style={{ width: '120px' }}>
+                                                        <button 
+                                                            type="button" 
+                                                            className={`wide-custom-selector ${activeDropdown === `scale-${index}` ? 'active' : ''}`}
+                                                            onClick={() => toggleDropdown(`scale-${index}`)}
+                                                            style={{ background: '#fff', border: '1px solid #e2e8f0' }}
+                                                        >
+                                                            <span>{edu.outOf}</span>
+                                                            <FaChevronDown style={{ opacity: 0.3, fontSize: '10px' }} />
+                                                        </button>
+                                                        <div className={`wide-dropdown-list ${activeDropdown === `scale-${index}` ? 'show' : ''}`}>
+                                                            {['100', '10', '4'].map(scale => (
+                                                                <div 
+                                                                    key={scale} 
+                                                                    className="wide-dropdown-item"
+                                                                    onClick={() => {
+                                                                        const newEdu = [...formData.education];
+                                                                        newEdu[index].outOf = scale;
+                                                                        setFormData(prev => ({ ...prev, education: newEdu }));
+                                                                        setActiveDropdown(null);
+                                                                    }}
+                                                                >
+                                                                    {scale}
+                                                                </div>
+                                                            ))}
+                                                        </div>
                                                     </div>
-                                                </div>
                                             </div>
+                                            {parseFloat(edu.cgpa) > parseFloat(edu.outOf) && (
+                                                <p className="text-red-500 text-[10px] font-black uppercase italic mt-1 ml-2 animate-pulse">
+                                                    * score should be less than equal to out of number
+                                                </p>
+                                            )}
                                         </div>
 
                                         <div className="wide-form-group" style={{ flex: '1' }}>
@@ -648,10 +744,12 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                                         const currentTypes = formData.education.map(e => e.type);
                                         const nextType = types.find(t => !currentTypes.includes(t));
                                         if (nextType) {
+                                            const section = nextType === 'High School' ? 'highSchool' : nextType === "Bachelor's" ? 'underGrad' : 'masters';
                                             setFormData(prev => ({
                                                 ...prev,
                                                 education: [...prev.education, { 
                                                     type: nextType, 
+                                                    section: section,
                                                     schoolName: '', 
                                                     university: '', 
                                                     major: '', 
@@ -673,8 +771,8 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                         <div className="wide-form-actions-bottom sticky-footer">
                             <button
                                 onClick={handleSubmit}
-                                className="wide-btn-save main-action"
-                                disabled={isSubmitting}
+                                className={`wide-btn-save main-action ${hasValidationError ? 'opacity-50 cursor-not-allowed filter grayscale' : ''}`}
+                                disabled={isSubmitting || hasValidationError}
                             >
                                 {isSubmitting ? 'Saving...' : 'Save Changes'}
                             </button>
@@ -682,6 +780,134 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                     </div>
                 );
             case 'scores':
+                return (
+                    <div className="wide-edit-wrapper animate-fade-in">
+                        {itemToDelete && (
+                            <DeleteConfirmationModal 
+                                type={itemToDelete.type}
+                                onCancel={() => setItemToDelete(null)}
+                                onConfirm={async () => {
+                                    if (itemToDelete.itemId) {
+                                        await onDeleteItem(itemToDelete.section, itemToDelete.itemId);
+                                    }
+                                    const newEdu = formData.education.filter((_, i) => i !== itemToDelete.index);
+                                    setFormData(prev => ({ ...prev, education: newEdu }));
+                                    setItemToDelete(null);
+                                }}
+                            />
+                        )}
+                        <div className="wide-section-header">
+                            <h2>Test Scores</h2>
+                            <p>Manage your standardized test results (GRE, TOEFL, IELTS, etc.)</p>
+                        </div>
+
+                        <div className="education-list-container space-y-4">
+                            {(user?.profile?.testScores || []).length > 0 ? (
+                                user.profile.testScores.map((test, index) => (
+                                    <div key={index} className="wide-card-section animate-slide-up" style={{ padding: '0px' }}>
+                                        <div className="flex justify-between items-center bg-[#f8fafc] px-4 py-2 border-b border-gray-100">
+                                            <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-widest italic">
+                                                YOUR {test.testType} SCORE :
+                                            </h3>
+                                            <button 
+                                                type="button" 
+                                                className="text-red-400 hover:text-red-500 transition-colors"
+                                                onClick={() => {
+                                                    if(window.confirm(`Delete this ${test.testType} entry?`)) {
+                                                        onDeleteItem('testScores', test._id);
+                                                    }
+                                                }}
+                                            >
+                                                <FaTrash size={14} />
+                                            </button>
+                                        </div>
+                                        <div className="p-4 flex flex-wrap gap-4">
+                                            {test.sectionScores && Object.entries(test.sectionScores).map(([name, score]) => (
+                                                <div key={name} className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-gray-100 shadow-sm">
+                                                    <span className="text-[11px] font-bold text-gray-500 uppercase italic">
+                                                        {name} Score :
+                                                    </span>
+                                                    <span className="text-[11px] font-black text-[#4f46e5] italic">
+                                                        {score}
+                                                    </span>
+                                                </div>
+                                            ))}
+                                            <div className="flex items-center gap-2 bg-[#f1f5f9] px-3 py-1.5 rounded-lg border border-[#e2e8f0]">
+                                                <span className="text-[11px] font-black text-gray-500 uppercase italic">Total :</span>
+                                                <span className="text-[11px] font-black text-[#004080] italic">{test.score}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="text-center py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
+                                    <p className="text-gray-400 font-medium italic">No test scores added yet.</p>
+                                </div>
+                            )}
+
+                            <div className="flex justify-center pt-2 pb-8">
+                                <button 
+                                    className="wide-btn-light-blue flex items-center gap-2"
+                                    onClick={() => setShowTestScorePopup(true)}
+                                >
+                                    <FaPlus /> Add or Edit Tests
+                                </button>
+                            </div>
+                        </div>
+
+                        {showTestScorePopup && (
+                            <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[2000] p-4">
+                                <TestScores 
+                                    onClose={() => setShowTestScorePopup(false)}
+                                    onSave={async (data) => {
+                                        await onAddItem('testScores', data);
+                                        setShowTestScorePopup(false);
+                                    }}
+                                />
+                            </div>
+                        )}
+
+                        <div className="wide-form-actions-bottom sticky-footer">
+                            <button onClick={onClose} className="wide-btn-save main-action">Close</button>
+                        </div>
+                    </div>
+                );
+            case 'resume':
+                return (
+                    <div className="wide-edit-wrapper animate-fade-in">
+                        <div className="wide-card-section">
+                            <div className="wide-resume-icon-header">
+                                <FaFileAlt />
+                                <span>Curriculum Vitae</span>
+                            </div>
+                            
+                            <div className="wide-resume-card-content">
+                                <p className="wide-resume-hint-text">
+                                    Upload your latest resume in PDF format (Max 5MB).<br/>
+                                    Applying with a resume increases your chances by 60%.
+                                </p>
+                                
+                                {user?.profile?.resumeUrl ? (
+                                    <div className="mb-6 p-4 bg-green-50 rounded-xl border border-green-100 flex items-center gap-4">
+                                        <div className="text-green-600"><FaFileAlt size={24} /></div>
+                                        <div className="text-left">
+                                            <p className="text-sm font-bold text-green-900">Resume Uploaded</p>
+                                            <a href={user.profile.resumeUrl} target="_blank" rel="noreferrer" className="text-xs text-green-700 underline">View Current Resume</a>
+                                        </div>
+                                    </div>
+                                ) : null}
+
+                                <button type="button" className="wide-btn-upload-resume">
+                                    <FaPlus className="mr-2" /> Upload New Resume
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div className="wide-form-actions-bottom sticky-footer">
+                            <button onClick={onClose} className="wide-btn-save main-action">Close</button>
+                        </div>
+                    </div>
+                );
             default:
                 return null;
         }
@@ -716,6 +942,20 @@ const EditProfileModal = ({ user, onClose, onSave }) => {
                 {/* Main Content Area */}
                 <div className="wide-edit-content">
                     {renderContent()}
+                    {itemToDelete && (
+                        <DeleteConfirmationModal 
+                            type={itemToDelete.type}
+                            onCancel={() => setItemToDelete(null)}
+                            onConfirm={async () => {
+                                if (itemToDelete.itemId) {
+                                    await onDeleteItem(itemToDelete.section, itemToDelete.itemId);
+                                }
+                                const newEdu = formData.education.filter((_, i) => i !== itemToDelete.index);
+                                setFormData(prev => ({ ...prev, education: newEdu }));
+                                setItemToDelete(null);
+                            }}
+                        />
+                    )}
                 </div>
             </div>
         </div>

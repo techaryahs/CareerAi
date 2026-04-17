@@ -60,6 +60,8 @@ const UserSchema = new mongoose.Schema(
 
       // COSMETIC PROFILE DATA
       profileImage: { type: String, default: null },
+      resumeUrl: { type: String, default: null },
+      resumeName: { type: String, default: null },
       bio: { type: String, default: "" },
       location: { type: String, default: "" },
       portfolio: { type: String, default: "" },
