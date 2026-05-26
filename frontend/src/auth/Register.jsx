@@ -15,9 +15,7 @@ const Register = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
+    if (user) navigate("/");
   }, [user, navigate]);
 
   const [step, setStep] = useState(1);
@@ -212,16 +210,18 @@ const Register = () => {
 
       alert("✅ OTP sent to your email!");
       navigate(`/verify-otp?email=${encodeURIComponent(formData.email)}`);
-
     } catch (err) {
       console.error(err);
-      const errorMessage = err.response?.data?.error || "Registration failed. Try again.";
-      alert(errorMessage);
-      setErrorMsg(errorMessage);
+      const msg = err.response?.data?.error || "Registration failed. Try again.";
+      alert(msg);
+      setErrorMsg(msg);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  const inputClass =
+    "w-full px-3 py-3 sm:px-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none transition-all duration-200 text-sm sm:text-base text-gray-800 placeholder-gray-400";
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -625,6 +625,7 @@ const Register = () => {
               </p>
             </div>
           </div>
+
         </div>
       </div>
     </div>

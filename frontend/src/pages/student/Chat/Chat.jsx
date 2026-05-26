@@ -141,7 +141,7 @@ const Chat = () => {
       }),
     });
 
-    if (!res.ok) {
+    if (!res.ok) {  
       throw new Error(`HTTP ${res.status}`);
     }
 

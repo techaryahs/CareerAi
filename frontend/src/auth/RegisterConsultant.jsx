@@ -2,203 +2,254 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../api';
-import "./AdminDashboard.css"
 
-
-const CLOUDINARY_UPLOAD_PRESET = 'unsigned_receipts';
-const CLOUDINARY_CLOUD_NAME = 'dvxsgxp3f';
-
-const DAYS_OF_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const STEPS = ["Account", "Profile", "Availability"];
 
 const RegisterConsultant = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+  const [step, setStep] = useState(0);
+  const [form, setForm] = useState({
+    name: '', email: '', password: '', role: ''
+  });
+
   useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
+    if (user) navigate("/");
   }, [user, navigate]);
 
-  const [form, setForm] = useState({
-    name: '',
-    role: '',
-    expertise: '',
-    experience: '',
-    bio: '',
-    email: '',
-    password: '',
-    image: '',
-    availability: []
-  });
-  const [imageFile, setImageFile] = useState(null);
-  const [uploading, setUploading] = useState(false);
-
-  // Slot states
-  const [selectedDays, setSelectedDays] = useState([]);
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const toggleDay = (day) => {
-    setSelectedDays(prev =>
-      prev.includes(day) ? prev.filter(d => d !== day) : [...prev, day]
-    );
-  };
-
-  const addSlot = () => {
-    if (selectedDays.length === 0 || !startTime || !endTime) {
-      return alert("Please select days, start time, and end time");
-    }
-    const newSlots = selectedDays.map(day => ({
-      day, startTime, endTime
-    }));
-
-    setForm(prev => ({
-      ...prev,
-      availability: [...prev.availability, ...newSlots]
-    }));
-    setSelectedDays([]);
-    setStartTime("");
-    setEndTime("");
-  };
-
-  const removeSlot = (idx) => {
-    setForm(prev => ({
-      ...prev,
-      availability: prev.availability.filter((_, i) => i !== idx)
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (form.availability.length === 0) return alert("Please add at least one availability slot");
-
-    try {
-      const formData = new FormData();
-
-      // Append basic fields
-      formData.append('name', form.name);
-      formData.append('email', form.email);
-      formData.append('password', form.password);
-      formData.append('role', form.role);
-      formData.append('expertise', form.expertise);
-      formData.append('experience', form.experience);
-      formData.append('bio', form.bio);
-
-      // Append availability as JSON string
-      formData.append('availability', JSON.stringify(form.availability));
-
-      // Append image if selected
-      if (imageFile) {
-        formData.append('image', imageFile);
-      }
-
-      const apiUrl = `${api.defaults.baseURL}/auth/register-consultant`;
-      console.log("🚀 Submitting Consultant Registration to:", apiUrl);
-
-      const res = await api.post('/api/auth/register-consultant', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
-
-      alert('✅ Registration successful! Please check your email for OTP.');
-      navigate(`/verify-otp?email=${encodeURIComponent(form.email)}`, { state: { role: 'consultant' } });
-    } catch (err) {
-      console.error("❌ Registration Error:", err);
-      const errorMessage = err.response?.data?.error || err.message || 'Something went wrong';
-      alert(`❌ Error: ${errorMessage}`);
-    }
-  };
 
   return (
-    <div className="modal-backdrop">
-      <div className="register-modal" style={{ maxWidth: '700px' }}>
-        <header className="modal-header">
-          <h2>Register as Consultant</h2>
-          <span className="clos-btn" onClick={() => navigate('/')}>×</span>
-        </header>
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
-        <form onSubmit={handleSubmit} className="modal-form">
-          <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
-            <div>
-              <p className="form-section-label">Basic Info</p>
-              <input name="name" value={form.name} onChange={handleChange} placeholder="Full Name" required />
-              <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="Email" required />
-              <input name="password" type="password" value={form.password} onChange={handleChange} placeholder="Password" required />
-              <input name="role" value={form.role} onChange={handleChange} placeholder="Role (e.g. Career Coach)" required />
+        body {
+          margin: 0;
+          font-family: 'DM Sans', sans-serif;
+          background: #eef2f7;
+        }
+
+        .container {
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+        }
+
+        .card {
+          width: 100%;
+          max-width: 720px;
+          background: #f8fafc;
+          border-radius: 22px;
+          padding: 32px 36px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+          position: relative;
+        }
+
+        .top-bar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          border-radius: 22px 22px 0 0;
+          background: linear-gradient(90deg, #6366f1, #ec4899);
+        }
+
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .title {
+          font-family: 'Syne', sans-serif;
+          font-size: 28px;
+          font-weight: 800;
+        }
+
+        .title span {
+          background: linear-gradient(90deg, #6366f1, #ec4899);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .close-btn {
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          border: 1px solid #e2e8f0;
+          background: #f1f5f9;
+          cursor: pointer;
+          font-size: 18px;
+        }
+
+        /* Stepper */
+        .steps {
+          display: flex;
+          align-items: center;
+          margin: 28px 0;
+        }
+
+        .step {
+          display: flex;
+          align-items: center;
+          flex: 1;
+        }
+
+        .circle {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 13px;
+          background: #e5e7eb;
+          color: #6b7280;
+        }
+
+        .circle.active {
+          background: #6366f1;
+          color: #fff;
+        }
+
+        .label {
+          margin-left: 8px;
+          font-size: 12px;
+          letter-spacing: 0.05em;
+          color: #9ca3af;
+        }
+
+        .label.active {
+          color: #6366f1;
+        }
+
+        .line {
+          flex: 1;
+          height: 1px;
+          background: #e5e7eb;
+          margin: 0 10px;
+        }
+
+        /* Form */
+        .section-title {
+          font-size: 14px;
+          margin-bottom: 10px;
+          color: #374151;
+        }
+
+        .input {
+          width: 100%;
+          padding: 14px;
+          border-radius: 12px;
+          border: 1px solid #e5e7eb;
+          background: #fff;
+          margin-bottom: 14px;
+          font-size: 14px;
+          outline: none;
+        }
+
+        .input:focus {
+          border-color: #6366f1;
+        }
+
+        /* Button */
+        .btn {
+          width: 100%;
+          padding: 16px;
+          border-radius: 14px;
+          border: none;
+          font-weight: 600;
+          color: #fff;
+          cursor: pointer;
+          background: linear-gradient(90deg, #6366f1, #6366f1);
+          box-shadow: 0 6px 16px rgba(99,102,241,0.4);
+          transition: 0.2s;
+        }
+
+        .btn:hover {
+          transform: translateY(-1px);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+          .card {
+            padding: 24px;
+          }
+
+          .title {
+            font-size: 22px;
+          }
+
+          .steps {
+            flex-direction: column;
+            gap: 10px;
+          }
+
+          .step {
+            justify-content: flex-start;
+          }
+
+          .line {
+            display: none;
+          }
+        }
+      `}</style>
+
+      <div className="container">
+        <div className="card">
+          <div className="top-bar" />
+
+          <div className="header">
+            <div className="title">
+              Register as a <span>Consultant</span>
             </div>
-            <div>
-              <p className="form-section-label">Professional Details</p>
-              <input name="expertise" value={form.expertise} onChange={handleChange} placeholder="Expertise" required />
-              <input name="experience" value={form.experience} onChange={handleChange} placeholder="Years of Experience" required />
-              <textarea name="bio" value={form.bio} onChange={handleChange} placeholder="Short Bio" required style={{ minHeight: '80px' }} />
-            </div>
+            <button className="close-btn" onClick={() => navigate('/')}>
+              ×
+            </button>
           </div>
 
-          <p className="form-section-label">Profile Image</p>
-          <div className="upload-section" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImageFile(e.target.files[0])}
-              style={{ flex: 1 }}
-            />
-            {imageFile && (
-              <div className="image-preview-container" style={{ position: 'relative' }}>
-                <img
-                  src={URL.createObjectURL(imageFile)}
-                  alt="Preview"
-                  style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #3b82f6' }}
-                />
-              </div>
-            )}
-          </div>
-
-          <p className="form-section-label">Availability Slots</p>
-          <div className="slots-manager" style={{ background: '#f8fafc', padding: '15px', borderRadius: '8px' }}>
-            <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', marginBottom: '10px' }}>
-              {DAYS_OF_WEEK.map(day => (
-                <button
-                  key={day}
-                  type="button"
-                  onClick={() => toggleDay(day)}
-                  style={{
-                    padding: '5px 10px',
-                    border: '1px solid #cbd5e1',
-                    borderRadius: '20px',
-                    background: selectedDays.includes(day) ? '#3b82f6' : 'white',
-                    color: selectedDays.includes(day) ? 'white' : 'black',
-                    cursor: 'pointer'
-                  }}
-                >
-                  {day}
-                </button>
-              ))}
-            </div>
-            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-              <input type="time" value={startTime} onChange={e => setStartTime(e.target.value)} />
-              <span>to</span>
-              <input type="time" value={endTime} onChange={e => setEndTime(e.target.value)} />
-              <button type="button" onClick={addSlot} style={{ background: '#22c55e', color: 'white', border: 'none', padding: '5px 15px', borderRadius: '5px', cursor: 'pointer' }}>+ Add</button>
-            </div>
-
-            <div className="slots-list" style={{ marginTop: '10px', maxHeight: '100px', overflowY: 'auto' }}>
-              {form.availability.map((slot, idx) => (
-                <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px', background: 'white', marginBottom: '5px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
-                  <span>📅 {slot.day}: {slot.startTime} - {slot.endTime}</span>
-                  <span onClick={() => removeSlot(idx)} style={{ cursor: 'pointer', color: 'red' }}>❌</span>
+          {/* Stepper */}
+          <div className="steps">
+            {STEPS.map((s, i) => (
+              <React.Fragment key={s}>
+                <div className="step">
+                  <div className={`circle ${i === step ? 'active' : ''}`}>
+                    {i + 1}
+                  </div>
+                  <div className={`label ${i === step ? 'active' : ''}`}>
+                    {s.toUpperCase()}
+                  </div>
                 </div>
-              ))}
-            </div>
+                {i < STEPS.length - 1 && <div className="line" />}
+              </React.Fragment>
+            ))}
           </div>
 
-          <button type="submit" className="submit-btn" style={{ marginTop: '20px' }}>Register Consultant</button>
-        </form>
+          {/* FORM */}
+          {step === 0 && (
+            <>
+              <div className="section-title">Account Details</div>
+
+              <input className="input" name="name" placeholder="Full Name" onChange={handleChange} />
+              <input className="input" name="email" placeholder="Email Address" onChange={handleChange} />
+              <input className="input" type="password" name="password" placeholder="Password" onChange={handleChange} />
+              <input className="input" name="role" placeholder="Your Role (e.g. Career Coach)" onChange={handleChange} />
+
+              <button className="btn" onClick={() => setStep(1)}>
+                Continue →
+              </button>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

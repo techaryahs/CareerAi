@@ -10,6 +10,7 @@ const NAV_CONFIG = {
   common: [
     { title: "Home", path: "/", roles: ["student", "consultant", "admin", "guest"] }, 
     { title: "Career Journey", path: "/services", roles: ["student", "guest"] },
+    { title: "Free Counselling",path: "/free-counseling",roles: ["student", "consultant", "admin", "parent", "teacher", "guest"]},
   ],
   student: [
     { title: "Career Journey", path: "/services" },

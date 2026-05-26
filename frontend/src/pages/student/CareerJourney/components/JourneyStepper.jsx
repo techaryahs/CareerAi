@@ -103,7 +103,7 @@ const steps = [
                 title: "Study Abroad",
                 desc: "Decide where to study based on costs and ROI.",
                 icon: <Globe className="w-8 h-8 text-blue-500" />,
-                path: "/services/study-abroad",
+                path: "https://iec.aryahsworld.com/",
                 label: "Compare Now"
             },
             {
@@ -157,11 +157,15 @@ const StepOptionsUI = ({ options, navigate, activeId }) => {
                     <motion.div
                         key={i}
                         whileHover={{ y: -5 }}
-                        onClick={() =>
-                            navigate(option.path, {
-                                state: { fromStep: activeId }
-                            })
-                        }
+                        onClick={() => {
+                            if (option.path.startsWith('http')) {
+                                window.open(option.path, '_blank', 'noopener,noreferrer');
+                            } else {
+                                navigate(option.path, {
+                                    state: { fromStep: activeId }
+                                });
+                            }
+                        }}
 
                         className="bg-white p-4 sm:p-6 rounded-[2.5rem] border border-[#f1f5f9] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.08)] hover:border-[#e2e8f0] transition-all cursor-pointer group flex flex-col items-start"
                     >

@@ -1,3 +1,7 @@
+const express = require("express");
+const router = express.Router();
+const userController = require("../controllers/user.controller");
+const authMiddleware = require("../middleware/auth");
 const upload = require("../middleware/multer"); // ✅ ADDED
 
 router.get("/premium-status", authMiddleware, userController.getPremiumStatus);
