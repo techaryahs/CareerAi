@@ -11,71 +11,64 @@ const CareerInterests = ({ user }) => {
     const quizAttempts = user?.services?.quiz?.totalAttempts || 0;
 
     return (
-        <div className="career-interests-v3 card-v3 animate-entrance heatmap-card-v3" style={{ padding: 'var(--space-lg)' }}>
-            <div className="section-header-v3">
-                <h2 className="section-title-v3">
-                    <div className="icon-box-v3">
-                        <FaBullseye />
-                    </div>
-                    Career IQ
-                </h2>
-            </div>
-
-            <div className="interests-content-v3" style={{ marginTop: 'var(--space-lg)' }}>
-                {hasQuizData ? (
-                    <div className="quiz-results-v3">
-                        <div className="score-card-v3">
-                            <div className="score-visual-v3">
-                                <svg viewBox="0 0 120 120" style={{ transform: 'rotate(-90deg)' }}>
-                                    <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border-subtle)" strokeWidth="8" />
-                                    <circle cx="60" cy="60" r="50" fill="none" stroke="var(--primary)" strokeWidth="8" strokeLinecap="round" strokeDasharray={`${(quizScore / 100) * 314} 314`} />
-                                </svg>
-                                <div className="score-label-v3">
-                                    <span className="score-value-v3">{quizScore}%</span>
-                                    <span className="score-text-v3">Score</span>
+        <div className="study-card-v3 career-iq-study-style animate-entrance">
+            <div className="study-card-inner items-start">
+                <div className="study-card-icon">
+                    <FaBullseye />
+                </div>
+                <div className="study-card-info">
+                    <h3 className="study-card-value">Career IQ</h3>
+                    
+                    {hasQuizData ? (
+                        <div className="quiz-results-study mt-4">
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className="score-badge-study">
+                                    {quizScore}%
+                                </div>
+                                <div className="text-sm">
+                                    <p className="font-bold text-gray-800">Mastery Level</p>
+                                    <p className="text-gray-500 text-xs">{quizAttempts} assessments</p>
                                 </div>
                             </div>
-                            <div className="score-info-v3">
-                                <h4 style={{ margin: 0, fontSize: '18px', fontWeight: '700' }}>Mastery Level</h4>
-                                <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--text-sub)' }}>{quizAttempts} assessment cycles completed</p>
+                            
+                            <div className="flex flex-col gap-2">
+                                <button className="study-action-btn-blue w-full justify-center" onClick={() => navigate('/careerquiz')}>
+                                    <FaRocket /> Personalized Roadmap
+                                </button>
+                                <button className="study-action-btn-blue outline w-full justify-center" style={{ background: 'transparent', border: '1px solid var(--primary)', color: 'var(--primary) !important' }} onClick={() => navigate('/services')}>
+                                    <FaHistory /> Retake Assessment
+                                </button>
                             </div>
                         </div>
+                    ) : (
+                        <div className="marketing-study mt-4">
+                            <p className="study-card-description mb-4">
+                                Our AI-powered Career IQ assessment maps your genetic potential to modern industry demands.
+                            </p>
+                            
+                            <div className="benefit-list-study mb-6 space-y-2">
+                                <div className="flex items-center gap-2 text-xs text-gray-600">
+                                    <FaChartLine className="text-blue-500" /> Precision Career Mapping
+                                </div>
+                                <div className="flex items-center gap-2 text-xs text-gray-600">
+                                    <FaLightbulb className="text-yellow-500" /> Intelligence Analysis
+                                </div>
+                            </div>
 
-                        <div className="action-stack-v3" style={{ display: 'grid', gap: '10px', marginTop: 'var(--space-lg)' }}>
-                            <button className="btn-premium primary" onClick={() => navigate('/career-roadmap')}>
-                                <FaRocket /> Personalized Roadmap
+                            <button className="study-action-btn-blue w-full justify-center" onClick={() => navigate('/services')}>
+                                Launch Assessment
                             </button>
-                            <button className="btn-premium outline" onClick={() => navigate('/services')}>
-                                <FaHistory /> Retake Assessment
-                            </button>
+                            
+                            <div className="mt-3 flex justify-between text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                                <span>⏱️ 5 min</span>
+                                <span>📊 Live Analytics</span>
+                            </div>
                         </div>
-                    </div>
-                ) : (
-                    <div className="marketing-hero-v3">
-                        <div className="hero-icon-v3">
-                            <FaStar />
-                        </div>
-                        <h3>Unlock Your Future</h3>
-                        <p>Our AI-powered Career IQ assessment maps your genetic potential to modern industry demands.</p>
-
-                        <div className="benefit-grid-v3">
-                            <div className="benefit-tag-v3"><FaChartLine /> Precision Career Mapping</div>
-                            <div className="benefit-tag-v3"><FaLightbulb /> Intelligence Analysis</div>
-                            <div className="benefit-tag-v3"><FaRocket /> Professional Trajectory</div>
-                        </div>
-
-                        <button className="btn-premium primary" style={{ width: '100%', justifyContent: 'center' }} onClick={() => navigate('/services')}>
-                            Launch Assessment Now
-                        </button>
-
-                        <div className="career-meta-v3">
-                            <span>⏱️ 5 min</span>
-                            <span>📊 Live Analytics</span>
-                        </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
         </div>
+
     );
 };
 

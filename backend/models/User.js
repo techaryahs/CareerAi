@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    dob: { type: String },
+    gender: { type: String },
+    country: { type: String },
+    state: { type: String },
     role: {
       type: String,
       enum: ["student", "teacher", "consultant", "parent", "admin"],
@@ -56,6 +60,8 @@ const UserSchema = new mongoose.Schema(
 
       // COSMETIC PROFILE DATA
       profileImage: { type: String, default: null },
+      resumeUrl: { type: String, default: null },
+      resumeName: { type: String, default: null },
       bio: { type: String, default: "" },
       location: { type: String, default: "" },
       portfolio: { type: String, default: "" },
@@ -80,7 +86,93 @@ const UserSchema = new mongoose.Schema(
           lastUsedAt: Date,
           careerPathName: String
         }
-      }
+      },
+
+      // 🔥 NEW REGISTRATION / DASHBOARD CARD DATA 🔥
+      highSchool: [{
+        schoolName: String,
+        cgpa: String,
+        outOf: String,
+        addedAt: { type: Date, default: Date.now }
+      }],
+      underGrad: [{
+        uniName: String,
+        degreeName: String,
+        cgpa: String,
+        outOf: String,
+        startDate: Date,
+        endDate: Date,
+        isOngoing: { type: Boolean, default: false },
+        addedAt: { type: Date, default: Date.now }
+      }],
+      masters: [{
+        uniName: String,
+        degreeName: String,
+        cgpa: String,
+        outOf: String,
+        startDate: Date,
+        endDate: Date,
+        isOngoing: { type: Boolean, default: false },
+        addedAt: { type: Date, default: Date.now }
+      }],
+      testScores: [{
+        testType: String,
+        score: String,
+        sectionScores: mongoose.Schema.Types.Mixed,
+        date: Date,
+        addedAt: { type: Date, default: Date.now }
+      }],
+      workExperience: [{
+        role: String,
+        organization: String,
+        type: String,
+        startDate: Date,
+        endDate: Date,
+        isOngoing: { type: Boolean, default: false },
+        country: String,
+        state: String,
+        description: String,
+        addedAt: { type: Date, default: Date.now }
+      }],
+      research: [{
+        title: String,
+        publisher: String,
+        date: Date,
+        description: String,
+        contributors: [String],
+        url: String,
+        addedAt: { type: Date, default: Date.now }
+      }],
+      projects: [{
+        title: String,
+        category: String,
+        description: String,
+        technologies: [String],
+        isOngoing: { type: Boolean, default: false },
+        startDate: Date,
+        endDate: Date,
+        projectUrl: String,
+        addedAt: { type: Date, default: Date.now }
+      }],
+      volunteering: [{
+        organization: String,
+        role: String,
+        startDate: Date,
+        endDate: Date,
+        isOngoing: { type: Boolean, default: false },
+        cause: String,
+        description: String,
+        addedAt: { type: Date, default: Date.now }
+      }],
+      targetUniversities: [{
+        uniName: String,
+        degree: String,
+        major: String,
+        term: String,
+        year: String,
+        priority: { type: Number, default: 0 },
+        addedAt: { type: Date, default: Date.now }
+      }],
     }
   },
   { timestamps: true }

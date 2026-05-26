@@ -35,9 +35,10 @@ const Profile = () => {
     const fetchFreshUser = async () => {
       try {
         const res = await axios.get(`${API}/api/user/${authUser.email}`);
-        if (res.data) {
-          // ✅ Ensure role is present (backend now sends it, but safety first)
-          const updatedUser = { ...res.data, role: res.data.role || authUser.role };
+        if (res.data && res.data.user) {
+          const fetchedUser = res.data.user;
+          // ✅ Ensure role is present
+          const updatedUser = { ...fetchedUser, role: fetchedUser.role || authUser.role };
           setUser(updatedUser);
           localStorage.setItem("user", JSON.stringify(updatedUser));
         }
@@ -59,12 +60,90 @@ const Profile = () => {
     };
   }, [authUser, API]);
 
+  const handleAddItem = async (section, data) => {
+    try {
+      const userId = user?._id || user?.id || authUser?._id || authUser?.id;
+
+      if (!userId) {
+        alert("User session not found. Please log in again.");
+        throw new Error("No User ID");
+      }
+
+      console.log(`Adding item to ${section}:`, data);
+
+      const res = await axios.post(`${API}/api/user/profile/${userId}/add-item`, {
+        section,
+        data,
+      });
+
+      if (res.data?.profile) {
+        const updatedUser = { ...user, profile: res.data.profile };
+        setUser(updatedUser);
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+      }
+    } catch (err) {
+      console.error("Add item error details:", err.response?.data || err.message);
+      const msg = err.response?.data?.message || err.message;
+      alert(`❌ Failed to add profile section: ${msg}`);
+      throw err; // Re-throw so the UI doesn't mark it as added
+    }
+  };
+
+  const handleUpdateItem = async (section, itemId, data) => {
+    try {
+      const userId = user?._id || user?.id || authUser?._id || authUser?.id;
+      if (!userId) throw new Error("No User ID");
+
+      console.log(`Updating item in ${section}, ID: ${itemId}:`, data);
+
+      const res = await axios.put(`${API}/api/user/profile/${userId}/update-item`, {
+        section,
+        itemId,
+        data,
+      });
+
+      if (res.data?.profile) {
+        const updatedUser = { ...user, profile: res.data.profile };
+        setUser(updatedUser);
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+      }
+    } catch (err) {
+      console.error("Update item error:", err.response?.data || err.message);
+      alert(`❌ Failed to update profile item: ${err.response?.data?.message || err.message}`);
+      throw err;
+    }
+  };
+
+  const handleDeleteItem = async (section, itemId) => {
+    try {
+      const userId = user?._id || user?.id || authUser?._id || authUser?.id;
+      if (!userId) throw new Error("No User ID");
+
+      console.log(`Deleting item from ${section}, ID: ${itemId}`);
+
+      const res = await axios.delete(`${API}/api/user/profile/${userId}/delete-item`, {
+        data: { section, itemId }
+      });
+
+      if (res.data?.profile) {
+        const updatedUser = { ...user, profile: res.data.profile };
+        setUser(updatedUser);
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+      }
+    } catch (err) {
+      console.error("Delete item error:", err.response?.data || err.message);
+      alert(`❌ Failed to delete profile item: ${err.response?.data?.message || err.message}`);
+      throw err;
+    }
+  };
+
   const handleProfileUpdate = async (updates) => {
     try {
-      const storedUser = JSON.parse(localStorage.getItem("user"));
+      const userId = user?._id || user?.id || authUser?._id || authUser?.id;
 
       const res = await axios.post(`${API}/api/user/update-profile`, {
-        userId: storedUser._id || storedUser.id,
+        userId: userId,
+        email: user.email,
         ...updates,
       });
 
@@ -75,6 +154,7 @@ const Profile = () => {
     } catch (err) {
       console.error("Profile update error:", err);
       alert("❌ Failed to update profile");
+      throw err;
     }
   };
 
@@ -93,7 +173,13 @@ const Profile = () => {
       <div className="profile-wrapper">
 
         {user.role === "student" && (
-          <StudentProfile user={user} onProfileUpdate={handleProfileUpdate} />
+          <StudentProfile 
+            user={user} 
+            onProfileUpdate={handleProfileUpdate} 
+            onAddItem={handleAddItem}
+            onUpdateItem={handleUpdateItem}
+            onDeleteItem={handleDeleteItem}
+          />
         )}
 
         {user.role === "consultant" && <ConsultantProfile user={user} />}

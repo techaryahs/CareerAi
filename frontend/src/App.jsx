@@ -99,6 +99,9 @@ import ConsultantDashboard from "./pages/consultant/ConsultantDashboard";
 // Parent Routes
 import ParentDashboard from "./pages/parent/ParentDashboard";
 
+//Free Counselling
+import FreeCounselling from "./pages/student/FreeCounselling/FreeCounselling";
+
 // Placeholder dashboard components for each role
 const TeacherDashboard = () => <h1>Teacher Dashboard</h1>;
 
@@ -126,6 +129,11 @@ function App() {
 
             {/* Root route – Home for guests, redirects to dashboard for logged‑in users */}
             <Route path="/services" element={<CareerJourney />} />
+
+            <Route
+              path="/free-counseling"
+              element={<FreeCounselling />}
+            />
 
             <Route
               path="/student-guidance/5th-7th"

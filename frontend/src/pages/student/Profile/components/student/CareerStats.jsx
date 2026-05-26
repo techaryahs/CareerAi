@@ -52,21 +52,22 @@ const CareerStats = ({ user }) => {
     ];
 
     return (
-        <div className="career-stats-modern">
-            <div className="stats-grid-modern">
-                {statCards.map((card, index) => (
-                    <div key={index} className={`stat-card-v3 animate-entrance ${card.className}`}>
-                        <div className="stat-icon-v3">
+        <div className="stats-grid-study-abroad">
+            {statCards.map((card, index) => (
+                <div key={index} className={`study-card-v3 ${card.className}`}>
+                    <div className="study-card-inner">
+                        <div className="study-card-icon">
                             {card.icon}
                         </div>
-                        <div className="stat-info-v3">
-                            <h3 className="stat-value-v3">{card.value}</h3>
-                            <p className="stat-label-v3">{card.label}</p>
+                        <div className="study-card-info">
+                            <h3 className="study-card-value">{card.value}</h3>
+                            <p className="study-card-label">{card.label}</p>
                         </div>
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
         </div>
+
     );
 };
 

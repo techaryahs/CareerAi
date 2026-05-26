@@ -16,6 +16,13 @@ const injectStyles = () => {
   const style = document.createElement("style");
   style.id = "consult-styles";
   style.textContent = `
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    overflow-x: hidden;
+  }
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
     .consult-root { font-family: 'DM Sans', sans-serif; }
@@ -182,6 +189,7 @@ const Consult = () => {
         background: "linear-gradient(155deg, #f0f5ff 0%, #fafcff 50%, #e8f0fe 100%)",
         position: "relative",
         overflow: "hidden",
+        overflowX: "hidden"
       }}
     >
       {/* ── Floating background orbs ── */}
@@ -189,7 +197,8 @@ const Consult = () => {
         className="orb-1"
         style={{
           position: "absolute", top: "8%", left: "5%",
-          width: 340, height: 340,
+           width: "clamp(150px, 40vw, 340px)",
+    height: "clamp(150px, 40vw, 340px)", maxWidth:"100vw",
           background: "radial-gradient(circle, rgba(0,123,255,.10) 0%, transparent 70%)",
           borderRadius: "50%", pointerEvents: "none",
         }}
@@ -198,7 +207,8 @@ const Consult = () => {
         className="orb-2"
         style={{
           position: "absolute", top: "30%", right: "3%",
-          width: 280, height: 280,
+           width: "clamp(150px, 40vw, 340px)",
+    height: "clamp(150px, 40vw, 340px)", maxWidth:"100vw",
           background: "radial-gradient(circle, rgba(0,212,255,.09) 0%, transparent 70%)",
           borderRadius: "50%", pointerEvents: "none",
         }}
@@ -207,7 +217,8 @@ const Consult = () => {
         className="orb-3"
         style={{
           position: "absolute", bottom: "10%", left: "30%",
-          width: 200, height: 200,
+           width: "clamp(150px, 40vw, 340px)",
+    height: "clamp(150px, 40vw, 340px)", maxWidth:"100vw",
           background: "radial-gradient(circle, rgba(30,58,138,.07) 0%, transparent 70%)",
           borderRadius: "50%", pointerEvents: "none",
         }}
@@ -220,7 +231,13 @@ const Consult = () => {
         backgroundSize: "32px 32px",
       }} />
 
-      <div style={{ position: "relative", zIndex: 1, padding: "80px 24px 100px" }}>
+      <div style={{
+  position: "relative",
+  zIndex: 1,
+  padding: "clamp(40px, 6vw, 80px) 16px 80px",
+  width: "100%",
+  maxWidth: "100vw"
+}}>
 
         {/* ── HERO ── */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -265,7 +282,7 @@ const Consult = () => {
         </div>
 
         {/* ── FILTER BAR ── */}
-        <div className="filter-bar" style={{ maxWidth: 860, margin: "0 auto 56px" }}>
+        <div className="filter-bar" style={{ width:"100%", maxWidth: 860, margin: "0 auto 56px",padding : "0 12px" }}>
           <div style={{
             background: "rgba(255,255,255,.85)",
             backdropFilter: "blur(20px)",
@@ -274,10 +291,17 @@ const Consult = () => {
             boxShadow: "0 8px 40px rgba(0,123,255,.08), 0 1px 0 rgba(255,255,255,.9) inset",
             padding: "20px 24px",
           }}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
+            <div style={{
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 12,
+  alignItems: "stretch",
+  justifyContent: "space-between"
+}}>
 
               {/* Search */}
-              <div style={{ position: "relative", flex: "1 1 220px" }}>
+              <div style={{ position: "relative", flex: "1 1 260px",
+minWidth: "0" }}>
                 <Search style={{
                   position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)",
                   color: "#94A3B8",
@@ -311,7 +335,7 @@ const Consult = () => {
               {/* Price type pills */}
               <div style={{
                 display: "flex", gap: 4, padding: 4,
-                background: "#F1F5F9", borderRadius: 14,
+                background: "#F1F5F9", borderRadius: 14,flexWrap: "wrap"
               }}>
                 {["all", "free", "paid"].map((type) => (
                   <button
@@ -385,8 +409,12 @@ const Consult = () => {
         {Array.isArray(filteredConsultants) && filteredConsultants.length > 0 ? (
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(268px, 1fr))",
-            gap: 28, maxWidth: 1200, margin: "0 auto",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+padding: "0 clamp(10px, 3vw, 20px)",
+            gap: 24, width: "100%",
+maxWidth: "1200px",
+margin: "0 auto",padding: "0 clamp(10px, 3vw, 20px)",
+
           }}>
             {filteredConsultants.map((c) => (
               <MentorCard
@@ -458,6 +486,7 @@ const MentorCard = ({ consultant: c, isPremium, onBook }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
+        width: "100%", maxWidth: "100%",
         position: "relative",
         background: hovered
           ? "rgba(255,255,255,1)"
@@ -526,7 +555,7 @@ const MentorCard = ({ consultant: c, isPremium, onBook }) => {
           }}
         />
         <div style={{
-          width: 92, height: 92, borderRadius: "50%",
+          width: "clamp(70px, 18vw, 92px)", height: "clamp(70px, 18vw, 92px)", borderRadius: "50%",
           padding: 3,
           background: hovered
             ? "linear-gradient(135deg, #007BFF, #00d4ff)"
@@ -599,6 +628,7 @@ const MentorCard = ({ consultant: c, isPremium, onBook }) => {
         width: "100%",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         gap: 12,
+        flexWrap: "wrap",
       }}>
         {/* Experience + Price */}
         <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-start" }}>
@@ -627,7 +657,7 @@ const MentorCard = ({ consultant: c, isPremium, onBook }) => {
             padding: "11px 22px", borderRadius: 14,
             border: "none", cursor: "pointer",
             color: "#fff", fontSize: 13, fontWeight: 700,
-            letterSpacing: "0.02em",
+            letterSpacing: "0.02em",whiteSpace: "nowrap",
           }}
         >
           <Calendar size={14} /> Book

@@ -58,7 +58,11 @@ const ProfileHeader = ({ user, onEditRequest }) => {
                     <div className="profile-meta-row">
                         <div className="meta-item">
                             <FaMapMarkerAlt />
-                            <span>{user?.location || 'Global'}</span>
+                            <span>
+                                {user?.state || user?.country 
+                                    ? `${user?.state ? user.state + ', ' : ''}${user?.country || ''}`
+                                    : (user?.profile?.location || 'Global')}
+                            </span>
                         </div>
                         <div className="meta-item">
                             <FaCalendarAlt />
