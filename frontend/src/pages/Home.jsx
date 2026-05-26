@@ -6,6 +6,7 @@ import PopularCareersSection from '../components/Home/PopularCareersSection'
 import WhyChooseUsSection from '../components/Home/WhyChooseUsSection'
 import TestimonialsSection from '../components/Home/TestimonialsSection'
 import CallToActionSection from '../components/Home/CallToActionSection'
+import Footer from '../components/Home/Footer'
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <WhyChooseUsSection />
       <TestimonialsSection />
       <CallToActionSection />
+      <Footer />
     </div>
   )
 }

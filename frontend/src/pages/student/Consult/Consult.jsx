@@ -408,13 +408,11 @@ minWidth: "0" }}>
         {/* ── CARD GRID ── */}
         {Array.isArray(filteredConsultants) && filteredConsultants.length > 0 ? (
           <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-padding: "0 clamp(10px, 3vw, 20px)",
-            gap: 24, width: "100%",
-maxWidth: "1200px",
-margin: "0 auto",padding: "0 clamp(10px, 3vw, 20px)",
-
+            gap: 24,
+            width: "100%",
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 clamp(10px, 3vw, 20px)",
           }}>
             {filteredConsultants.map((c) => (
               <MentorCard
