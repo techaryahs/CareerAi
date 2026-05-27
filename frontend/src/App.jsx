@@ -102,6 +102,9 @@ import ParentDashboard from "./pages/parent/ParentDashboard";
 //Free Counselling
 import FreeCounselling from "./pages/student/FreeCounselling/FreeCounselling";
 
+import TermsCondition from "./components/Terms/TermsCondition";
+import Privacy from "./components/Terms/Privacy";
+
 // Placeholder dashboard components for each role
 const TeacherDashboard = () => <h1>Teacher Dashboard</h1>;
 
@@ -403,6 +406,9 @@ function App() {
                 element={<VideoCallPage />}
               />
             </Route>
+
+            <Route path="/terms-condition" element={<TermsCondition />} />
+<Route path="/privacy-policy" element={<Privacy />} />
 
             {/* Catch‑all – redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
