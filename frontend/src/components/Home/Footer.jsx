@@ -11,6 +11,7 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-[#020B24] text-white pt-16 pb-8 px-6 md:px-16">
+      
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
 
         {/* Logo & About */}
@@ -165,48 +166,82 @@ const Footer = () => {
             <p>📞 +91 9619901999</p>
             <p>📞 +91 8657869659</p>
             <p>✉️ careergenai9@gmail.com</p>
-            <p>📍 Gauri Complex, 601, Sector 11, CBD Belapur, Navi Mumbai, Maharashtra 400614</p>
+
+            <p>
+              📍 Gauri Complex, 601, Sector 11,
+              CBD Belapur, Navi Mumbai,
+              Maharashtra 400614
+            </p>
           </div>
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-6">
 
-  <a
-    href="https://www.instagram.com/careergenai_official/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300"
-  >
-    <FaInstagram />
-  </a>
+            <a
+              href="https://www.instagram.com/careergenai_official/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600 transition-all duration-300"
+            >
+              <FaInstagram />
+            </a>
 
-  <a
-    href="https://www.linkedin.com/showcase/careergenai/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300"
-  >
-    <FaLinkedinIn />
-  </a>
+            <a
+              href="https://www.linkedin.com/showcase/careergenai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 transition-all duration-300"
+            >
+              <FaLinkedinIn />
+            </a>
 
-  <a
-    href="https://www.youtube.com/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300"
-  >
-    <FaYoutube />
-  </a>
+            <a
+              href="https://www.youtube.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-red-500 hover:to-red-700 transition-all duration-300"
+            >
+              <FaYoutube />
+            </a>
 
-</div>
+          </div>
         </div>
+
       </div>
 
-      {/* Bottom */}
-      <div className="border-t border-white/10 mt-14 pt-6 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} Aryahs World Infotech (OPC) Pvt. Ltd.
-        All Rights Reserved.
+      {/* Bottom Footer */}
+      <div className="border-t border-white/10 mt-14 pt-6">
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+
+          <p className="text-gray-500 text-sm text-center md:text-left">
+            © {new Date().getFullYear()} CareerGenAI.
+            All Rights Reserved.
+          </p>
+
+          {/* Policy Links */}
+          <div className="flex gap-6 text-sm text-gray-400">
+
+            <Link
+              to="/terms-condition"
+              className="hover:text-white transition"
+            >
+              Terms & Conditions
+            </Link>
+
+            <Link
+              to="/privacy-policy"
+              className="hover:text-white transition"
+            >
+              Privacy Policy
+            </Link>
+
+          </div>
+
+        </div>
+
       </div>
+
     </footer>
   );
 };
