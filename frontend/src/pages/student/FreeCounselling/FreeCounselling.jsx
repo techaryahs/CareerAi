@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import api from "../../../api";
 
 const FreeCounselling = () => {
 
@@ -52,8 +53,8 @@ const FreeCounselling = () => {
 
       if (!counsellor || !date) return;
 
-      const res = await axios.get(
-        "http://localhost:5001/api/counselling/available-slots",
+      const res = await api.get(
+        "/counselling/available-slots",
         {
           params: {
             counsellor,
@@ -114,8 +115,8 @@ const FreeCounselling = () => {
 
       setOtpLoading(true);
 
-      const res = await axios.post(
-        "http://localhost:5001/api/counselling/send-otp",
+      const res = await api.post(
+        "/counselling/send-otp",
         {
           phone: formData.phone,
         }
@@ -140,8 +141,8 @@ const FreeCounselling = () => {
   const verifyOtp = async () => {
     try {
 
-      const res = await axios.post(
-        "http://localhost:5001/api/counselling/verify-otp",
+      const res = await api.post(
+        "/counselling/verify-otp",
         {
           phone: formData.phone,
           otp,
@@ -171,8 +172,8 @@ const FreeCounselling = () => {
 
       setLoading(true);
 
-      const res = await axios.post(
-        "http://localhost:5001/api/counselling/book",
+      const res = await api.post(
+        "/counselling/book",
         formData
       );
 
