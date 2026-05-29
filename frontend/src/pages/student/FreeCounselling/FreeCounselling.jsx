@@ -184,17 +184,17 @@ const FreeCounselling = () => {
 );
 
       setFormData({
-  fullName: "",
-  phone: "",
-  email: "",
-  city: "",
-  course: "",
-  mode: "",
-  counsellor: formData.counsellor,
-  preferredDate: formData.preferredDate,
-  slot: "",
-  message: "",
-});
+        fullName: "",
+        phone: "",
+        email: "",
+        city: "",
+        course: "",
+        mode: "",
+        counsellor: formData.counsellor,
+        preferredDate: formData.preferredDate,
+        slot: "",
+        message: "",
+      });
 
 
       setOtp("");

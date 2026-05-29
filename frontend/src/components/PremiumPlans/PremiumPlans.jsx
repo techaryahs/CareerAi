@@ -16,24 +16,90 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
   const isPremium = user?.premium?.isPremium;
   const expiry = user?.premium?.expiryDate;
 
-  const activate = () => {
-    const map = {
-      "1 Month": "1month",
-      "2 Months": "2months",
-      "3 Months": "3months",
-    };
-    const plan = map[selectedPlan];
-    if (!plan) return alert("Select a plan first");
+  const handleUpgrade = async () => {
+    if (!selectedPlan) return alert("Select a plan first");
 
-    fetch(`${import.meta.env.REACT_APP_API_URL}/api/premium/activate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: user.email, plan }),
-    })
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.success) window.location.reload();
+    try {
+      // Dynamically load Razorpay checkout script
+      if (!window.Razorpay) {
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.async = true;
+        document.body.appendChild(script);
+        await new Promise((resolve, reject) => {
+          script.onload = resolve;
+          script.onerror = reject;
+        });
+      }
+
+      // Create order on the backend
+      const res = await fetch(`${import.meta.env.REACT_APP_API_URL || "http://localhost:5001"}/api/payments/order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ planName: selectedPlan })
       });
+
+      const data = await res.json();
+      if (!data.success || !data.order) {
+        throw new Error(data.error || "Failed to create payment order");
+      }
+
+      const { order } = data;
+
+      const options = {
+        key: "rzp_live_RseCm2t4lFlfMC",
+        amount: order.amount,
+        currency: order.currency,
+        name: "CareerGenAI",
+        description: `Premium Upgrade - ${selectedPlan}`,
+        order_id: order.id,
+        handler: async function (response) {
+          try {
+            const verifyRes = await fetch(`${import.meta.env.REACT_APP_API_URL || "http://localhost:5001"}/api/payments/verify`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+              },
+              body: JSON.stringify({
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_signature: response.razorpay_signature,
+                planName: selectedPlan
+              })
+            });
+
+            const verifyData = await verifyRes.json();
+            if (verifyData.success) {
+              alert(`🎉 Account successfully upgraded to Premium (${selectedPlan})!`);
+              window.location.reload();
+            } else {
+              alert("Payment verification failed. Please contact support.");
+            }
+          } catch (err) {
+            console.error("Verification error:", err);
+            alert("Error verifying payment signature.");
+          }
+        },
+        prefill: {
+          name: user?.name || "",
+          email: user?.email || "",
+          contact: user?.mobile || ""
+        },
+        theme: {
+          color: "#1d4ed8"
+        }
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } catch (err) {
+      console.error("Checkout initialization failed:", err);
+      alert(err.message || "Failed to initiate payment. Please try again.");
+    }
   };
 
   return (
@@ -141,7 +207,7 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
             {/* BUTTON */}
             <button
               disabled={!selectedPlan}
-              onClick={() => setShowQrPopup(true)}
+              onClick={handleUpgrade}
               className={`
                 w-full py-3 mt-4 rounded-lg text-white font-bold
                 ${
@@ -156,15 +222,6 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
           </div>
         </div>
       </div>
-
-      {/* QR POPUP */}
-      {showQrPopup && (
-        <QrPopup
-          selectedPlan={selectedPlan}
-          onClose={() => setShowQrPopup(false)}
-          onConfirm={activate}
-        />
-      )}
     </div>
   );
 }

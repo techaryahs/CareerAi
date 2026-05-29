@@ -41,6 +41,7 @@ import CategoryView from "./pages/student/Tutorials/CategoryView";
 import CareerQuiz from "./pages/student/CareerQuiz/CareerQuiz";
 import CareerDetail from "./pages/student/CareerDetails/CareerDetail";
 import Consult from "./pages/student/Consult/Consult";
+import ConsultPricing from "./pages/student/ConsultPricing/ConsultPricing";
 import History from "./pages/student/History/History";
 // Rename for clarity and to avoid collision
 const StudentHistory = History;
@@ -199,6 +200,10 @@ function App() {
               <Route path="/careerquiz" element={<CareerQuiz />} />
               <Route path="/careerdetail" element={<CareerDetail />} />
               <Route path="/consult" element={<Consult />} />
+              <Route
+                path="/consult-pricing"
+                element={<ConsultPricing />}
+              />
               <Route path="/compare" element={<CareerCompare />} />
 
               <Route path="/chat" element={<Chat />} />

@@ -1,5 +1,5 @@
 const Activity = require("../models/Activity");
-const User = require("../models/user"); // Assuming User model path
+const User = require("../models/User"); // Assuming User model path
 const Teacher = require("../models/Teacher");
 const Consultant = require("../models/Consultant");
 

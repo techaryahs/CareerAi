@@ -65,6 +65,7 @@ app.use("/api/activity", require("./routes/activityRoutes"));
 
 app.use("/api/feature-activity", featureActivityRoutes);
 app.use("/api/counselling", counsellingRoutes);
+app.use("/api/payments", require("./routes/payment.routes"));
 
 
 

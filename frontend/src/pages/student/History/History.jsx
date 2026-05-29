@@ -39,8 +39,11 @@ const StudentHistory = () => {
       const res = await fetch(`${API}/api/user/${user.email}`);
       const data = await res.json();
 
-      if (res.ok) {
-        if (data.receiptStatus === "denied") {
+      if (res.ok && data.success && data.user) {
+        const u = data.user;
+        const profile = u.profile || {};
+
+        if (profile.receiptStatus === "denied") {
           await fetch(`${API}/api/user/delete-receipt`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -49,16 +52,16 @@ const StudentHistory = () => {
           setReceiptUrl(null);
           setReceiptStatus(null);
         } else {
-          setReceiptUrl(data.receiptUrl);
-          setReceiptStatus(data.receiptStatus);
-          setPremiumPlan(data.premiumPlan);
-          setPremiumExpiresAt(data.premiumExpiresAt);
+          setReceiptUrl(profile.receiptUrl);
+          setReceiptStatus(profile.receiptStatus || (profile.isPremium ? "approved" : null));
+          setPremiumPlan(profile.premiumPlan);
+          setPremiumExpiresAt(profile.premiumExpiresAt);
           setPremiumStartDate(
-            data.premiumStartDate || data.updatedAt || data.createdAt
+            profile.premiumStartAt || u.updatedAt || u.createdAt
           );
         }
       } else {
-        setError(data.error || "Something went wrong.");
+        setError(data.message || data.error || "Something went wrong.");
       }
     } catch (err) {
       console.error(err);
@@ -269,40 +272,84 @@ const StudentHistory = () => {
                     </div>
                   </div>
 
-                  <div className="receipt-section-v4">
-                    <div className="receipt-preview-v4">
-                      <img
-                        src={receiptUrl}
-                        alt="Receipt"
-                        className="receipt-img-h"
-                        onClick={() => setModalImg(receiptUrl)}
-                      />
-                      <div className="receipt-meta">
-                        <span
-                          style={{
-                            display: "block",
-                            fontWeight: "700",
-                            fontSize: "14px",
-                          }}
-                        >
-                          Payment Proof
-                        </span>
-                        <span
-                          style={{
-                            fontSize: "12px",
-                            color: "var(--text-sub-h)",
-                          }}
-                        >
-                          Click to enlarge image
-                        </span>
+                  <div className="receipt-section-v4" style={{ flexDirection: "column", gap: "16px", alignItems: "stretch" }}>
+                    {receiptUrl && receiptUrl.startsWith("razorpay:") ? (
+                      <div className="digital-receipt-card" style={{
+                        padding: "20px",
+                        background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
+                        border: "1.5px dashed #cbd5e1",
+                        borderRadius: "16px",
+                        width: "100%",
+                        textAlign: "left",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.03)"
+                      }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px", borderBottom: "1px solid #e2e8f0", paddingBottom: "8px" }}>
+                          <span style={{ fontSize: "13px", color: "#64748b", fontWeight: "600" }}>Transaction Method</span>
+                          <span style={{ fontSize: "13px", color: "#1e3a8a", fontWeight: "700" }}>Razorpay Secure</span>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px", borderBottom: "1px solid #e2e8f0", paddingBottom: "8px" }}>
+                          <span style={{ fontSize: "13px", color: "#64748b", fontWeight: "600" }}>Payment ID</span>
+                          <span style={{ fontSize: "13px", color: "#334155", fontWeight: "700", fontFamily: "monospace" }}>
+                            {receiptUrl.replace("razorpay:", "")}
+                          </span>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px", borderBottom: "1px solid #e2e8f0", paddingBottom: "8px" }}>
+                          <span style={{ fontSize: "13px", color: "#64748b", fontWeight: "600" }}>Subscription Tier</span>
+                          <span style={{ fontSize: "13px", color: "#2563eb", fontWeight: "700" }}>
+                            {getPlanLabel(premiumPlan)}
+                          </span>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px", borderBottom: "1px solid #e2e8f0", paddingBottom: "8px" }}>
+                          <span style={{ fontSize: "13px", color: "#64748b", fontWeight: "600" }}>Amount Authorized</span>
+                          <span style={{ fontSize: "13px", color: "#059669", fontWeight: "800" }}>
+                            {premiumPlan === "1 Month" ? "₹1,999" : premiumPlan === "2 Months" ? "₹2,999" : premiumPlan === "3 Months" ? "₹3,999" : premiumPlan === "SMART" ? "₹2,999" : premiumPlan === "PREMIUM" ? "₹5,999" : premiumPlan === "ELITE VIP" ? "₹9,999" : "Verified"}
+                          </span>
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                          <span style={{ fontSize: "13px", color: "#64748b", fontWeight: "600" }}>Authorization Status</span>
+                          <span style={{ fontSize: "13px", color: "#2563eb", fontWeight: "800", display: "flex", alignItems: "center", gap: "6px" }}>
+                            <FaCheckCircle style={{ color: "#10b981" }} /> Auto Verified
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <button
-                      className="view-btn-v4"
-                      onClick={() => setModalImg(receiptUrl)}
-                    >
-                      <FaEye /> Full Preview
-                    </button>
+                    ) : (
+                      <>
+                        <div className="receipt-preview-v4" style={{ width: "100%" }}>
+                          <img
+                            src={receiptUrl}
+                            alt="Receipt"
+                            className="receipt-img-h"
+                            onClick={() => setModalImg(receiptUrl)}
+                          />
+                          <div className="receipt-meta">
+                            <span
+                              style={{
+                                display: "block",
+                                fontWeight: "700",
+                                fontSize: "14px",
+                              }}
+                            >
+                              Payment Proof
+                            </span>
+                            <span
+                              style={{
+                                fontSize: "12px",
+                                color: "var(--text-sub-h)",
+                              }}
+                            >
+                              Click to enlarge image
+                            </span>
+                          </div>
+                        </div>
+                        <button
+                          className="view-btn-v4"
+                          onClick={() => setModalImg(receiptUrl)}
+                          style={{ width: "100%", justifyContent: "center" }}
+                        >
+                          <FaEye /> Full Preview
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               ) : (

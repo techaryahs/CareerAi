@@ -408,6 +408,8 @@ minWidth: "0" }}>
         {/* ── CARD GRID ── */}
         {Array.isArray(filteredConsultants) && filteredConsultants.length > 0 ? (
           <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
             gap: 24,
             width: "100%",
             maxWidth: "1200px",
