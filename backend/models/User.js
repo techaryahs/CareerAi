@@ -50,6 +50,39 @@ const UserSchema = new mongoose.Schema(
       premiumStartAt: { type: Date, default: null },
       premiumExpiresAt: { type: Date, default: null },
 
+      admissionPackage: {
+        packageName: {
+          type: String,
+          default: null
+        },
+
+        amount: {
+          type: Number,
+          default: 0
+        },
+
+        purchasedAt: {
+          type: Date,
+          default: null
+        },
+
+        paymentId: {
+          type: String,
+          default: null
+        },
+
+        orderId: {
+          type: String,
+          default: null
+        },
+
+        status: {
+          type: String,
+          enum: ["active", "completed", "cancelled"],
+          default: "active"
+        }
+      },
+
       // RECEIPTS
       receiptUrl: { type: String, default: null },
       receiptStatus: {
@@ -173,7 +206,9 @@ const UserSchema = new mongoose.Schema(
         priority: { type: Number, default: 0 },
         addedAt: { type: Date, default: Date.now }
       }],
-    }
+    },
+
+    
   },
   { timestamps: true }
 );

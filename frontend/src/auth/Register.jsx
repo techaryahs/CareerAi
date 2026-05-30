@@ -14,6 +14,66 @@ const Register = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [mobileVerified, setMobileVerified] = useState(false);
+  const [otpLoading, setOtpLoading] = useState(false);
+
+  const sendOtp = async () => {
+    if (formData.mobile.length < 10) {
+      return alert("Please enter a valid mobile number");
+    }
+
+    try {
+      setOtpLoading(true);
+
+      const res = await api.post(
+        "/api/auth/send-mobile-otp",
+        {
+          mobile: `${formData.mobilePrefix}${formData.mobile}`,
+        }
+      );
+
+      setOtpSent(true);
+      alert(res.data.message);
+
+    } catch (err) {
+      console.error(err);
+      alert(
+        err.response?.data?.error ||
+        "Failed to send OTP"
+      );
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const verifyOtp = async () => {
+    try {
+
+      const res = await api.post(
+        "/api/auth/verify-mobile-otp",
+        {
+          mobile: `${formData.mobilePrefix}${formData.mobile}`,
+          otp,
+        }
+      );
+
+      alert(res.data.message);
+
+      setMobileVerified(true);
+
+    } catch (err) {
+
+      console.error(err);
+
+      alert(
+        err.response?.data?.error ||
+        "Invalid OTP"
+      );
+    }
+  };
+
   useEffect(() => {
     if (user) navigate("/");
   }, [user, navigate]);
@@ -73,6 +133,11 @@ const Register = () => {
 
   const validateStep1 = () => {
     const newErrors = {};
+    if (!formData.mobile.trim()) {
+      newErrors.mobile = "Mobile Number is required";
+    } else if (!mobileVerified) {
+      newErrors.mobile = "Please verify mobile number";
+    }
     if (!formData.name.trim()) newErrors.name = "Full Name is required";
     if (!formData.email.trim()) newErrors.email = "Email Address is required";
     else if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Invalid email format";
@@ -135,9 +200,18 @@ const Register = () => {
     if (limits[name] && value.length > limits[name]) return;
 
     if (name === "mobile") {
-      // Only allow numbers
+
+      setMobileVerified(false);
+      setOtpSent(false);
+      setOtp("");
+
       const numericValue = value.replace(/[^0-9]/g, "");
-      setFormData(prev => ({ ...prev, [name]: numericValue }));
+
+      setFormData(prev => ({
+        ...prev,
+        mobile: numericValue
+      }));
+
       return;
     }
 
@@ -156,6 +230,9 @@ const Register = () => {
 
   const handleCountryChange = (selected) => {
     const countryInfo = Country.getCountryByCode(selected.value);
+    setMobileVerified(false);
+    setOtpSent(false);
+    setOtp("");
     setFormData(prev => ({
       ...prev,
       country: selected,
@@ -345,12 +422,87 @@ const Register = () => {
                   </div>
 
                   <div className="col-span-2">
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Mobile Number</label>
-                    <div className="flex gap-2">
-                       <span className="flex-shrink-0 w-16 px-2 py-2 rounded-xl bg-gray-50 text-gray-600 font-bold border border-gray-100 flex items-center justify-center">{formData.mobilePrefix}</span>
-                       <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} maxLength={12} placeholder="9876543210" className={`flex-1 px-4 py-2 rounded-xl bg-gray-50 border transition-all outline-none ${errors.mobile ? 'border-red-500' : 'border-transparent focus:border-indigo-500 focus:bg-white'}`} />
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">
+                      Mobile Number
+                    </label>
+
+                    <div className="space-y-2">
+
+                      {/* Mobile Input + Send OTP */}
+                      <div className="flex gap-2">
+                        <span className="flex-shrink-0 w-16 px-2 py-2 rounded-xl bg-gray-50 text-gray-600 font-bold border border-gray-100 flex items-center justify-center">
+                          {formData.mobilePrefix}
+                        </span>
+
+                        <input
+                          type="text"
+                          name="mobile"
+                          value={formData.mobile}
+                          onChange={handleChange}
+                          maxLength={12}
+                          placeholder="9876543210"
+                          disabled={mobileVerified}
+                          className={`flex-1 px-4 py-2 rounded-xl bg-gray-50 border transition-all outline-none ${
+                            errors.mobile
+                              ? "border-red-500"
+                              : "border-transparent focus:border-indigo-500 focus:bg-white"
+                          }`}
+                        />
+
+                        <button
+                          type="button"
+                          onClick={sendOtp}
+                          disabled={otpLoading || mobileVerified}
+                          className={`px-4 py-2 rounded-xl text-white font-medium whitespace-nowrap ${
+                            mobileVerified
+                              ? "bg-green-600"
+                              : "bg-indigo-600 hover:bg-indigo-700"
+                          }`}
+                        >
+                          {mobileVerified
+                            ? "Verified"
+                            : otpLoading
+                            ? "Sending..."
+                            : "Send OTP"}
+                        </button>
+                      </div>
+
+                      {/* OTP Verification */}
+                      {otpSent && !mobileVerified && (
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            placeholder="Enter OTP"
+                            value={otp}
+                            onChange={(e) => setOtp(e.target.value)}
+                            maxLength={6}
+                            className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:border-green-500 outline-none"
+                          />
+
+                          <button
+                            type="button"
+                            onClick={verifyOtp}
+                            className="px-4 py-2 rounded-xl bg-green-600 hover:bg-green-700 text-white font-medium whitespace-nowrap"
+                          >
+                            Verify OTP
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Verified Message */}
+                      {mobileVerified && (
+                        <p className="text-green-600 text-sm font-medium">
+                          ✓ Mobile Number Verified Successfully
+                        </p>
+                      )}
+
                     </div>
-                    {errors.mobile && <p className="text-red-500 text-[10px] mt-1 font-medium italic">{errors.mobile}</p>}
+
+                    {errors.mobile && (
+                      <p className="text-red-500 text-[10px] mt-1 font-medium italic">
+                        {errors.mobile}
+                      </p>
+                    )}
                   </div>
 
                   <div className="col-span-2 md:col-span-1">

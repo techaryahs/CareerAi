@@ -5,8 +5,12 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Consultant = require("../models/Consultant");
 const Teacher = require("../models/Teacher");
+const axios = require("axios");
 
 const otpStore = new Map();
+const otpStoreMobile = new Map();
+
+const { sendSMSOTP } = require("../utils/otpsms");
 
 /* =========================
    REGISTER STUDENT (Base User)
@@ -587,4 +591,112 @@ exports.resetPassword = async (req, res) => {
   await User.findOneAndUpdate({ email }, { password: hashedPassword });
   otpStore.delete(email);
   res.json({ message: "Password reset" });
+};
+
+
+exports.sendOtpMobile = async (req, res) => {
+  try {
+
+    const { mobile } = req.body;
+
+    if (!mobile) {
+      return res.status(400).json({
+        error: "Mobile number is required"
+      });
+    }
+
+    const otp =
+      Math.floor(100000 + Math.random() * 900000).toString();
+
+    const expiresAt =
+      Date.now() + 10 * 60 * 1000;
+
+    otpStoreMobile.set(mobile, {
+      otp,
+      expiresAt,
+      verified: false
+    });
+
+    console.log(`📱 Mobile OTP (${mobile}) : ${otp}`);
+
+    const smsResult = await sendSMSOTP(
+      mobile.replace("+91", ""),
+      otp
+    );
+
+    if (!smsResult.success) {
+      return res.status(500).json({
+        error: smsResult.message
+      });
+    }
+
+    res.json({
+      message: "OTP sent successfully"
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      error: "Failed to send OTP"
+    });
+  }
+};
+
+
+exports.verifyOtpMobile = async (req, res) => {
+  try {
+
+    const { mobile, otp } = req.body;
+
+    const storedData =
+      otpStoreMobile.get(mobile);
+
+    if (!storedData) {
+      return res.status(400).json({
+        error: "No OTP found"
+      });
+    }
+
+    if (
+      storedData.otp.toString() !==
+      otp.toString()
+    ) {
+      return res.status(400).json({
+        error: "Invalid OTP"
+      });
+    }
+
+    if (
+      Date.now() >
+      storedData.expiresAt
+    ) {
+      otpStoreMobile.delete(mobile);
+
+      return res.status(400).json({
+        error: "OTP expired"
+      });
+    }
+
+    storedData.verified = true;
+
+    otpStoreMobile.set(
+      mobile,
+      storedData
+    );
+
+    res.json({
+      message: "Mobile verified successfully",
+      verified: true
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      error: "Verification failed"
+    });
+  }
 };

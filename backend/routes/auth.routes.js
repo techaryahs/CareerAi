@@ -15,6 +15,16 @@ router.post("/register-consultant", upload.single('image'), authCtrl.registerCon
 
 router.post("/verify-otp", authCtrl.verifyOtp);
 router.post("/resend-otp", authCtrl.resendOtp);
+router.post(
+  "/send-mobile-otp",
+  authCtrl.sendOtpMobile
+);
+
+router.post(
+  "/verify-mobile-otp",
+  authCtrl.verifyOtpMobile
+);
+
 router.post("/login", authCtrl.login);
 
 router.post("/forgot-password", authCtrl.forgotPassword);

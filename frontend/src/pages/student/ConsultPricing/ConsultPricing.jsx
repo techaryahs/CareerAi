@@ -213,6 +213,42 @@ const ConsultPricing = () => {
           </p>
         </div>
 
+        {user?.profile?.admissionPackage?.packageName && (
+          <div className="mb-10">
+            <div className="bg-green-50 border border-green-200 rounded-2xl p-5 flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-bold text-green-800">
+                  🎓 Active Admission Package
+                </h3>
+
+                <p className="text-green-700 mt-1">
+                  You currently have the{" "}
+                  <span className="font-semibold">
+                    {user.profile.admissionPackage.packageName}
+                  </span>{" "}
+                  package.
+                </p>
+
+                {user.profile.admissionPackage.expiresAt && (
+                  <p className="text-sm text-green-600 mt-1">
+                    Valid until{" "}
+                    {new Date(
+                      user.profile.admissionPackage.expiresAt
+                    ).toLocaleDateString()}
+                  </p>
+                )}
+              </div>
+
+              <button
+                onClick={() => navigate("/history")}
+                className="bg-green-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-green-700"
+              >
+                View Details
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Pricing Cards */}
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
 

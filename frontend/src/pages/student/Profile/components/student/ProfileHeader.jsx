@@ -38,11 +38,35 @@ const ProfileHeader = ({ user, onEditRequest }) => {
 
                         <div className="profile-header-info">
                             <div className="name-badge-grid">
-                                <h1 className="profile-name">{user?.name || 'Inquisitive User'}</h1>
-                                {user?.isVerified && <FaCheckCircle className="badge-verified" title="Verified" />}
-                                {user?.isPremium && <span className="badge-pro">PRO</span>}
+                                <h1 className="profile-name">
+                                    {user?.name || 'Inquisitive User'}
+                                </h1>
+
+                                {user?.isVerified && (
+                                    <FaCheckCircle
+                                        className="badge-verified"
+                                        title="Verified"
+                                    />
+                                )}
+
+                                {user?.profile?.isPremium && (
+                                    <span className="badge-pro">
+                                        ⭐ {user.profile.premiumPlan}
+                                    </span>
+                                )}
                             </div>
-                            <p className="profile-handle">@{user?.email?.split('@')[0] || 'citizen'}</p>
+
+                            <div className="subscription-badges">
+                                {user?.profile?.admissionPackage?.packageName && (
+                                    <span className="admission-badge">
+                                        🎓 {user.profile.admissionPackage.packageName}
+                                    </span>
+                                )}
+                            </div>
+
+                            <p className="profile-handle">
+                                @{user?.email?.split('@')[0] || 'citizen'}
+                            </p>
 
                             <p className="profile-bio desktop-bio">
                                 {user?.bio || "Mapping potential to global industrial landscapes with AI-driven insights."}

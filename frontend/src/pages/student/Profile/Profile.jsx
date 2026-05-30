@@ -173,9 +173,19 @@ const Profile = () => {
       <div className="profile-wrapper">
 
         {user.role === "student" && (
-          <StudentProfile 
-            user={user} 
-            onProfileUpdate={handleProfileUpdate} 
+          
+          <StudentProfile
+            user={user}
+            membershipBadge={
+              user.profile?.isPremium
+                ? user.profile.premiumPlan
+                : null
+            }
+            packageBadge={
+              user.profile?.admissionPackage?.packageName
+                || null
+            }
+            onProfileUpdate={handleProfileUpdate}
             onAddItem={handleAddItem}
             onUpdateItem={handleUpdateItem}
             onDeleteItem={handleDeleteItem}

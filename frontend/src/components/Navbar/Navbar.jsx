@@ -97,10 +97,15 @@ export default function Navbar() {
           
           {/* 1️⃣ LEFT: LOGO */}
           <NavLink to="/" className="flex items-center gap-3 z-10">
-             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-900 font-bold text-xl ring-2 ring-indigo-400">
-               <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-full"/>
-             </div>
-            <span className="text-2xl font-bold bg-linear-to-r from-blue-200 to-white bg-clip-text text-transparent">
+            <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-blue-400/40 shadow-lg shadow-blue-900/30">
+              <img
+                src="/logo.png"
+                alt="CareerGenAI"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
               CareerGenAI
             </span>
           </NavLink>

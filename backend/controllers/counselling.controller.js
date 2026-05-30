@@ -36,13 +36,12 @@ const sendOtp = async (req, res) => {
     const smsUrl =
       `https://control.msg91.com/api/sendhttp.php` +
       `?authkey=${process.env.MSG91_AUTH_KEY}` +
-      `&mobiles=91${phone}` +
+      `&mobiles=${mobile.replace("+91", "")}` +
       `&message=${message}` +
       `&sender=NXSLON` +
       `&route=1` +
       `&country=91` +
       `&DLT_TE_ID=1107177133272980578`;
-
     // SEND SMS
     await axios.get(smsUrl);
 

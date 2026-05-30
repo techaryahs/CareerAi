@@ -28,6 +28,7 @@ const StudentHistory = () => {
   const [counsellingBookings, setCounsellingBookings] = useState([]);
   const [activeTab, setActiveTab] = useState("payment");
   const [activeMeetings, setActiveMeetings] = useState(new Set());
+  const [admissionPackage, setAdmissionPackage] = useState(null);
 
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -58,6 +59,10 @@ const StudentHistory = () => {
           setPremiumExpiresAt(profile.premiumExpiresAt);
           setPremiumStartDate(
             profile.premiumStartAt || u.updatedAt || u.createdAt
+          );
+
+          setAdmissionPackage(
+            profile.admissionPackage || null
           );
         }
       } else {
@@ -138,23 +143,40 @@ const StudentHistory = () => {
   };
 
   const getDaysLeft = () => {
-    if (!premiumExpiresAt) return null;
+    if (!premiumExpiresAt) return 0;
+
     const now = new Date();
     const end = new Date(premiumExpiresAt);
-    const diff = Math.ceil((end - now) / (1000 * 60 * 60 * 24));
+
+    const diff = Math.ceil(
+      (end - now) / (1000 * 60 * 60 * 24)
+    );
+
     return diff > 0 ? diff : 0;
   };
 
   const getPlanLabel = (key) => {
     switch (key) {
-      case "1month":
+      case "1 Month":
         return "1 Month Elite";
-      case "2months":
+
+      case "2 Months":
         return "2 Months Elite";
-      case "3months":
+
+      case "3 Months":
         return "3 Months Elite";
+
+      case "SMART":
+        return "SMART";
+
+      case "PREMIUM":
+        return "PREMIUM";
+
+      case "ELITE VIP":
+        return "ELITE VIP";
+
       default:
-        return "Premium Membership";
+        return key || "Premium Membership";
     }
   };
 
@@ -186,6 +208,50 @@ const StudentHistory = () => {
       .toUpperCase()
       .substring(0, 2);
   };
+
+  const getAdmissionDaysLeft = () => {
+    if (!admissionPackage?.expiresAt) return 0;
+
+    const now = new Date();
+    const expiry = new Date(
+      admissionPackage.expiresAt
+    );
+
+    const diff = Math.ceil(
+      (expiry - now) / (1000 * 60 * 60 * 24)
+    );
+
+    return diff > 0 ? diff : 0;
+  };
+
+  const hasMembership = !!premiumPlan;
+
+  const hasAdmissionPackage =
+    !!admissionPackage?.packageName;
+
+  const paymentTitle = hasAdmissionPackage
+    ? "Admission Guidance Package"
+    : "Premium Membership";
+
+  const paymentPlan = hasAdmissionPackage
+    ? admissionPackage.packageName
+    : getPlanLabel(premiumPlan);
+
+  const paymentAmount = hasAdmissionPackage
+    ? `₹${admissionPackage.amount?.toLocaleString()}`
+    : premiumPlan === "1 Month"
+    ? "₹1,999"
+    : premiumPlan === "2 Months"
+    ? "₹2,999"
+    : premiumPlan === "3 Months"
+    ? "₹3,999"
+    : premiumPlan === "SMART"
+    ? "₹2,999"
+    : premiumPlan === "PREMIUM"
+    ? "₹5,999"
+    : premiumPlan === "ELITE VIP"
+    ? "₹9,999"
+    : "Verified";
 
   if (loading) return <PageLoader />;
 
@@ -234,10 +300,10 @@ const StudentHistory = () => {
                 <div className="error-state-modern">
                   <p>{error}</p>
                 </div>
-              ) : receiptUrl ? (
+              ) : (hasMembership || hasAdmissionPackage) ? (
                 <div className="payment-card-v4">
                   <div className="payment-card-header-v4">
-                    <h3>Elite Subscription</h3>
+                    <h3>{paymentTitle}</h3>
                     <span
                       className={`badge-v4 ${
                         receiptStatus === "approved" ? "approved" : "pending"
@@ -250,24 +316,47 @@ const StudentHistory = () => {
                   <div className="payment-info-grid-v4">
                     <div className="info-item-v4">
                       <span className="label">Plan</span>
-                      <span className="value">{getPlanLabel(premiumPlan)}</span>
+                      <span className="value">{paymentPlan}</span>
                     </div>
                     <div className="info-item-v4">
                       <span className="label">Started</span>
                       <span className="value">
-                        {formatDate(premiumStartDate)}
+                        {
+                          hasAdmissionPackage
+                            ? formatDate(
+                                admissionPackage.purchasedAt
+                              )
+                            : formatDate(premiumStartDate)
+                        }
                       </span>
                     </div>
                     <div className="info-item-v4">
                       <span className="label">Renewal Date</span>
                       <span className="value">
-                        {formatDate(premiumExpiresAt)}
+                        {
+                          hasAdmissionPackage
+                            ? formatDate(admissionPackage.expiresAt)
+                            : formatDate(premiumExpiresAt)
+                        }
                       </span>
                     </div>
                     <div className="info-item-v4">
                       <span className="label">Remaining</span>
                       <span className="value highlight">
-                        {getDaysLeft()} Days
+                        {
+                          hasAdmissionPackage
+                            ? `${Math.max(
+                                0,
+                                Math.ceil(
+                                  (
+                                    new Date(admissionPackage.expiresAt) -
+                                    new Date()
+                                  ) /
+                                    (1000 * 60 * 60 * 24)
+                                )
+                              )} Days`
+                            : `${getDaysLeft()} Days`
+                        }
                       </span>
                     </div>
                   </div>
@@ -296,13 +385,13 @@ const StudentHistory = () => {
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px", borderBottom: "1px solid #e2e8f0", paddingBottom: "8px" }}>
                           <span style={{ fontSize: "13px", color: "#64748b", fontWeight: "600" }}>Subscription Tier</span>
                           <span style={{ fontSize: "13px", color: "#2563eb", fontWeight: "700" }}>
-                            {getPlanLabel(premiumPlan)}
+                            {paymentPlan}
                           </span>
                         </div>
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px", borderBottom: "1px solid #e2e8f0", paddingBottom: "8px" }}>
                           <span style={{ fontSize: "13px", color: "#64748b", fontWeight: "600" }}>Amount Authorized</span>
                           <span style={{ fontSize: "13px", color: "#059669", fontWeight: "800" }}>
-                            {premiumPlan === "1 Month" ? "₹1,999" : premiumPlan === "2 Months" ? "₹2,999" : premiumPlan === "3 Months" ? "₹3,999" : premiumPlan === "SMART" ? "₹2,999" : premiumPlan === "PREMIUM" ? "₹5,999" : premiumPlan === "ELITE VIP" ? "₹9,999" : "Verified"}
+                            {paymentAmount}     
                           </span>
                         </div>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
