@@ -9,7 +9,7 @@ key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
 const PLAN_PRICES = {
-SMART: 1,
+SMART: 2999,
 PREMIUM: 5999,
 "ELITE VIP": 9999,
 
