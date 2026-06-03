@@ -123,46 +123,96 @@ exports.register = async (req, res) => {
 exports.resendOtp = async (req, res) => {
   try {
     const { email } = req.body;
+
     if (!email) {
       console.warn("⚠️ Resend OTP called without email");
-      return res.status(400).json({ error: "Email is required to resend OTP" });
+      return res.status(400).json({
+        message: "Email is required to resend OTP",
+      });
     }
+
     const normalizedEmail = email.toLowerCase().trim();
 
     // Check if user exists
     const user = await User.findOne({ email: normalizedEmail });
+
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({
+        message: "User not found",
+      });
     }
 
-    if (user.profile && user.profile.isVerified) {
-      return res.status(400).json({ message: "User is already verified" });
+    // Check if already verified
+    if (user.profile?.isVerified) {
+      return res.status(400).json({
+        message: "User is already verified",
+      });
     }
 
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const expiresAt = Date.now() + 10 * 60 * 1000;
-    otpStore.set(normalizedEmail, { otp, expiresAt });
 
-    console.log(`📌 Resent OTP for ${normalizedEmail}: ${otp} (Expires: ${new Date(expiresAt).toLocaleTimeString()})`);
+    const expiresAt = Date.now() + 10 * 60 * 1000; // 10 mins
 
+    // Save OTP in memory store
+    otpStore.set(normalizedEmail, {
+      otp,
+      expiresAt,
+    });
+
+    console.log(
+      `📌 Resent OTP for ${normalizedEmail}: ${otp} (Expires: ${new Date(
+        expiresAt
+      ).toLocaleString()})`
+    );
+
+    // Send email
     await sendEmail(
       normalizedEmail,
       "Resend - Verify Your Email",
       "",
-      `<div style="font-family:Arial,sans-serif;padding:20px;">
-         <h2>Hello ${user.name},</h2>
-         <p>Here is your new OTP for verification:</p>
-         <h1 style="color:#1e40af;letter-spacing:5px;">${otp}</h1>
-         <p>Valid for 10 minutes.</p>
-       </div>`
+      `
+      <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <h2>Hello ${user.name || "User"},</h2>
+
+        <p>Your new OTP for email verification is:</p>
+
+        <div style="
+          font-size: 32px;
+          font-weight: bold;
+          color: #1e40af;
+          letter-spacing: 6px;
+          margin: 20px 0;
+        ">
+          ${otp}
+        </div>
+
+        <p>This OTP is valid for <strong>10 minutes</strong>.</p>
+
+        <p>
+          If you did not request this OTP, please ignore this email.
+        </p>
+
+        <br />
+
+        <p>Regards,</p>
+        <p><strong>CareerGenAI Team</strong></p>
+      </div>
+      `
     );
 
-    res.json({ message: "OTP resent successfully" });
+    return res.status(200).json({
+      success: true,
+      message: "OTP resent successfully",
+    });
 
   } catch (err) {
-    console.error("❌ Resend OTP error:", err);
-    res.status(500).json({ error: "Server error" });
+    console.error("❌ Resend OTP Error:", err);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error while resending OTP",
+    });
   }
 };
 
@@ -172,48 +222,92 @@ exports.resendOtp = async (req, res) => {
 exports.verifyOtp = async (req, res) => {
   try {
     const { email, otp } = req.body;
-    const normalizedEmail = email?.toLowerCase().trim();
+
+    if (!email || !otp) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and OTP are required",
+      });
+    }
+
+    const normalizedEmail = email.toLowerCase().trim();
     const storedData = otpStore.get(normalizedEmail);
 
     console.log("📌 OTP Verification Attempt:");
-    console.log("   - Email:", normalizedEmail);
-    console.log("   - Entered OTP:", otp);
-    console.log("   - Stored Data:", storedData);
+    console.log("Email:", normalizedEmail);
+    console.log("Entered OTP:", otp);
+    console.log("Stored Data:", storedData);
 
     if (!storedData) {
-      return res.status(400).json({ error: 'No OTP found for this email. Please register again.' });
+      return res.status(400).json({
+        success: false,
+        message: "No OTP found. Please request a new OTP.",
+      });
     }
 
-    // Robust comparison (string vs string)
-    const isOtpMatch = storedData.otp.toString() === otp.toString();
+    const isOtpMatch =
+      String(storedData.otp).trim() === String(otp).trim();
+
     const isExpired = Date.now() > storedData.expiresAt;
 
     if (!isOtpMatch) {
-      console.warn("   ❌ OTP Mismatch");
-      return res.status(400).json({ error: 'Invalid OTP' });
+      console.warn("❌ OTP Mismatch");
+
+      return res.status(400).json({
+        success: false,
+        message: "Invalid OTP",
+      });
     }
 
     if (isExpired) {
-      console.warn("   ❌ OTP Expired");
+      console.warn("❌ OTP Expired");
+
       otpStore.delete(normalizedEmail);
-      return res.status(400).json({ error: 'OTP has expired. Please resend.' });
+
+      return res.status(400).json({
+        success: false,
+        message: "OTP has expired. Please resend OTP.",
+      });
     }
 
-    console.log("   ✅ OTP Verified Successfully");
+    const user = await User.findOne({
+      email: normalizedEmail,
+    });
 
-    // Find User to get ID, then update Profile
-    const user = await User.findOne({ email: normalizedEmail });
-    if (user) {
-      user.profile.isVerified = true;
-      await user.save();
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
     }
 
+    // Verify profile
+    if (!user.profile) {
+      user.profile = {};
+    }
+
+    user.profile.isVerified = true;
+
+    await user.save();
+
+    // Remove OTP after successful verification
     otpStore.delete(normalizedEmail);
-    res.json({ message: 'OTP verified successfully' });
+
+    console.log(`✅ User verified: ${normalizedEmail}`);
+
+    return res.status(200).json({
+      success: true,
+      message: "OTP verified successfully",
+      userId: user._id,
+    });
 
   } catch (error) {
     console.error("❌ verifyOtp Error:", error);
-    res.status(500).json({ error: "Server error during verification" });
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error during verification",
+    });
   }
 };
 

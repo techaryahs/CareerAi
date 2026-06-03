@@ -19,32 +19,50 @@ const VerifyOtp = () => {
 
   const verifyOtp = async (enteredOtp) => {
     try {
-      console.log(enteredOtp);
       const res = await api.post("/api/auth/verify-otp", {
         email,
         otp: enteredOtp,
       });
 
-      if (res.status === 200) {
-        alert("✅ Email verified successfully! Please log in.");
-        navigate("/login");
+      console.log("✅ Verify Response:", res.data);
+
+      if (res.data.success) {
+        alert("OTP verified successfully!");
+
+        navigate("/login", {
+          state: {
+            email,
+            verified: true,
+          },
+        });
       }
     } catch (err) {
-      console.error(err);
-      const errorMessage = err.response?.data?.error || "Invalid OTP";
-      alert(errorMessage);
-      setOtp(["", "", "", "", "", ""]);
-      inputRefs.current[0].focus(); // reset to first box
+      console.error("❌ Verify Error:", err.response?.data);
+
+      alert(
+        err.response?.data?.message ||
+        "Invalid OTP"
+      );
     }
   };
 
   const handleResendOtp = async () => {
     try {
-      await api.post("/api/auth/resend-otp", { email });
-      alert("✅ New OTP sent successfully!");
+      console.log("Resending OTP to:", email);
+
+      const response = await api.post("/api/auth/resend-otp", {
+        email,
+      });
+
+      alert(response.data.message || "✅ New OTP sent successfully!");
     } catch (err) {
-      console.error(err);
-      alert(err.response?.data?.message || "Failed to resend OTP");
+      console.error("Resend OTP Error:", err);
+
+      alert(
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        "Failed to resend OTP"
+      );
     }
   };
 
