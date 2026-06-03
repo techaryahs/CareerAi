@@ -27,6 +27,16 @@ const consultantSchema = new mongoose.Schema({
   image: { type: String, required: true },
   price: { type: Number, default: 0 },
   isPremium: { type: Boolean, default: false },
+  status: {
+    type: String,
+    enum: ["pending", "approved", "rejected", "disabled"],
+    default: "pending"
+  },
+  rejectionReason: { type: String, default: "" },
+  approvedAt: { type: Date },
+  approvedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  statusUpdatedAt: { type: Date },
+  statusUpdatedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   availability: [slotSchema],
   bookings: [bookingSchema]
 }, { timestamps: true });

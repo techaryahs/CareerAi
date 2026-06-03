@@ -10,7 +10,7 @@ const BookSlot = () => {
   const { consultantId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const consultant = location.state?.consultant;
+  const [consultant, setConsultant] = useState(location.state?.consultant || null);
 
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -49,16 +49,37 @@ const BookSlot = () => {
      INITIAL LOAD
   ========================= */
   useEffect(() => {
-    if (!consultant) {
+    if (!consultantId || consultantId === "undefined") {
+      console.warn("⚠️ Invalid consultantId. Redirecting to consult page.");
       navigate("/consult");
       return;
     }
+    if (!consultant) {
+      const fetchConsultantData = async () => {
+        try {
+          const res = await api.get("/api/bookings/consultants");
+          const found = res.data.consultants?.find(c => c._id === consultantId);
+          if (found) {
+            setConsultant(found);
+          } else {
+            console.error("❌ Consultant not found in fetched list");
+            navigate("/consult");
+          }
+        } catch (err) {
+          console.error("❌ Failed to fetch consultant data:", err.message);
+          navigate("/consult");
+        }
+      };
+      fetchConsultantData();
+    }
+  }, [consultantId, consultant, navigate]);
 
+  useEffect(() => {
     const userData = user;
     if (userData?.email) {
       setUserEmail(userData.email);
     }
-  }, [consultant, navigate, user]);
+  }, [user]);
 
   useEffect(() => {
     fetchBookedSlots();
@@ -90,7 +111,6 @@ const BookSlot = () => {
 
       const payload = {
         consultantId,
-        consultantEmail: consultant.email || consultant.user?.email,
         consultantName: consultant.name,
         date,
         time,
@@ -147,6 +167,14 @@ const BookSlot = () => {
 
     return slotDate <= today;
   };
+
+  if (!consultant) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+        <div className="text-lg font-semibold text-gray-600">Loading consultant details...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">

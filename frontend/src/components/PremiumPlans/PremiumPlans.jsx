@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaCrown,
   FaCheckCircle,
@@ -12,6 +12,42 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
   const { user } = useAuth();
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [showQrPopup, setShowQrPopup] = useState(false);
+  const [prices, setPrices] = useState({
+    "1 Month": 1999,
+    "2 Months": 2999,
+    "3 Months": 3999,
+  });
+  const [plansStatus, setPlansStatus] = useState({
+    "1 Month": true,
+    "2 Months": true,
+    "3 Months": true,
+  });
+
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.REACT_APP_API_URL || "http://localhost:5009"}/api/settings/pricing`);
+        const data = await res.json();
+        if (data.success && data.pricing) {
+          const p = data.pricing;
+          setPrices({
+            "1 Month": p.premium1Month?.price ?? 1999,
+            "2 Months": p.premium2Months?.price ?? 2999,
+            "3 Months": p.premium3Months?.price ?? 3999,
+          });
+          setPlansStatus({
+            "1 Month": p.premium1Month?.enabled !== false,
+            "2 Months": p.premium2Months?.enabled !== false,
+            "3 Months": p.premium3Months?.enabled !== false,
+          });
+        }
+      } catch (err) {
+        console.error("Failed to fetch membership prices:", err);
+      }
+    };
+    fetchPrices();
+  }, []);
+
 
   const isPremium = user?.premium?.isPremium;
   const expiry = user?.premium?.expiryDate;
@@ -98,7 +134,10 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
       paymentObject.open();
     } catch (err) {
       console.error("Checkout initialization failed:", err);
-      alert(err.message || "Failed to initiate payment. Please try again.");
+      const errMsg = err.message === "Selected plan is currently unavailable."
+        ? "This plan is currently unavailable. Please choose another package."
+        : (err.message || "Failed to initiate payment. Please try again.");
+      alert(errMsg);
     }
   };
 
@@ -179,10 +218,10 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
             {/* HORIZONTAL PLANS INSIDE RIGHT SIDE */}
             <div className="flex gap-3">
               {[
-                { name: "1 Month", price: "₹1999" },
-                { name: "2 Months", price: "₹2999" },
-                { name: "3 Months", price: "₹3999" },
-              ].map((p) => (
+                { name: "1 Month", price: `₹${prices["1 Month"]}` },
+                { name: "2 Months", price: `₹${prices["2 Months"]}` },
+                { name: "3 Months", price: `₹${prices["3 Months"]}` },
+              ].filter(p => plansStatus[p.name] !== false).map((p) => (
                 <div
                   key={p.name}
                   onClick={() => setSelectedPlan(p.name)}

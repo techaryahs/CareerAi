@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Consultant = require("../models/Consultant");
 const ApiKey = require("../models/ApiKey");
 const sendEmail = require("../utils/sendEmail");
+const pricingService = require("../services/pricing.service");
 
 const fs = require("fs");
 const path = require("path");
@@ -152,5 +153,128 @@ exports.registerConsultant = async (req, res) => {
     res.status(201).json({ message: 'Consultant registered successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Server error while registering consultant' });
+  }
+};
+
+/* =========================
+   GET ALL CONSULTANTS FOR ADMIN
+========================= */
+exports.getAllConsultantsForAdmin = async (req, res) => {
+  try {
+    const consultants = await Consultant.find({})
+      .populate('user', 'email name');
+    res.json({ consultants });
+  } catch (error) {
+    console.error("Error fetching admin consultants:", error);
+    res.status(500).json({ error: "Failed to fetch consultants" });
+  }
+};
+
+/* =========================
+   UPDATE CONSULTANT STATUS
+========================= */
+exports.updateConsultantStatus = async (req, res) => {
+  const { id } = req.params;
+  const { status, reason } = req.body;
+
+  const validStatuses = ["pending", "approved", "rejected", "disabled"];
+  if (!validStatuses.includes(status)) {
+    return res.status(400).json({ error: "Invalid status value" });
+  }
+
+  try {
+    const updates = {
+      status,
+      statusUpdatedAt: new Date(),
+      statusUpdatedBy: req.user.id
+    };
+
+    if (status === "approved") {
+      updates.approvedAt = new Date();
+      updates.approvedBy = req.user.id;
+      updates.rejectionReason = ""; // Clear reason on approval
+    } else if (status === "rejected") {
+      if (!reason || !reason.trim()) {
+        return res.status(400).json({ error: "Rejection reason is required" });
+      }
+      updates.rejectionReason = reason.trim();
+    } else if (status === "disabled") {
+      // Clear or keep rejectionReason - we clear it to be clean
+      updates.rejectionReason = "";
+    }
+
+    const consultant = await Consultant.findByIdAndUpdate(id, updates, { new: true });
+    if (!consultant) {
+      return res.status(404).json({ error: "Consultant not found" });
+    }
+
+    res.json({ message: `Consultant status updated to ${status}`, consultant });
+  } catch (error) {
+    console.error("Error updating consultant status:", error);
+    res.status(500).json({ error: "Server error while updating status" });
+  }
+};
+
+/* =========================
+   UPDATE CONSULTANT PRICE
+========================= */
+exports.updateConsultantPrice = async (req, res) => {
+  const { id } = req.params;
+  const { price } = req.body;
+
+  if (price === undefined || isNaN(Number(price)) || !Number.isFinite(Number(price))) {
+    return res.status(400).json({ error: "Invalid price value" });
+  }
+
+  const numPrice = Number(price);
+  if (numPrice < 0 || numPrice > 50000) {
+    return res.status(400).json({ error: "Price must be between ₹0 and ₹50,000" });
+  }
+
+  try {
+    const consultant = await Consultant.findByIdAndUpdate(
+      id,
+      {
+        price: numPrice,
+        statusUpdatedAt: new Date(),
+        statusUpdatedBy: req.user.id
+      },
+      { new: true }
+    );
+
+    if (!consultant) {
+      return res.status(404).json({ error: "Consultant not found" });
+    }
+
+    res.json({ message: "Price updated successfully", consultant });
+  } catch (error) {
+    console.error("Error updating consultant price:", error);
+    res.status(500).json({ error: "Server error while updating price" });
+  }
+};
+
+/* =========================
+   GET PRICING SETTINGS FOR ADMIN
+   ========================= */
+exports.getPricingSettingsForAdmin = async (req, res) => {
+  try {
+    const settings = await pricingService.getSettings();
+    res.json({ success: true, pricing: settings });
+  } catch (err) {
+    console.error("Error fetching pricing settings for admin:", err);
+    res.status(500).json({ error: "Failed to fetch pricing configurations" });
+  }
+};
+
+/* =========================
+   UPDATE PRICING SETTINGS
+   ========================= */
+exports.updatePricingSettings = async (req, res) => {
+  try {
+    const settings = await pricingService.updatePricingSettings(req.body);
+    res.json({ success: true, message: "Pricing settings updated successfully", pricing: settings });
+  } catch (err) {
+    console.error("Error updating pricing settings:", err);
+    res.status(400).json({ error: err.message || "Failed to update pricing configurations" });
   }
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../api";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -13,9 +13,25 @@ const Login = () => {
   const navigate = useNavigate();
   const { login, user } = useAuth();
 
+  const isSafeRedirect = (path) => {
+    return path && typeof path === "string" && path.startsWith("/") && !path.startsWith("//") && !path.startsWith("\\");
+  };
+
   useEffect(() => {
     if (user) {
-      navigate("/");
+      const redirectPath = sessionStorage.getItem("redirectPath");
+      if (isSafeRedirect(redirectPath)) {
+        sessionStorage.removeItem("redirectPath");
+        navigate(redirectPath);
+      } else {
+        sessionStorage.removeItem("redirectPath");
+        const role = user.role;
+        if (role === "admin") navigate("/admin-dashboard");
+        else if (role === "consultant") navigate("/consultant-dashboard");
+        else if (role === "parent") navigate("/parent-dashboard");
+        else if (role === "teacher") navigate("/teacher-dashboard");
+        else navigate("/");
+      }
     }
   }, [user, navigate]);
 
@@ -31,7 +47,6 @@ const Login = () => {
       });
 
       const { token, user } = res.data;
-      const role = user.role;
 
       if (!user.isVerified) {
         try {
@@ -44,14 +59,6 @@ const Login = () => {
 
       login(user, token);
       console.log("✅ Logged in user:", user);
-
-      setTimeout(() => {
-        if (role === "admin") navigate("/admin-dashboard");
-        else if (role === "consultant") navigate("/consultant-dashboard");
-        else if (role === "parent") navigate("/parent-dashboard");
-        else if (role === "teacher") navigate("/teacher-dashboard");
-        else navigate("/");
-      }, 500);
     } catch (err) {
       console.error("❌ Login error:", err.response?.data || err.message);
       setErrorMsg(err.response?.data?.error || "Login failed");
@@ -161,12 +168,12 @@ const Login = () => {
 
               {/* Forgot password — mobile: show inline, desktop: shown below */}
               <div className="flex justify-end md:hidden">
-                <a
-                  href="/forgot-password"
+                <Link
+                  to="/forgot-password"
                   className="text-indigo-600 text-xs font-medium hover:underline"
                 >
                   Forgot Password?
-                </a>
+                </Link>
               </div>
 
               {/* Submit */}
@@ -223,12 +230,12 @@ const Login = () => {
               </p>
               {/* Forgot password — desktop only */}
               <p className="hidden md:block">
-                <a
-                  href="/forgot-password"
+                <Link
+                  to="/forgot-password"
                   className="text-gray-500 text-xs hover:text-gray-700 font-medium"
                 >
                   Forgot Password?
-                </a>
+                </Link>
               </p>
             </div>
           </div>

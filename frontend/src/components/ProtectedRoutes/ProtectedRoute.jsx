@@ -6,6 +6,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
   const { user, token } = useAuth();
   
   if (!token) {
+    sessionStorage.setItem("redirectPath", window.location.pathname);
     return <Navigate to="/login" replace />;
   }
 

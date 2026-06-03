@@ -2,21 +2,12 @@ const User = require("../models/User");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
+const pricingService = require("../services/pricing.service");
 
 const razorpay = new Razorpay({
 key_id: process.env.RAZORPAY_KEY_ID,
 key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
-
-const PLAN_PRICES = {
-SMART: 2999,
-PREMIUM: 5999,
-"ELITE VIP": 9999,
-
-"1 Month": 1999,
-"2 Months": 2999,
-"3 Months": 3999,
-};
 
 const PREMIUM_MEMBERSHIPS = [
 "1 Month",
@@ -37,13 +28,25 @@ exports.createOrder = async (req, res) => {
 try {
 const { planName } = req.body;
 
-if (!planName || !PLAN_PRICES[planName]) {
+// Check if plan is disabled
+const isEnabled = await pricingService.isPlanEnabled(planName);
+if (!isEnabled) {
+  return res.status(400).json({
+    error: "Selected plan is currently unavailable.",
+  });
+}
+
+let price;
+try {
+  price = await pricingService.getPlanPrice(planName);
+} catch (e) {
   return res.status(400).json({
     error: "Invalid plan selection",
   });
 }
 
-const amount = PLAN_PRICES[planName] * 100;
+const amount = price * 100;
+
 
 const order = await razorpay.orders.create({
   amount,
@@ -166,6 +169,13 @@ if (
 // ===================================
 // ADMISSION PACKAGE
 // ===================================
+let resolvedPrice = 0;
+try {
+  resolvedPrice = await pricingService.getPlanPrice(planName);
+} catch (err) {
+  console.error("Failed to resolve dynamic price during payment verification:", err);
+}
+
 if (
   ADMISSION_PACKAGES.includes(planName)
 ) {
@@ -178,7 +188,7 @@ if (
 
   user.profile.admissionPackage = {
     packageName: planName,
-    amount: PLAN_PRICES[planName],
+    amount: resolvedPrice,
     purchasedAt: packageStartDate,
     expiresAt: packageExpiryDate,
     paymentId: razorpay_payment_id,
@@ -243,7 +253,7 @@ try {
     <p><strong>User:</strong> ${user.name}</p>
     <p><strong>Email:</strong> ${user.email}</p>
     <p><strong>Plan:</strong> ${planName}</p>
-    <p><strong>Amount:</strong> ₹${PLAN_PRICES[planName]}</p>
+    <p><strong>Amount:</strong> ₹${resolvedPrice}</p>
     <p><strong>Payment ID:</strong> ${razorpay_payment_id}</p>
     <p><strong>Order ID:</strong> ${razorpay_order_id}</p>
     `

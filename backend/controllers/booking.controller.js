@@ -45,19 +45,22 @@ exports.bookConsultant = async (req, res) => {
       return res.status(400).json({ message: 'Missing required data' });
     }
 
-    // Fetch consultant info if missing (Stronger Fetch)
-    if (!consultantEmail || !consultantName) {
-      const consultant = await Consultant.findById(consultantId).populate('user');
-      if (consultant) {
-        consultantEmail = consultantEmail || consultant.user?.email || consultant.email;
-        consultantName = consultantName || consultant.name || consultant.user?.name;
+    // Fetch consultant and verify approval status
+    const consultant = await Consultant.findById(consultantId).populate('user');
+    if (consultant) {
+      if (consultant.status !== "approved") {
+        return res.status(400).json({ message: "Consultant is not available for new bookings" });
+      }
+      consultantEmail = consultantEmail || consultant.user?.email || consultant.email;
+      consultantName = consultantName || consultant.name || consultant.user?.name;
+    } else {
+      // Check if it's a teacher
+      const teacher = await Teacher.findById(consultantId).populate('user');
+      if (teacher) {
+        consultantEmail = teacher.user?.email || teacher.email;
+        consultantName = teacher.fullName || teacher.user?.name;
       } else {
-        // Check if it's a teacher
-        const teacher = await Teacher.findById(consultantId).populate('user');
-        if (teacher) {
-          consultantEmail = teacher.user?.email || teacher.email;
-          consultantName = teacher.fullName || teacher.user?.name;
-        }
+        return res.status(404).json({ message: "Consultant or Teacher not found" });
       }
     }
 
@@ -347,8 +350,13 @@ exports.getUserBookings = async (req, res) => {
    CONSULTANTS LIST
 ========================= */
 exports.getAllConsultants = async (req, res) => {
-  const consultants = await Consultant.find({}).populate('user', 'email name');
-  res.json({ consultants });
+  try {
+    const consultants = await Consultant.find({ status: "approved" })
+      .select("name role expertise experience bio image price isPremium availability");
+    res.json({ consultants });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch consultants" });
+  }
 };
 
 /* =========================

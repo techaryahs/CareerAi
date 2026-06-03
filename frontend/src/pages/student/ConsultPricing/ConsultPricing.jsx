@@ -10,92 +10,6 @@ import { useAuth } from "../../../context/AuthContext";
 
 
 
-const packages = [
-  // {
-  //   name: "FREE",
-  //   price: "₹0",
-  //   subtitle: "Starter Guidance",
-  //   color: "from-gray-500 to-slate-700",
-  //   features: [
-  //     "15-Min Basic Counselling",
-  //     "Stream Selection Guidance",
-  //     "Basic Career Assessment",
-  //     "CET/JEE/NEET Overview",
-  //     "Top 10 College Suggestions",
-  //     "Admission Checklist PDF",
-  //     "Document Checklist",
-  //     "WhatsApp Support (3 Days)",
-  //   ],
-  //   button: "Get Free Guidance",
-  // },
-  // {
-  //   name: "SMART",
-  //   price: "₹2,999",
-  //   subtitle: "Smart Admission Support",
-  //   color: "from-blue-500 to-cyan-500",
-  //   features: [
-  //     "Everything in Free",
-  //     "45-Min Expert Session",
-  //     "Score Analysis",
-  //     "20 College Shortlist",
-  //     "CAP Round Guidance",
-  //     "Application Form Support",
-  //     "Scholarship Eligibility Check",
-  //     "Fee Comparison",
-  //     "Deadline Tracking",
-  //     "WhatsApp Support (15 Days)",
-  //   ],
-  //   button: "Choose Smart",
-  // },
-  {
-    name: "PREMIUM",
-    price: "₹5,999",
-    subtitle: "Complete Admission Planning",
-    popular: true,
-    color: "from-yellow-500 to-orange-500",
-    features: [
-      "Everything in Smart",
-      "3 Counselling Sessions",
-      "Psychometric Assessment",
-      "Career Roadmap Report",
-      "College Predictor",
-      "Choice Filling Guidance",
-      "Scholarship Assistance",
-      "Institute Comparison Report",
-      "Branch Selection Counselling",
-      "Parent + Student Session",
-      "Priority Support (30 Days)",
-    ],
-    button: "Choose Premium",
-  },
-  {
-    name: "ELITE VIP",
-    price: "₹9,999",
-    subtitle: "End-to-End Admission Management",
-    color: "from-purple-600 via-indigo-600 to-blue-700",
-    features: [
-      "Everything in Premium",
-      "Dedicated Admission Manager",
-      "Unlimited Counselling",
-      "Full Admission Handholding",
-      "CAP Registration Support",
-      "Document Upload Assistance",
-      "Spot Round Guidance",
-      "Education Loan Support",
-      "Hostel Guidance",
-      "Emergency Deadline Support",
-      "Parent Counselling Unlimited",
-      "Daily Priority WhatsApp Support",
-      "AI Career Report",
-      "Salary Prediction Report",
-      "Future Job Trend Report",
-      "Internship Guidance",
-      "LinkedIn Profile Setup",
-    ],
-    button: "Book VIP Consultation",
-  },
-];
-
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -110,6 +24,110 @@ const ConsultPricing = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [isProcessing, setIsProcessing] = React.useState(false);
+  const [prices, setPrices] = React.useState({
+    SMART: 2999,
+    PREMIUM: 5999,
+    "ELITE VIP": 9999,
+  });
+  const [plansStatus, setPlansStatus] = React.useState({
+    SMART: true,
+    PREMIUM: true,
+    "ELITE VIP": true,
+  });
+
+  React.useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        const res = await api.get("/api/settings/pricing");
+        if (res.data && res.data.pricing) {
+          const p = res.data.pricing;
+          setPrices({
+            SMART: p.smart?.price ?? 2999,
+            PREMIUM: p.premium?.price ?? 5999,
+            "ELITE VIP": p.eliteVip?.price ?? 9999,
+          });
+          setPlansStatus({
+            SMART: p.smart?.enabled !== false,
+            PREMIUM: p.premium?.enabled !== false,
+            "ELITE VIP": p.eliteVip?.enabled !== false,
+          });
+        }
+      } catch (err) {
+        console.error("Failed to fetch dynamic prices:", err);
+      }
+    };
+    fetchPrices();
+  }, []);
+
+
+  const packages = [
+    {
+      name: "SMART",
+      price: `₹${prices.SMART.toLocaleString("en-IN")}`,
+      subtitle: "Smart Admission Support",
+      color: "from-blue-500 to-cyan-500",
+      features: [
+        "Everything in Free",
+        "45-Min Expert Session",
+        "Score Analysis",
+        "20 College Shortlist",
+        "CAP Round Guidance",
+        "Application Form Support",
+        "Scholarship Eligibility Check",
+        "Fee Comparison",
+        "Deadline Tracking",
+        "WhatsApp Support (15 Days)",
+      ],
+      button: "Choose Smart",
+    },
+    {
+      name: "PREMIUM",
+      price: `₹${prices.PREMIUM.toLocaleString("en-IN")}`,
+      subtitle: "Complete Admission Planning",
+      popular: true,
+      color: "from-yellow-500 to-orange-500",
+      features: [
+        "Everything in Smart",
+        "3 Counselling Sessions",
+        "Psychometric Assessment",
+        "Career Roadmap Report",
+        "College Predictor",
+        "Choice Filling Guidance",
+        "Scholarship Assistance",
+        "Institute Comparison Report",
+        "Branch Selection Counselling",
+        "Parent + Student Session",
+        "Priority Support (30 Days)",
+      ],
+      button: "Choose Premium",
+    },
+    {
+      name: "ELITE VIP",
+      price: `₹${prices["ELITE VIP"].toLocaleString("en-IN")}`,
+      subtitle: "End-to-End Admission Management",
+      color: "from-purple-600 via-indigo-600 to-blue-700",
+      features: [
+        "Everything in Premium",
+        "Dedicated Admission Manager",
+        "Unlimited Counselling",
+        "Full Admission Handholding",
+        "CAP Registration Support",
+        "Document Upload Assistance",
+        "Spot Round Guidance",
+        "Education Loan Support",
+        "Hostel Guidance",
+        "Emergency Deadline Support",
+        "Parent Counselling Unlimited",
+        "Daily Priority WhatsApp Support",
+        "AI Career Report",
+        "Salary Prediction Report",
+        "Future Job Trend Report",
+        "Internship Guidance",
+        "LinkedIn Profile Setup",
+      ],
+      button: "Book VIP Consultation",
+    },
+  ];
 
   const handlePayment = async (pkg) => {
     if (pkg.name === "FREE") {
@@ -118,7 +136,7 @@ const ConsultPricing = () => {
     }
 
     if (!user) {
-      alert("Please log in to purchase a pricing plan.");
+      sessionStorage.setItem("redirectPath", "/consult-pricing");
       navigate("/login");
       return;
     }
@@ -188,7 +206,10 @@ const ConsultPricing = () => {
       paymentObject.open();
     } catch (error) {
       console.error("Order creation failed:", error);
-      alert(error.response?.data?.error || "Failed to initiate payment. Please try again.");
+      const errMsg = error.response?.data?.error === "Selected plan is currently unavailable."
+        ? "This plan is currently unavailable. Please choose another package."
+        : (error.response?.data?.error || "Failed to initiate payment. Please try again.");
+      alert(errMsg);
     } finally {
       setIsProcessing(false);
     }
@@ -252,7 +273,7 @@ const ConsultPricing = () => {
         {/* Pricing Cards */}
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
 
-          {packages.map((pkg, index) => (
+          {packages.filter(pkg => plansStatus[pkg.name] !== false).map((pkg, index) => (
             <div
               key={index}
               className={`relative rounded-3xl bg-white border shadow-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 ${
