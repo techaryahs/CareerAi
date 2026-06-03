@@ -158,9 +158,18 @@ const Consult = () => {
     });
   }, [consultants, searchTerm, priceFilter, maxPrice]);
 
-  const isPremiumConsultant = (c) => c.isPremium || c.name === "Personal Counselor";
+  const isPremiumConsultant = (c) => c.isPremium;
 
   const handleBookClick = (consultant) => {
+    if (!consultant?._id) {
+      console.warn("⚠️ Cannot initiate booking: consultant ID is missing.");
+      return;
+    }
+    if (!user) {
+      sessionStorage.setItem("redirectPath", `/book-slot/${consultant._id}`);
+      navigate("/login");
+      return;
+    }
     if (isPremiumConsultant(consultant) && !user?.isPremium) {
       setShowPremiumPopup(true);
       return;

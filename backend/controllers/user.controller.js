@@ -105,6 +105,44 @@ exports.updateProfile = async (req, res) => {
 
     await user.save();
 
+    // Sync Consultant profile if user is a consultant
+    if (user.role === "consultant" && user.profile.consultantProfile) {
+      const Consultant = require("../models/Consultant");
+      const consultant = await Consultant.findById(user.profile.consultantProfile);
+      if (consultant) {
+        if (name) consultant.name = name;
+        if (bio) consultant.bio = bio;
+        if (imagePath) consultant.image = imagePath;
+        if (req.body.role) consultant.role = req.body.role;
+        if (req.body.expertise) consultant.expertise = req.body.expertise;
+        if (req.body.experience) consultant.experience = req.body.experience;
+        
+        if (req.body.availability) {
+          let avail = req.body.availability;
+          if (typeof avail === "string") {
+            try {
+              avail = JSON.parse(avail);
+            } catch (e) {
+              console.warn("Failed to parse availability", e);
+            }
+          }
+          if (Array.isArray(avail)) {
+            consultant.availability = avail;
+          }
+        }
+
+        // Auto resubmit status back to pending if it was rejected and meaningful changes were made
+        const hasMeaningfulChanges = name || bio || req.body.role || req.body.expertise || req.body.experience || req.body.availability;
+        if (consultant.status === "rejected" && hasMeaningfulChanges) {
+          consultant.status = "pending";
+          consultant.rejectionReason = "";
+          consultant.statusUpdatedAt = new Date();
+          consultant.statusUpdatedBy = user._id;
+        }
+        await consultant.save();
+      }
+    }
+
     res.json({ message: "Profile updated successfully", user });
   } catch (err) {
     console.error("Profile update error:", err);

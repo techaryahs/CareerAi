@@ -70,6 +70,7 @@ export default function Navbar() {
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
       logout();
+      sessionStorage.removeItem("redirectPath");
       setMobileMenuOpen(false);
       navigate("/login");
     }

@@ -10,6 +10,7 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import ForgotPassword from "./auth/ForgotPassword";
 import "./App.css";
 
 import VerifyOtp from "./auth/VerifyOtp";
@@ -122,6 +123,7 @@ function App() {
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
             <Route path="/register-teacher" element={<RegisterTeacher />} />
             <Route
@@ -156,6 +158,8 @@ function App() {
             <Route path="/interest-form" element={<InterestForm />} />
 
             <Route path="/careerquiz" element={<CareerQuiz />} />
+            <Route path="/consult" element={<Consult />} />
+            <Route path="/consult-pricing" element={<ConsultPricing />} />
 
             {/* Protected routes based on user roles */}
             <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
@@ -199,11 +203,6 @@ function App() {
               {/* <Route path="/upload-receipt" element={<UploadReceipt />} /> */}
               <Route path="/careerquiz" element={<CareerQuiz />} />
               <Route path="/careerdetail" element={<CareerDetail />} />
-              <Route path="/consult" element={<Consult />} />
-              <Route
-                path="/consult-pricing"
-                element={<ConsultPricing />}
-              />
               <Route path="/compare" element={<CareerCompare />} />
 
               <Route path="/chat" element={<Chat />} />

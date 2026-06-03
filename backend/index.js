@@ -18,7 +18,10 @@ const path = require("path");
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Database Connection
-connectDB()
+connectDB().then(() => {
+  const pricingService = require("./services/pricing.service");
+  pricingService.ensurePricingSettings();
+});
 
 
 
@@ -28,6 +31,7 @@ app.get("/", (req, res) => {
 });
 // Routes
 app.use('/api/auth', require('./routes/auth.routes'));
+app.use('/api/settings', require('./routes/settings.routes'));
 
 
 // 👤 User

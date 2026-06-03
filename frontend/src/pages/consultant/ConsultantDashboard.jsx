@@ -21,6 +21,57 @@ const ConsultantDashboard = () => {
   const navigate = useNavigate();
   const consultantId = user?._id;
 
+  // New states for Consultant Profile Status
+  const [consultantStatus, setConsultantStatus] = useState("pending");
+  const [rejectionReason, setRejectionReason] = useState("");
+  const [consultantProfile, setConsultantProfile] = useState(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  // States for Editing Profile Modal
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editName, setEditName] = useState("");
+  const [editBio, setEditBio] = useState("");
+  const [editRole, setEditRole] = useState("");
+  const [editExpertise, setEditExpertise] = useState("");
+  const [editExperience, setEditExperience] = useState("");
+  const [editAvailability, setEditAvailability] = useState([]);
+  const [uploadFile, setUploadFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+
+  // States for adding availability slot
+  const [newDay, setNewDay] = useState("Monday");
+  const [newStart, setNewStart] = useState("09:00");
+  const [newEnd, setNewEnd] = useState("17:00");
+
+  // Fetch profile status on mount and trigger refreshes
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await api.get("/api/auth/me");
+        if (res.data.success) {
+          const profile = res.data.user?.profile?.consultantProfile;
+          if (profile) {
+            setConsultantStatus(profile.status || "pending");
+            setRejectionReason(profile.rejectionReason || "");
+            setConsultantProfile(profile);
+            
+            // Set edit form defaults
+            setEditName(res.data.user.name || "");
+            setEditBio(profile.bio || "");
+            setEditRole(profile.role || "");
+            setEditExpertise(profile.expertise || "");
+            setEditExperience(profile.experience || "");
+            setEditAvailability(profile.availability || []);
+            setImagePreview(profile.image || "");
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching consultant profile status:", err);
+      }
+    };
+    fetchProfile();
+  }, [refreshTrigger]);
+
   useEffect(() => {
     const fetchBookings = async () => {
       if (!consultantId) return;
@@ -36,7 +87,7 @@ const ConsultantDashboard = () => {
       }
     };
     fetchBookings();
-  }, [consultantId, user?.email]);
+  }, [consultantId, user?.email, refreshTrigger]);
 
   const bookingSummary = useMemo(() => {
     const pendingCount = bookings.filter((b) => b.status === "pending").length;
@@ -57,8 +108,6 @@ const ConsultantDashboard = () => {
         if (bDate > now) return true;
         // If date is today, check time
         if (bDate.toDateString() === now.toDateString()) {
-          // Basic time check (e.g. "10:00 AM")
-          // For simplicity, if it's today and accepted, we'll keep it as upcoming for now
           return true;
         }
         return false;
@@ -75,6 +124,10 @@ const ConsultantDashboard = () => {
   }, [bookings]);
 
   const updateBookingStatus = async (id, action) => {
+    if (consultantStatus === "disabled") {
+      alert("🚫 Action Blocked: Your account has been temporarily disabled by the administrator.");
+      return;
+    }
     try {
       const res = await api.put(`/api/bookings/${id}/${action}`);
       setBookings((prev) =>
@@ -91,6 +144,73 @@ const ConsultantDashboard = () => {
     }
   };
 
+  const handleOpenEditModal = () => {
+    if (consultantProfile) {
+      setEditBio(consultantProfile.bio || "");
+      setEditRole(consultantProfile.role || "");
+      setEditExpertise(consultantProfile.expertise || "");
+      setEditExperience(consultantProfile.experience || "");
+      setEditAvailability(consultantProfile.availability || []);
+      setImagePreview(consultantProfile.image || "");
+      setUploadFile(null);
+    }
+    setIsEditModalOpen(true);
+  };
+
+  const handleAddSlot = () => {
+    if (!newStart || !newEnd) return;
+    const newSlot = { day: newDay, startTime: newStart, endTime: newEnd };
+    setEditAvailability((prev) => [...prev, newSlot]);
+  };
+
+  const handleRemoveSlot = (indexToRemove) => {
+    setEditAvailability((prev) => prev.filter((_, idx) => idx !== indexToRemove));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUploadFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleProfileSave = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("email", user.email);
+      formData.append("name", editName);
+      formData.append("bio", editBio);
+      formData.append("role", editRole);
+      formData.append("expertise", editExpertise);
+      formData.append("experience", editExperience);
+      formData.append("availability", JSON.stringify(editAvailability));
+      if (uploadFile) {
+        formData.append("profileImage", uploadFile);
+      }
+
+      const res = await api.post("/api/user/update-profile", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (res.status === 200) {
+        alert("✅ Profile updated successfully!");
+        setIsEditModalOpen(false);
+        setRefreshTrigger((prev) => prev + 1);
+      }
+    } catch (err) {
+      console.error("Failed to update profile:", err);
+      alert("❌ Failed to update profile");
+    }
+  };
+
   if (loading) {
     return (
       <div className="loading-container-modern">
@@ -103,6 +223,51 @@ const ConsultantDashboard = () => {
   return (
     <div className="consultant-dashboard-modern">
       <div className="dashboard-max-width">
+        {/* Status Warnings Banner */}
+        {consultantStatus === "pending" && (
+          <div className="dashboard-banner pending-banner">
+            <span className="banner-icon">⏳</span>
+            <div className="banner-text">
+              <strong>Application Under Review:</strong> Your consultant profile is currently pending administrator approval. You will become visible on the marketplace once approved.
+              {consultantProfile?.createdAt && (
+                <div style={{ marginTop: "4px", fontSize: "0.85rem", opacity: 0.8 }}>
+                  Submitted on: {new Date(consultantProfile.createdAt).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+        {consultantStatus === "disabled" && (
+          <div className="dashboard-banner disabled-banner">
+            <span className="banner-icon">🚫</span>
+            <div className="banner-text">
+              <strong>Account Temporarily Disabled:</strong> Your account has been temporarily deactivated by the administrator. New bookings are suspended.
+            </div>
+          </div>
+        )}
+        {consultantStatus === "rejected" && (
+          <div className="dashboard-banner rejected-banner">
+            <div>
+              <span className="banner-icon" style={{ marginRight: "8px" }}>❌</span>
+              <strong>Application Rejected:</strong> Your profile application was not approved.
+            </div>
+            {rejectionReason && (
+              <div className="rejection-reason-box">
+                Reason: {rejectionReason}
+              </div>
+            )}
+            <div className="resubmit-notice">
+              Please update your profile details or availability slots below to automatically resubmit your profile for review.
+            </div>
+          </div>
+        )}
+
         {/* Modern Header with Gradient */}
         <div className="dashboard-header-modern">
           <div className="header-content-modern">
@@ -119,11 +284,21 @@ const ConsultantDashboard = () => {
                 Debug ID: {user?._id}
               </p>
             </div>
+            <div className="header-actions">
+              <button 
+                className="edit-profile-btn-modern" 
+                onClick={handleOpenEditModal}
+                disabled={consultantStatus === "disabled"}
+                title={consultantStatus === "disabled" ? "Account disabled" : "Edit Profile"}
+              >
+                ⚙️ Edit Profile & Availability
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Stats Cards */}
-        <div className="stats-grid-modern">
+        <div className={`stats-grid-modern ${consultantStatus === "disabled" ? "opacity-50" : ""}`}>
           <div className="stat-card-modern total">
             <div className="stat-icon-wrapper">
               <FaCalendarCheck />
@@ -238,24 +413,30 @@ const ConsultantDashboard = () => {
                       <div className="booking-user-info">
                         <FaEnvelope /> <span>{booking.userEmail}</span>
                       </div>
-                      <div className="action-buttons-group">
-                        <button
-                          className="action-btn accept"
-                          onClick={() =>
-                            updateBookingStatus(booking._id, "accept")
-                          }
-                        >
-                          Accept
-                        </button>
-                        <button
-                          className="action-btn reject"
-                          onClick={() =>
-                            updateBookingStatus(booking._id, "reject")
-                          }
-                        >
-                          Reject
-                        </button>
-                      </div>
+                      {consultantStatus === "disabled" ? (
+                        <span style={{ fontSize: "0.85rem", color: "#ef4444", fontWeight: "600" }}>
+                          🚫 Action Blocked (Disabled)
+                        </span>
+                      ) : (
+                        <div className="action-buttons-group">
+                          <button
+                            className="action-btn accept"
+                            onClick={() =>
+                              updateBookingStatus(booking._id, "accept")
+                            }
+                          >
+                            Accept
+                          </button>
+                          <button
+                            className="action-btn reject"
+                            onClick={() =>
+                              updateBookingStatus(booking._id, "reject")
+                            }
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -348,19 +529,147 @@ const ConsultantDashboard = () => {
           </div>
         )}
       </div>
+
+      {/* Edit Profile Modal */}
+      {isEditModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsEditModalOpen(false)}>
+          <div className="modal-content profile-edit-modal" onClick={(e) => e.stopPropagation()}>
+            <h2 style={{ marginBottom: "1rem" }}>⚙️ Edit Profile & Availability</h2>
+            <form onSubmit={handleProfileSave}>
+              <div className="form-group-modern">
+                <label>Full Name</label>
+                <input 
+                  type="text" 
+                  value={editName} 
+                  onChange={(e) => setEditName(e.target.value)} 
+                  required 
+                />
+              </div>
+
+              <div className="form-group-modern">
+                <label>Job Title / Role</label>
+                <input 
+                  type="text" 
+                  value={editRole} 
+                  onChange={(e) => setEditRole(e.target.value)} 
+                  required 
+                />
+              </div>
+
+              <div className="form-group-modern">
+                <label>Expertise</label>
+                <input 
+                  type="text" 
+                  value={editExpertise} 
+                  onChange={(e) => setEditExpertise(e.target.value)} 
+                  required 
+                />
+              </div>
+
+              <div className="form-group-modern">
+                <label>Experience (e.g. 5 Years)</label>
+                <input 
+                  type="text" 
+                  value={editExperience} 
+                  onChange={(e) => setEditExperience(e.target.value)} 
+                  required 
+                />
+              </div>
+
+              <div className="form-group-modern">
+                <label>Bio</label>
+                <textarea 
+                  value={editBio} 
+                  onChange={(e) => setEditBio(e.target.value)} 
+                  required 
+                  rows={3}
+                />
+              </div>
+
+              <div className="form-group-modern">
+                <label>Profile Image</label>
+                <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                  {imagePreview && (
+                    <img 
+                      src={imagePreview.startsWith("data:") ? imagePreview : `${import.meta.env.REACT_APP_API_URL}${imagePreview}`} 
+                      alt="Preview" 
+                      style={{ width: "50px", height: "50px", borderRadius: "50%", objectFit: "cover" }} 
+                    />
+                  )}
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleFileChange} 
+                  />
+                </div>
+              </div>
+
+              <div className="form-group-modern">
+                <label>Availability Slots</label>
+                <div className="availability-list-edit">
+                  {editAvailability.map((slot, index) => (
+                    <div key={index} className="availability-item-edit">
+                      <span>{slot.day}: {slot.startTime} - {slot.endTime}</span>
+                      <button 
+                        type="button" 
+                        className="remove-slot-btn" 
+                        onClick={() => handleRemoveSlot(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  {editAvailability.length === 0 && (
+                    <div style={{ color: "#6b7280", fontSize: "13px" }}>No availability slots added yet.</div>
+                  )}
+                </div>
+
+                <div className="add-slot-row">
+                  <select value={newDay} onChange={(e) => setNewDay(e.target.value)}>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                  </select>
+                  <input 
+                    type="text" 
+                    value={newStart} 
+                    onChange={(e) => setNewStart(e.target.value)} 
+                    placeholder="09:00" 
+                  />
+                  <input 
+                    type="text" 
+                    value={newEnd} 
+                    onChange={(e) => setNewEnd(e.target.value)} 
+                    placeholder="17:00" 
+                  />
+                  <button 
+                    type="button" 
+                    className="add-slot-btn-icon" 
+                    onClick={handleAddSlot}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div className="modal-actions" style={{ marginTop: "1.5rem" }}>
+                <button type="submit" className="submit-btn" style={{ background: "#2563eb" }}>
+                  Save Profile Settings
+                </button>
+                <button type="button" className="close-btn" onClick={() => setIsEditModalOpen(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
-};
-
-const isPast = (date, time) => {
-  if (!date || !time) return false;
-  try {
-    const bookingDate = new Date(`${date} ${time}`);
-    const now = new Date();
-    return bookingDate < now;
-  } catch (e) {
-    return false;
-  }
 };
 
 export default ConsultantDashboard;
