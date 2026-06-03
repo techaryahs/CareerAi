@@ -9,6 +9,7 @@ import Loader from "../../../components/PageLoader/PageLoader";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { logStudentActivity } from "../../../utils/logActivity";
+import ConsultPricing from "../ConsultPricing/ConsultPricing";
 
 /* ─────────── Inject keyframes once ─────────── */
 const injectStyles = () => {
@@ -120,6 +121,7 @@ const Consult = () => {
   const startTime = React.useRef(Date.now());
   const { user, loading: authLoading } = useAuth();
   const [showPremiumPopup, setShowPremiumPopup] = useState(false);
+  const [showPricingModal, setShowPricingModal] = useState(false);
   const navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -238,6 +240,39 @@ const Consult = () => {
   width: "100%",
   maxWidth: "100vw"
 }}>
+        {/* ── View Pricing Button (Top Right) ── */}
+        <button
+          onClick={() => setShowPricingModal(true)}
+          style={{
+            position: "absolute",
+            top: "24px",
+            right: "24px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            padding: "10px 20px",
+            borderRadius: "99px",
+            background: "linear-gradient(135deg, #007BFF 0%, #0056B3 100%)",
+            color: "#fff",
+            fontSize: "14px",
+            fontWeight: "700",
+            border: "none",
+            cursor: "pointer",
+            boxShadow: "0 4px 14px rgba(0, 123, 255, 0.3)",
+            zIndex: 10,
+            transition: "transform 0.2s, box-shadow 0.2s",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-1px)";
+            e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 123, 255, 0.4)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 4px 14px rgba(0, 123, 255, 0.3)";
+          }}
+        >
+          <IndianRupee size={14} /> View Pricing
+        </button>
 
         {/* ── HERO ── */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -465,6 +500,69 @@ minWidth: "0" }}>
           </div>
         )}
       </div>
+
+      {showPricingModal && (
+        <div 
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowPricingModal(false);
+            }
+          }}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(15, 23, 42, 0.6)",
+            backdropFilter: "blur(8px)",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+          }}
+        >
+          {/* Modal Container */}
+          <div style={{
+            position: "relative",
+            width: "100%",
+            maxWidth: "1280px",
+            maxHeight: "90vh",
+            backgroundColor: "#fff",
+            borderRadius: "24px",
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+            overflowY: "auto",
+            animation: "fadeUp .3s ease-out both",
+          }}>
+            {/* Close Button */}
+            <button
+              onClick={() => setShowPricingModal(false)}
+              style={{
+                position: "absolute",
+                top: "20px",
+                right: "20px",
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                backgroundColor: "#F1F5F9",
+                border: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                color: "#64748B",
+                zIndex: 10000,
+                transition: "background-color 0.2s",
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#E2E8F0"}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#F1F5F9"}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+
+            {/* Render the pricing component */}
+            <ConsultPricing />
+          </div>
+        </div>
+      )}
 
       {showPremiumPopup && (
         <PremiumPopup
