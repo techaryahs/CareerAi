@@ -250,7 +250,7 @@ const Consult = () => {
   maxWidth: "100vw"
 }}>
         {/* ── View Pricing Button (Top Right) ── */}
-        <button
+        {/* <button
           onClick={() => setShowPricingModal(true)}
           style={{
             position: "absolute",
@@ -281,7 +281,7 @@ const Consult = () => {
           }}
         >
           <IndianRupee size={14} /> View Pricing
-        </button>
+        </button> */}
 
         {/* ── HERO ── */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
