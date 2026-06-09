@@ -6,27 +6,46 @@ import { useState, useEffect, useCallback } from 'react';
  */
 export const useMediaDevices = () => {
     const [localStream, setLocalStream] = useState(null);
+
     const [devices, setDevices] = useState({
         audioInputs: [],
         videoInputs: [],
         audioOutputs: []
     });
+
     const [selectedDevices, setSelectedDevices] = useState({
         audioInput: null,
         videoInput: null
     });
+
     const [isAudioMuted, setIsAudioMuted] = useState(false);
     const [isVideoOff, setIsVideoOff] = useState(false);
     const [error, setError] = useState(null);
 
-    // Enumerate media devices
+    // Enumerate available devices
     const enumerateDevices = useCallback(async () => {
         try {
+            if (
+                !navigator.mediaDevices ||
+                typeof navigator.mediaDevices.enumerateDevices !== 'function'
+            ) {
+                console.warn('⚠️ Media devices API not available');
+                return;
+            }
+
             const deviceList = await navigator.mediaDevices.enumerateDevices();
 
-            const audioInputs = deviceList.filter(device => device.kind === 'audioinput');
-            const videoInputs = deviceList.filter(device => device.kind === 'videoinput');
-            const audioOutputs = deviceList.filter(device => device.kind === 'audiooutput');
+            const audioInputs = deviceList.filter(
+                device => device.kind === 'audioinput'
+            );
+
+            const videoInputs = deviceList.filter(
+                device => device.kind === 'videoinput'
+            );
+
+            const audioOutputs = deviceList.filter(
+                device => device.kind === 'audiooutput'
+            );
 
             setDevices({
                 audioInputs,
@@ -34,114 +53,194 @@ export const useMediaDevices = () => {
                 audioOutputs
             });
 
-            // Set default devices if not already set
             if (!selectedDevices.audioInput && audioInputs.length > 0) {
-                setSelectedDevices(prev => ({ ...prev, audioInput: audioInputs[0].deviceId }));
+                setSelectedDevices(prev => ({
+                    ...prev,
+                    audioInput: audioInputs[0].deviceId
+                }));
             }
+
             if (!selectedDevices.videoInput && videoInputs.length > 0) {
-                setSelectedDevices(prev => ({ ...prev, videoInput: videoInputs[0].deviceId }));
+                setSelectedDevices(prev => ({
+                    ...prev,
+                    videoInput: videoInputs[0].deviceId
+                }));
             }
         } catch (err) {
             console.error('❌ Error enumerating devices:', err);
-            setError(err.message);
+            setError(err?.message || 'Failed to enumerate devices');
         }
     }, [selectedDevices.audioInput, selectedDevices.videoInput]);
 
-    // Get user media stream
-    const getUserMedia = useCallback(async (constraints = {}) => {
-        try {
-            const defaultConstraints = {
-                audio: selectedDevices.audioInput
-                    ? { deviceId: { exact: selectedDevices.audioInput } }
-                    : true,
-                video: selectedDevices.videoInput
-                    ? {
-                        deviceId: { exact: selectedDevices.videoInput },
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 }
-                    }
-                    : {
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 }
-                    }
-            };
+    // Get user media
+    const getUserMedia = useCallback(
+        async (constraints = {}) => {
+            try {
+                if (
+                    !navigator.mediaDevices ||
+                    typeof navigator.mediaDevices.getUserMedia !== 'function'
+                ) {
+                    throw new Error('getUserMedia not supported');
+                }
 
-            const finalConstraints = { ...defaultConstraints, ...constraints };
-            const stream = await navigator.mediaDevices.getUserMedia(finalConstraints);
+                const defaultConstraints = {
+                    audio: selectedDevices.audioInput
+                        ? {
+                              deviceId: {
+                                  exact: selectedDevices.audioInput
+                              }
+                          }
+                        : true,
 
-            setLocalStream(stream);
-            setError(null);
-            console.log('✅ Media stream obtained');
-            return stream;
-        } catch (err) {
-            console.error('❌ Error accessing media devices:', err);
-            setError(err.message);
-            throw err;
-        }
-    }, [selectedDevices]);
+                    video: selectedDevices.videoInput
+                        ? {
+                              deviceId: {
+                                  exact: selectedDevices.videoInput
+                              },
+                              width: { ideal: 1280 },
+                              height: { ideal: 720 }
+                          }
+                        : {
+                              width: { ideal: 1280 },
+                              height: { ideal: 720 }
+                          }
+                };
 
-    // Toggle audio mute/unmute
+                const finalConstraints = {
+                    ...defaultConstraints,
+                    ...constraints
+                };
+
+                const stream =
+                    await navigator.mediaDevices.getUserMedia(
+                        finalConstraints
+                    );
+
+                setLocalStream(stream);
+                setError(null);
+
+                console.log('✅ Media stream obtained');
+
+                return stream;
+            } catch (err) {
+                console.error(
+                    '❌ Error accessing media devices:',
+                    err
+                );
+
+                setError(
+                    err?.message || 'Failed to access media devices'
+                );
+
+                throw err;
+            }
+        },
+        [selectedDevices]
+    );
+
+    // Toggle audio
     const toggleAudio = useCallback(() => {
-        if (localStream) {
-            const audioTracks = localStream.getAudioTracks();
-            audioTracks.forEach(track => {
-                track.enabled = !track.enabled;
-            });
-            setIsAudioMuted(!audioTracks[0]?.enabled);
-            console.log(`🎤 Audio ${audioTracks[0]?.enabled ? 'unmuted' : 'muted'}`);
-        }
+        if (!localStream) return;
+
+        const audioTracks = localStream.getAudioTracks();
+
+        audioTracks.forEach(track => {
+            track.enabled = !track.enabled;
+        });
+
+        const muted = !audioTracks[0]?.enabled;
+
+        setIsAudioMuted(muted);
+
+        console.log(
+            `🎤 Audio ${muted ? 'muted' : 'unmuted'}`
+        );
     }, [localStream]);
 
-    // Toggle video on/off
+    // Toggle video
     const toggleVideo = useCallback(() => {
-        if (localStream) {
-            const videoTracks = localStream.getVideoTracks();
-            videoTracks.forEach(track => {
-                track.enabled = !track.enabled;
-            });
-            setIsVideoOff(!videoTracks[0]?.enabled);
-            console.log(`📹 Video ${videoTracks[0]?.enabled ? 'on' : 'off'}`);
-        }
+        if (!localStream) return;
+
+        const videoTracks = localStream.getVideoTracks();
+
+        videoTracks.forEach(track => {
+            track.enabled = !track.enabled;
+        });
+
+        const videoOff = !videoTracks[0]?.enabled;
+
+        setIsVideoOff(videoOff);
+
+        console.log(
+            `📹 Video ${videoOff ? 'off' : 'on'}`
+        );
     }, [localStream]);
 
-    // Stop all tracks
+    // Stop stream
     const stopStream = useCallback(() => {
-        if (localStream) {
-            localStream.getTracks().forEach(track => {
-                track.stop();
-                console.log(`🛑 Stopped ${track.kind} track`);
-            });
-            setLocalStream(null);
-            setIsAudioMuted(false);
-            setIsVideoOff(false);
-        }
+        if (!localStream) return;
+
+        localStream.getTracks().forEach(track => {
+            track.stop();
+            console.log(`🛑 Stopped ${track.kind} track`);
+        });
+
+        setLocalStream(null);
+        setIsAudioMuted(false);
+        setIsVideoOff(false);
     }, [localStream]);
 
     // Change device
-    const changeDevice = useCallback(async (deviceType, deviceId) => {
-        setSelectedDevices(prev => ({
-            ...prev,
-            [deviceType]: deviceId
-        }));
+    const changeDevice = useCallback(
+        async (deviceType, deviceId) => {
+            setSelectedDevices(prev => ({
+                ...prev,
+                [deviceType]: deviceId
+            }));
 
-        // Restart stream with new device
-        if (localStream) {
-            stopStream();
-            await getUserMedia();
-        }
-    }, [localStream, stopStream, getUserMedia]);
+            if (localStream) {
+                stopStream();
 
-    // Enumerate devices on mount and when devices change
+                try {
+                    await getUserMedia();
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        },
+        [localStream, stopStream, getUserMedia]
+    );
+
+    // Device enumeration and listeners
     useEffect(() => {
         enumerateDevices();
-        navigator.mediaDevices.addEventListener('devicechange', enumerateDevices);
+
+        if (
+            navigator.mediaDevices &&
+            typeof navigator.mediaDevices.addEventListener ===
+                'function'
+        ) {
+            navigator.mediaDevices.addEventListener(
+                'devicechange',
+                enumerateDevices
+            );
+        }
 
         return () => {
-            navigator.mediaDevices.removeEventListener('devicechange', enumerateDevices);
+            if (
+                navigator.mediaDevices &&
+                typeof navigator.mediaDevices.removeEventListener ===
+                    'function'
+            ) {
+                navigator.mediaDevices.removeEventListener(
+                    'devicechange',
+                    enumerateDevices
+                );
+            }
         };
     }, [enumerateDevices]);
 
-    // Cleanup on unmount
+    // Cleanup
     useEffect(() => {
         return () => {
             stopStream();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../api";
 import Select from "react-select";
@@ -91,6 +91,7 @@ const Register = () => {
     country: null,
     state: null,
     source: "",
+    otherSource: "",
     lookUpFor: [],
     degree: "Bachelor's Degree",
     loanInterest: false,
@@ -274,6 +275,10 @@ const Register = () => {
 
     const payload = {
       ...formData,
+      source:
+        formData.source === "Other"
+          ? formData.otherSource
+          : formData.source,
       mobile: `${formData.mobilePrefix}${formData.mobile}`,
       country: formData.country?.label,
       state: formData.state?.label,
@@ -360,14 +365,31 @@ const Register = () => {
                   </div>
                   
                   <div className="col-span-1">
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Gender</label>
-                    <select name="gender" value={formData.gender} onChange={handleChange} className={`w-full px-4 py-2 rounded-xl bg-gray-50 border transition-all outline-none ${errors.gender ? 'border-red-500' : 'border-transparent focus:border-indigo-500 focus:bg-white'}`}>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">
+                      Gender
+                    </label>
+
+                    <select
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-2 rounded-xl bg-gray-50 border transition-all outline-none ${
+                        errors.gender
+                          ? "border-red-500"
+                          : "border-transparent focus:border-indigo-500 focus:bg-white"
+                      }`}
+                    >
                       <option value="">Select Gender</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                       <option value="Other">Other</option>
                     </select>
-                    {errors.gender && <p className="text-red-500 text-[10px] mt-1 font-medium italic">{errors.gender}</p>}
+
+                    {errors.gender && (
+                      <p className="text-red-500 text-[10px] mt-1 font-medium italic">
+                        {errors.gender}
+                      </p>
+                    )}
                   </div>
 
                   <div className="col-span-2 md:col-span-1">
@@ -545,8 +567,16 @@ const Register = () => {
                   </div>
 
                   <div className="col-span-2">
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Where did you hear about us?</label>
-                    <select name="source" value={formData.source} onChange={handleChange} className="w-full px-4 py-2 rounded-xl bg-gray-50 border border-transparent focus:border-indigo-500 focus:bg-white transition-all outline-none">
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">
+                      Where did you hear about us?
+                    </label>
+
+                    <select
+                      name="source"
+                      value={formData.source}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 rounded-xl bg-gray-50 border border-transparent focus:border-indigo-500 focus:bg-white transition-all outline-none"
+                    >
                       <option value="">Select Source</option>
                       <option value="Google">Google</option>
                       <option value="Instagram">Instagram</option>
@@ -554,6 +584,18 @@ const Register = () => {
                       <option value="Friend">Friend</option>
                       <option value="Other">Other</option>
                     </select>
+
+                    {formData.source === "Other" && (
+                      <input
+                        type="text"
+                        name="otherSource"
+                        value={formData.otherSource}
+                        onChange={handleChange}
+                        placeholder="Please specify..."
+                        maxLength={100}
+                        className="mt-3 w-full px-4 py-2 rounded-xl bg-gray-50 border border-transparent focus:border-indigo-500 focus:bg-white transition-all outline-none"
+                      />
+                    )}
                   </div>
 
                   <div className="col-span-2 flex flex-col gap-1 mt-2">
@@ -573,7 +615,22 @@ const Register = () => {
                         className={`w-5 h-5 rounded border-gray-300 transition-all ${errors.policy ? 'border-red-500 ring-4 ring-red-50' : 'text-indigo-600 focus:ring-indigo-500'}`}
                       />
                       <label htmlFor="policy" className="text-sm text-gray-500">
-                        I agree to the <span className="text-indigo-600 font-bold cursor-pointer">Terms & Conditions</span> and <span className="text-indigo-600 font-bold cursor-pointer">Privacy Policy</span>
+                        I agree to the{" "}
+                        <Link
+                          to="/terms-condition"
+                          target="_blank"
+                          className="text-indigo-600 font-bold hover:underline"
+                        >
+                          Terms & Conditions
+                        </Link>{" "}
+                        and{" "}
+                        <Link
+                          to="/privacy-policy"
+                          target="_blank"
+                          className="text-indigo-600 font-bold hover:underline"
+                        >
+                          Privacy Policy
+                        </Link>
                       </label>
                     </div>
                     {errors.policy && <p className="text-red-500 text-[10px] font-medium italic">{errors.policy}</p>}
