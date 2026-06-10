@@ -27,8 +27,8 @@ const FloatingPricingButton = () => {
         <style>{`
           .floating-pricing-btn {
             position: fixed;
-            left: 12px;
-            bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
+            right: 16px;
+            bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
             z-index: 9999;
             height: 50px;
             width: auto;

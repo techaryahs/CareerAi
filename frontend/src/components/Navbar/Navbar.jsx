@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { FaBars, FaTimes, FaUserCircle, FaUser, FaHistory, FaChartLine, FaSignOutAlt, FaChevronDown, FaPhoneAlt } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserCircle, FaUser, FaHistory, FaChartLine, FaSignOutAlt, FaChevronDown, FaPhoneAlt, FaArrowLeft } from "react-icons/fa";
 
 // =========================
 // 🟢 NAVIGATION CONFIG
@@ -53,16 +53,36 @@ export default function Navbar() {
   const role = user?.role || "guest";
 
   const normalizedPath = location.pathname.replace(/\/$/, "") || "/";
-  const ROOT_ROUTES = [
+  const LOGO_ROUTES = [
     "/",
-    "/services",
-    "/free-counseling",
+    "/login",
+    "/register",
+    "/forgot-password",
+    "/verify-otp",
+    "/register-teacher",
+    "/register-consultant",
     "/admin-dashboard",
     "/consultant-dashboard",
     "/parent-dashboard",
     "/teacher-dashboard"
   ];
-  const isRoot = ROOT_ROUTES.includes(normalizedPath);
+  const showLogo = LOGO_ROUTES.includes(normalizedPath);
+
+  const getFallbackPath = (pathname) => {
+    const parts = pathname.split("/").filter(Boolean);
+    if (parts.length <= 1) {
+      return "/";
+    }
+    return "/" + parts.slice(0, parts.length - 1).join("/");
+  };
+
+  const handleBackNavigation = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate(getFallbackPath(location.pathname));
+    }
+  };
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [registerDropdownOpen, setRegisterDropdownOpen] = useState(false);
@@ -112,20 +132,32 @@ export default function Navbar() {
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center relative">
           
-          {/* 1️⃣ LEFT: LOGO */}
-          <NavLink to="/" className="flex items-center gap-3 z-10">
-            <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-blue-400/40 shadow-lg shadow-blue-900/30">
-              <img
-                src="/logo.png"
-                alt="CareerGenAI"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          {/* 1️⃣ LEFT: LOGO OR BACK BUTTON */}
+          <div className="flex items-center gap-3 z-10">
+            {!showLogo ? (
+              <button
+                onClick={handleBackNavigation}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-[#e2e8f0] text-slate-700 hover:bg-slate-50 transition-all active:scale-95 shadow-md"
+                aria-label="Go Back"
+              >
+                <FaArrowLeft size={16} />
+              </button>
+            ) : (
+              <NavLink to="/" className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-blue-400/40 shadow-lg shadow-blue-900/30">
+                  <img
+                    src="/logo.png"
+                    alt="CareerGenAI"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
-              CareerGenAI
-            </span>
-          </NavLink>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
+                  CareerGenAI
+                </span>
+              </NavLink>
+            )}
+          </div>
 
           {/* 2️⃣ CENTER: NAVIGATION LINKS (Desktop) */}
           <div className="hidden md:flex flex-1 justify-center absolute left-0 right-0 pointer-events-none">

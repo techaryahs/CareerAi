@@ -60,30 +60,7 @@ if (!career.india || !career.abroad) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      {/* HEADER */}
-      <header className="sticky top-0 z-50 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <button
-            onClick={() => navigate("/india-vs-abroad")}
-           className="
-  bg-blue-600
-  text-white
-  px-8 py-3
-  rounded-xl
-  font-semibold
-  shadow-md
-  hover:bg-blue-700
-  transition
-"
-
-          >
-            <ChevronLeft />
-            Back
-          </button>
-          <h1 className="font-bold text-lg">CareerGenAI</h1>
-          <div />
-        </div>
-      </header>
+      {/* Redundant custom header removed - now handled globally by Navbar */}
 
       {/* CONTENT */}
       <main className="max-w-7xl mx-auto px-6 py-14">

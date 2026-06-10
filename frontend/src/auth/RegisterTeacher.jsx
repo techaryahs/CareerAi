@@ -323,7 +323,7 @@ export default function TeacherRegister() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 flex items-start sm:items-center justify-center p-3 sm:p-4 md:p-6 font-sans">
 
       {/* Mobile top progress bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-indigo-900 px-4 py-3 flex items-center justify-between shadow-lg">
+      <div className="md:hidden fixed top-[calc(5rem+env(safe-area-inset-top,0px))] left-0 right-0 z-50 bg-indigo-900 px-4 py-3 flex items-center justify-between shadow-lg">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}

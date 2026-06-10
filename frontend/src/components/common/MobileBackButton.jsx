@@ -51,11 +51,19 @@ export default function MobileBackButton() {
     }, 2000);
   };
 
+  const getFallbackPath = (pathname) => {
+    const parts = pathname.split("/").filter(Boolean);
+    if (parts.length <= 1) {
+      return "/";
+    }
+    return "/" + parts.slice(0, parts.length - 1).join("/");
+  };
+
   const handleBackNavigation = () => {
     if (window.history.state && window.history.state.idx > 0) {
       navigateRef.current(-1);
     } else {
-      navigateRef.current("/");
+      navigateRef.current(getFallbackPath(location.pathname));
     }
   };
 
@@ -107,38 +115,7 @@ export default function MobileBackButton() {
 
   return (
     <>
-      {/* Mobile Back Button in normal page flow below fixed header */}
-      {!isRoot && (
-        <button
-          onClick={handleBackNavigation}
-          className="
-            fixed
-            top-[76px]
-            left-4
-            z-50
-            lg:hidden
-            w-10
-            h-10
-            flex
-            items-center
-            justify-center
-            rounded-full
-            bg-white/90
-            backdrop-blur-xl
-            border
-            border-white/60
-            shadow-lg
-            text-slate-700
-            hover:scale-105
-            active:scale-95
-            transition-all
-            duration-200
-          "
-          aria-label="Go Back"
-        >
-          <ArrowLeft size={18} strokeWidth={2.5} />
-        </button>
-      )}
+      {/* Visual back button removed - now handled inline within the main Navbar */}
 
       {/* Exit Toast */}
       {showToast && (
