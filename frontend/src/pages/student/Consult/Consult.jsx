@@ -299,29 +299,6 @@ const Consult = () => {
             </span>
           </div>
 
-          <div
-  style={{
-    position: "absolute",
-    top: "30px",
-    right: "30px",
-    zIndex: 10,
-  }}
->
-  <button
-    onClick={() => navigate("/consult-pricing")}
-    className="shimmer-btn"
-    style={{
-      padding: "12px 22px",
-      borderRadius: "14px",
-      border: "none",
-      color: "#fff",
-      fontWeight: "700",
-      cursor: "pointer",
-    }}
-  >
-    View Pricing
-  </button>
-</div>
 
           <h1 className="hero-text" style={{
             fontSize: "clamp(2.2rem, 5vw, 3.6rem)",

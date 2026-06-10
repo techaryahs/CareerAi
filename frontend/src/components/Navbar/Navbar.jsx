@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { FaBars, FaTimes, FaUserCircle, FaUser, FaHistory, FaChartLine, FaSignOutAlt, FaChevronDown, FaPhoneAlt } from "react-icons/fa";
 
@@ -49,7 +49,20 @@ const DROPDOWN_LINKS = {
 export default function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const role = user?.role || "guest";
+
+  const normalizedPath = location.pathname.replace(/\/$/, "") || "/";
+  const ROOT_ROUTES = [
+    "/",
+    "/services",
+    "/free-counseling",
+    "/admin-dashboard",
+    "/consultant-dashboard",
+    "/parent-dashboard",
+    "/teacher-dashboard"
+  ];
+  const isRoot = ROOT_ROUTES.includes(normalizedPath);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [registerDropdownOpen, setRegisterDropdownOpen] = useState(false);
@@ -92,7 +105,10 @@ export default function Navbar() {
   const navLinks = getLinks();
 
   return (
-    <nav className="bg-[#0f172a] shadow-lg sticky top-0 z-50 font-sans text-white border-b border-gray-800">
+    <nav 
+      className="bg-[#0f172a] shadow-lg fixed top-0 left-0 right-0 z-50 font-sans text-white border-b border-gray-800"
+      style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
+    >
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center relative">
           

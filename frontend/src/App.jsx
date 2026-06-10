@@ -6,6 +6,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
+import MobileBackButton from "./components/common/MobileBackButton";
+import FloatingPricingButton from "./components/common/FloatingPricingButton";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 import Login from "./auth/Login";
@@ -119,7 +121,10 @@ function App() {
         <Router>
           <ActivityTracker />
           <Navbar />
-          <Routes>
+          <div className="flex-1 flex flex-col relative" style={{ paddingTop: "calc(5rem + env(safe-area-inset-top, 0px))" }}>
+            <MobileBackButton />
+            <FloatingPricingButton />
+            <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -417,6 +422,7 @@ function App() {
             {/* Catch‑all – redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </div>
         </Router>
       </WebRTCProvider>
     </AuthProvider>

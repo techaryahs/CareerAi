@@ -7,14 +7,14 @@ const BottomProgressBar = ({ currentStep = 1, totalSteps = 4, stepTitle = "Self-
     const navigate = useNavigate();
 
     return (
-        <div className="fixed bottom-6 left-0 right-0 z-50 px-6 pointer-events-none">
+        <div className="fixed bottom-[calc(12px+env(safe-area-inset-bottom,0px))] md:bottom-6 right-3 md:right-0 left-auto md:left-0 z-50 px-0 md:px-6 pointer-events-none w-auto md:w-full max-w-[calc(100vw-24px)] md:max-w-none">
             <motion.div
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="max-w-4xl mx-auto bg-white border border-[#f1f5f9] shadow-[0_30px_60px_-15px_rgba(15,23,42,0.1)] rounded-full p-2.5 pointer-events-auto flex items-center justify-between gap-8 pl-8"
+                className="max-w-4xl mx-auto bg-transparent md:bg-white border-0 md:border border-[#f1f5f9] shadow-none md:shadow-[0_30px_60px_-15px_rgba(15,23,42,0.1)] rounded-full p-0 md:p-2.5 pointer-events-auto flex items-center justify-between gap-0 md:gap-8 pl-0 md:pl-8 w-auto md:w-full max-w-[calc(100vw-24px)] md:max-w-none"
             >
                 {/* Progress Info */}
-                <div className="flex items-center gap-8">
+                <div className="hidden md:flex items-center gap-8">
                     <div className="flex gap-2">
                         {[...Array(totalSteps)].map((_, i) => (
                             <motion.div
@@ -44,12 +44,12 @@ const BottomProgressBar = ({ currentStep = 1, totalSteps = 4, stepTitle = "Self-
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => navigate('/chat')}
-                    className="bg-[#0056d2] hover:bg-[#0041a3] text-white px-8 py-3.5 rounded-full font-black text-xs uppercase tracking-widest flex items-center gap-4 shadow-[0_10px_25px_-5px_rgba(0,86,210,0.4)] transition-all min-w-[240px] justify-center"
+                    className="bg-[#0056d2] hover:bg-[#0041a3] text-white rounded-full font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 md:gap-4 shadow-[0_10px_25px_-5px_rgba(0,86,210,0.4)] transition-all overflow-hidden whitespace-nowrap text-ellipsis max-w-[calc(100vw-24px)] min-w-0 md:min-w-[200px] lg:min-w-[240px] w-auto h-[54px] md:h-[58px] lg:h-auto px-4 md:px-6 lg:px-8 py-3 md:py-3.5 lg:py-3.5"
                 >
-                    <div className="w-7 h-7 bg-white/10 rounded-full flex items-center justify-center">
+                    <div className="w-7 h-7 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
                         <MessageCircle size={14} className="fill-white" />
                     </div>
-                    <span>Ask Career AI</span>
+                    <span className="overflow-hidden text-ellipsis whitespace-nowrap">Ask Career AI</span>
                 </motion.button>
             </motion.div>
         </div>
