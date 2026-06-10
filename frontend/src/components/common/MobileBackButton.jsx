@@ -109,36 +109,35 @@ export default function MobileBackButton() {
     <>
       {/* Mobile Back Button in normal page flow below fixed header */}
       {!isRoot && (
-        <div className="w-full px-6 pt-5 pb-1 flex items-center lg:hidden bg-transparent">
-          <button
-            onClick={handleBackNavigation}
-            className="
-              flex
-              items-center
-              justify-center
-              w-12
-              h-12
-              rounded-full
-              bg-slate-900/80
-              hover:bg-slate-800/90
-              border
-              border-slate-700/40
-              text-slate-100
-              hover:text-white
-              backdrop-blur-xl
-              shadow-2xl
-              active:scale-90
-              transition-all
-              duration-300
-              focus:outline-none
-              focus:ring-2
-              focus:ring-blue-500
-            "
-            aria-label="Go back"
-          >
-            <ArrowLeft size={24} strokeWidth={2.5} />
-          </button>
-        </div>
+        <button
+          onClick={handleBackNavigation}
+          className="
+            fixed
+            top-[76px]
+            left-4
+            z-50
+            lg:hidden
+            w-10
+            h-10
+            flex
+            items-center
+            justify-center
+            rounded-full
+            bg-white/90
+            backdrop-blur-xl
+            border
+            border-white/60
+            shadow-lg
+            text-slate-700
+            hover:scale-105
+            active:scale-95
+            transition-all
+            duration-200
+          "
+          aria-label="Go Back"
+        >
+          <ArrowLeft size={18} strokeWidth={2.5} />
+        </button>
       )}
 
       {/* Exit Toast */}

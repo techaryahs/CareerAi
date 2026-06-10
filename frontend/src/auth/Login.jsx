@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../api";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { ArrowLeft } from "lucide-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -115,11 +116,34 @@ const Login = () => {
         {/* Right Side — Form */}
         <div className="w-full md:w-3/5 p-5 sm:p-6 md:p-8 flex flex-col justify-center bg-white">
           <div className="max-w-sm mx-auto w-full">
-            <div className="text-center md:text-left mb-5 sm:mb-6">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">Sign In</h2>
-              <p className="text-gray-500 text-sm sm:text-base">
-                Access your CareerGenAI account
-              </p>
+            <div className="flex items-center justify-between mb-6">
+              <button
+                onClick={() => navigate(-1)}
+                className="
+                  w-10 h-10
+                  flex items-center justify-center
+                  rounded-xl
+                  border border-slate-200
+                  bg-white
+                  text-slate-600
+                  shadow-sm
+                  hover:border-indigo-300
+                  hover:text-indigo-600
+                  transition-all
+                  duration-200
+                "
+              >
+                <ArrowLeft size={18} />
+              </button>
+
+              <div className="flex-1 ml-4">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Sign In
+                </h2>
+                <p className="text-gray-500 text-sm">
+                  Access your CareerGenAI account
+                </p>
+              </div>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-4">
