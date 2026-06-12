@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './AdminDashboard.css';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 const AdminDashboard = () => {
   const [usersWithReceipts, setUsersWithReceipts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalImg, setModalImg] = useState(null);
   const [apiKeyModal, setApiKeyModal] = useState(false);
   const [apiKeyInput, setApiKeyInput] = useState('');
+  const navigate = useNavigate();
 
   // ✅ NEW: Activity Stats Logic
   const [activityStats, setActivityStats] = useState(null);
@@ -133,6 +135,7 @@ const AdminDashboard = () => {
       <header className="admin-header">
         <h1>👑 Admin Dashboard</h1>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <button className="blog-posting-btn" onClick={() => navigate('/admin-dashboard/blog-posting')}>Blog Posting</button>
           <button className="logout-btn" onClick={logout}>Logout</button>
           <button className="apikey-btn" onClick={() => setApiKeyModal(true)}>API Key</button>
           {/* 🔻 Removed Register Consultant Button */}
