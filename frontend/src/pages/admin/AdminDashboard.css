@@ -8,7 +8,7 @@ body {
 .admin-dashboard {
   background: #f3f4f6;
   font-family: 'Inter', 'Segoe UI', sans-serif;
-  padding: 2rem;
+  padding: 90px 2rem 2rem;
   min-height: 100vh;
   color: #1f2937;
 }
@@ -18,7 +18,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.5rem;
   flex-wrap: wrap;
   gap: 1rem;
   border-bottom: 2px solid #e5e7eb;
@@ -67,6 +67,7 @@ body {
 .apikey-btn {
   background: #e68b14;
 }
+
 
 .blog-posting-btn {
   background: linear-gradient(135deg, #2563eb, #7c3aed);
