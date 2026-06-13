@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import MobileBackButton from "./components/common/MobileBackButton";
@@ -19,6 +20,8 @@ import VerifyOtp from "./auth/VerifyOtp";
 import RegisterConsultant from "./auth/RegisterConsultant";
 import RegisterTeacher from "./auth/RegisterTeacher";
 import Home from "./pages/Home";
+import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 
 import CareerJourney from "./pages/student/CareerJourney/CareerJourney";
 import MainPage from "./pages/student/StudentGuidance/MainPage";
@@ -96,6 +99,7 @@ import { WebRTCProvider } from "./webrtc/context/WebRTCContext";
 
 // Admin Routes
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminBlogPosting from "./pages/admin/AdminBlogPosting";
 
 // Consultation Routes
 import ConsultantDashboard from "./pages/consultant/ConsultantDashboard";
@@ -114,11 +118,22 @@ const TeacherDashboard = () => <h1>Teacher Dashboard</h1>;
 
 const Unauthorized = () => <h1>Unauthorized Access</h1>;
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   return (
     <AuthProvider>
       <WebRTCProvider>
         <Router>
+          <ScrollToTop />
           <ActivityTracker />
           <Navbar />
           <div className="flex-1 flex flex-col relative" style={{ paddingTop: "calc(5rem + env(safe-area-inset-top, 0px))" }}>
@@ -127,6 +142,8 @@ function App() {
             <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
@@ -401,6 +418,7 @@ function App() {
 
             <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
+              <Route path="/admin-dashboard/blog-posting" element={<AdminBlogPosting />} />
             </Route>
 
             <Route

@@ -4,10 +4,19 @@ const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
 const pricingService = require("../services/pricing.service");
 
-const razorpay = new Razorpay({
-key_id: process.env.RAZORPAY_KEY_ID,
-key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+const getRazorpayClient = () => {
+  const keyId = process.env.RAZORPAY_KEY_ID;
+  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+  if (!keyId || !keySecret) {
+    throw new Error("Razorpay keys are not configured in backend/.env");
+  }
+
+  return new Razorpay({
+    key_id: keyId,
+    key_secret: keySecret,
+  });
+};
 
 const PREMIUM_MEMBERSHIPS = [
 "1 Month",
@@ -48,6 +57,7 @@ try {
 const amount = price * 100;
 
 
+const razorpay = getRazorpayClient();
 const order = await razorpay.orders.create({
   amount,
   currency: "INR",
