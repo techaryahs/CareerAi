@@ -115,12 +115,16 @@ const FreeCounselling = () => {
 
       setOtpLoading(true);
 
+      console.log("📱 Sending OTP to phone:", formData.phone);
+
       const res = await api.post(
-        "/counselling/send-otp",
+        "/api/counselling/send-otp",
         {
           phone: formData.phone,
         }
       );
+
+      console.log("✅ Send OTP Response:", res.data);
 
       alert(res.data.message);
 
@@ -128,7 +132,9 @@ const FreeCounselling = () => {
 
     } catch (error) {
 
-      alert("Failed to send OTP");
+      console.error("❌ Send OTP Error:", error.response?.data || error.message);
+
+      alert(error.response?.data?.message || "Failed to send OTP");
 
     } finally {
 
@@ -141,13 +147,17 @@ const FreeCounselling = () => {
   const verifyOtp = async () => {
     try {
 
+      console.log("🔍 Verifying OTP - Phone:", formData.phone, "OTP:", otp);
+
       const res = await api.post(
-        "/counselling/verify-otp",
+        "/api/counselling/verify-otp",
         {
           phone: formData.phone,
-          otp,
+          otp: String(otp), // Ensure OTP is sent as string
         }
       );
+
+      console.log("✅ OTP Verification Response:", res.data);
 
       alert(res.data.message);
 
@@ -155,7 +165,9 @@ const FreeCounselling = () => {
 
     } catch (error) {
 
-      alert("Invalid OTP");
+      console.error("❌ OTP Verification Error:", error.response?.data || error.message);
+
+      alert(error.response?.data?.message || "Invalid OTP");
     }
   };
 
@@ -179,9 +191,9 @@ const FreeCounselling = () => {
 
       setSuccess(res.data.message);
       fetchAvailableSlots(
-  formData.counsellor,
-  formData.preferredDate
-);
+        formData.counsellor,
+        formData.preferredDate
+      );
 
       setFormData({
         fullName: "",
@@ -322,8 +334,8 @@ const FreeCounselling = () => {
                   {otpLoading
                     ? "Sending..."
                     : verified
-                    ? "Verified"
-                    : "Send OTP"}
+                      ? "Verified"
+                      : "Send OTP"}
                 </button>
 
               </div>
@@ -493,10 +505,9 @@ const FreeCounselling = () => {
                           : ""
                         }
 
-                        ${
-                          !isExpired && !isBooked && !isSelected
-                            ? "bg-[#111827] border-white/10 hover:border-cyan-400 hover:bg-cyan-500/10"
-                            : ""
+                        ${!isExpired && !isBooked && !isSelected
+                          ? "bg-[#111827] border-white/10 hover:border-cyan-400 hover:bg-cyan-500/10"
+                          : ""
                         }
                       `}
                     >

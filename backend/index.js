@@ -9,6 +9,7 @@ const server = http.createServer(app);
 const setupWebRTCSignaling = require('./webrtc-signaling');
 const featureActivityRoutes = require("./routes/featureActivity.routes");
 const counsellingRoutes = require("./routes/counselling.routes");
+const couponRoutes = require("./routes/coupon.routes");
 
 // Middleware
 app.use(cors());
@@ -70,7 +71,7 @@ app.use("/api/activity", require("./routes/activityRoutes"));
 app.use("/api/feature-activity", featureActivityRoutes);
 app.use("/api/counselling", counsellingRoutes);
 app.use("/api/payments", require("./routes/payment.routes"));
-
+app.use("/api/coupons", couponRoutes);
 
 
 
