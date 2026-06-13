@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import api from "../../../api";
+import { Helmet } from "react-helmet-async";
 
 const FreeCounselling = () => {
 
@@ -115,12 +116,16 @@ const FreeCounselling = () => {
 
       setOtpLoading(true);
 
+      console.log("📱 Sending OTP to phone:", formData.phone);
+
       const res = await api.post(
-        "/counselling/send-otp",
+        "/api/counselling/send-otp",
         {
           phone: formData.phone,
         }
       );
+
+      console.log("✅ Send OTP Response:", res.data);
 
       alert(res.data.message);
 
@@ -128,7 +133,9 @@ const FreeCounselling = () => {
 
     } catch (error) {
 
-      alert("Failed to send OTP");
+      console.error("❌ Send OTP Error:", error.response?.data || error.message);
+
+      alert(error.response?.data?.message || "Failed to send OTP");
 
     } finally {
 
@@ -141,13 +148,17 @@ const FreeCounselling = () => {
   const verifyOtp = async () => {
     try {
 
+      console.log("🔍 Verifying OTP - Phone:", formData.phone, "OTP:", otp);
+
       const res = await api.post(
-        "/counselling/verify-otp",
+        "/api/counselling/verify-otp",
         {
           phone: formData.phone,
-          otp,
+          otp: String(otp), // Ensure OTP is sent as string
         }
       );
+
+      console.log("✅ OTP Verification Response:", res.data);
 
       alert(res.data.message);
 
@@ -155,7 +166,9 @@ const FreeCounselling = () => {
 
     } catch (error) {
 
-      alert("Invalid OTP");
+      console.error("❌ OTP Verification Error:", error.response?.data || error.message);
+
+      alert(error.response?.data?.message || "Invalid OTP");
     }
   };
 
@@ -179,9 +192,9 @@ const FreeCounselling = () => {
 
       setSuccess(res.data.message);
       fetchAvailableSlots(
-  formData.counsellor,
-  formData.preferredDate
-);
+        formData.counsellor,
+        formData.preferredDate
+      );
 
       setFormData({
         fullName: "",
@@ -215,7 +228,48 @@ const FreeCounselling = () => {
 
 
   return (
-    <div className="min-h-screen bg-[#050816] text-white py-20 px-4 md:px-8">
+    <>
+      <Helmet>
+        <title>
+          Free Career Counselling | Expert Guidance for 10th & 12th Students
+        </title>
+
+        <meta
+          name="description"
+          content="Book a free career counselling session with CareerGenAI. Get expert guidance on stream selection, career options, college admissions, entrance exams, and future planning."
+        />
+
+        <meta
+          name="keywords"
+          content="free career counselling, career guidance for students, 10th career guidance, 12th career counselling, admission guidance, college admissions, JEE counselling, NEET counselling, stream selection"
+        />
+
+        <meta
+          property="og:title"
+          content="Free Career Counselling | Expert Guidance for 10th & 12th Students"
+        />
+
+        <meta
+          property="og:description"
+          content="Book a free career counselling session with CareerGenAI. Get expert guidance on stream selection, career options, college admissions, entrance exams, and future planning."
+        />
+
+        <meta
+          property="og:url"
+          content="https://careergenai.in/free-counseling"
+        />
+
+        <meta property="og:type" content="website" />
+
+        <meta name="robots" content="index, follow" />
+
+        <link
+          rel="canonical"
+          href="https://careergenai.in/free-counseling"
+        />
+      </Helmet>
+
+      <div className="min-h-screen bg-[#050816] text-white py-20 px-4 md:px-8">
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-start">
 
@@ -322,8 +376,8 @@ const FreeCounselling = () => {
                   {otpLoading
                     ? "Sending..."
                     : verified
-                    ? "Verified"
-                    : "Send OTP"}
+                      ? "Verified"
+                      : "Send OTP"}
                 </button>
 
               </div>
@@ -493,10 +547,9 @@ const FreeCounselling = () => {
                           : ""
                         }
 
-                        ${
-                          !isExpired && !isBooked && !isSelected
-                            ? "bg-[#111827] border-white/10 hover:border-cyan-400 hover:bg-cyan-500/10"
-                            : ""
+                        ${!isExpired && !isBooked && !isSelected
+                          ? "bg-[#111827] border-white/10 hover:border-cyan-400 hover:bg-cyan-500/10"
+                          : ""
                         }
                       `}
                     >
@@ -578,7 +631,8 @@ const FreeCounselling = () => {
       </div>
 
     </div>
-  );
+  </>
+);
 };
 
 export default FreeCounselling;

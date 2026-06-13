@@ -10,6 +10,8 @@ import {
   Eye, EyeOff
 } from "lucide-react";
 
+import { Helmet } from "react-helmet-async";
+
 const Register = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -306,7 +308,48 @@ const Register = () => {
     "w-full px-3 py-3 sm:px-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none transition-all duration-200 text-sm sm:text-base text-gray-800 placeholder-gray-400";
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <>
+      <Helmet>
+        <title>
+          Register for Career Counselling & Admission Guidance | CareerGenAI
+        </title>
+
+        <meta
+          name="description"
+          content="Register with CareerGenAI to access personalized career counselling, admission support, scholarship guidance, college selection assistance, and expert mentoring."
+        />
+
+        <meta
+          name="keywords"
+          content="register career counselling, admission guidance registration, scholarship guidance, college admission support, student mentoring, CareerGenAI registration"
+        />
+
+        <meta
+          property="og:title"
+          content="Register for Career Counselling & Admission Guidance | CareerGenAI"
+        />
+
+        <meta
+          property="og:description"
+          content="Register with CareerGenAI to access personalized career counselling, admission support, scholarship guidance, college selection assistance, and expert mentoring."
+        />
+
+        <meta
+          property="og:url"
+          content="https://careergenai.in/register"
+        />
+
+        <meta property="og:type" content="website" />
+
+        <meta name="robots" content="index, follow" />
+
+        <link
+          rel="canonical"
+          href="https://careergenai.in/register"
+        />
+      </Helmet>
+
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-[24px] shadow-2xl w-full max-w-4xl flex overflow-hidden min-h-[600px] transition-all">
         {/* Left Side - Illustration (Reverted to CareerGenAI) */}
         <div className="hidden lg:flex lg:w-2/5 bg-indigo-600 p-10 flex-col justify-center text-white relative">
@@ -838,7 +881,8 @@ const Register = () => {
         </div>
       </div>
     </div>
-  );
+  </>
+);
 };
 
 export default Register;

@@ -125,10 +125,9 @@ export default function Navbar() {
   const navLinks = getLinks();
 
   return (
-    <nav 
-      className="bg-[#0f172a] shadow-lg fixed top-0 left-0 right-0 z-50 font-sans text-white border-b border-gray-800"
-      style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
-    >
+    <nav
+  className="bg-[#0f172a] shadow-lg fixed top-0 left-0 right-0 z-50 font-sans text-white border-b border-gray-800"
+>
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center relative">
           

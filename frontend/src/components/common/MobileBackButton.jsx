@@ -115,7 +115,44 @@ export default function MobileBackButton() {
 
   return (
     <>
-      {/* Visual back button removed - now handled inline within the main Navbar */}
+      {/* Mobile Back Button - positioned fixed, floats directly over page content */}
+      {!isRoot && (
+        <button
+          onClick={handleBackNavigation}
+          className="
+            fixed
+            left-4
+            z-[9999]
+            w-12
+            h-12
+            rounded-full
+            flex
+            items-center
+            justify-center
+            lg:hidden
+            bg-slate-900/80
+            hover:bg-slate-800/90
+            border
+            border-slate-700/40
+            text-slate-100
+            hover:text-white
+            backdrop-blur-xl
+            shadow-2xl
+            active:scale-90
+            transition-all
+            duration-300
+            focus:outline-none
+            focus:ring-2
+            focus:ring-blue-500
+          "
+          style={{
+            top: "calc(5rem + env(safe-area-inset-top, 0px) + 12px)",
+          }}
+          aria-label="Go back"
+        >
+          <ArrowLeft size={24} strokeWidth={2.5} />
+        </button>
+      )}
 
       {/* Exit Toast */}
       {showToast && (

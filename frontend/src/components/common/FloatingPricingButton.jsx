@@ -7,7 +7,7 @@ const FloatingPricingButton = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Only render on the Consult page
+  // Show only on Consult page
   if (location.pathname !== "/consult") return null;
 
   return (
@@ -17,7 +17,7 @@ const FloatingPricingButton = () => {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 10 }}
         whileHover={{ scale: 1.04, y: -2 }}
-        whileTap={{ scale: 0.96, y: 0 }}
+        whileTap={{ scale: 0.96 }}
         onClick={() => navigate("/consult-pricing")}
         className="floating-pricing-btn"
       >
@@ -31,27 +31,39 @@ const FloatingPricingButton = () => {
             bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
             z-index: 9999;
             height: 50px;
-            width: auto;
-            border-radius: 999px;
             padding: 0 20px;
+
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+
+            border: none;
+            border-radius: 999px;
+
             font-size: 14px;
             font-weight: 700;
-            border: none;
-            cursor: pointer;
             color: #fff;
-            background: linear-gradient(135deg, #007BFF 0%, #0056B3 100%);
-            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.25);
-            transition: transform 0.2s, box-shadow 0.2s, background-position 0.4s ease;
+            cursor: pointer;
+
+            background: linear-gradient(
+              90deg,
+              #007bff 0%,
+              #00b4ff 40%,
+              #007bff 80%
+            );
+            background-size: 200% auto;
+
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.35);
+            transition: all 0.3s ease;
           }
 
           .floating-pricing-btn:hover {
-            box-shadow: 0 10px 24px rgba(0, 123, 255, 0.4);
+            background-position: right center;
+            box-shadow: 0 10px 24px rgba(0, 123, 255, 0.45);
           }
 
+          /* Small tablets */
           @media (min-width: 480px) and (max-width: 767px) {
             .floating-pricing-btn {
               height: 54px;
@@ -60,27 +72,29 @@ const FloatingPricingButton = () => {
             }
           }
 
+          /* Desktop & Laptop */
           @media (min-width: 768px) {
             .floating-pricing-btn {
-              position: absolute;
-              top: 30px;
-              right: 30px;
-              bottom: auto;
               left: auto;
-              z-index: 10;
-              height: auto;
-              width: auto;
+              bottom: auto;
+
+              top: 90px;
+              right: 24px;
+
+              height: 48px;
+              padding: 0 22px;
               border-radius: 14px;
-              padding: 12px 22px;
               font-size: 14px;
-              background: linear-gradient(90deg, #007BFF 0%, #00b4ff 40%, #007BFF 80%);
-              background-size: 200% auto;
-              box-shadow: none;
+
+              z-index: 99999;
             }
-            
-            .floating-pricing-btn:hover {
-              background-position: right center;
-              box-shadow: 0 6px 20px rgba(0, 123, 255, 0.45);
+          }
+
+          /* Large Desktop */
+          @media (min-width: 1440px) {
+            .floating-pricing-btn {
+              top: 100px;
+              right: 32px;
             }
           }
         `}</style>

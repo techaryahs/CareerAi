@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import api from "../../../utils/api";
 import { useAuth } from "../../../context/AuthContext";
+import CouponModal from "../../../components/CouponModal/CouponModal";
 
 
 
@@ -24,6 +25,10 @@ const ConsultPricing = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [isProcessing, setIsProcessing] = React.useState(false);
+  const [showCouponModal, setShowCouponModal] = React.useState(false);
+  const [selectedPackage, setSelectedPackage] = React.useState(null);
+  const [discountedPrice, setDiscountedPrice] = React.useState(null);
+  const [appliedCoupon, setAppliedCoupon] = React.useState(null);
   const [prices, setPrices] = React.useState({
     SMART: 2999,
     PREMIUM: 5999,
@@ -129,7 +134,22 @@ const ConsultPricing = () => {
     },
   ];
 
-  const handlePayment = async (pkg) => {
+  const handleChoosePlan = (pkg) => {
+    setSelectedPackage(pkg);
+    setShowCouponModal(true);
+  };
+  const processPayment = async (
+  pkg,
+  couponCode = null,
+  finalAmount = null
+) => {
+
+  console.log("================================");
+  console.log("PROCESS PAYMENT CALLED");
+  console.log("PACKAGE:", pkg);
+  console.log("COUPON CODE:", couponCode);
+  console.log("FINAL AMOUNT:", finalAmount);
+
     if (pkg.name === "FREE") {
       navigate("/free-counseling");
       return;
@@ -152,15 +172,28 @@ const ConsultPricing = () => {
       }
 
       // Call backend to create order
-      const orderRes = await api.post("/api/payments/order", {
-        planName: pkg.name
-      });
+      console.log("CALLING BACKEND ORDER API");
+
+console.log({
+  planName: pkg.name,
+  couponCode,
+  finalAmount,
+});
+
+const orderRes = await api.post("/api/payments/order", {
+  planName: pkg.name,
+  couponCode,
+  finalAmount,
+});
 
       if (!orderRes.data || !orderRes.data.order) {
         throw new Error("Failed to create order on the backend");
       }
 
       const { order } = orderRes.data;
+      console.log("ORDER RESPONSE RECEIVED");
+
+console.log(order);
 
       const options = {
         key: "rzp_live_RseCm2t4lFlfMC", // Razorpay Key ID
@@ -201,6 +234,13 @@ const ConsultPricing = () => {
           color: "#0041A3",
         },
       };
+
+      console.log("OPENING RAZORPAY");
+
+console.log({
+  amount: order.amount,
+  orderId: order.id,
+});
 
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
@@ -276,11 +316,10 @@ const ConsultPricing = () => {
           {packages.filter(pkg => plansStatus[pkg.name] !== false).map((pkg, index) => (
             <div
               key={index}
-              className={`relative rounded-3xl bg-white border shadow-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 ${
-                pkg.popular
-                  ? "border-yellow-400 scale-105"
-                  : "border-gray-200"
-              }`}
+              className={`relative rounded-3xl bg-white border shadow-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 ${pkg.popular
+                ? "border-yellow-400 scale-105"
+                : "border-gray-200"
+                }`}
             >
               {pkg.popular && (
                 <div className="absolute top-0 left-0 right-0">
@@ -310,11 +349,10 @@ const ConsultPricing = () => {
                 </p>
 
                 <button
-                  onClick={() => handlePayment(pkg)}
+                  onClick={() => handleChoosePlan(pkg)}
                   disabled={isProcessing}
-                  className={`w-full mt-8 bg-gradient-to-r ${pkg.color} text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 ${
-                    isProcessing ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
+                  className={`w-full mt-8 bg-gradient-to-r ${pkg.color} text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 ${isProcessing ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
                 >
                   {isProcessing ? "Processing..." : pkg.button}
                   <ArrowRight size={18} />
@@ -384,15 +422,30 @@ const ConsultPricing = () => {
               Book Free Consultation
             </button>
 
-            <button 
-            onClick={() => navigate("/consult")}
-            className="border border-white px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300">
+            <button
+              onClick={() => navigate("/consult")}
+              className="border border-white px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300">
               Talk To Expert
             </button>
           </div>
         </div>
 
       </div>
+      {showCouponModal && (
+        <CouponModal
+          plan={selectedPackage}
+          onClose={() => setShowCouponModal(false)}
+          onProceed={(paymentData) => {
+            setShowCouponModal(false);
+
+            processPayment(
+              selectedPackage,
+              paymentData.couponCode,
+              paymentData.finalAmount
+            );
+          }}
+        />
+      )}
     </div>
   );
 };

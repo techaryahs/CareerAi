@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './AdminDashboard.css';
 import { useAuth } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const AdminDashboard = () => {
   const [usersWithReceipts, setUsersWithReceipts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,13 +12,14 @@ const AdminDashboard = () => {
 
   // ✅ NEW: Activity Stats Logic
   const [activityStats, setActivityStats] = useState(null);
+  const [logoutModal, setLogoutModal] = useState(false);
 
   useEffect(() => {
     // Only fetch for specific admins
-  
-      fetchActivityStats();
-      const interval = setInterval(fetchActivityStats, 30000);
-      return () => clearInterval(interval);
+
+    fetchActivityStats();
+    const interval = setInterval(fetchActivityStats, 30000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchActivityStats = async () => {
@@ -32,10 +33,7 @@ const AdminDashboard = () => {
   };
 
 
-  const {user,logout} = useAuth();
-
-
-
+  const { user, logout } = useAuth();
 
   const fetchUsersWithReceipts = async () => {
     try {
@@ -60,7 +58,7 @@ const AdminDashboard = () => {
     try {
       const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/admin/save-api-key`, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         },
@@ -85,7 +83,7 @@ const AdminDashboard = () => {
     try {
       const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/admin/approve`, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         },
@@ -108,7 +106,7 @@ const AdminDashboard = () => {
     try {
       const res = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/admin/deny`, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         },
@@ -127,86 +125,116 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleLogout = () => {
+    setLogoutModal(false);
+    logout();
+  };
+
   const pendingReceipts = usersWithReceipts.filter(u => u.receiptStatus === 'pending');
   const approvedReceipts = usersWithReceipts.filter(u => u.receiptStatus === 'approved');
 
   return (
-    <div className="admin-dashboard">
+    <div className="admin-dashboard mt-15">
       <header className="admin-header">
         <h1>👑 Admin Dashboard</h1>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <button className="blog-posting-btn" onClick={() => navigate('/admin-dashboard/blog-posting')}>Blog Posting</button>
-          <button className="logout-btn" onClick={logout}>Logout</button>
-          <button className="apikey-btn" onClick={() => setApiKeyModal(true)}>API Key</button>
-          {/* 🔻 Removed Register Consultant Button */}
+          <button
+            className="logout-btn"
+            onClick={() => setLogoutModal(true)}
+          >
+            Logout
+          </button>
+
+          <button
+            className="apikey-btn"
+            onClick={() => setApiKeyModal(true)}
+          >
+            API Key
+          </button>
+
+          <button
+            onClick={() => navigate("/admin/coupons")}
+            style={{
+              background: "#7c3aed",
+              color: "#fff",
+              border: "none",
+              padding: "10px 16px",
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontWeight: "600"
+            }}
+          >
+            🎟️ Coupon Management
+          </button>
         </div>
       </header>
 
       <main className="admin-content">
-        
+
         {/* 📊 ACTIVITY STATS SECTION */}
-       {/* 📊 ACTIVITY STATS SECTION */}
-<section className="mb-8">
-  <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-    <span className="w-1 h-6 bg-blue-600 rounded-full"></span> Live Activity
-  </h2>
-  
-  {activityStats ? (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-      {/* Online Now */}
-      <div className="bg-green-50 p-4 rounded-xl border border-green-100 shadow-sm">
-        <h3 className="text-sm font-semibold text-green-800 flex items-center gap-2">
-          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Online Now
-        </h3>
-        <p className="text-3xl font-bold text-green-600 my-1">{activityStats.onlineCount}</p>
-        <p className="text-xs text-green-700 opacity-70">Active in last 5 mins</p>
-      </div>
+        {/* 📊 ACTIVITY STATS SECTION */}
+        <section className="mb-8">
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <span className="w-1 h-6 bg-blue-600 rounded-full"></span> Live Activity
+          </h2>
 
-      {/* Last 24 Hours */}
-      <div className="bg-amber-50 p-4 rounded-xl border border-amber-100 shadow-sm">
-        <h3 className="text-sm font-semibold text-amber-800">🕒 Last 24 Hours</h3>
-        <p className="text-3xl font-bold text-amber-500 my-1">{activityStats.active24h}</p>
-        <p className="text-xs text-amber-700 opacity-70">Active users</p>
-      </div>
+          {activityStats ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+              {/* Online Now */}
+              <div className="bg-green-50 p-4 rounded-xl border border-green-100 shadow-sm">
+                <h3 className="text-sm font-semibold text-green-800 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Online Now
+                </h3>
+                <p className="text-3xl font-bold text-green-600 my-1">{activityStats.onlineCount}</p>
+                <p className="text-xs text-green-700 opacity-70">Active in last 5 mins</p>
+              </div>
 
-      {/* Last 7 Days */}
-      <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-sm">
-        <h3 className="text-sm font-semibold text-blue-800">📅 Last 7 Days</h3>
-        <p className="text-3xl font-bold text-blue-500 my-1">{activityStats.active7d}</p>
-        <p className="text-xs text-blue-700 opacity-70">Active users</p>
-      </div>
+              {/* Last 24 Hours */}
+              <div className="bg-amber-50 p-4 rounded-xl border border-amber-100 shadow-sm">
+                <h3 className="text-sm font-semibold text-amber-800">🕒 Last 24 Hours</h3>
+                <p className="text-3xl font-bold text-amber-500 my-1">{activityStats.active24h}</p>
+                <p className="text-xs text-amber-700 opacity-70">Active users</p>
+              </div>
 
-      {/* Last 30 Days */}
-      <div className="bg-purple-50 p-4 rounded-xl border border-purple-100 shadow-sm">
-        <h3 className="text-sm font-semibold text-purple-800">🗓️ Last 30 Days</h3>
-        <p className="text-3xl font-bold text-purple-500 my-1">{activityStats.active30d}</p>
-        <p className="text-xs text-purple-700 opacity-70">Active users</p>
-      </div>
+              {/* Last 7 Days */}
+              <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-sm">
+                <h3 className="text-sm font-semibold text-blue-800">📅 Last 7 Days</h3>
+                <p className="text-3xl font-bold text-blue-500 my-1">{activityStats.active7d}</p>
+                <p className="text-xs text-blue-700 opacity-70">Active users</p>
+              </div>
 
-      {/* Total Sessions */}
-      <div className="bg-red-50 p-4 rounded-xl border border-red-100 shadow-sm">
-        <h3 className="text-sm font-semibold text-red-800">📈 Total Sessions</h3>
-        <p className="text-3xl font-bold text-red-500 my-1">{activityStats.totalSessions}</p>
-        <p className="text-xs text-red-700 opacity-70">Lifetime records</p>
-      </div>
+              {/* Last 30 Days */}
+              <div className="bg-purple-50 p-4 rounded-xl border border-purple-100 shadow-sm">
+                <h3 className="text-sm font-semibold text-purple-800">🗓️ Last 30 Days</h3>
+                <p className="text-3xl font-bold text-purple-500 my-1">{activityStats.active30d}</p>
+                <p className="text-xs text-purple-700 opacity-70">Active users</p>
+              </div>
 
-      {/* User Roles */}
-      <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm">
-        <h3 className="text-sm font-semibold text-slate-800">👥 User Roles</h3>
-        <div className="mt-2 space-y-1">
-          {activityStats.roleStats?.map(stat => (
-            <div key={stat._id} className="flex justify-between text-xs font-medium">
-              <span className="capitalize text-slate-500">{stat._id}:</span>
-              <span className="text-slate-900">{stat.count}</span>
+              {/* Total Sessions */}
+              <div className="bg-red-50 p-4 rounded-xl border border-red-100 shadow-sm">
+                <h3 className="text-sm font-semibold text-red-800">📈 Total Sessions</h3>
+                <p className="text-3xl font-bold text-red-500 my-1">{activityStats.totalSessions}</p>
+                <p className="text-xs text-red-700 opacity-70">Lifetime records</p>
+              </div>
+
+              {/* User Roles */}
+              <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm">
+                <h3 className="text-sm font-semibold text-slate-800">👥 User Roles</h3>
+                <div className="mt-2 space-y-1">
+                  {activityStats.roleStats?.map(stat => (
+                    <div key={stat._id} className="flex justify-between text-xs font-medium">
+                      <span className="capitalize text-slate-500">{stat._id}:</span>
+                      <span className="text-slate-900">{stat.count}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  ) : (
-    <div className="animate-pulse text-slate-400">Loading live stats...</div>
-  )}
-</section>
+          ) : (
+            <div className="animate-pulse text-slate-400">Loading live stats...</div>
+          )}
+        </section>
 
         {/* 👤 START: DETAILED USER STATS */}
         <UserVisitStats />
@@ -294,6 +322,63 @@ const AdminDashboard = () => {
         </div>
       )}
 
+      {logoutModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setLogoutModal(false)}
+        >
+          <div
+            className="modal-content logout-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3>⚠️ Confirm Logout</h3>
+
+            <p style={{ margin: "15px 0" }}>
+              Are you sure you want to logout?
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                justifyContent: "center",
+                marginTop: "20px",
+              }}
+            >
+              <button
+                onClick={handleLogout}
+                style={{
+                  background: "#dc2626",
+                  color: "#fff",
+                  border: "none",
+                  padding: "10px 20px",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                }}
+              >
+                Yes, Logout
+              </button>
+
+              <button
+                onClick={() => setLogoutModal(false)}
+                style={{
+                  background: "#e5e7eb",
+                  color: "#111827",
+                  border: "none",
+                  padding: "10px 20px",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
@@ -307,7 +392,7 @@ const UserVisitStats = () => {
   const [users, setUsers] = useState([]);
   const [filterRole, setFilterRole] = useState('all');
   const [filterTime, setFilterTime] = useState('all'); // 'all', '5min', '24h', '7d', '30d'
-  const [displayCount, setDisplayCount] = useState(10); 
+  const [displayCount, setDisplayCount] = useState(10);
 
   useEffect(() => {
     fetchUserStats();
@@ -330,7 +415,7 @@ const UserVisitStats = () => {
 
     // Time Filter
     if (filterTime === 'all') return true;
-    
+
     const lastActive = new Date(u.lastActive).getTime();
     const now = Date.now();
     let timeLimit = 0;
@@ -353,16 +438,16 @@ const UserVisitStats = () => {
     <section className="admin-section" style={{ marginBottom: '2rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-           <h2>👤 Detailed User Activity</h2>
-           <span style={{ background: '#e2e8f0', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.875rem' }}>
-             Repeated Users: <strong>{repeatedUserCount}</strong>
-           </span>
+          <h2>👤 Detailed User Activity</h2>
+          <span style={{ background: '#e2e8f0', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.875rem' }}>
+            Repeated Users: <strong>{repeatedUserCount}</strong>
+          </span>
         </div>
-        
+
         <div style={{ display: 'flex', gap: '0.5rem' }}>
-           {/* TIME FILTER */}
-           <select 
-            value={filterTime} 
+          {/* TIME FILTER */}
+          <select
+            value={filterTime}
             onChange={(e) => setFilterTime(e.target.value)}
             style={{ padding: '0.5rem', borderRadius: '5px', border: '1px solid #ccc' }}
           >
@@ -374,8 +459,8 @@ const UserVisitStats = () => {
           </select>
 
           {/* ROLE FILTER */}
-          <select 
-            value={filterRole} 
+          <select
+            value={filterRole}
             onChange={(e) => setFilterRole(e.target.value)}
             style={{ padding: '0.5rem', borderRadius: '5px', border: '1px solid #ccc' }}
           >
@@ -402,7 +487,7 @@ const UserVisitStats = () => {
             {filteredUsers.slice(0, displayCount).map((u, index) => (
               <tr key={index} style={{ borderBottom: '1px solid #eee' }}>
                 <td style={{ padding: '12px' }}>
-                  <strong>{u.name || "Unknown"}</strong><br/>
+                  <strong>{u.name || "Unknown"}</strong><br />
                   <small style={{ color: '#666' }}>{u.email}</small>
                 </td>
                 <td style={{ padding: '12px', textTransform: 'capitalize' }}>
@@ -426,7 +511,7 @@ const UserVisitStats = () => {
       </div>
 
       {filteredUsers.length > displayCount && (
-        <button 
+        <button
           onClick={() => setDisplayCount(prev => prev + 20)}
           style={{ marginTop: '1rem', width: '100%', padding: '10px', background: '#f1f1f1', border: 'none', cursor: 'pointer' }}
         >
@@ -447,7 +532,7 @@ const ConsultantManagement = () => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [editingPriceId, setEditingPriceId] = useState(null);
   const [editPriceValue, setEditPriceValue] = useState('');
-  
+
   // Rejection modal state
   const [rejectionModal, setRejectionModal] = useState({ open: false, consultantId: null, reason: '' });
 
@@ -554,7 +639,7 @@ const ConsultantManagement = () => {
     // Filter by search term
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
-      list = list.filter(c => 
+      list = list.filter(c =>
         (c.name && c.name.toLowerCase().includes(term)) ||
         (c.role && c.role.toLowerCase().includes(term)) ||
         (c.expertise && c.expertise.toLowerCase().includes(term))
@@ -616,15 +701,15 @@ const ConsultantManagement = () => {
 
       {/* Search & Filters */}
       <div className="search-filter-bar" style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-        <input 
-          type="text" 
-          placeholder="Search by name, role or expertise..." 
+        <input
+          type="text"
+          placeholder="Search by name, role or expertise..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
           style={{ flex: 1, padding: '0.6rem 1rem', borderRadius: '8px', border: '1px solid #ccc', minWidth: '250px' }}
         />
-        <select 
+        <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
           className="filter-select"
@@ -660,10 +745,10 @@ const ConsultantManagement = () => {
                 <tr key={c._id} style={{ borderBottom: '1px solid #eee' }}>
                   <td style={{ padding: '12px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <img 
-                        src={c.image || 'https://via.placeholder.com/40'} 
-                        alt={c.name} 
-                        style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }} 
+                      <img
+                        src={c.image || 'https://via.placeholder.com/40'}
+                        alt={c.name}
+                        style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }}
                       />
                       <div>
                         <strong>{c.name || 'No Name'}</strong><br />
@@ -691,20 +776,20 @@ const ConsultantManagement = () => {
                     {editingPriceId === c._id ? (
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                         <span style={{ fontSize: '0.9rem' }}>₹</span>
-                        <input 
-                          type="number" 
-                          value={editPriceValue} 
+                        <input
+                          type="number"
+                          value={editPriceValue}
                           onChange={(e) => setEditPriceValue(e.target.value)}
                           style={{ width: '80px', padding: '4px', borderRadius: '4px', border: '1px solid #ccc' }}
                         />
-                        <button 
+                        <button
                           onClick={() => handlePriceUpdate(c._id, editPriceValue)}
                           style={{ border: 'none', background: '#22c55e', color: 'white', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer' }}
                           title="Save Price"
                         >
                           ✓
                         </button>
-                        <button 
+                        <button
                           onClick={() => setEditingPriceId(null)}
                           style={{ border: 'none', background: '#ef4444', color: 'white', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer' }}
                           title="Cancel"
@@ -715,7 +800,7 @@ const ConsultantManagement = () => {
                     ) : (
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                         <span>₹{c.price ?? 0}</span>
-                        <button 
+                        <button
                           onClick={() => startEditingPrice(c)}
                           style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: '#1d4ed8', fontSize: '0.85rem' }}
                         >
@@ -728,13 +813,13 @@ const ConsultantManagement = () => {
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '6px' }}>
                       {c.status === 'pending' && (
                         <>
-                          <button 
+                          <button
                             className="action-btn approve-btn"
                             onClick={() => handleStatusUpdate(c._id, 'approved')}
                           >
                             Approve
                           </button>
-                          <button 
+                          <button
                             className="action-btn reject-btn"
                             onClick={() => openRejectionModal(c._id)}
                           >
@@ -743,7 +828,7 @@ const ConsultantManagement = () => {
                         </>
                       )}
                       {c.status === 'approved' && (
-                        <button 
+                        <button
                           className="action-btn disable-btn"
                           onClick={() => handleStatusUpdate(c._id, 'disabled')}
                         >
@@ -751,7 +836,7 @@ const ConsultantManagement = () => {
                         </button>
                       )}
                       {c.status === 'disabled' && (
-                        <button 
+                        <button
                           className="action-btn enable-btn"
                           onClick={() => handleStatusUpdate(c._id, 'approved')}
                         >
@@ -759,7 +844,7 @@ const ConsultantManagement = () => {
                         </button>
                       )}
                       {c.status === 'rejected' && (
-                        <button 
+                        <button
                           className="action-btn approve-btn"
                           onClick={() => handleStatusUpdate(c._id, 'approved')}
                         >
@@ -781,7 +866,7 @@ const ConsultantManagement = () => {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h3>🚫 Reject Application</h3>
             <p>Please provide a reason for rejecting this consultant profile:</p>
-            <textarea 
+            <textarea
               value={rejectionModal.reason}
               onChange={(e) => setRejectionModal({ ...rejectionModal, reason: e.target.value })}
               placeholder="e.g. Incomplete profile details, documents missing..."
@@ -966,9 +1051,9 @@ const PricingManagement = () => {
             {plan.enabled ? "🟢 Active" : "🔴 Disabled"}
           </span>
         </div>
-        <input 
-          type="number" 
-          value={plan.price} 
+        <input
+          type="number"
+          value={plan.price}
           onChange={(e) => handleChange(planKey, 'price', e.target.value)}
           style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #d1d5db', outline: 'none', marginBottom: '0.5rem' }}
           required
@@ -1004,7 +1089,7 @@ const PricingManagement = () => {
       ) : (
         <form onSubmit={handleSave} style={{ maxWidth: '800px', background: 'white', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginBottom: '1.5rem' }}>
-            
+
             {/* Admission Packages */}
             <div>
               <h3 style={{ fontSize: '1.1rem', color: '#1d4ed8', borderBottom: '2px solid #eff6ff', paddingBottom: '0.5rem', marginBottom: '1rem', fontWeight: 'bold' }}>Admission Packages</h3>
@@ -1035,8 +1120,8 @@ const PricingManagement = () => {
             </div>
           )}
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={saving}
             style={{ width: '100%', padding: '12px', background: '#1d4ed8', color: 'white', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', opacity: saving ? 0.7 : 1 }}
           >

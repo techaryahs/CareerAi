@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import hero_section from "../../assets/hero_section.jpg";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import {
   Brain,
@@ -151,7 +152,31 @@ const HomeComponent = () => {
   // }, [API, setCareers, setLoading]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <>
+      <Helmet>
+        <title>
+          CareerGenAI | AI-Powered Career Counselling & Admission Guidance
+        </title>
+
+        <meta
+          name="description"
+          content="CareerGenAI provides expert career counselling, admission guidance, CET, JEE, NEET support, college selection, scholarships, and career planning for students across India."
+        />
+
+        <meta
+          name="keywords"
+          content="career counselling, admission guidance, JEE, NEET, CET, scholarships, college admission, career planning, CareerGenAI"
+        />
+
+        <meta name="robots" content="index, follow" />
+
+        <link
+          rel="canonical"
+          href="https://careergenai.in/"
+        />
+      </Helmet>
+
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -246,7 +271,8 @@ const HomeComponent = () => {
         </div>
       </div>
     </section>
-  );
+  </>
+);
 };
 
 export default HomeComponent;

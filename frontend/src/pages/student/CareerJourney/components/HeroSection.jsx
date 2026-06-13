@@ -2,13 +2,55 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Rocket, BookOpen, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from "react-helmet-async";
 
 
 const HeroSection = () => {
     const navigate = useNavigate();
 
     return (
-        <section className="relative w-full  md:py-8 overflow-hidden bg-white">
+        <>
+            <Helmet>
+                <title>
+                    CareerGenAI Services | Career Counselling, Admissions & Scholarship Guidance
+                </title>
+
+                <meta
+                    name="description"
+                    content="Explore CareerGenAI's comprehensive services including career counselling, admission guidance, CET/JEE/NEET support, college selection, scholarships, study abroad assistance, and personalized career planning."
+                />
+
+                <meta
+                    name="keywords"
+                    content="career counselling services, admission guidance, scholarship guidance, CET counselling, JEE counselling, NEET counselling, study abroad, college selection, career planning"
+                />
+
+                <meta
+                    property="og:title"
+                    content="CareerGenAI Services | Career Counselling, Admissions & Scholarship Guidance"
+                />
+
+                <meta
+                    property="og:description"
+                    content="Explore CareerGenAI's comprehensive services including career counselling, admission guidance, CET/JEE/NEET support, college selection, scholarships, study abroad assistance, and personalized career planning."
+                />
+
+                <meta property="og:type" content="website" />
+
+                <meta
+                    property="og:url"
+                    content="https://careergenai.in/services"
+                />
+
+                <meta name="robots" content="index, follow" />
+
+                <link
+                    rel="canonical"
+                    href="https://careergenai.in/services"
+                />
+            </Helmet>
+
+            <section className="relative w-full md:py-8 overflow-hidden bg-white">
             <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
                 {/* Left Content */}
                 <motion.div
@@ -88,7 +130,8 @@ const HeroSection = () => {
                 </motion.div>
             </div>
         </section>
-    );
+    </>
+);
 };
 
 export default HeroSection;
