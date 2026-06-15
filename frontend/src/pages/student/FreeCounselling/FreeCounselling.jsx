@@ -55,7 +55,7 @@ const FreeCounselling = () => {
       if (!counsellor || !date) return;
 
       const res = await api.get(
-        "/counselling/available-slots",
+        "/api/counselling/available-slots",
         {
           params: {
             counsellor,
@@ -186,7 +186,7 @@ const FreeCounselling = () => {
       setLoading(true);
 
       const res = await api.post(
-        "/counselling/book",
+        "/api/counselling/book",
         formData
       );
 

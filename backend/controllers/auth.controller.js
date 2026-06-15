@@ -647,7 +647,68 @@ exports.forgotPassword = async (req, res) => {
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
   otpStore.set(email, { otp, expiresAt: Date.now() + 600000 });
 
-  await sendEmail(email, "Reset Password", "", `<p>OTP: ${otp}</p>`);
+  await sendEmail(
+    email,
+    "CareerGenAI - Password Reset Verification",
+    "",
+    `
+    <div style="font-family: Arial, sans-serif; background:#f4f6f9; padding:40px 20px;">
+      <div style="max-width:600px; margin:auto; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08);">
+        
+        <div style="background:linear-gradient(135deg,#0f172a,#1d4ed8); padding:25px; text-align:center;">
+          <h1 style="color:#ffffff; margin:0;">CareerGenAI</h1>
+        </div>
+
+        <div style="padding:35px;">
+          <h2 style="color:#1f2937;">Password Reset Request</h2>
+
+          <p style="color:#4b5563; line-height:1.7;">
+            We received a request to reset your password for your CareerGenAI account.
+          </p>
+
+          <p style="color:#4b5563; line-height:1.7;">
+            Please use the following One-Time Password (OTP) to continue:
+          </p>
+
+          <div style="text-align:center; margin:30px 0;">
+            <span style="
+              display:inline-block;
+              background:#eff6ff;
+              color:#1d4ed8;
+              font-size:32px;
+              font-weight:bold;
+              letter-spacing:8px;
+              padding:15px 30px;
+              border-radius:10px;
+              border:2px dashed #2563eb;
+            ">
+              ${otp}
+            </span>
+          </div>
+
+          <p style="color:#6b7280;">
+            This OTP will expire in <strong>10 minutes</strong>.
+          </p>
+
+          <p style="color:#6b7280;">
+            If you did not request a password reset, please ignore this email.
+          </p>
+
+          <hr style="margin:25px 0; border:none; border-top:1px solid #e5e7eb;" />
+
+          <p style="font-size:13px; color:#9ca3af;">
+            For security reasons, never share this OTP with anyone.
+          </p>
+        </div>
+
+        <div style="background:#f9fafb; padding:20px; text-align:center; color:#6b7280; font-size:13px;">
+          © ${new Date().getFullYear()} CareerGenAI. All Rights Reserved.
+        </div>
+
+      </div>
+    </div>
+    `
+  );
   res.json({ message: "OTP sent" });
 };
 

@@ -8,7 +8,8 @@ body {
 .admin-dashboard {
   background: #f3f4f6;
   font-family: 'Inter', 'Segoe UI', sans-serif;
-  padding: 90px 2rem 2rem;
+  /* margin-top: 80px; */
+  padding: 2rem;
   min-height: 100vh;
   color: #1f2937;
 }
