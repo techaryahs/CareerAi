@@ -5,7 +5,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import api from "../../../utils/api";
+import api from "../../../api";
 import { useAuth } from "../../../context/AuthContext";
 import CouponModal from "../../../components/CouponModal/CouponModal";
 
