@@ -86,7 +86,7 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
       const { order } = data;
 
       const options = {
-        key: "rzp_live_RseCm2t4lFlfMC",
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: order.amount,
         currency: order.currency,
         name: "CareerGenAI",

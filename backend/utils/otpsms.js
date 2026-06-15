@@ -19,8 +19,8 @@ const sendSMSOTP = async (phone, otp) => {
     // Ensure 10-digit phone number is prepended with +91
     const formattedPhone = phone.startsWith("+91") ? phone : `+91${phone}`;
 
-    console.log("OTP Generated:", otp);
-    console.log("Sending OTP to:", formattedPhone);
+    // console.log("OTP Generated:", otp);
+    // console.log("Sending OTP to:", formattedPhone);
 
     const payload = {
         template_id: msg91TemplateId,
@@ -35,7 +35,7 @@ const sendSMSOTP = async (phone, otp) => {
     };
 
     try {
-        console.log("[OTP DEBUG] MSG91 Payload:", JSON.stringify(payload, null, 2));
+        // console.log("[OTP DEBUG] MSG91 Payload:", JSON.stringify(payload, null, 2));
 
         const response = await axios.post(
             "https://control.msg91.com/api/v5/flow",
@@ -48,7 +48,7 @@ const sendSMSOTP = async (phone, otp) => {
             }
         );
 
-        console.log("MSG91 Response:", response.data);
+        // console.log("MSG91 Response:", response.data);
 
         if (response.data.type === "success") {
             return { success: true, message: "OTP sent successfully" };
