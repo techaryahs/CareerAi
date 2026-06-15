@@ -51,8 +51,8 @@ const ConsultPricing = () => {
             PREMIUM: p.premium?.price ?? 5999,
             "ELITE VIP": p.eliteVip?.price ?? 9999,
           });
-          console.log("API RESPONSE:", res.data);
-          console.log("SMART FROM API:", p.smart?.price);
+          // console.log("API RESPONSE:", res.data);
+          // console.log("SMART FROM API:", p.smart?.price);
           setPlansStatus({
             SMART: p.smart?.enabled !== false,
             PREMIUM: p.premium?.enabled !== false,
