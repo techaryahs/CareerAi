@@ -50,7 +50,7 @@ exports.register = async (req, res) => {
     const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes from now
     otpStore.set(normalizedEmail, { otp, expiresAt });
 
-    console.log("📌 Generated OTP for student:", otp, "Expires at:", new Date(expiresAt).toLocaleString());
+    // console.log("📌 Generated OTP for student:", otp, "Expires at:", new Date(expiresAt).toLocaleString());
 
     // 📧 Send OTP
     await sendEmail(
@@ -160,11 +160,11 @@ exports.resendOtp = async (req, res) => {
       expiresAt,
     });
 
-    console.log(
-      `📌 Resent OTP for ${normalizedEmail}: ${otp} (Expires: ${new Date(
-        expiresAt
-      ).toLocaleString()})`
-    );
+    // console.log(
+    //   `📌 Resent OTP for ${normalizedEmail}: ${otp} (Expires: ${new Date(
+    //     expiresAt
+    //   ).toLocaleString()})`
+    // );
 
     // Send email
     await sendEmail(
@@ -233,10 +233,10 @@ exports.verifyOtp = async (req, res) => {
     const normalizedEmail = email.toLowerCase().trim();
     const storedData = otpStore.get(normalizedEmail);
 
-    console.log("📌 OTP Verification Attempt:");
-    console.log("Email:", normalizedEmail);
-    console.log("Entered OTP:", otp);
-    console.log("Stored Data:", storedData);
+    // console.log("📌 OTP Verification Attempt:");
+    // console.log("Email:", normalizedEmail);
+    // console.log("Entered OTP:", otp);
+    // console.log("Stored Data:", storedData);
 
     if (!storedData) {
       return res.status(400).json({
@@ -293,7 +293,7 @@ exports.verifyOtp = async (req, res) => {
     // Remove OTP after successful verification
     otpStore.delete(normalizedEmail);
 
-    console.log(`✅ User verified: ${normalizedEmail}`);
+    // console.log(`✅ User verified: ${normalizedEmail}`);
 
     return res.status(200).json({
       success: true,
@@ -449,7 +449,7 @@ exports.registerTeacher = async (req, res) => {
     const expiresAt = Date.now() + 10 * 60 * 1000;
     otpStore.set(normalizedEmail, { otp, expiresAt });
 
-    console.log("📌 Generated OTP for Teacher:", otp);
+    // console.log("📌 Generated OTP for Teacher:", otp);
 
     const emailHtml = `
       <div style="font-family:Arial,sans-serif;padding:20px;">
@@ -478,8 +478,8 @@ exports.registerTeacher = async (req, res) => {
 ========================= */
 exports.registerConsultant = async (req, res) => {
   try {
-    console.log("📌 Incoming Consultant Registration Payload:", req.body);
-    console.log("📌 Incoming File Data:", req.file);
+    // console.log("📌 Incoming Consultant Registration Payload:", req.body);
+    // console.log("📌 Incoming File Data:", req.file);
 
     let {
       name,
@@ -554,7 +554,7 @@ exports.registerConsultant = async (req, res) => {
     const expiresAt = Date.now() + 10 * 60 * 1000;
     otpStore.set(normalizedEmail, { otp, expiresAt });
 
-    console.log("📌 Generated OTP for Consultant:", otp);
+    // console.log("📌 Generated OTP for Consultant:", otp);
 
     const emailHtml = `
         <div style="font-family:Arial,sans-serif;padding:20px;">
@@ -711,7 +711,7 @@ exports.sendOtpMobile = async (req, res) => {
       verified: false
     });
 
-    console.log(`📱 Mobile OTP (${mobile}) : ${otp}`);
+    // console.log(`📱 Mobile OTP (${mobile}) : ${otp}`);
 
     const smsResult = await sendSMSOTP(
       mobile.replace("+91", ""),

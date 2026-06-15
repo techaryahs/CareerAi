@@ -39,7 +39,7 @@ exports.bookConsultant = async (req, res) => {
       userPlan
     } = req.body;
 
-    console.log(`📡 [Booking] Request: ${req.body.date} ${req.body.time} for ID: ${consultantId}`);
+    // console.log(`📡 [Booking] Request: ${req.body.date} ${req.body.time} for ID: ${consultantId}`);
 
     if (!consultantId || !date || !time || !userEmail || !userPhone) {
       return res.status(400).json({ message: 'Missing required data' });
@@ -275,7 +275,7 @@ exports.getTeacherBookedSlots = async (req, res) => {
       return res.status(400).json({ message: 'Missing teacherId or date' });
     }
 
-    console.log(`🔍 [Teacher Slots] Fetching for: ${teacherId} on ${date}`);
+    // console.log(`🔍 [Teacher Slots] Fetching for: ${teacherId} on ${date}`);
     const bookings = await Booking.find({ teacherId, date });
     const bookedTimes = bookings.map(b => b.time);
 
@@ -295,7 +295,7 @@ exports.getBookedSlots = async (req, res) => {
       return res.status(400).json({ message: 'Missing consultantId or date' });
     }
 
-    console.log(`🔍 [Consultant Slots] Fetching for: ${consultantId} on ${date}`);
+    // console.log(`🔍 [Consultant Slots] Fetching for: ${consultantId} on ${date}`);
     const bookings = await Booking.find({ consultantId, date });
     const bookedTimes = bookings.map(b => b.time);
 
@@ -366,7 +366,7 @@ exports.getConsultantBookings = async (req, res) => {
   try {
     const { consultantId } = req.params; // Can be User ID or Profile ID
     const { email } = req.query;
-    console.log(`🔍 [Dashboard] Fetching bookings. ID: ${consultantId}, Email: ${email}`);
+    // console.log(`🔍 [Dashboard] Fetching bookings. ID: ${consultantId}, Email: ${email}`);
 
     if (!consultantId || consultantId === "undefined") {
       return res.status(400).json({ message: "Invalid ID provided" });
@@ -403,7 +403,7 @@ exports.getConsultantBookings = async (req, res) => {
     const bookings = await Booking.find(bookingsQuery)
       .sort({ date: 1, time: 1 });
 
-    console.log(`📊 [Dashboard] Found ${bookings.length} bookings using query:`, JSON.stringify(bookingsQuery));
+    // console.log(`📊 [Dashboard] Found ${bookings.length} bookings using query:`, JSON.stringify(bookingsQuery));
     res.json(bookings);
   } catch (err) {
     console.error("❌ [Dashboard] Error:", err.message);

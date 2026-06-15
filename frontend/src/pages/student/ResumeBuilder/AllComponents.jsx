@@ -771,8 +771,10 @@ const ResumeBuilderPage = ({ getTemplateComponent, templates }) => {
         setLoading(true);
         try {
           const userId = user._id || user.id;
-          const response = await fetch(`http://localhost:5000/api/profile/${userId}`);
-          const result = await response.json();
+          const response = await api.get(
+            `/api/profile/${userId}`
+          );
+          const result = response.data;
 
           if (result.profile) {
             const fullName = result.profile.name || "";

@@ -28,22 +28,22 @@ const sendOtp = async (req, res) => {
     // Clean Phone for MSG91
     const cleanPhone = String(phone).replace("+91", "");
 
-    console.log("\n" + "=".repeat(50));
-    console.log("🟢 SEND OTP REQUEST");
-    console.log("=".repeat(50));
-    console.log("📱 Phone received (original):", phone);
-    console.log("📱 Phone normalized (storage key):", normalizedPhone);
-    console.log("📱 Phone for MSG91 (clean):", cleanPhone);
-    console.log("🔐 Generated OTP:", otp, "(type:", typeof otp + ")");
-    console.log("📦 OTP Store after save:", otpStore);
+    // console.log("\n" + "=".repeat(50));
+    // console.log("🟢 SEND OTP REQUEST");
+    // console.log("=".repeat(50));
+    // console.log("📱 Phone received (original):", phone);
+    // console.log("📱 Phone normalized (storage key):", normalizedPhone);
+    // console.log("📱 Phone for MSG91 (clean):", cleanPhone);
+    // console.log("🔐 Generated OTP:", otp, "(type:", typeof otp + ")");
+    // console.log("📦 OTP Store after save:", otpStore);
 
     // Message MUST match approved NexSalon template
     const message = encodeURIComponent(
       `Your NexSalon login OTP is ${otp}. Valid for 5 minutes. Do not share this OTP with anyone.`
     );
 
-    console.log("🔑 MSG91 AUTH:", process.env.MSG91_AUTH_KEY ? "✅ Set" : "❌ Missing");
-    console.log("🔑 MSG91 TEMPLATE:", process.env.MSG91_TEMPLATE_ID ? "✅ Set" : "❌ Missing");
+    // console.log("🔑 MSG91 AUTH:", process.env.MSG91_AUTH_KEY ? "✅ Set" : "❌ Missing");
+    // console.log("🔑 MSG91 TEMPLATE:", process.env.MSG91_TEMPLATE_ID ? "✅ Set" : "❌ Missing");
 
     // MSG91 SMS API
     const smsUrl =
@@ -56,12 +56,12 @@ const sendOtp = async (req, res) => {
       `&country=91` +
       `&DLT_TE_ID=${process.env.MSG91_TEMPLATE_ID}`;
 
-    console.log("📤 SMS URL:", smsUrl);
+    // console.log("📤 SMS URL:", smsUrl);
 
     const response = await axios.get(smsUrl);
 
-    console.log("✅ MSG91 RESPONSE:", response.data);
-    console.log("=".repeat(50) + "\n");
+    // console.log("✅ MSG91 RESPONSE:", response.data);
+    // console.log("=".repeat(50) + "\n");
 
     return res.status(200).json({
       success: true,
@@ -100,18 +100,18 @@ const verifyOtp = async (req, res) => {
   try {
     const { phone, otp } = req.body;
 
-    console.log("\n" + "=".repeat(50));
-    console.log("🔵 VERIFY OTP REQUEST");
-    console.log("=".repeat(50));
-    console.log("📱 Phone received:", phone);
-    console.log("🔐 OTP received:", otp);
-    console.log("🔐 OTP type:", typeof otp);
-    console.log("📦 OTP Store keys:", Object.keys(otpStore));
-    console.log("📦 OTP Store state:", otpStore);
+    // console.log("\n" + "=".repeat(50));
+    // console.log("🔵 VERIFY OTP REQUEST");
+    // console.log("=".repeat(50));
+    // console.log("📱 Phone received:", phone);
+    // console.log("🔐 OTP received:", otp);
+    // console.log("🔐 OTP type:", typeof otp);
+    // console.log("📦 OTP Store keys:", Object.keys(otpStore));
+    // console.log("📦 OTP Store state:", otpStore);
 
     // Validate inputs
     if (!phone || !otp) {
-      console.log("❌ Missing phone or OTP");
+      // console.log("❌ Missing phone or OTP");
       return res.status(400).json({
         success: false,
         message: "Phone number and OTP are required",
@@ -122,18 +122,18 @@ const verifyOtp = async (req, res) => {
     const normalizedPhone = String(phone).replace("+91", "").trim();
     const storedPhone = String(phone).trim();
 
-    console.log("🔍 Normalized phone:", normalizedPhone);
-    console.log("🔍 Stored phone:", storedPhone);
-    console.log("📍 Looking for phone in store:", Object.keys(otpStore));
+    // console.log("🔍 Normalized phone:", normalizedPhone);
+    // console.log("🔍 Stored phone:", storedPhone);
+    // console.log("📍 Looking for phone in store:", Object.keys(otpStore));
 
     // Check if OTP exists for this phone (check both normalized and original)
     let storedOtp = otpStore[storedPhone] || otpStore[normalizedPhone];
 
-    console.log("📍 Stored OTP for phone:", storedOtp);
-    console.log("📍 Stored OTP type:", typeof storedOtp);
+    // console.log("📍 Stored OTP for phone:", storedOtp);
+    // console.log("📍 Stored OTP type:", typeof storedOtp);
 
     if (!storedOtp) {
-      console.log("❌ No OTP found for phone:", storedPhone);
+      // console.log("❌ No OTP found for phone:", storedPhone);
       return res.status(400).json({
         success: false,
         message: "No OTP found for this phone number. Please request a new OTP.",
@@ -142,7 +142,7 @@ const verifyOtp = async (req, res) => {
 
     // If already verified, return error
     if (storedOtp === "VERIFIED") {
-      console.log("⚠️ Phone already verified:", storedPhone);
+      // console.log("⚠️ Phone already verified:", storedPhone);
       return res.status(400).json({
         success: false,
         message: "Phone number already verified",
@@ -153,15 +153,15 @@ const verifyOtp = async (req, res) => {
     const incomingOtp = String(otp).trim();
     const dbOtp = String(storedOtp).trim();
 
-    console.log("🔐 Comparing OTPs:");
-    console.log("  Incoming OTP:", incomingOtp, "(type:", typeof incomingOtp + ")");
-    console.log("  Stored OTP:", dbOtp, "(type:", typeof dbOtp + ")");
-    console.log("  Match (strict equality):", incomingOtp === dbOtp);
-    console.log("  Match (loose equality):", incomingOtp == dbOtp);
+    // console.log("🔐 Comparing OTPs:");
+    // console.log("  Incoming OTP:", incomingOtp, "(type:", typeof incomingOtp + ")");
+    // console.log("  Stored OTP:", dbOtp, "(type:", typeof dbOtp + ")");
+    // console.log("  Match (strict equality):", incomingOtp === dbOtp);
+    // console.log("  Match (loose equality):", incomingOtp == dbOtp);
 
     // Use strict equality after converting both to strings
     if (incomingOtp !== dbOtp) {
-      console.log("❌ OTP mismatch");
+      // console.log("❌ OTP mismatch");
       return res.status(400).json({
         success: false,
         message: "Invalid OTP. Please try again.",
@@ -171,9 +171,9 @@ const verifyOtp = async (req, res) => {
     // Mark as verified
     otpStore[storedPhone] = "VERIFIED";
 
-    console.log("✅ OTP verified successfully for:", storedPhone);
-    console.log("✅ Updated store:", otpStore);
-    console.log("=".repeat(50) + "\n");
+    // console.log("✅ OTP verified successfully for:", storedPhone);
+    // console.log("✅ Updated store:", otpStore);
+    // console.log("=".repeat(50) + "\n");
 
     return res.status(200).json({
       success: true,
@@ -382,7 +382,7 @@ const bookCounselling = async (req, res) => {
 
   } catch (error) {
 
-    console.log(error);
+    // console.log(error);
 
     res.status(500).json({
       success: false,
@@ -485,7 +485,7 @@ const getAvailableSlots = async (req, res) => {
 
   } catch (error) {
 
-    console.log(error);
+    // console.log(error);
 
     res.status(500).json({
       success: false,

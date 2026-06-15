@@ -3,7 +3,7 @@ import axios from "axios";
 // TEMPORARY LOCAL DEBUG
 const API = "http://localhost:5009";
 
-console.log("🚀 API URL:", API);
+// console.log("🚀 API URL:", API);
 
 const api = axios.create({
   baseURL: API,

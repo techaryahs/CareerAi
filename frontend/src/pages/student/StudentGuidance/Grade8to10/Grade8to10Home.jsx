@@ -28,7 +28,7 @@ export default function Grade8to10Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   // Configuration
-  const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5009";
   const STAGE_KEY = "stage8to10";
   const CATEGORY_NAME = "Self-Assessment 8th to 10th";
 

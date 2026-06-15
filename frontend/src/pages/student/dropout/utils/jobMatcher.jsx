@@ -7,8 +7,8 @@ function matchJobPaths(userData, paths) {
 
   const droppedDegree = (userData.degree || "").toLowerCase().trim();
 
-  console.log("JOB matcher userInterests:", userInterests);
-  console.log("JOB matcher all paths count:", paths.length);
+  // console.log("JOB matcher userInterests:", userInterests);
+  // console.log("JOB matcher all paths count:", paths.length);
 
   return paths.filter((path) => {
     const ageOk =
@@ -43,15 +43,15 @@ function matchJobPaths(userData, paths) {
 
     const keep = ageOk && interestsOk && degreeOk;
 
-    console.log("JOB path check:", {
-      id: path.id,
-      name: path.name,
-      ageOk,
-      interestsOk,
-      degreeOk,
-      keep,
-      suitableInterests: path.suitableInterests,
-    });
+    // console.log("JOB path check:", {
+    //   id: path.id,
+    //   name: path.name,
+    //   ageOk,
+    //   interestsOk,
+    //   degreeOk,
+    //   keep,
+    //   suitableInterests: path.suitableInterests,
+    // });
 
     return keep;
   });

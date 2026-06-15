@@ -81,7 +81,7 @@ const VideoCallPage = () => {
   // Handle actual page exit
   useEffect(() => {
     return () => {
-      console.log("🚪 Leaving meeting on page exit");
+      // console.log("🚪 Leaving meeting on page exit");
       leaveMeeting();
     };
   }, [leaveMeeting]);

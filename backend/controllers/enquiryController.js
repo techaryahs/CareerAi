@@ -10,7 +10,7 @@ const cardNames = {
   'cover-letter': 'Winning Cover Letter',
 };
 exports.sendEnquiry = async (req, res) => {
-  console.log('📩 Enquiry received:', req.body);
+  // console.log('📩 Enquiry received:', req.body);
 
   const { email, message, profileType } = req.body;
 

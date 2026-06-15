@@ -12,10 +12,10 @@ const VerifyOtp = () => {
   const emailState = location.state?.email;
   const email = emailParam || emailState;
 
-  console.log("📌 VerifyOtp Component loaded:");
-  console.log("   - emailParam:", emailParam);
-  console.log("   - emailState:", emailState);
-  console.log("   - effective email:", email);
+  // console.log("📌 VerifyOtp Component loaded:");
+  // console.log("   - emailParam:", emailParam);
+  // console.log("   - emailState:", emailState);
+  // console.log("   - effective email:", email);
 
   const verifyOtp = async (enteredOtp) => {
     try {
@@ -24,7 +24,7 @@ const VerifyOtp = () => {
         otp: enteredOtp,
       });
 
-      console.log("✅ Verify Response:", res.data);
+      // console.log("✅ Verify Response:", res.data);
 
       if (res.data.success) {
         alert("OTP verified successfully!");
@@ -48,7 +48,7 @@ const VerifyOtp = () => {
 
   const handleResendOtp = async () => {
     try {
-      console.log("Resending OTP to:", email);
+      // console.log("Resending OTP to:", email);
 
       const response = await api.post("/api/auth/resend-otp", {
         email,

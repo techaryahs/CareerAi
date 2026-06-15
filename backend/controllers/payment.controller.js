@@ -25,27 +25,27 @@ const ADMISSION_PACKAGES = [
 
 const User = require("../models/User");
 
-console.log("🔥 PAYMENT CONTROLLER FILE LOADED 🔥");
+// console.log("🔥 PAYMENT CONTROLLER FILE LOADED 🔥");
 // ================================
 // CREATE ORDER
 // ================================
 exports.createOrder = async (req, res) => {
-  console.log("🔥 CREATE ORDER HIT 🔥");
+  // console.log("🔥 CREATE ORDER HIT 🔥");
   try {
     const { planName, couponCode } = req.body;
 
-    console.log("\n================================");
-    console.log("🚀 CREATE ORDER REQUEST");
-    console.log("REQUEST BODY:", req.body);
-    console.log("PLAN NAME:", planName);
-    console.log("COUPON CODE:", couponCode);
+    // console.log("\n================================");
+    // console.log("🚀 CREATE ORDER REQUEST");
+    // console.log("REQUEST BODY:", req.body);
+    // console.log("PLAN NAME:", planName);
+    // console.log("COUPON CODE:", couponCode);
 
     const isEnabled =
       await pricingService.isPlanEnabled(
         planName
       );
 
-    console.log("PLAN ENABLED:", isEnabled);
+    // console.log("PLAN ENABLED:", isEnabled);
 
     if (!isEnabled) {
       return res.status(400).json({
@@ -62,10 +62,10 @@ exports.createOrder = async (req, res) => {
           planName
         );
 
-      console.log(
-        "💰 ORIGINAL PRICE:",
-        price
-      );
+      // console.log(
+      //   "💰 ORIGINAL PRICE:",
+      //   price
+      // );
     } catch (e) {
       console.error(
         "PRICE FETCH ERROR:",
@@ -82,9 +82,9 @@ exports.createOrder = async (req, res) => {
     // ===================================
     if (couponCode) {
       try {
-        console.log(
-          "\n🎟️ STARTING COUPON VALIDATION..."
-        );
+        // console.log(
+        //   "\n🎟️ STARTING COUPON VALIDATION..."
+        // );
 
         const couponsCollection =
           mongoose.connection.db.collection(
@@ -96,20 +96,20 @@ exports.createOrder = async (req, res) => {
             ?.trim()
             .toUpperCase();
 
-        console.log(
-          "SEARCHING COUPON:",
-          searchCode
-        );
+        // console.log(
+        //   "SEARCHING COUPON:",
+        //   searchCode
+        // );
 
         const allCoupons =
           await couponsCollection
             .find({})
             .toArray();
 
-        console.log(
-          "ALL COUPONS IN DB:"
-        );
-        console.log(allCoupons);
+        // console.log(
+        //   "ALL COUPONS IN DB:"
+        // );
+        // console.log(allCoupons);
 
         const coupon =
           await couponsCollection.findOne({
@@ -119,10 +119,10 @@ exports.createOrder = async (req, res) => {
             },
           });
 
-        console.log(
-          "COUPON FOUND:"
-        );
-        console.log(coupon);
+        // console.log(
+        //   "COUPON FOUND:"
+        // );
+        // console.log(coupon);
 
         if (coupon) {
           const discountAmount =
@@ -132,24 +132,24 @@ exports.createOrder = async (req, res) => {
               )) /
             100;
 
-          console.log(
-            "DISCOUNT %:",
-            coupon.discount
-          );
+          // console.log(
+          //   "DISCOUNT %:",
+          //   coupon.discount
+          // );
 
-          console.log(
-            "DISCOUNT AMOUNT:",
-            discountAmount
-          );
+          // console.log(
+          //   "DISCOUNT AMOUNT:",
+          //   discountAmount
+          // );
 
           price =
             price -
             discountAmount;
 
-          console.log(
-            "✅ DISCOUNTED PRICE:",
-            price
-          );
+          // console.log(
+          //   "✅ DISCOUNTED PRICE:",
+          //   price
+          // );
         } else {
           console.log(
             "❌ COUPON NOT FOUND"
@@ -171,15 +171,15 @@ exports.createOrder = async (req, res) => {
       price * 100
     );
 
-    console.log(
-      "\n💳 FINAL PRICE:",
-      price
-    );
+    // console.log(
+    //   "\n💳 FINAL PRICE:",
+    //   price
+    // );
 
-    console.log(
-      "💳 AMOUNT SENT TO RAZORPAY (PAISE):",
-      amount
-    );
+    // console.log(
+    //   "💳 AMOUNT SENT TO RAZORPAY (PAISE):",
+    //   amount
+    // );
 
     const order =
       await razorpay.orders.create({
@@ -192,29 +192,29 @@ exports.createOrder = async (req, res) => {
             .slice(-8)}`,
       });
 
-    console.log(
-      "\n✅ RAZORPAY ORDER CREATED"
-    );
+    // console.log(
+    //   "\n✅ RAZORPAY ORDER CREATED"
+    // );
 
-    console.log(
-      "ORDER ID:",
-      order.id
-    );
+    // console.log(
+    //   "ORDER ID:",
+    //   order.id
+    // );
 
-    console.log(
-      "ORDER AMOUNT:",
-      order.amount
-    );
+    // console.log(
+    //   "ORDER AMOUNT:",
+    //   order.amount
+    // );
 
-    console.log(
-      "ORDER DETAILS:"
-    );
+    // console.log(
+    //   "ORDER DETAILS:"
+    // );
 
-    console.log(order);
+    // console.log(order);
 
-    console.log(
-      "================================\n"
-    );
+    // console.log(
+    //   "================================\n"
+    // );
 
     return res.json({
       success: true,

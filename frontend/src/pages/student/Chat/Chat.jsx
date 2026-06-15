@@ -188,7 +188,7 @@ const Chat = () => {
     ]);
 
   } catch (err) {
-    console.log(err)
+    // console.log(err)
     console.error("Chat API Error:", err);
     setMessages(prev => [
       ...prev,

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { X, Tag, Percent } from "lucide-react";
+import api from "../api";
 
 const CouponModal = ({ plan, onClose, onProceed }) => {
   const [couponCode, setCouponCode] = useState("");
@@ -17,11 +18,9 @@ const CouponModal = ({ plan, onClose, onProceed }) => {
 
   const fetchCoupons = async () => {
     try {
-      const res = await fetch(
-        "http://localhost:5009/api/coupons"
-      );
+      const res = await api.get("/api/coupons");
 
-      const data = await res.json();
+      const data = res.data;
 
       if (data.success) {
         const activeCoupons = data.coupons.filter(
@@ -31,7 +30,10 @@ const CouponModal = ({ plan, onClose, onProceed }) => {
         setAvailableCoupons(activeCoupons);
       }
     } catch (error) {
-      console.error("Error fetching coupons:", error);
+      console.error(
+        "Error fetching coupons:",
+        error.response?.data || error.message
+      );
     } finally {
       setLoading(false);
     }

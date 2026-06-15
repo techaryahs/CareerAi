@@ -22,7 +22,7 @@ export default function AssessmentComponent() {
   const navigate = useNavigate();
 
   // Configuration
-  const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5009";
   const STAGE_KEY = "stage11to12";
   const CATEGORY_NAME = "Specialized Skills 11th to 12th";
 

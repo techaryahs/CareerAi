@@ -21,7 +21,7 @@ export default function FinalReportPage() {
   const { user } = useAuth();
   const userId = user?._id || user?.id;
   const isPremium = user?.isPremium === true;
-  const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5001";
+  const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5009";
 
   // 1. FETCH DATA
   useEffect(() => {

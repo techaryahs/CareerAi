@@ -68,7 +68,7 @@ const FreeCounselling = () => {
 
     } catch (error) {
 
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -116,7 +116,7 @@ const FreeCounselling = () => {
 
       setOtpLoading(true);
 
-      console.log("📱 Sending OTP to phone:", formData.phone);
+      // console.log("📱 Sending OTP to phone:", formData.phone);
 
       const res = await api.post(
         "/api/counselling/send-otp",
@@ -125,7 +125,7 @@ const FreeCounselling = () => {
         }
       );
 
-      console.log("✅ Send OTP Response:", res.data);
+      // console.log("✅ Send OTP Response:", res.data);
 
       alert(res.data.message);
 
@@ -148,7 +148,7 @@ const FreeCounselling = () => {
   const verifyOtp = async () => {
     try {
 
-      console.log("🔍 Verifying OTP - Phone:", formData.phone, "OTP:", otp);
+      // console.log("🔍 Verifying OTP - Phone:", formData.phone, "OTP:", otp);
 
       const res = await api.post(
         "/api/counselling/verify-otp",
@@ -158,7 +158,7 @@ const FreeCounselling = () => {
         }
       );
 
-      console.log("✅ OTP Verification Response:", res.data);
+      // console.log("✅ OTP Verification Response:", res.data);
 
       alert(res.data.message);
 

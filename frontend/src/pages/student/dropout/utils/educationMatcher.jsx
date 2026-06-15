@@ -1,6 +1,6 @@
 // src/utils/educationMatcher.js
 function matchEducationPaths(userData, paths) {
-  console.log("EDU userData in matcher:", userData);
+  // console.log("EDU userData in matcher:", userData);
 
   const age = parseInt(userData.age, 10) || 0;
   const userInterests = Array.isArray(userData.interests)
@@ -44,7 +44,7 @@ function matchEducationPaths(userData, paths) {
 
     const degreeOk = !isSameDegree;
 
-    console.log("EDU", path.id, { interestsOk, ageOk, degreeOk });
+    // console.log("EDU", path.id, { interestsOk, ageOk, degreeOk });
 
     return interestsOk && ageOk && degreeOk;
   });

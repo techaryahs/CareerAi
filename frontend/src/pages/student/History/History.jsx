@@ -101,7 +101,7 @@ const StudentHistory = () => {
 
   useEffect(() => {
     const webrtcServerUrl =
-      import.meta.env.VITE_WEBRTC_SERVER_URL || "http://localhost:5001";
+      import.meta.env.VITE_WEBRTC_SERVER_URL || "http://localhost:5009";
     const socket = io(webrtcServerUrl);
 
     socket.on("call-started", ({ sessionId }) => {

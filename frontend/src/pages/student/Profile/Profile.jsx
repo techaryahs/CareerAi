@@ -69,7 +69,7 @@ const Profile = () => {
         throw new Error("No User ID");
       }
 
-      console.log(`Adding item to ${section}:`, data);
+      // console.log(`Adding item to ${section}:`, data);
 
       const res = await axios.post(`${API}/api/user/profile/${userId}/add-item`, {
         section,
@@ -94,7 +94,7 @@ const Profile = () => {
       const userId = user?._id || user?.id || authUser?._id || authUser?.id;
       if (!userId) throw new Error("No User ID");
 
-      console.log(`Updating item in ${section}, ID: ${itemId}:`, data);
+      // console.log(`Updating item in ${section}, ID: ${itemId}:`, data);
 
       const res = await axios.put(`${API}/api/user/profile/${userId}/update-item`, {
         section,
@@ -119,7 +119,7 @@ const Profile = () => {
       const userId = user?._id || user?.id || authUser?._id || authUser?.id;
       if (!userId) throw new Error("No User ID");
 
-      console.log(`Deleting item from ${section}, ID: ${itemId}`);
+      // console.log(`Deleting item from ${section}, ID: ${itemId}`);
 
       const res = await axios.delete(`${API}/api/user/profile/${userId}/delete-item`, {
         data: { section, itemId }

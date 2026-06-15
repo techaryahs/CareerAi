@@ -119,14 +119,14 @@ export const useMediaDevices = () => {
                 setLocalStream(stream);
                 setError(null);
 
-                console.log('✅ Media stream obtained');
+                // console.log('✅ Media stream obtained');
 
                 return stream;
             } catch (err) {
-                console.error(
-                    '❌ Error accessing media devices:',
-                    err
-                );
+                // console.error(
+                //     '❌ Error accessing media devices:',
+                //     err
+                // );
 
                 setError(
                     err?.message || 'Failed to access media devices'
@@ -152,9 +152,9 @@ export const useMediaDevices = () => {
 
         setIsAudioMuted(muted);
 
-        console.log(
-            `🎤 Audio ${muted ? 'muted' : 'unmuted'}`
-        );
+        // console.log(
+        //     `🎤 Audio ${muted ? 'muted' : 'unmuted'}`
+        // );
     }, [localStream]);
 
     // Toggle video
@@ -171,9 +171,9 @@ export const useMediaDevices = () => {
 
         setIsVideoOff(videoOff);
 
-        console.log(
-            `📹 Video ${videoOff ? 'off' : 'on'}`
-        );
+        // console.log(
+        //     `📹 Video ${videoOff ? 'off' : 'on'}`
+        // );
     }, [localStream]);
 
     // Stop stream
@@ -182,7 +182,7 @@ export const useMediaDevices = () => {
 
         localStream.getTracks().forEach(track => {
             track.stop();
-            console.log(`🛑 Stopped ${track.kind} track`);
+            // console.log(`🛑 Stopped ${track.kind} track`);
         });
 
         setLocalStream(null);

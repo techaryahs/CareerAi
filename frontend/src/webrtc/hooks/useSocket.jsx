@@ -20,24 +20,24 @@ export const useSocket = () => {
     setSocket(socketInstance);
 
     const handleConnect = () => {
-      console.log("🟢 [Socket] Connected Event Fired. ID:", socketInstance.id);
+      // console.log("🟢 [Socket] Connected Event Fired. ID:", socketInstance.id);
       setConnected(true);
       setError(null);
     };
 
     const handleDisconnect = () => {
-      console.log("🟠 [Socket] Disconnected Event Fired");
+      // console.log("🟠 [Socket] Disconnected Event Fired");
       setConnected(false);
     };
 
     const handleConnectError = (error) => {
-      console.error("🔴 [Socket] Connection Error Event:", error.message);
+      // console.error("🔴 [Socket] Connection Error Event:", error.message);
       setConnected(false);
       setError(error.message);
     };
 
     // Attach event listeners
-    console.log("🔌 [Socket] Attaching listeners to instance");
+    // console.log("🔌 [Socket] Attaching listeners to instance");
     socketInstance.on("connect", handleConnect);
     socketInstance.on("disconnect", handleDisconnect);
     socketInstance.on("connect_error", handleConnectError);
@@ -96,7 +96,7 @@ export const useSocket = () => {
   const connect = useCallback(() => {
     const socketInstance = getSocket();
     if (!socketInstance.connected) {
-      console.log("🔌 Attempting to connect...");
+      // console.log("🔌 Attempting to connect...");
       socketInstance.connect();
     } else {
       setConnected(true);

@@ -66,15 +66,15 @@ export const WebRTCProvider = ({ children }) => {
           // 1. Get user media BEFORE joining
           let stream = localStream;
           if (!stream) {
-            console.log("🎥 [WebRTC] Requesting local stream...");
+            // console.log("🎥 [WebRTC] Requesting local stream...");
             stream = await getUserMedia();
           }
 
           if (stream && socket) {
-            console.log(
-              "🎬 [WebRTC] Joining meeting with active stream:",
-              meetingState.meetingId
-            );
+            // console.log(
+            //   "🎬 [WebRTC] Joining meeting with active stream:",
+            //   meetingState.meetingId
+            // );
             emit("join-meeting", {
               meetingId: meetingState.meetingId,
               participantId,
@@ -124,7 +124,7 @@ export const WebRTCProvider = ({ children }) => {
   // Join existing meeting
   const joinMeeting = useCallback(
     (id, name, isHost = false) => {
-      console.log("📞 Joining meeting:", id, name, "isHost:", isHost);
+      // console.log("📞 Joining meeting:", id, name, "isHost:", isHost);
 
       setMeetingState({
         inMeeting: true,
@@ -142,7 +142,7 @@ export const WebRTCProvider = ({ children }) => {
             hostName: name,
             duration: 60, // 60 minutes default
           });
-          console.log("✅ Emitted start-call event for session:", id);
+          // console.log("✅ Emitted start-call event for session:", id);
         }, 1000);
       }
     },
@@ -166,7 +166,7 @@ export const WebRTCProvider = ({ children }) => {
       isHost: false,
     });
     joinAttempted.current = false;
-    console.log("⬅️ Left meeting");
+    // console.log("⬅️ Left meeting");
   }, [socket, participantId, meetingState.meetingId, emit, stopStream]);
 
   // Generate meeting ID

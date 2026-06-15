@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import api from "../api";
 
 const CreateCoupon = () => {
   const [code, setCode] = useState("");
@@ -8,14 +9,16 @@ const CreateCoupon = () => {
 
   const fetchCoupons = async () => {
     try {
-      const res = await fetch("http://localhost:5009/api/coupons");
-      const data = await res.json();
+      const res = await api.get("/api/coupons");
 
-      if (data.success) {
-        setCoupons(data.coupons);
+      if (res.data.success) {
+        setCoupons(res.data.coupons);
       }
     } catch (error) {
-      console.error("Error fetching coupons:", error);
+      console.error(
+        "Error fetching coupons:",
+        error.response?.data || error.message
+      );
     }
   };
 
@@ -34,20 +37,12 @@ const CreateCoupon = () => {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:5009/api/coupons", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          code,
-          discount,
-        }),
+      const res = await api.post("/api/coupons", {
+        code,
+        discount,
       });
 
-      const data = await res.json();
-
-      if (data.success) {
+      if (res.data.success) {
         alert("Coupon Created Successfully");
 
         setCode("");
@@ -55,11 +50,14 @@ const CreateCoupon = () => {
 
         fetchCoupons();
       } else {
-        alert(data.message);
+        alert(res.data.message);
       }
     } catch (error) {
       console.error(error);
-      alert("Failed to create coupon");
+      alert(
+        error.response?.data?.message ||
+        "Failed to create coupon"
+      );
     } finally {
       setLoading(false);
     }
@@ -67,20 +65,17 @@ const CreateCoupon = () => {
 
   const handleToggleStatus = async (id) => {
     try {
-      const res = await fetch(
-        `http://localhost:5009/api/coupons/${id}/status`,
-        {
-          method: "PUT",
-        }
+      const res = await api.put(
+        `/api/coupons/${id}/status`
       );
 
-      const data = await res.json();
-
-      if (data.success) {
+      if (res.data.success) {
         fetchCoupons();
       }
     } catch (error) {
-      console.error(error);
+      console.error(
+        error.response?.data || error.message
+      );
     }
   };
 

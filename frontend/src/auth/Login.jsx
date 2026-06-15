@@ -59,7 +59,7 @@ const Login = () => {
       }
 
       login(user, token);
-      console.log("✅ Logged in user:", user);
+      // console.log("✅ Logged in user:", user);
     } catch (err) {
       console.error("❌ Login error:", err.response?.data || err.message);
       setErrorMsg(err.response?.data?.error || "Login failed");

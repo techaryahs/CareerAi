@@ -1,7 +1,7 @@
 const { Server } = require("socket.io");
 
 const setupWebRTCSignaling = (server) => {
-    console.log("🚀 Initializing WebRTC Signaling Server...");
+    // console.log("🚀 Initializing WebRTC Signaling Server...");
     const io = new Server(server, {
         cors: {
             origin: "*",
@@ -15,18 +15,18 @@ const setupWebRTCSignaling = (server) => {
 
     // Log connection errors
     io.engine.on("connection_error", (err) => {
-        console.log("❌ Socket Engine Error:", {
-            code: err.code,
-            message: err.message,
-            context: err.context
-        });
+        // console.log("❌ Socket Engine Error:", {
+        //     code: err.code,
+        //     message: err.message,
+        //     context: err.context
+        // });
     });
 
     io.on('connection', (socket) => {
-        console.log('✅ Client connected to signaling server:', socket.id);
+        // console.log('✅ Client connected to signaling server:', socket.id);
 
         socket.on('start-call', ({ sessionId, meetingId, hostName, duration }) => {
-            console.log(`📞 Host ${hostName} started call for session ${sessionId}`);
+            // console.log(`📞 Host ${hostName} started call for session ${sessionId}`);
             const now = new Date();
             const endTime = new Date(now.getTime() + (duration || 30) * 60000);
             activeCalls.set(sessionId, {
@@ -51,13 +51,13 @@ const setupWebRTCSignaling = (server) => {
         });
 
         socket.on('end-call', ({ sessionId }) => {
-            console.log(`📞 Call ended for session ${sessionId}`);
+            // console.log(`📞 Call ended for session ${sessionId}`);
             activeCalls.delete(sessionId);
             io.emit('call-ended', { sessionId });
         });
 
         socket.on('join-meeting', ({ meetingId, participantId, participantName, isHost, sessionId }) => {
-            console.log(`\n👤 [Meeting] ${participantName} joining ${meetingId} (Session: ${sessionId}, Host: ${isHost})`);
+            // console.log(`\n👤 [Meeting] ${participantName} joining ${meetingId} (Session: ${sessionId}, Host: ${isHost})`);
             socket.join(meetingId);
             participants.set(socket.id, {
                 socketId: socket.id,
@@ -169,7 +169,7 @@ const setupWebRTCSignaling = (server) => {
     const handleParticipantLeave = (socket, meetingId, participantId, io, meetings, participants) => {
         const participant = participants.get(socket.id);
         if (participant) {
-            console.log(`${participant.participantName} left meeting ${meetingId}`);
+            // console.log(`${participant.participantName} left meeting ${meetingId}`);
             socket.to(meetingId).emit('participant-left', {
                 participantId: participant.participantId,
                 participantName: participant.participantName

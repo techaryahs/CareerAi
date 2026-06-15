@@ -175,7 +175,7 @@ Only return valid JSON. No explanation or markdown.
  * POST /api/careers/quiz/submit
  */
 exports.submitQuiz = async (req, res) => {
-  console.log("🔥 QUIZ SUBMIT HIT:", req.user?.id);
+  // console.log("🔥 QUIZ SUBMIT HIT:", req.user?.id);
 
   try {
     const studentId = req.user.id;
@@ -215,7 +215,7 @@ exports.submitQuiz = async (req, res) => {
     student.markModified('profile');
     await student.save();
 
-    console.log("✅ QUIZ SAVED:", student.profile.services.quiz);
+    // console.log("✅ QUIZ SAVED:", student.profile.services.quiz);
 
     return res.json({
       message: "Quiz submitted successfully",

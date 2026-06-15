@@ -23,9 +23,9 @@ export const useWebRTC = (socket, localStream) => {
           localStream.getTracks().forEach((track) => {
             peerConnection.addTrack(track, localStream);
           });
-          console.log(
-            `✅ Added local tracks to peer connection for ${participantId}`
-          );
+          // console.log(
+          //   `✅ Added local tracks to peer connection for ${participantId}`
+          // );
         }
 
         // Handle ICE candidate
@@ -40,7 +40,7 @@ export const useWebRTC = (socket, localStream) => {
 
         // Handle remote stream
         peerConnection.ontrack = (event) => {
-          console.log("📡 Received remote track from:", participantId);
+          // console.log("📡 Received remote track from:", participantId);
           const [remoteStream] = event.streams;
           setRemoteStreams((prev) => {
             const newMap = new Map(prev);
@@ -51,10 +51,10 @@ export const useWebRTC = (socket, localStream) => {
 
         // Handle connection state changes
         peerConnection.onconnectionstatechange = () => {
-          console.log(
-            `🔗 Connection state with ${participantId}:`,
-            peerConnection.connectionState
-          );
+          // console.log(
+          //   `🔗 Connection state with ${participantId}:`,
+          //   peerConnection.connectionState
+          // );
 
           if (
             peerConnection.connectionState === "disconnected" ||
@@ -99,7 +99,7 @@ export const useWebRTC = (socket, localStream) => {
             toParticipantId: participantId,
             offer: offer,
           });
-          console.log(`📤 Sent offer to ${participantId}`);
+          // console.log(`📤 Sent offer to ${participantId}`);
         }
       } catch (error) {
         console.error("❌ Error creating offer:", error);
@@ -131,7 +131,7 @@ export const useWebRTC = (socket, localStream) => {
             toParticipantId: fromParticipantId,
             answer: answer,
           });
-          console.log(`📤 Sent answer to ${fromParticipantId}`);
+          // console.log(`📤 Sent answer to ${fromParticipantId}`);
         }
       } catch (error) {
         console.error("❌ Error handling offer:", error);
@@ -149,7 +149,7 @@ export const useWebRTC = (socket, localStream) => {
         await peerConnection.setRemoteDescription(
           new RTCSessionDescription(answer)
         );
-        console.log(`✅ Set remote description from ${fromParticipantId}`);
+        // console.log(`✅ Set remote description from ${fromParticipantId}`);
       }
     } catch (error) {
       console.error("❌ Error handling answer:", error);
@@ -164,7 +164,7 @@ export const useWebRTC = (socket, localStream) => {
 
         if (peerConnection) {
           await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
-          console.log(`✅ Added ICE candidate from ${fromParticipantId}`);
+          // console.log(`✅ Added ICE candidate from ${fromParticipantId}`);
         }
       } catch (error) {
         console.error("❌ Error handling ICE candidate:", error);
@@ -180,7 +180,7 @@ export const useWebRTC = (socket, localStream) => {
     if (peerConnection) {
       peerConnection.close();
       peerConnections.current.delete(participantId);
-      console.log(`🔌 Closed peer connection with ${participantId}`);
+      // console.log(`🔌 Closed peer connection with ${participantId}`);
     }
 
     setRemoteStreams((prev) => {
@@ -194,7 +194,7 @@ export const useWebRTC = (socket, localStream) => {
   const closeAllPeerConnections = useCallback(() => {
     peerConnections.current.forEach((peerConnection, participantId) => {
       peerConnection.close();
-      console.log(`🔌 Closed peer connection with ${participantId}`);
+      // console.log(`🔌 Closed peer connection with ${participantId}`);
     });
     peerConnections.current.clear();
     setRemoteStreams(new Map());
@@ -210,9 +210,9 @@ export const useWebRTC = (socket, localStream) => {
         const alreadyAdded = senders.some((s) => s.track?.id === track.id);
         if (!alreadyAdded) {
           pc.addTrack(track, localStream);
-          console.log(
-            `📡 [WebRTC] Dynamically added ${track.kind} track to ${participantId}`
-          );
+          // console.log(
+          //   `📡 [WebRTC] Dynamically added ${track.kind} track to ${participantId}`
+          // );
         }
       });
     });
@@ -227,7 +227,7 @@ export const useWebRTC = (socket, localStream) => {
     socket.on("ice-candidate", handleIceCandidate);
 
     socket.on("existing-participants", (existingParticipants) => {
-      console.log("👥 Existing participants:", existingParticipants);
+      // console.log("👥 Existing participants:", existingParticipants);
       setParticipants(existingParticipants);
 
       // Create offers to all existing participants
@@ -241,12 +241,12 @@ export const useWebRTC = (socket, localStream) => {
     });
 
     socket.on("participant-joined", (participant) => {
-      console.log("✅ Participant joined:", participant);
+      // console.log("✅ Participant joined:", participant);
       setParticipants((prev) => [...prev, participant]);
     });
 
     socket.on("participant-left", ({ participantId }) => {
-      console.log("⬅️ Participant left:", participantId);
+      // console.log("⬅️ Participant left:", participantId);
       setParticipants((prev) =>
         prev.filter((p) => p.participantId !== participantId)
       );

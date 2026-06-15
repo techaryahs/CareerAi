@@ -32,13 +32,13 @@ export default function ParentDashboard() {
      FETCH DASHBOARD DATA
   ========================= */
   const cleanAPI = useMemo(() => {
-    const rawAPI = import.meta.env.REACT_APP_API_URL || "http://localhost:5001";
+    const rawAPI = import.meta.env.REACT_APP_API_URL || "http://localhost:5009";
     return rawAPI.endsWith("/") ? rawAPI.slice(0, -1) : rawAPI;
   }, []);
 
   useEffect(() => {
     const fetchDashboard = async () => {
-      console.log("DEBUG: Fetching dashboard from:", `${cleanAPI}/api/parent/dashboard`);
+      // console.log("DEBUG: Fetching dashboard from:", `${cleanAPI}/api/parent/dashboard`);
 
       if (!token) {
         console.warn("DEBUG: No token found, redirecting to login");
@@ -51,7 +51,7 @@ export default function ParentDashboard() {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        console.log("DEBUG: Dashboard response data:", res.data);
+        // console.log("DEBUG: Dashboard response data:", res.data);
 
         setParent(res.data.parentProfile);
         setStudent(res.data.studentProfile);

@@ -69,7 +69,7 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
       }
 
       // Create order on the backend
-      const res = await fetch(`${import.meta.env.REACT_APP_API_URL || "http://localhost:5001"}/api/payments/order`, {
+      const res = await fetch(`${import.meta.env.REACT_APP_API_URL || "http://localhost:5009"}/api/payments/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -94,7 +94,7 @@ export default function PremiumPopup({ onClose, onUpgrade }) {
         order_id: order.id,
         handler: async function (response) {
           try {
-            const verifyRes = await fetch(`${import.meta.env.REACT_APP_API_URL || "http://localhost:5001"}/api/payments/verify`, {
+            const verifyRes = await fetch(`${import.meta.env.REACT_APP_API_URL || "http://localhost:5009"}/api/payments/verify`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

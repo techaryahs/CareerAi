@@ -48,7 +48,7 @@ const UploadReceipt = () => {
 
       if (!data.secure_url) throw new Error('No secure_url returned from Cloudinary');
 
-      console.log('✅ Uploaded Image URL:', data.secure_url);
+      // console.log('✅ Uploaded Image URL:', data.secure_url);
 
       // Send to backend
       const backendRes = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/receipt`, {

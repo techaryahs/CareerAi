@@ -28,9 +28,9 @@ const CareerQuiz = () => {
   const LOCAL_PROGRESS_KEY = "guest_career_quiz_progress";
   const LOCAL_RESULT_KEY = "guest_career_quiz_result";
 
-  console.log(user)
+  // console.log(user)
   // --- Configuration ---
-  const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5001";
+  const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5009";
   const STAGE_KEY = "career_quiz";
   const CATEGORY_NAME = "Career Path Assessment";
   // --- H elpers ---
@@ -118,7 +118,7 @@ const CareerQuiz = () => {
 
   // --- 2. Logic: Calculate & Save ---
   const calculateResults = async () => {
-    console.log("🧠 Calculating Results...");
+    // console.log("🧠 Calculating Results...");
 
     let introvertScore = 0;
     let extrovertScore = 0;

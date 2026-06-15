@@ -24,7 +24,7 @@ class PricingService {
       const rawDoc = await PricingSettings.findOne().lean();
       if (!rawDoc) {
         await PricingSettings.create(this.getDefaultPricing());
-        console.log("🌱 Default pricing configurations successfully seeded.");
+        // console.log("🌱 Default pricing configurations successfully seeded.");
       } else {
         let doc = await PricingSettings.findOne();
         let needsUpdate = false;
@@ -51,7 +51,7 @@ class PricingService {
         
         if (needsUpdate) {
           await doc.save();
-          console.log("🌱 Successfully migrated existing pricing configurations to nested structure.");
+          // console.log("🌱 Successfully migrated existing pricing configurations to nested structure.");
         }
       }
     } catch (err) {

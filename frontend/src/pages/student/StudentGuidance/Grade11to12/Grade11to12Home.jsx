@@ -16,7 +16,7 @@ export default function Grade11to12Home() {
     if (loading) return; // Wait for auth to load
 
     if (!user?.isPremium) {
-      console.log("User NOT premium → redirecting to /pricing");
+      // console.log("User NOT premium → redirecting to /pricing");
       navigate("/pricing");
     }
   }, [user, loading, navigate]);

@@ -144,11 +144,11 @@ const ConsultPricing = () => {
   finalAmount = null
 ) => {
 
-  console.log("================================");
-  console.log("PROCESS PAYMENT CALLED");
-  console.log("PACKAGE:", pkg);
-  console.log("COUPON CODE:", couponCode);
-  console.log("FINAL AMOUNT:", finalAmount);
+  // console.log("================================");
+  // console.log("PROCESS PAYMENT CALLED");
+  // console.log("PACKAGE:", pkg);
+  // console.log("COUPON CODE:", couponCode);
+  // console.log("FINAL AMOUNT:", finalAmount);
 
     if (pkg.name === "FREE") {
       navigate("/free-counseling");
@@ -172,13 +172,13 @@ const ConsultPricing = () => {
       }
 
       // Call backend to create order
-      console.log("CALLING BACKEND ORDER API");
+      // console.log("CALLING BACKEND ORDER API");
 
-console.log({
-  planName: pkg.name,
-  couponCode,
-  finalAmount,
-});
+// console.log({
+//   planName: pkg.name,
+//   couponCode,
+//   finalAmount,
+// });
 
 const orderRes = await api.post("/api/payments/order", {
   planName: pkg.name,
@@ -191,9 +191,9 @@ const orderRes = await api.post("/api/payments/order", {
       }
 
       const { order } = orderRes.data;
-      console.log("ORDER RESPONSE RECEIVED");
+//       console.log("ORDER RESPONSE RECEIVED");
 
-console.log(order);
+// console.log(order);
 
       const options = {
         key: "rzp_live_RseCm2t4lFlfMC", // Razorpay Key ID
@@ -235,12 +235,12 @@ console.log(order);
         },
       };
 
-      console.log("OPENING RAZORPAY");
+//       console.log("OPENING RAZORPAY");
 
-console.log({
-  amount: order.amount,
-  orderId: order.id,
-});
+// console.log({
+//   amount: order.amount,
+//   orderId: order.id,
+// });
 
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
