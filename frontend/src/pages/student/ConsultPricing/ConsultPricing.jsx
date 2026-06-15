@@ -51,6 +51,8 @@ const ConsultPricing = () => {
             PREMIUM: p.premium?.price ?? 5999,
             "ELITE VIP": p.eliteVip?.price ?? 9999,
           });
+          console.log("API RESPONSE:", res.data);
+          console.log("SMART FROM API:", p.smart?.price);
           setPlansStatus({
             SMART: p.smart?.enabled !== false,
             PREMIUM: p.premium?.enabled !== false,
@@ -139,10 +141,10 @@ const ConsultPricing = () => {
     setShowCouponModal(true);
   };
   const processPayment = async (
-  pkg,
-  couponCode = null,
-  finalAmount = null
-) => {
+    pkg,
+    couponCode = null,
+    finalAmount = null
+  ) => {
 
   // console.log("================================");
   // console.log("PROCESS PAYMENT CALLED");
@@ -180,11 +182,11 @@ const ConsultPricing = () => {
 //   finalAmount,
 // });
 
-const orderRes = await api.post("/api/payments/order", {
-  planName: pkg.name,
-  couponCode,
-  finalAmount,
-});
+      const orderRes = await api.post("/api/payments/order", {
+        planName: pkg.name,
+        couponCode,
+        finalAmount,
+      });
 
       if (!orderRes.data || !orderRes.data.order) {
         throw new Error("Failed to create order on the backend");
