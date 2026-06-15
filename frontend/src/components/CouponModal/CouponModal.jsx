@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { X, Tag, Percent } from "lucide-react";
-import api from "../api";
+import api from "../../api";
 
 const CouponModal = ({ plan, onClose, onProceed }) => {
   const [couponCode, setCouponCode] = useState("");
