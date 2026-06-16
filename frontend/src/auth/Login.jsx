@@ -42,6 +42,7 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
+      console.log("API URL:", import.meta.env.VITE_API_URL);
       const res = await api.post("/api/auth/login", {
         email: email.trim(),
         password: password.trim(),

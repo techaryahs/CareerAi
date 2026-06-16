@@ -125,6 +125,9 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
   }, [pathname]);
 
   return null;

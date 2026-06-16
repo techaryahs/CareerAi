@@ -86,18 +86,36 @@ export default function Navbar() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [registerDropdownOpen, setRegisterDropdownOpen] = useState(false);
-  
+  const [profileOpen, setProfileOpen] = useState(false);
+
   const registerRef = useRef(null);
+  const profileRef = useRef(null);
 
   // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (registerRef.current && !registerRef.current.contains(event.target)) {
+      if (
+        registerRef.current &&
+        !registerRef.current.contains(event.target)
+      ) {
         setRegisterDropdownOpen(false);
       }
+
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target)
+      ) {
+        setProfileOpen(false);
+      }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
   }, []);
 
   const handleLogout = () => {
@@ -228,45 +246,80 @@ export default function Navbar() {
               </div>
             ) : (
               // Logged In Profile
-              <div className="group relative">
-                <button 
-                  className="flex items-center gap-3 text-gray-300 hover:text-white focus:outline-none transition group-hover:text-white"
+              <div ref={profileRef} className="relative">
+                <button
+                  onClick={() => setProfileOpen(!profileOpen)}
+                  className="flex items-center gap-3 text-gray-300 hover:text-white focus:outline-none transition"
                 >
                   <div className="text-right hidden xl:block">
-                     <div className="text-sm font-semibold text-white">{user.name || "User"}</div>
-                     <div className="text-xs text-blue-300 capitalize">{role}</div>
+                    <div className="text-sm font-semibold text-white">
+                      {user.name || "User"}
+                    </div>
+                    <div className="text-xs text-blue-300 capitalize">
+                      {role}
+                    </div>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white ring-2 ring-gray-700 group-hover:ring-blue-500 transition shadow-lg">
-                    {user.profilePic ? <img src={user.profilePic} alt="Profile" className="w-full h-full rounded-full object-cover" /> : <FaUser className="text-lg" />}
+
+                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white ring-2 ring-gray-700 transition shadow-lg">
+                    {user.profilePic ? (
+                      <img
+                        src={user.profilePic}
+                        alt="Profile"
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    ) : (
+                      <FaUser className="text-lg" />
+                    )}
                   </div>
                 </button>
 
-                {/* Profile Dropdown */}
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl py-2 border border-gray-100 text-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right">
-                    
-                    <div className="px-4 py-3 border-b border-gray-100 mb-2">
-                       <p className="font-bold text-gray-800 truncate">{user.name}</p>
-                       <p className="text-xs text-gray-500 truncate">{user.email}</p>
-                    </div>
-
-                    <NavLink to="/profile" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 transition">
-                      <FaUser className="text-blue-500" /> My Profile
-                    </NavLink>
-                    
-                    {DROPDOWN_LINKS[role]?.map((link) => (
-                      <NavLink key={link.path} to={link.path} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 transition">
-                        <link.icon className="text-blue-500" /> {link.title}
-                      </NavLink>
-                    ))}
-
-                    <div className="border-t border-gray-100 my-1 mt-2"></div>
-                    <button 
-                      onClick={handleLogout}
-                      className="w-full text-left flex items-center gap-2 px-4 py-3 text-red-600 hover:bg-red-50 transition font-medium"
-                    >
-                      <FaSignOutAlt /> Sign Out
-                    </button>
+                <div
+                  className={`absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl py-2 border border-gray-100 text-gray-800 transition-all duration-200 z-[9999] ${
+                    profileOpen
+                      ? "opacity-100 visible translate-y-0"
+                      : "opacity-0 invisible -translate-y-2"
+                  }`}
+                >
+                  <div className="px-4 py-3 border-b border-gray-100 mb-2">
+                    <p className="font-bold text-gray-800 truncate">
+                      {user.name}
+                    </p>
+                    <p className="text-xs text-gray-500 truncate">
+                      {user.email}
+                    </p>
                   </div>
+
+                  <NavLink
+                    to="/profile"
+                    onClick={() => setProfileOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 transition"
+                  >
+                    <FaUser className="text-blue-500" />
+                    My Profile
+                  </NavLink>
+
+                  {DROPDOWN_LINKS[role]?.map((link) => (
+                    <NavLink
+                      key={link.path}
+                      to={link.path}
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-blue-50 transition"
+                    >
+                      <link.icon className="text-blue-500" />
+                      {link.title}
+                    </NavLink>
+                  ))}
+
+                  <div className="border-t border-gray-100 my-1 mt-2"></div>
+
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left flex items-center gap-2 px-4 py-3 text-red-600 hover:bg-red-50 transition font-medium"
+                  >
+                    <FaSignOutAlt />
+                    Sign Out
+                  </button>
+                </div>
               </div>
             )}
           </div>
