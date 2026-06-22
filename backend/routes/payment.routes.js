@@ -6,4 +6,6 @@ const verifyToken = require("../middleware/auth");
 router.post("/order", verifyToken, paymentController.createOrder);
 router.post("/verify", verifyToken, paymentController.verifyPayment);
 
+router.post("/apple/verify", verifyToken, paymentController.verifyApplePayment);
+
 module.exports = router;

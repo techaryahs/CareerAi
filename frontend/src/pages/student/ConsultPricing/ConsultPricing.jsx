@@ -1,15 +1,18 @@
 import React from "react";
-import {
-  CheckCircle,
-  Star,
-  ArrowRight,
-} from "lucide-react";
+import { CheckCircle, Star, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Capacitor } from "@capacitor/core";
 import api from "../../../api";
 import { useAuth } from "../../../context/AuthContext";
 import CouponModal from "../../../components/CouponModal/CouponModal";
 
-
+import {
+  initializeAppleIAP,
+  purchaseApplePlan,
+  restoreApplePurchases,
+  applePlanProductIds,
+  isAppleIAPPlatform,
+} from "../../../services/appleIapService";
 
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
@@ -21,6 +24,12 @@ const loadRazorpayScript = () => {
   });
 };
 
+const IOS_APP_STORE_PRICES = {
+  SMART: "₹499",
+  PREMIUM: "₹5,900",
+  "ELITE VIP": "₹9,900",
+};
+
 const ConsultPricing = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -29,6 +38,7 @@ const ConsultPricing = () => {
   const [selectedPackage, setSelectedPackage] = React.useState(null);
   const [discountedPrice, setDiscountedPrice] = React.useState(null);
   const [appliedCoupon, setAppliedCoupon] = React.useState(null);
+  const isIOSApp = isAppleIAPPlatform();
   const [prices, setPrices] = React.useState({
     SMART: 2999,
     PREMIUM: 5999,
@@ -66,11 +76,65 @@ const ConsultPricing = () => {
     fetchPrices();
   }, []);
 
+  React.useEffect(() => {
+    if (!isIOSApp) return;
+
+    initializeAppleIAP({
+      onApproved: async ({ productId, transactionId, rawReceipt }) => {
+        try {
+          let purchasedPlan = null;
+
+          if (productId === applePlanProductIds.SMART) purchasedPlan = "SMART";
+          if (productId === applePlanProductIds.PREMIUM)
+            purchasedPlan = "PREMIUM";
+          if (productId === applePlanProductIds["ELITE VIP"])
+            purchasedPlan = "ELITE VIP";
+
+          if (!purchasedPlan) {
+            throw new Error("Unknown Apple product received after purchase.");
+          }
+
+          const verifyRes = await api.post("/api/payments/apple/verify", {
+            planName: purchasedPlan,
+            productId,
+            transactionId,
+            receipt: rawReceipt,
+          });
+
+          if (verifyRes.data?.success) {
+            alert(
+              `🎉 Payment successful! Your account has been upgraded to ${purchasedPlan}.`,
+            );
+            window.location.reload();
+          } else {
+            alert(
+              "Apple payment completed but verification failed. Please contact support.",
+            );
+          }
+        } catch (err) {
+          console.error("Apple payment verification error:", err);
+          alert(
+            "Apple purchase completed, but verification failed. Please contact support.",
+          );
+        } finally {
+          setIsProcessing(false);
+        }
+      },
+      onError: (err) => {
+        console.error("Apple IAP error:", err);
+        setIsProcessing(false);
+      },
+    }).catch((err) => {
+      console.error("Apple IAP initialization failed:", err);
+    });
+  }, [isIOSApp]);
 
   const packages = [
     {
       name: "SMART",
-      price: `₹${prices.SMART.toLocaleString("en-IN")}`,
+      price: isIOSApp
+  ? IOS_APP_STORE_PRICES.SMART
+  : `₹${prices.SMART.toLocaleString("en-IN")}`,
       subtitle: "Smart Admission Support",
       color: "from-blue-500 to-cyan-500",
       features: [
@@ -89,7 +153,9 @@ const ConsultPricing = () => {
     },
     {
       name: "PREMIUM",
-      price: `₹${prices.PREMIUM.toLocaleString("en-IN")}`,
+      price: isIOSApp
+  ? IOS_APP_STORE_PRICES.SMART
+  : `₹${prices.SMART.toLocaleString("en-IN")}`,
       subtitle: "Complete Admission Planning",
       popular: true,
       color: "from-yellow-500 to-orange-500",
@@ -110,7 +176,9 @@ const ConsultPricing = () => {
     },
     {
       name: "ELITE VIP",
-      price: `₹${prices["ELITE VIP"].toLocaleString("en-IN")}`,
+      price: isIOSApp
+  ? IOS_APP_STORE_PRICES["ELITE VIP"]
+  : `₹${prices["ELITE VIP"].toLocaleString("en-IN")}`,
       subtitle: "End-to-End Admission Management",
       color: "from-purple-600 via-indigo-600 to-blue-700",
       features: [
@@ -136,21 +204,41 @@ const ConsultPricing = () => {
     },
   ];
 
-  const handleChoosePlan = (pkg) => {
+  const handleChoosePlan = async (pkg) => {
+    if (pkg.name === "FREE") {
+      navigate("/free-counseling");
+      return;
+    }
+
+    if (!user) {
+      sessionStorage.setItem("redirectPath", "/consult-pricing");
+      navigate("/login");
+      return;
+    }
+
+    if (isIOSApp) {
+      try {
+        setIsProcessing(true);
+        await purchaseApplePlan(pkg.name);
+      } catch (err) {
+        console.error("Apple purchase start failed:", err);
+        alert(err.message || "Failed to start Apple purchase.");
+        setIsProcessing(false);
+      }
+      return;
+    }
+
+    // Website / Android → keep Razorpay
     setSelectedPackage(pkg);
     setShowCouponModal(true);
   };
-  const processPayment = async (
-    pkg,
-    couponCode = null,
-    finalAmount = null
-  ) => {
 
-  // console.log("================================");
-  // console.log("PROCESS PAYMENT CALLED");
-  // console.log("PACKAGE:", pkg);
-  // console.log("COUPON CODE:", couponCode);
-  // console.log("FINAL AMOUNT:", finalAmount);
+  const processPayment = async (pkg, couponCode = null, finalAmount = null) => {
+    // console.log("================================");
+    // console.log("PROCESS PAYMENT CALLED");
+    // console.log("PACKAGE:", pkg);
+    // console.log("COUPON CODE:", couponCode);
+    // console.log("FINAL AMOUNT:", finalAmount);
 
     if (pkg.name === "FREE") {
       navigate("/free-counseling");
@@ -168,7 +256,9 @@ const ConsultPricing = () => {
     try {
       const sdkLoaded = await loadRazorpayScript();
       if (!sdkLoaded) {
-        alert("Failed to load Razorpay SDK. Please check your internet connection.");
+        alert(
+          "Failed to load Razorpay SDK. Please check your internet connection.",
+        );
         setIsProcessing(false);
         return;
       }
@@ -176,11 +266,11 @@ const ConsultPricing = () => {
       // Call backend to create order
       // console.log("CALLING BACKEND ORDER API");
 
-// console.log({
-//   planName: pkg.name,
-//   couponCode,
-//   finalAmount,
-// });
+      // console.log({
+      //   planName: pkg.name,
+      //   couponCode,
+      //   finalAmount,
+      // });
 
       const orderRes = await api.post("/api/payments/order", {
         planName: pkg.name,
@@ -193,9 +283,9 @@ const ConsultPricing = () => {
       }
 
       const { order } = orderRes.data;
-//       console.log("ORDER RESPONSE RECEIVED");
+      //       console.log("ORDER RESPONSE RECEIVED");
 
-// console.log(order);
+      // console.log(order);
 
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
@@ -211,11 +301,13 @@ const ConsultPricing = () => {
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_order_id: response.razorpay_order_id,
               razorpay_signature: response.razorpay_signature,
-              planName: pkg.name
+              planName: pkg.name,
             });
 
             if (verifyRes.data.success) {
-              alert(`🎉 Payment successful! Your account has been upgraded to ${pkg.name}.`);
+              alert(
+                `🎉 Payment successful! Your account has been upgraded to ${pkg.name}.`,
+              );
               window.location.reload();
             } else {
               alert("Payment verification failed. Please contact support.");
@@ -230,27 +322,30 @@ const ConsultPricing = () => {
         prefill: {
           name: user.name || "",
           email: user.email || "",
-          contact: user.mobile || ""
+          contact: user.mobile || "",
         },
         theme: {
           color: "#0041A3",
         },
       };
 
-//       console.log("OPENING RAZORPAY");
+      //       console.log("OPENING RAZORPAY");
 
-// console.log({
-//   amount: order.amount,
-//   orderId: order.id,
-// });
+      // console.log({
+      //   amount: order.amount,
+      //   orderId: order.id,
+      // });
 
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
     } catch (error) {
       console.error("Order creation failed:", error);
-      const errMsg = error.response?.data?.error === "Selected plan is currently unavailable."
-        ? "This plan is currently unavailable. Please choose another package."
-        : (error.response?.data?.error || "Failed to initiate payment. Please try again.");
+      const errMsg =
+        error.response?.data?.error ===
+        "Selected plan is currently unavailable."
+          ? "This plan is currently unavailable. Please choose another package."
+          : error.response?.data?.error ||
+            "Failed to initiate payment. Please try again.";
       alert(errMsg);
     } finally {
       setIsProcessing(false);
@@ -259,7 +354,6 @@ const ConsultPricing = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white py-20">
       <div className="max-w-7xl mx-auto px-6">
-
         {/* Hero */}
         <div className="text-center mb-20">
           <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -271,8 +365,8 @@ const ConsultPricing = () => {
           </h1>
 
           <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-            From Career Selection to Final Admission Confirmation,
-            we help students and parents make confident decisions.
+            From Career Selection to Final Admission Confirmation, we help
+            students and parents make confident decisions.
           </p>
         </div>
 
@@ -296,7 +390,7 @@ const ConsultPricing = () => {
                   <p className="text-sm text-green-600 mt-1">
                     Valid until{" "}
                     {new Date(
-                      user.profile.admissionPackage.expiresAt
+                      user.profile.admissionPackage.expiresAt,
                     ).toLocaleDateString()}
                   </p>
                 )}
@@ -314,70 +408,93 @@ const ConsultPricing = () => {
 
         {/* Pricing Cards */}
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
-
-          {packages.filter(pkg => plansStatus[pkg.name] !== false).map((pkg, index) => (
-            <div
-              key={index}
-              className={`relative rounded-3xl bg-white border shadow-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 ${pkg.popular
-                ? "border-yellow-400 scale-105"
-                : "border-gray-200"
+          {packages
+            .filter((pkg) => plansStatus[pkg.name] !== false)
+            .map((pkg, index) => (
+              <div
+                key={index}
+                className={`relative rounded-3xl bg-white border shadow-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 ${
+                  pkg.popular
+                    ? "border-yellow-400 scale-105"
+                    : "border-gray-200"
                 }`}
-            >
-              {pkg.popular && (
-                <div className="absolute top-0 left-0 right-0">
-                  <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 text-center text-sm font-bold flex items-center justify-center gap-2">
-                    <Star size={16} />
-                    MOST POPULAR
+              >
+                {pkg.popular && (
+                  <div className="absolute top-0 left-0 right-0">
+                    <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 text-center text-sm font-bold flex items-center justify-center gap-2">
+                      <Star size={16} />
+                      MOST POPULAR
+                    </div>
+                  </div>
+                )}
+
+                <div className={`h-2 bg-gradient-to-r ${pkg.color}`} />
+
+                <div className="p-8">
+                  <div
+                    className={`inline-flex px-4 py-2 rounded-full bg-gradient-to-r ${pkg.color} text-white text-sm font-semibold`}
+                  >
+                    {pkg.name}
+                  </div>
+
+                  <h2 className="text-5xl font-black mt-6">{pkg.price}</h2>
+
+                  <p className="text-gray-500 mt-2">{pkg.subtitle}</p>
+
+                  {isIOSApp && (
+                    <p className="text-xs text-gray-400 mt-2">
+                      Purchase on iPhone/iPad is processed securely via Apple
+                      In-App Purchase.
+                    </p>
+                  )}
+
+                  <button
+                    onClick={() => handleChoosePlan(pkg)}
+                    disabled={isProcessing}
+                    className={`w-full mt-8 bg-gradient-to-r ${pkg.color} text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 ${
+                      isProcessing ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                  >
+                    {isProcessing ? "Processing..." : pkg.button}
+                    <ArrowRight size={18} />
+                  </button>
+
+                  <div className="mt-8 space-y-3">
+                    {pkg.features.map((feature, idx) => (
+                      <div key={idx} className="flex gap-3">
+                        <CheckCircle
+                          size={18}
+                          className="text-green-500 mt-1"
+                        />
+                        <span className="text-sm text-gray-700">{feature}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              )}
-
-              <div className={`h-2 bg-gradient-to-r ${pkg.color}`} />
-
-              <div className="p-8">
-
-                <div
-                  className={`inline-flex px-4 py-2 rounded-full bg-gradient-to-r ${pkg.color} text-white text-sm font-semibold`}
-                >
-                  {pkg.name}
-                </div>
-
-                <h2 className="text-5xl font-black mt-6">
-                  {pkg.price}
-                </h2>
-
-                <p className="text-gray-500 mt-2">
-                  {pkg.subtitle}
-                </p>
-
-                <button
-                  onClick={() => handleChoosePlan(pkg)}
-                  disabled={isProcessing}
-                  className={`w-full mt-8 bg-gradient-to-r ${pkg.color} text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 ${isProcessing ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
-                >
-                  {isProcessing ? "Processing..." : pkg.button}
-                  <ArrowRight size={18} />
-                </button>
-
-                <div className="mt-8 space-y-3">
-                  {pkg.features.map((feature, idx) => (
-                    <div key={idx} className="flex gap-3">
-                      <CheckCircle
-                        size={18}
-                        className="text-green-500 mt-1"
-                      />
-                      <span className="text-sm text-gray-700">
-                        {feature}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
               </div>
-            </div>
-          ))}
+            ))}
         </div>
+
+        {isIOSApp && (
+  <div className="mt-8 text-center">
+    <button
+      onClick={async () => {
+        try {
+          setIsProcessing(true);
+          await restoreApplePurchases();
+        } catch (err) {
+          console.error("Restore purchases failed:", err);
+          alert("Failed to restore purchases.");
+        } finally {
+          setIsProcessing(false);
+        }
+      }}
+      className="text-[#0041A3] font-semibold underline"
+    >
+      Restore Purchases
+    </button>
+  </div>
+)}
 
         {/* Why Choose */}
         <div className="mt-24 bg-white rounded-3xl shadow-xl p-10">
@@ -426,12 +543,12 @@ const ConsultPricing = () => {
 
             <button
               onClick={() => navigate("/consult")}
-              className="border border-white px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300">
+              className="border border-white px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300"
+            >
               Talk To Expert
             </button>
           </div>
         </div>
-
       </div>
       {showCouponModal && (
         <CouponModal
@@ -443,7 +560,7 @@ const ConsultPricing = () => {
             processPayment(
               selectedPackage,
               paymentData.couponCode,
-              paymentData.finalAmount
+              paymentData.finalAmount,
             );
           }}
         />

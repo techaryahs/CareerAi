@@ -150,3 +150,30 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
+// @desc    Delete user account
+exports.deleteAccount = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Delete associated consultant profile if exists
+    if (user.role === "consultant" && user.profile?.consultantProfile) {
+      const Consultant = require("../models/Consultant");
+      await Consultant.findByIdAndDelete(user.profile.consultantProfile);
+    }
+    
+    // Delete associated teacher profile if exists
+    if (user.role === "teacher" && user.profile?.teacherProfile) {
+      const Teacher = require("../models/Teacher");
+      await Teacher.findByIdAndDelete(user.profile.teacherProfile);
+    }
+
+    await User.findByIdAndDelete(req.user.id);
+
+    res.json({ message: "Account deleted successfully" });
+  } catch (err) {
+    console.error("Account deletion error:", err);
+    res.status(500).json({ message: "Server error deleting account" });
+  }
+};
+

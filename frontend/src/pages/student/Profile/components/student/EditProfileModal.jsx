@@ -3,10 +3,12 @@ import {
     FaUser, FaCog, FaUniversity, FaGraduationCap,
     FaFileAlt, FaChevronLeft, FaPhone, FaMapMarkerAlt,
     FaLink, FaParagraph, FaEnvelope, FaLock, FaTransgender, FaCalendarAlt,
-    FaChevronDown, FaUsers, FaTrash, FaPlus, FaSchool
+    FaChevronDown, FaUsers, FaTrash, FaPlus, FaSchool, FaExclamationTriangle
 } from 'react-icons/fa';
 import TestScores from './student_card/TestScores';
 import '../styles/student/EditProfileModal.css';
+import api from '../../../../../api';
+import { useAuth } from '../../../../../context/AuthContext';
 
 const EditProfileModal = ({ user, onClose, onSave, onAddItem, onUpdateItem, onDeleteItem }) => {
     const [activeTab, setActiveTab] = useState('personal');
@@ -46,6 +48,9 @@ const EditProfileModal = ({ user, onClose, onSave, onAddItem, onUpdateItem, onDe
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [showTestScorePopup, setShowTestScorePopup] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null);
+    const [showDeleteAccount, setShowDeleteAccount] = useState(false);
+    const [isDeletingAccount, setIsDeletingAccount] = useState(false);
+    const { logout } = useAuth();
 
     const hasValidationError = formData.education.some(edu => {
         const score = parseFloat(edu.cgpa);
@@ -185,6 +190,19 @@ const EditProfileModal = ({ user, onClose, onSave, onAddItem, onUpdateItem, onDe
             alert('Failed to save profile. Please try again.');
         } finally {
             setIsSubmitting(false);
+        }
+    };
+
+    const handleDeleteAccount = async () => {
+        setIsDeletingAccount(true);
+        try {
+            await api.delete('/api/user/delete-account');
+            alert('Your account has been deleted successfully.');
+            logout();
+        } catch (error) {
+            console.error('Error deleting account:', error);
+            alert(error.response?.data?.message || 'Failed to delete account. Please try again.');
+            setIsDeletingAccount(false);
         }
     };
 
@@ -399,6 +417,17 @@ const EditProfileModal = ({ user, onClose, onSave, onAddItem, onUpdateItem, onDe
                                     <div className="wide-row-horizontal">
                                         <span className="row-label">Password</span>
                                         <button type="button" className="btn-inline-action">Reset Password</button>
+                                    </div>
+                                    <div className="wide-row-horizontal" style={{ borderBottom: 'none' }}>
+                                        <span className="row-label" style={{ color: '#ef4444' }}>Delete Account</span>
+                                        <button 
+                                            type="button" 
+                                            className="btn-inline-action" 
+                                            style={{ color: '#ef4444', borderColor: '#ef4444' }}
+                                            onClick={() => setShowDeleteAccount(true)}
+                                        >
+                                            Delete My Account
+                                        </button>
                                     </div>
                                 </div>
                             </div>

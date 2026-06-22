@@ -15,7 +15,7 @@ import {
 import "./ConsultantDashboard.css";
 
 const ConsultantDashboard = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -42,6 +42,9 @@ const ConsultantDashboard = () => {
   const [newDay, setNewDay] = useState("Monday");
   const [newStart, setNewStart] = useState("09:00");
   const [newEnd, setNewEnd] = useState("17:00");
+
+  const [showDeleteAccount, setShowDeleteAccount] = useState(false);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
 
   // Fetch profile status on mount and trigger refreshes
   useEffect(() => {
@@ -205,9 +208,22 @@ const ConsultantDashboard = () => {
         setIsEditModalOpen(false);
         setRefreshTrigger((prev) => prev + 1);
       }
-    } catch (err) {
-      console.error("Failed to update profile:", err);
-      alert("❌ Failed to update profile");
+    } catch (error) {
+      console.error("Profile update error:", error);
+      alert("Failed to update profile");
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    setIsDeletingAccount(true);
+    try {
+      await api.delete('/api/user/delete-account');
+      alert('Your account has been deleted successfully.');
+      logout();
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      alert(error.response?.data?.message || 'Failed to delete account. Please try again.');
+      setIsDeletingAccount(false);
     }
   };
 
@@ -663,8 +679,44 @@ const ConsultantDashboard = () => {
                 <button type="button" className="close-btn" onClick={() => setIsEditModalOpen(false)}>
                   Cancel
                 </button>
+                <button 
+                  type="button" 
+                  className="close-btn" 
+                  style={{ color: '#ef4444', borderColor: '#ef4444' }}
+                  onClick={() => setShowDeleteAccount(true)}
+                >
+                  Delete Account
+                </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {showDeleteAccount && (
+        <div className="modal-overlay" style={{ zIndex: 3000 }}>
+          <div className="modal-content" style={{ maxWidth: '400px', textAlign: 'center' }}>
+            <h3 style={{ color: '#ef4444', marginBottom: '1rem' }}>Delete Account?</h3>
+            <p style={{ color: '#666', marginBottom: '1.5rem', fontSize: '14px' }}>
+              Are you sure you want to delete your account? This will permanently remove all your personal data, profile info, and settings. This action cannot be undone.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+              <button 
+                onClick={() => setShowDeleteAccount(false)}
+                disabled={isDeletingAccount}
+                className="close-btn"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleDeleteAccount}
+                disabled={isDeletingAccount}
+                className="submit-btn"
+                style={{ background: '#ef4444' }}
+              >
+                {isDeletingAccount ? 'Deleting...' : 'Yes, Delete'}
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -434,3 +434,131 @@ exports.verifyPayment = async (req, res) => {
     });
   }
 };
+
+
+// ================================
+// VERIFY APPLE IAP PAYMENT
+// ================================
+exports.verifyApplePayment = async (req, res) => {
+  try {
+    const { planName, productId, transactionId, receipt } = req.body;
+
+    if (!planName || !productId || !transactionId) {
+      return res.status(400).json({
+        error: "Missing required Apple payment fields",
+      });
+    }
+
+    if (!ADMISSION_PACKAGES.includes(planName)) {
+      return res.status(400).json({
+        error: "Invalid admission package",
+      });
+    }
+
+    const expectedProductMap = {
+      SMART: "com.careergenai.plan.smart",
+      PREMIUM: "com.careergenai.plan.premium",
+      "ELITE VIP": "com.careergenai.plan.elitevip",
+    };
+
+    const expectedProductId = expectedProductMap[planName];
+
+    if (expectedProductId !== productId) {
+      return res.status(400).json({
+        error: "Apple product does not match selected plan",
+      });
+    }
+
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({
+        error: "User not found",
+      });
+    }
+
+    if (!user.profile) {
+      user.profile = {};
+    }
+
+    // Resolve dynamic price from pricing service
+    let resolvedPrice = 0;
+    try {
+      resolvedPrice = await pricingService.getPlanPrice(planName);
+    } catch (err) {
+      console.error("Failed to resolve dynamic price for Apple payment:", err);
+    }
+
+    // Admission package activation (same 3-month logic as Razorpay)
+    const packageStartDate = new Date();
+    const packageExpiryDate = new Date();
+    packageExpiryDate.setMonth(packageExpiryDate.getMonth() + 3);
+
+    user.profile.admissionPackage = {
+      packageName: planName,
+      amount: resolvedPrice,
+      purchasedAt: packageStartDate,
+      expiresAt: packageExpiryDate,
+      paymentId: transactionId, // Apple transaction id
+      orderId: productId,       // store Apple product id here
+      status: "active",
+      paymentProvider: "apple_iap",
+      appleReceipt: receipt || null,
+    };
+
+    // Common receipt info
+    user.profile.receiptStatus = "approved";
+    user.profile.receiptUrl = `apple_iap:${transactionId}`;
+
+    await user.save();
+
+    // ===================================
+    // EMAILS
+    // ===================================
+    try {
+      const userSubject = `🎓 Admission Package Purchased: ${planName}`;
+      const userBody = `
+        <p>Hi ${user.name},</p>
+        <p>Your Admission Guidance Package has been activated successfully via Apple In-App Purchase.</p>
+        <p><strong>Package:</strong> ${planName}</p>
+        <p><strong>Transaction ID:</strong> ${transactionId}</p>
+      `;
+
+      await sendEmail(
+        user.email,
+        userSubject,
+        "",
+        userBody
+      );
+
+      const adminEmail =
+        process.env.ADMIN_NOTIFY_TO || "careergenai9@gmail.com";
+
+      await sendEmail(
+        adminEmail,
+        `🍎 New Apple IAP Purchase: ${planName}`,
+        "",
+        `
+          <p><strong>User:</strong> ${user.name}</p>
+          <p><strong>Email:</strong> ${user.email}</p>
+          <p><strong>Plan:</strong> ${planName}</p>
+          <p><strong>Amount:</strong> ₹${resolvedPrice}</p>
+          <p><strong>Transaction ID:</strong> ${transactionId}</p>
+          <p><strong>Product ID:</strong> ${productId}</p>
+        `
+      );
+    } catch (emailErr) {
+      console.error("Apple payment email notification failed:", emailErr);
+    }
+
+    return res.json({
+      success: true,
+      message: "Apple payment verified successfully",
+    });
+  } catch (error) {
+    console.error("Apple payment verification error:", error);
+    return res.status(500).json({
+      error: "Failed to verify Apple payment",
+    });
+  }
+};

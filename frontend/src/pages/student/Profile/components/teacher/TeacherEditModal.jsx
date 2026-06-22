@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { FaTimes, FaUser, FaPhone, FaMapMarkerAlt, FaLink, FaParagraph } from 'react-icons/fa';
 import '../styles/student/EditProfileModal.css';
 
+import api from '../../../../../api';
+import { useAuth } from '../../../../../context/AuthContext';
+
 const TeacherEditModal = ({ user, onClose, onSave }) => {
     // Exact mapping of teacher fields to form fields
     const [formData, setFormData] = useState({
@@ -13,6 +16,9 @@ const TeacherEditModal = ({ user, onClose, onSave }) => {
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showDeleteAccount, setShowDeleteAccount] = useState(false);
+    const [isDeletingAccount, setIsDeletingAccount] = useState(false);
+    const { logout } = useAuth();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,6 +37,19 @@ const TeacherEditModal = ({ user, onClose, onSave }) => {
             alert('Failed to save profile. Please try again.');
         } finally {
             setIsSubmitting(false);
+        }
+    };
+
+    const handleDeleteAccount = async () => {
+        setIsDeletingAccount(true);
+        try {
+            await api.delete('/api/user/delete-account');
+            alert('Your account has been deleted successfully.');
+            logout();
+        } catch (error) {
+            console.error('Error deleting account:', error);
+            alert(error.response?.data?.message || 'Failed to delete account. Please try again.');
+            setIsDeletingAccount(false);
         }
     };
 
@@ -128,22 +147,61 @@ const TeacherEditModal = ({ user, onClose, onSave }) => {
                             <button
                                 type="button"
                                 className="btn-v4 secondary"
-                                onClick={onClose}
+                                style={{ borderColor: '#ef4444', color: '#ef4444' }}
+                                onClick={() => setShowDeleteAccount(true)}
                                 disabled={isSubmitting}
                             >
-                                Cancel
+                                Delete Account
                             </button>
-                            <button
-                                type="submit"
-                                className="btn-v4 primary"
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? 'Saving...' : 'Update Profile'}
-                            </button>
+                            <div style={{ display: 'flex', gap: '10px' }}>
+                                <button
+                                    type="button"
+                                    className="btn-v4 secondary"
+                                    onClick={onClose}
+                                    disabled={isSubmitting}
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="btn-v4 primary"
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? 'Saving...' : 'Update Profile'}
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
+
+            {showDeleteAccount && (
+                <div className="modal-overlay" style={{ zIndex: 3000 }}>
+                    <div className="modal-content animate-entrance text-center" style={{ maxWidth: '400px' }} onClick={(e) => e.stopPropagation()}>
+                        <h3 style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '1.25rem', fontWeight: 'bold' }}>Delete Account?</h3>
+                        <p style={{ color: '#666', marginBottom: '1.5rem', fontSize: '0.875rem' }}>
+                            Are you sure you want to delete your account? This will permanently remove all your personal data, profile info, and settings. This action cannot be undone.
+                        </p>
+                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+                            <button 
+                                onClick={() => setShowDeleteAccount(false)}
+                                disabled={isDeletingAccount}
+                                className="btn-v4 secondary"
+                            >
+                                Cancel
+                            </button>
+                            <button 
+                                onClick={handleDeleteAccount}
+                                disabled={isDeletingAccount}
+                                className="btn-v4 primary"
+                                style={{ background: '#ef4444', borderColor: '#ef4444' }}
+                            >
+                                {isDeletingAccount ? 'Deleting...' : 'Yes, Delete'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
