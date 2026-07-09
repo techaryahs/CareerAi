@@ -3,16 +3,19 @@ import {
   CheckCircle,
   Star,
   ArrowRight,
+  Sparkles,
+  ShieldCheck,
+  Zap,
+  HelpCircle,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api";
 import { useAuth } from "../../../context/AuthContext";
 import CouponModal from "../../../components/CouponModal/CouponModal";
 
-
-
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
+    if (window.Razorpay) return resolve(true);
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.onload = () => resolve(true);
@@ -27,8 +30,6 @@ const ConsultPricing = () => {
   const [isProcessing, setIsProcessing] = React.useState(false);
   const [showCouponModal, setShowCouponModal] = React.useState(false);
   const [selectedPackage, setSelectedPackage] = React.useState(null);
-  const [discountedPrice, setDiscountedPrice] = React.useState(null);
-  const [appliedCoupon, setAppliedCoupon] = React.useState(null);
   const [prices, setPrices] = React.useState({
     SMART: 2999,
     PREMIUM: 5999,
@@ -51,8 +52,6 @@ const ConsultPricing = () => {
             PREMIUM: p.premium?.price ?? 5999,
             "ELITE VIP": p.eliteVip?.price ?? 9999,
           });
-          // console.log("API RESPONSE:", res.data);
-          // console.log("SMART FROM API:", p.smart?.price);
           setPlansStatus({
             SMART: p.smart?.enabled !== false,
             PREMIUM: p.premium?.enabled !== false,
@@ -66,71 +65,74 @@ const ConsultPricing = () => {
     fetchPrices();
   }, []);
 
-
   const packages = [
     {
       name: "SMART",
       price: `₹${prices.SMART.toLocaleString("en-IN")}`,
       subtitle: "Smart Admission Support",
-      color: "from-blue-500 to-cyan-500",
+      color: "from-blue-600 to-cyan-500",
+      shadow: "shadow-blue-100",
+      tagline: "Essential CAP guidance",
       features: [
-        "Everything in Free",
-        "45-Min Expert Session",
-        "Score Analysis",
-        "20 College Shortlist",
-        "CAP Round Guidance",
+        "Everything in Free Admission Packages",
+        "45-Min Live Expert Session",
+        "Score & Target Rank Analysis",
+        "20 Personalized College Shortlist",
+        "CAP Round Step-by-Step Guidance",
         "Application Form Support",
         "Scholarship Eligibility Check",
-        "Fee Comparison",
-        "Deadline Tracking",
-        "WhatsApp Support (15 Days)",
+        "Fee Tracking & Comparison",
+        "Deadline WhatsApp Alerts (15 Days)",
       ],
-      button: "Choose Smart",
+      button: "Choose Smart Package",
     },
     {
       name: "PREMIUM",
       price: `₹${prices.PREMIUM.toLocaleString("en-IN")}`,
       subtitle: "Complete Admission Planning",
       popular: true,
-      color: "from-yellow-500 to-orange-500",
+      color: "from-amber-500 to-orange-600",
+      shadow: "shadow-orange-100",
+      tagline: "Full roadmap mapping strategy",
       features: [
-        "Everything in Smart",
-        "3 Counselling Sessions",
-        "Psychometric Assessment",
-        "Career Roadmap Report",
-        "College Predictor",
-        "Choice Filling Guidance",
-        "Scholarship Assistance",
-        "Institute Comparison Report",
-        "Branch Selection Counselling",
-        "Parent + Student Session",
-        "Priority Support (30 Days)",
+        "Everything in Smart Package",
+        "3 Comprehensive Counselling Sessions",
+        "Psychometric Assessment Track",
+        "In-depth Career Roadmap Report",
+        "AI-Powered College Predictor Access",
+        "Option Form Choice Filling Guidance",
+        "End-to-End Scholarship Assistance",
+        "Detailed Institute Comparison Report",
+        "Branch Selection Specialization",
+        "Joint Parent + Student Consult Session",
+        "Priority Slack/WhatsApp Support (30 Days)",
       ],
-      button: "Choose Premium",
+      button: "Choose Premium Plan",
     },
     {
       name: "ELITE VIP",
       price: `₹${prices["ELITE VIP"].toLocaleString("en-IN")}`,
-      subtitle: "End-to-End Admission Management",
-      color: "from-purple-600 via-indigo-600 to-blue-700",
+      subtitle: "End-to-End Managed Support",
+      color: "from-indigo-600 via-purple-600 to-blue-700",
+      shadow: "shadow-purple-100",
+      tagline: "Dedicated executive handholding",
       features: [
-        "Everything in Premium",
-        "Dedicated Admission Manager",
-        "Unlimited Counselling",
-        "Full Admission Handholding",
-        "CAP Registration Support",
-        "Document Upload Assistance",
-        "Spot Round Guidance",
-        "Education Loan Support",
-        "Hostel Guidance",
-        "Emergency Deadline Support",
-        "Parent Counselling Unlimited",
-        "Daily Priority WhatsApp Support",
-        "AI Career Report",
-        "Salary Prediction Report",
-        "Future Job Trend Report",
-        "Internship Guidance",
-        "LinkedIn Profile Setup",
+        "Everything in Premium Package",
+        "Dedicated Personal Admission Manager",
+        "Unlimited Custom One-on-One Counselling",
+        "Full Process Executive Handholding",
+        "Direct CAP Registration Assistance",
+        "Document Verification & Upload Review",
+        "Spot Round Strategy & Matrix Guidance",
+        "Education Loan Application Support",
+        "Hostel Matching & Campus Guidance",
+        "Emergency Live Deadline Support",
+        "Unlimited Extended Parent Orientation",
+        "Daily High Priority WhatsApp Access",
+        "Premium AI Analytics Reports Suite",
+        "Salary Trend & Future Job Forecasts",
+        "Corporate Internship Route Maps",
+        "Professional LinkedIn Profile Build",
       ],
       button: "Book VIP Consultation",
     },
@@ -140,23 +142,8 @@ const ConsultPricing = () => {
     setSelectedPackage(pkg);
     setShowCouponModal(true);
   };
-  const processPayment = async (
-    pkg,
-    couponCode = null,
-    finalAmount = null
-  ) => {
 
-  // console.log("================================");
-  // console.log("PROCESS PAYMENT CALLED");
-  // console.log("PACKAGE:", pkg);
-  // console.log("COUPON CODE:", couponCode);
-  // console.log("FINAL AMOUNT:", finalAmount);
-
-    if (pkg.name === "FREE") {
-      navigate("/free-counseling");
-      return;
-    }
-
+  const processPayment = async (pkg, couponCode = null, finalAmount = null) => {
     if (!user) {
       sessionStorage.setItem("redirectPath", "/consult-pricing");
       navigate("/login");
@@ -164,23 +151,15 @@ const ConsultPricing = () => {
     }
 
     setIsProcessing(true);
-
     try {
       const sdkLoaded = await loadRazorpayScript();
       if (!sdkLoaded) {
-        alert("Failed to load Razorpay SDK. Please check your internet connection.");
+        alert(
+          "Failed to load Razorpay SDK. Please check your network connection.",
+        );
         setIsProcessing(false);
         return;
       }
-
-      // Call backend to create order
-      // console.log("CALLING BACKEND ORDER API");
-
-// console.log({
-//   planName: pkg.name,
-//   couponCode,
-//   finalAmount,
-// });
 
       const orderRes = await api.post("/api/payments/order", {
         planName: pkg.name,
@@ -189,13 +168,10 @@ const ConsultPricing = () => {
       });
 
       if (!orderRes.data || !orderRes.data.order) {
-        throw new Error("Failed to create order on the backend");
+        throw new Error("Failed to create verification invoice on backend");
       }
 
       const { order } = orderRes.data;
-//       console.log("ORDER RESPONSE RECEIVED");
-
-// console.log(order);
 
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
@@ -211,18 +187,20 @@ const ConsultPricing = () => {
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_order_id: response.razorpay_order_id,
               razorpay_signature: response.razorpay_signature,
-              planName: pkg.name
+              planName: pkg.name,
             });
 
             if (verifyRes.data.success) {
-              alert(`🎉 Payment successful! Your account has been upgraded to ${pkg.name}.`);
+              alert(
+                `🎉 Success! Account successfully upgraded to ${pkg.name}.`,
+              );
               window.location.reload();
             } else {
               alert("Payment verification failed. Please contact support.");
             }
           } catch (err) {
-            console.error("Payment verification error:", err);
-            alert("Error verifying payment signature. Please contact support.");
+            console.error("Verification sequence issue:", err);
+            alert("Error verifying signatures. Please contact support.");
           } finally {
             setIsProcessing(false);
           }
@@ -230,220 +208,292 @@ const ConsultPricing = () => {
         prefill: {
           name: user.name || "",
           email: user.email || "",
-          contact: user.mobile || ""
+          contact: user.mobile || "",
         },
         theme: {
-          color: "#0041A3",
+          color: "#2563eb",
         },
       };
-
-//       console.log("OPENING RAZORPAY");
-
-// console.log({
-//   amount: order.amount,
-//   orderId: order.id,
-// });
 
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
     } catch (error) {
-      console.error("Order creation failed:", error);
-      const errMsg = error.response?.data?.error === "Selected plan is currently unavailable."
-        ? "This plan is currently unavailable. Please choose another package."
-        : (error.response?.data?.error || "Failed to initiate payment. Please try again.");
-      alert(errMsg);
+      console.error("Initialization checkout error:", error);
+      alert(
+        error.response?.data?.error ||
+          "Failed to initiate checkout processing pipeline.",
+      );
     } finally {
       setIsProcessing(false);
     }
   };
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white py-20">
-      <div className="max-w-7xl mx-auto px-6">
 
-        {/* Hero */}
-        <div className="text-center mb-20">
-          <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold">
-            CareerGenAI Admission Packages
+  const activePackage = user?.profile?.admissionPackage?.packageName;
+  const activeExpiry = user?.profile?.admissionPackage?.expiresAt;
+
+  return (
+    <div className="min-h-screen bg-slate-50 py-16 px-4 sm:px-6 lg:px-8 relative bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:3rem_3rem]">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Hero Header */}
+        <div className="text-center mb-16">
+          <span className="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+            <Sparkles size={14} className="text-orange-500 animate-pulse" />{" "}
+            Comprehensive Matrix Guides
           </span>
 
-          <h1 className="text-5xl lg:text-6xl font-extrabold mt-6 text-gray-900">
-            Admission Guidance & Counselling
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mt-6 text-slate-900 tracking-tight leading-none">
+            Admission Guidance <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-orange-600">
+              & Expert Counselling
+            </span>
           </h1>
 
-          <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-            From Career Selection to Final Admission Confirmation,
-            we help students and parents make confident decisions.
+          <p className="mt-5 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
+            From algorithmic college selection matrices to final counter
+            confirmation. Secure structured confidence throughout structural
+            choices.
           </p>
         </div>
 
-        {user?.profile?.admissionPackage?.packageName && (
-          <div className="mb-10">
-            <div className="bg-green-50 border border-green-200 rounded-2xl p-5 flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-bold text-green-800">
-                  🎓 Active Admission Package
-                </h3>
-
-                <p className="text-green-700 mt-1">
-                  You currently have the{" "}
-                  <span className="font-semibold">
-                    {user.profile.admissionPackage.packageName}
-                  </span>{" "}
-                  package.
-                </p>
-
-                {user.profile.admissionPackage.expiresAt && (
-                  <p className="text-sm text-green-600 mt-1">
-                    Valid until{" "}
-                    {new Date(
-                      user.profile.admissionPackage.expiresAt
-                    ).toLocaleDateString()}
+        {/* Conditional Dashboard User Status Block */}
+        {activePackage && (
+          <div className="mb-12 max-w-4xl mx-auto animate-fadeIn">
+            <div className="bg-white border-2 border-emerald-500/30 rounded-2xl p-5 shadow-lg shadow-emerald-50/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-emerald-50 rounded-xl text-emerald-600 border border-emerald-100 shrink-0 mt-0.5">
+                  <ShieldCheck size={20} />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-slate-900">
+                    Active Structural Admission Package
+                  </h3>
+                  <p className="text-sm text-slate-600 mt-0.5">
+                    Your pipeline is current operating on the{" "}
+                    <span className="font-extrabold text-emerald-600">
+                      {activePackage}
+                    </span>{" "}
+                    profile.
                   </p>
-                )}
+                  {activeExpiry && (
+                    <p className="text-xs text-slate-400 mt-1">
+                      System access structural clearance expires:{" "}
+                      {new Date(activeExpiry).toLocaleDateString()}
+                    </p>
+                  )}
+                </div>
               </div>
-
               <button
                 onClick={() => navigate("/history")}
-                className="bg-green-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-green-700"
+                className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow transition-all duration-150 whitespace-nowrap shrink-0"
               >
-                View Details
+                View Manifest Details
               </button>
             </div>
           </div>
         )}
 
-        {/* Pricing Cards */}
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
-
-          {packages.filter(pkg => plansStatus[pkg.name] !== false).map((pkg, index) => (
-            <div
-              key={index}
-              className={`relative rounded-3xl bg-white border shadow-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 ${pkg.popular
-                ? "border-yellow-400 scale-105"
-                : "border-gray-200"
+        {/* Managed Core Flexbox Dynamic Framework Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start max-w-6xl mx-auto">
+          {packages
+            .filter((pkg) => plansStatus[pkg.name] !== false)
+            .map((pkg, index) => (
+              <div
+                key={index}
+                className={`relative bg-white rounded-3xl border-2 shadow-xl transition-all duration-300 flex flex-col ${
+                  pkg.popular
+                    ? `border-orange-500 shadow-2xl ${pkg.shadow}`
+                    : "border-slate-200 shadow-slate-100"
                 }`}
-            >
-              {pkg.popular && (
-                <div className="absolute top-0 left-0 right-0">
-                  <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 text-center text-sm font-bold flex items-center justify-center gap-2">
-                    <Star size={16} />
-                    MOST POPULAR
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-3.5 py-1 rounded-full text-[10px] font-black tracking-widest uppercase shadow-md flex items-center gap-1">
+                    <Star size={11} className="fill-white" /> Most Popular Tier
                   </div>
-                </div>
-              )}
+                )}
 
-              <div className={`h-2 bg-gradient-to-r ${pkg.color}`} />
-
-              <div className="p-8">
-
+                {/* Vertical Decorative Border Accents */}
                 <div
-                  className={`inline-flex px-4 py-2 rounded-full bg-gradient-to-r ${pkg.color} text-white text-sm font-semibold`}
-                >
-                  {pkg.name}
-                </div>
+                  className={`h-2 rounded-t-3xl bg-gradient-to-r ${pkg.color}`}
+                />
 
-                <h2 className="text-5xl font-black mt-6">
-                  {pkg.price}
-                </h2>
+                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h2 className="text-xs font-bold tracking-widest text-slate-400 uppercase">
+                          {pkg.name}
+                        </h2>
+                        <h3 className="text-xl font-extrabold text-slate-900 mt-0.5 tracking-tight">
+                          {pkg.subtitle}
+                        </h3>
+                      </div>
+                    </div>
 
-                <p className="text-gray-500 mt-2">
-                  {pkg.subtitle}
-                </p>
+                    <p className="text-xs text-slate-400 mt-1 font-medium italic">
+                      {pkg.tagline}
+                    </p>
 
-                <button
-                  onClick={() => handleChoosePlan(pkg)}
-                  disabled={isProcessing}
-                  className={`w-full mt-8 bg-gradient-to-r ${pkg.color} text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 ${isProcessing ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
-                >
-                  {isProcessing ? "Processing..." : pkg.button}
-                  <ArrowRight size={18} />
-                </button>
-
-                <div className="mt-8 space-y-3">
-                  {pkg.features.map((feature, idx) => (
-                    <div key={idx} className="flex gap-3">
-                      <CheckCircle
-                        size={18}
-                        className="text-green-500 mt-1"
-                      />
-                      <span className="text-sm text-gray-700">
-                        {feature}
+                    <div className="my-6 flex items-baseline text-slate-900">
+                      <span className="text-4xl sm:text-5xl font-black tracking-tight">
+                        {pkg.price}
+                      </span>
+                      <span className="ml-1 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                        / Fixed Package
                       </span>
                     </div>
-                  ))}
-                </div>
 
+                    <div className="w-full h-px bg-slate-100 my-4" />
+
+                    {/* Features loop */}
+                    <div className="space-y-3.5 mt-4">
+                      {pkg.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-3">
+                          <CheckCircle
+                            size={15}
+                            className="text-emerald-500 shrink-0 mt-0.5"
+                          />
+                          <span className="text-xs sm:text-sm text-slate-600 font-medium leading-normal">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Operational Button Section */}
+                  <div className="pt-8 mt-auto">
+                    <button
+                      onClick={() => handleChoosePlan(pkg)}
+                      disabled={isProcessing}
+                      className={`w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all transform active:scale-[0.99] shadow-md ${
+                        pkg.popular
+                          ? "bg-slate-900 text-white hover:bg-slate-800 shadow-slate-300"
+                          : `bg-gradient-to-r ${pkg.color} text-white shadow-blue-50/50 hover:opacity-95`
+                      } ${isProcessing ? "opacity-40 cursor-not-allowed" : ""}`}
+                    >
+                      {isProcessing
+                        ? "Processing Vault Invoice..."
+                        : pkg.button}
+                      <ArrowRight size={14} />
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
 
-        {/* Why Choose */}
-        <div className="mt-24 bg-white rounded-3xl shadow-xl p-10">
-          <h2 className="text-3xl font-bold text-center mb-10">
-            Why Choose CareerGenAI?
-          </h2>
+        {/* Feature Grid: Why Choose Us */}
+        <div className="mt-28 bg-white border border-slate-200 rounded-3xl shadow-xl shadow-slate-100/50 p-6 sm:p-10 max-w-5xl mx-auto">
+          <div className="text-center max-w-xl mx-auto mb-10">
+            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900">
+              Why Parents & Students Choose CareerGenAI
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1.5 font-medium">
+              Eliminating systemic blindspots via deep analytical diagnostic
+              reporting filters.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {[
-              "AI + Expert Guidance",
-              "CAP Round Specialists",
-              "Scholarship Assistance",
-              "Admission Support",
-              "Career Roadmaps",
-              "Parent Counselling",
-              "College Predictors",
-              "Trusted Experts",
+              {
+                label: "AI + Expert Hybrid",
+                desc: "algorithmic matching vectors",
+              },
+              { label: "CAP Specialists", desc: "round systematic validation" },
+              {
+                label: "Scholarship Maps",
+                desc: "automated eligibility checks",
+              },
+              {
+                label: "Admission Handholding",
+                desc: "end-to-end document review",
+              },
+              {
+                label: "Target Roadmaps",
+                desc: "long-term development reports",
+              },
+              {
+                label: "Parent Orientation",
+                desc: "dual strategy mapping windows",
+              },
+              {
+                label: "Predictor Engines",
+                desc: "real-time dynamic analytics",
+              },
+              {
+                label: "Certified Engineers",
+                desc: "industry experienced advisors",
+              },
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-slate-50 rounded-xl p-5 text-center font-medium"
+                className="bg-slate-50 border border-slate-100 rounded-xl p-4 text-center group hover:bg-white hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-50/50 transition-all duration-200"
               >
-                {item}
+                <Zap
+                  size={14}
+                  className="text-orange-500 mx-auto mb-2 opacity-80 group-hover:scale-110 transition-transform"
+                />
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900">
+                  {item.label}
+                </h4>
+                <p className="text-[10px] text-slate-400 mt-0.5 leading-none font-medium">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-20 bg-gradient-to-r from-[#002B5B] to-[#0041A3] rounded-3xl text-white p-14 text-center">
-          <h2 className="text-4xl font-bold">
-            Ready To Secure Your Admission?
+        {/* Bottom CTA Block Segment */}
+        <div className="mt-24 bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-950 border border-slate-900 rounded-3xl text-white p-8 sm:p-14 text-center max-w-5xl mx-auto shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
+
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight relative z-10">
+            Ready to Secure Your Academic Path?
           </h2>
 
-          <p className="mt-4 text-lg opacity-90 max-w-3xl mx-auto">
-            Book your consultation today and get expert admission guidance.
+          <p className="mt-4 text-sm sm:text-base opacity-80 max-w-xl mx-auto font-medium leading-relaxed relative z-10">
+            Lock in structural tracking parameters. Talk directly to a
+            certification engineer or initiate entry-tier evaluations
+            immediately.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-5 mt-8">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8 relative z-10">
             <button
               onClick={() => navigate("/free-counseling")}
-              className="bg-white text-[#0041A3] px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300"
+              className="w-full sm:w-auto bg-white text-slate-950 px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-slate-100 shadow transition-all active:scale-[0.99]"
             >
-              Book Free Consultation
+              Initialize Free Evaluation
             </button>
 
             <button
               onClick={() => navigate("/consult")}
-              className="border border-white px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300">
-              Talk To Expert
+              className="w-full sm:w-auto border border-white/20 bg-white/5 backdrop-blur-sm text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-white/10 transition-all active:scale-[0.99]"
+            >
+              Talk to System Expert
             </button>
           </div>
-        </div>
 
+          <div className="mt-8 flex justify-center items-center gap-2 text-[10px] text-slate-400 font-medium">
+            <HelpCircle size={12} />
+            Need corporate custom organizational bundles? Support ticketing desk
+            answers live queries instantly.
+          </div>
+        </div>
       </div>
+
       {showCouponModal && (
         <CouponModal
           plan={selectedPackage}
           onClose={() => setShowCouponModal(false)}
           onProceed={(paymentData) => {
             setShowCouponModal(false);
-
             processPayment(
               selectedPackage,
               paymentData.couponCode,
-              paymentData.finalAmount
+              paymentData.finalAmount,
             );
           }}
         />
